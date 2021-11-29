@@ -152,8 +152,9 @@ Full code for the visualization follows:
 ```nim
 {{#include code/nim/forwardeuler.nim}}
 ```
-{% sample lang="lisp" %}
-[import, lang="lisp"](code/clisp/euler.lisp)
+```lisp
+{{#include code/clisp/euler.lisp}}
+```
 
 
 

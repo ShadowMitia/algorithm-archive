@@ -153,8 +153,9 @@ In the end, the code looks like:
 ```asm-x64
 {{#include code/asm-x64/fft.s:76:165}}
 ```
-{% sample lang="js" %}
-[import:17-39, lang="javascript"](code/javascript/fft.js)
+```javascript
+{{#include code/javascript/fft.js:17:39}}
+```
 ```rust
 {{#include code/rust/fft.rs:39:55}}
 ```

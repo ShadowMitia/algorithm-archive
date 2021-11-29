@@ -36,9 +36,11 @@ We can find whether a rotation is counter-clockwise with trigonometric functions
 ```lisp
 {{#include code/clisp/graham-scan.lisp:5:13}}
 ```
-{% sample lang="cpp" %}
-[import:18-20, lang="cpp"](code/cpp/graham_scan.cpp)
-{% sample lang="coco" %}
+```cpp
+{{#include code/cpp/graham_scan.cpp:18:20}}
+``````cpp
+{{#include code/cpp/graham_scan.cpp:18:20}}
+```
 [import:4-8, lang="coconut"](code/coconut/graham_scan.coco)
 
 
@@ -78,9 +80,11 @@ In the end, the code should look something like this:
 ```lisp
 {{#include code/clisp/graham-scan.lisp:15:58}}
 ```
-{% sample lang="cpp" %}
-[import:26-62, lang="cpp"](code/cpp/graham_scan.cpp)
-{% sample lang="coco" %}
+```cpp
+{{#include code/cpp/graham_scan.cpp:26:62}}
+``````cpp
+{{#include code/cpp/graham_scan.cpp:26:62}}
+```
 [import:17-30, lang="coconut"](code/coconut/graham_scan.coco)
 
 
@@ -115,9 +119,11 @@ In the end, the code should look something like this:
 ```lisp
 {{#include code/clisp/graham-scan.lisp}}
 ```
-{% sample lang="cpp" %}
-[import, lang="cpp"](code/cpp/graham_scan.cpp)
-{%sample lang="coco" %}
+```cpp
+{{#include code/cpp/graham_scan.cpp}}
+``````cpp
+{{#include code/cpp/graham_scan.cpp}}
+```
 [import, lang="coconut"](code/coconut/graham_scan.coco)
 
 

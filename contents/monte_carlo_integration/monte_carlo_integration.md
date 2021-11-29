@@ -92,8 +92,9 @@ each point is tested to see whether it's in the circle or not:
 ```php
 {{#include code/php/monte_carlo.php:4:7}}
 ```
-{% sample lang="lua" %}
-[import:2-4, lang="lua"](code/lua/monte_carlo.lua)
+```lua
+{{#include code/lua/monte_carlo.lua:2:4}}
+```
 ```racket
 {{#include code/racket/monte_carlo.rkt:6:8}}
 ```
@@ -226,8 +227,9 @@ Feel free to submit your version via pull request, and thanks for reading!
 ```php
 {{#include code/php/monte_carlo.php}}
 ```
-{% sample lang="lua" %}
-[import, lang="lua"](code/lua/monte_carlo.lua)
+```lua
+{{#include code/lua/monte_carlo.lua}}
+```
 ```racket
 {{#include code/racket/monte_carlo.rkt}}
 ```

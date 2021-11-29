@@ -95,9 +95,11 @@ In code, this might look like this:
 ```cpp
 {{#include code/cpp/flood_fill.cpp:19:44}}
 ```
-{% sample lang="py" %}
-[import:10-25, lang="python"](code/python/flood_fill.py)
-{% sample lang="coco" %}
+```python
+{{#include code/python/flood_fill.py:10:25}}
+``````python
+{{#include code/python/flood_fill.py:10:25}}
+```
 [import:15-19, lang="coconut"](code/coconut/flood_fill.coco)
 
 
@@ -120,8 +122,9 @@ In code, it might look like this:
 ```cpp
 {{#include code/cpp/flood_fill.cpp:46:64}}
 ```
-{% sample lang="py" %}
-[import:55-63, lang="python"](code/python/flood_fill.py)
+```python
+{{#include code/python/flood_fill.py:55:63}}
+```
 ```coconut
 {{#include code/coconut/flood_fill.coco:54:63}}
 ```
@@ -141,8 +144,9 @@ Additionally, it is possible to do the same type of traversal by managing a stac
 ```cpp
 {{#include code/cpp/flood_fill.cpp:95:123}}
 ```
-{% sample lang="py" %}
-[import:27-36, lang="python"](code/python/flood_fill.py)
+```python
+{{#include code/python/flood_fill.py:27:36}}
+```
 ```coconut
 {{#include code/coconut/flood_fill.coco:23:34}}
 ```
@@ -190,8 +194,9 @@ The code would look something like this:
 ```cpp
 {{#include code/cpp/flood_fill.cpp:66:93}}
 ```
-{% sample lang="py" %}
-[import:38-53, lang="python"](code/python/flood_fill.py)
+```python
+{{#include code/python/flood_fill.py:38:53}}
+```
 ```coconut
 {{#include code/coconut/flood_fill.coco:37:51}}
 ```
@@ -280,8 +285,9 @@ After, we will fill in the left-hand side of the array to be all ones by choosin
 ```
 {% sample lang="py" %}
 [import:, lang="python"](code/python/flood_fill.py)
-{% sample lang="coco" %}
-[import, lang="coconut"](code/coconut/flood_fill.coco)
+```coconut
+{{#include code/coconut/flood_fill.coco}}
+```
 
 
 

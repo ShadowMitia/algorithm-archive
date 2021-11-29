@@ -52,8 +52,9 @@ Here is what it looks like in code:
 ```fortran
 {{#include code/fortran/verlet.f90:1:20}}
 ```
-{% sample lang="ruby" %}
-[import:1-14, lang="ruby"](code/ruby/verlet.rb)
+```ruby
+{{#include code/ruby/verlet.rb:1:14}}
+```
 ```go
 {{#include code/go/verlet.go:5:16}}
 ```
@@ -112,8 +113,9 @@ However, the error for this is \\( \mathcal{O}(\Delta t) \\), which is quite poo
 ```fortran
 {{#include code/fortran/verlet.f90:22:42}}
 ```
-{% sample lang="ruby" %}
-[import:16-32, lang="ruby"](code/ruby/verlet.rb)
+```ruby
+{{#include code/ruby/verlet.rb:16:32}}
+```
 ```go
 {{#include code/go/verlet.go:18:30}}
 ```
@@ -190,8 +192,9 @@ Here is the velocity Verlet method in code:
 ```fortran
 {{#include code/fortran/verlet.f90:44:60}}
 ```
-{% sample lang="ruby" %}
-[import:34-46, lang="ruby"](code/ruby/verlet.rb)
+```ruby
+{{#include code/ruby/verlet.rb:34:46}}
+```
 ```go
 {{#include code/go/verlet.go:32:42}}
 ```
@@ -254,8 +257,9 @@ Both of these methods work simply by iterating timestep-by-timestep and can be w
 ```fortran
 {{#include code/fortran/verlet.f90}}
 ```
-{% sample lang="ruby" %}
-[import, lang="ruby"](code/ruby/verlet.rb)
+```ruby
+{{#include code/ruby/verlet.rb}}
+```
 ```go
 {{#include code/go/verlet.go}}
 ```
@@ -265,8 +269,9 @@ Both of these methods work simply by iterating timestep-by-timestep and can be w
 ```kotlin
 {{#include code/kotlin/verlet.kt}}
 ```
-{% sample lang="nim" %}
-[import, lang="nim"](code/nim/verlet.nim)
+```nim
+{{#include code/nim/verlet.nim}}
+```
 ```lisp
 {{#include code/clisp/verlet.lisp}}
 ```

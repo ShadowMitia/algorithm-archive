@@ -142,8 +142,9 @@ You will find this algorithm implemented [in this project](https://scratch.mit.e
 ```lisp
 {{#include code/clisp/thomas.lisp}}
 ```
-{% sample lang="ruby" %}
-[import, lang="ruby"](code/ruby/thomas.rb)
+```ruby
+{{#include code/ruby/thomas.rb}}
+```
 ```javascript
 {{#include code/javascript/thomas.js}}
 ```
