@@ -1,0 +1,521 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Domain Coloring - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html" class="active"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="domain-coloring"><a class="header" href="#domain-coloring">Domain coloring</a></h1>
+<p>Domain coloring is a much more complicated plotting technique than those outlined in the <a href="../plotting/plotting.html">plotting chapter</a> and is used to plot complex functions where both the input and output have imaginary and real components.
+For the code in this chapter, we will focus on languages that are easily able to plot two-dimensional images or heat maps, instead of languages meant for number-crunching.
+That is to say that this chapter will certainly have a code implementation in gnuplot, but it will not likely have an implementation in C, Fortran, or Java because these languages do not have plotting capabilities in-built.</p>
+<p>To start, imagine the following function: \( f(z) = z^2 \).
+In this case, we could create a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/z2.png" style="width:70%" />
+</p>
+<p>This indicates that for various input values along \( z \), we have different function outputs from \( f(z) \).
+For this function, \( z\in\mathbb{R} \) is purely in real space and because of this, the output is also in real space.
+Now let's imagine another function with complex input \( (z \in \mathbb{C}) \), but a purely real output \( (f(z) \in \mathbb{R}) \):</p>
+<p>\[ f(z) = |z| \]</p>
+<p>In this case, this can be plotted as a two-dimensional dataset like so:</p>
+<p>
+    <img  class="center" src="res/absz.png" style="width:84%" />
+</p>
+<p>Here, the \( x \)-axis and \( y \)-axis represent the imaginary and real components of the input variable, respectively.
+The color bar represents the output of \( f(z) \).</p>
+<p>At this point, we can start to see the problem.
+If the output of \( f(z) \) also requires plotting of real and imaginary components, then we would need four dimensions to appropriately represent the full function space, one axis for the real component and another for the imaginary component of both the input (\( z \)) and the output of \( f(z) \)!
+Unfortunately, feeble human minds are incapable of understanding four spatial dimensions without projecting onto lower dimensionality, so we need to improvise.</p>
+<p>We do this by assuming the complex output can be represented in the following form:</p>
+<p>\[ z = re^{i \theta} = r(\cos(\theta) + i\sin(\theta)) \]</p>
+<p>where, \( r \) is a complex magnitude and \( \theta \) is a complex phase.
+This is the formula for a circle in the complex plane and we can easily find \( r \) and \( \theta \) like so:</p>
+<p>\[
+\begin{align}
+r &amp;= \sqrt{\text{Re}(z)^2 + \text{Im}(z)^2} \\ 
+\theta &amp;= \text{atan}\left(\frac{\text{Im}(z)}{\text{Re}(z)}\right)
+\end{align}
+\]</p>
+<p>Once we have our complex function output in this form, we then color the output domain according to a color space with at least 2 independent dimensions, like RGB (Red, Green, Blue), or HSV (Hue, Saturation, Value) {{ &quot;hsv&quot; | cite }}.
+The choice of color space is completely dependent on what the users feel is most visually intuitive.
+In any case, one dimension of the color system will be used to represent the complex magnitude and another dimension of the color system will be used to represent the complex phase of the output.
+The \( xy \) grid will be representing the real and imaginary inputs to these functions.
+That is to say, we plug every value in the 2D complex plane into the function and then color each pixel based on the function output.</p>
+<p>As an example, let's look at the simplest function we can \( f(z) = z \), but in this case \( z \in \mathbb{C} \).
+If we use an RGB color scheme, where red represents \( \theta \) and blue represents \( r \), we can generate the following image:</p>
+<p>
+    <img  class="center" src="res/rgb1.png" style="width:84%" />
+</p>
+<p>As a note here, there is a clear phase discontinuity along the horizontal axis, which is a consequence of the fact that
+the complex phase wraps around the origin, ranging from 0 (clear) to \( 2\pi \) (red).
+In addition, the edges of the plot are blue because the function's magnitude increases linearly as we move from the origin.</p>
+<p>If we instead look at the function \( f(z) = z^2 \), we can generate a similar plot:</p>
+<p>
+    <img  class="center" src="res/rgb2.png" style="width:84%" />
+</p>
+<p>Here, it is clear that the complex phase wraps around the origin twice, creating two separate phase discontinuities on top of each other.
+This indicates a \( 4\pi \) phase winding.
+For some purposes, such as vortex tracking for inviscid fluids, this visualization is ideal, because a vortex is located precisely at the center of the phase discontinuity {{ &quot;schloss2019&quot; | cite }} {{ &quot;pethick2008&quot; | cite }}.
+For other purposes, the discontinuity is visually distracting, and for this reason, many people use an HSV scheme for plotting complex functions {{ &quot;wegert2012&quot; | cite }} {{ &quot;poelkedomain&quot; | cite }} {{ &quot;lundmark2004&quot; | cite }}.
+So here is the same function \( \left(f(z)=z^2\right) \), but using hue to represent the complex phase and saturation to represent the magnitude:</p>
+<p>
+    <img  class="center" src="res/hsv.png" style="width:84%" />
+</p>
+<p>In this plot, the Value for HSV was always set to 1.
+When looking at the edges of the plot, the hue changes rapidly, but each color is mirrored on the opposite edge.
+This indicates the \( 4\pi \) phase winding we saw in the RGB plot.
+Also, because the complex magnitude increases as we move further from the center of the plot, the saturation also increases.
+Thus the center of the plot is completely washed out!
+We need to fix this in subsequent plots to make them more representative of the actual data.</p>
+<p>One easy way to show the increasing complex magnitude without sacrificing phase information is by using contours.
+Essentially, at ever integer value of the magnitude, we want to draw some kind of line.
+There are a number of ways to generate these lines, and one simple way is by using an alternative shading function like so:</p>
+<p>\[ g(r) = r-\lfloor r \rfloor. \]</p>
+<p>This will create the following image:</p>
+<p>
+    <img  class="center" src="res/hsv2.png" style="width:84%" />
+</p>
+<p>This function will essentially create a smooth gradient, but because of the floor operation \( \left(\lfloor \cdot \rfloor \right) \), the saturation will go from 0 to 1 between each integer value of the magnitude.
+Here, it is clear that the magnitude is increasing as \( z^2 \) from the origin; however, because the saturation is fluctuating so much, it is difficult to see the phase pattern next to each contour.
+This can be fixed simply by adding an offset to the shading function such that,</p>
+<p>\[ g(r) = \frac{1}{2} + \frac{1}{2}\left(r-\lfloor r \rfloor \right). \]</p>
+<p>Which will produce the following image:</p>
+<p>
+    <img  class="center" src="res/hsv3.png" style="width:84%" />
+</p>
+<p>This means that the saturation will fluctuate from \( \frac12 \) to 1 instead of from 0 to 1, which makes it way easier to see phase information next to contours.
+Again, there are a lot of different ways to play with these equations, so feel free to use whatever function you want!
+As long as some sort of rounding operation is used to establish some form of integer value for the magnitude, it should be possible to create contours of various types.</p>
+<p>At this point, changing the saturation shows changes in the complex magnitude, and changing the hue shows changes in the complex phase.
+Unfortunately, neither the magnitude nor the phase directly show what is happening in real or imaginary space with the output.
+To show this, we might want to draw grid lines that color our pixels black whenever the imaginary or real components of the output function are integer values.</p>
+<p>For example, let's go back to a simpler function \( f(z) = z \).
+If we draw lines on this plot, corresponding to integer values in the output, we get a simple grid</p>
+<p>
+    <img  class="center" src="res/hsv4.png" style="width:84%" />
+</p>
+<p>Like before, the choice of which function to use in order to create the grid lines is somewhat arbitrary.
+It is important to choose a function that sharply drops to 0 or peaks at 1 for all integer values, and then we simply plug values of \( f(z) \) into this function.
+For the purposes of this chapter, we chose the following function</p>
+<p>\[ h(z) = |\sin(\pi\times\text{Re}(f(z)))^t|\times|\sin(\pi\times\text{Im}(f(z)))^t|, \]</p>
+<p>where \( t \) is some threshold value, and was set to be 0.1 in our plot.
+A plot of \( h(z) \) for \( f(z) = z \) where \( z\in\mathbb{R} \) is shown below:</p>
+<p>
+    <img  class="center" src="res/shade.png" style="width:84%" />
+</p>
+<p>So, putting it all together and returning to the function of \( f(z) = z^2 \), we find the following image.</p>
+<p>
+    <img  class="center" src="res/hsv5.png" style="width:84%" />
+</p>
+<p>Here, the diagonal lines through the center represent integer values along the imaginary axis for \( f(z) \) and the vertical and horizontal lines represent integer values of the real axis for \( f(z) \).
+An easy way to determine which lines correspond to which integer values is by plugging in certain values for \( z \) into \( f(z) \).
+For example, there is a black line at \( z = 1 + 1i \) where \( f(z) = 2i \), this means that all values along that contour correspond to values that are constrained to having an imaginary component of precisely 2.</p>
+<p>Overall, there are plenty of interesting ways to plot complex functions and make really compelling and beautiful images!
+We will be using domain coloring in other contexts throughout this text when describing methods that heavily use complex space.</p>
+<h2 id="video-explanation"><a class="header" href="#video-explanation">Video Explanation</a></h2>
+<p>Here is a video describing domain coloring:</p>
+<div style="text-align:center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EbanExb75mc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<p>Here is the full script to generate a domain colored output of \( f(z)=z^2 \).</p>
+<pre><code class="language-gnuplot"># setting output to file of size 800 x 800
+set terminal pngcairo size 1000, 1000 
+set output 'domain.png'
+
+# sets title for full plot
+set title 'f(z)=z^2'
+
+# removes legend
+unset key
+
+# projects image onto 2D plane
+set view map
+
+# sets aspect ratio of plot to be square 
+set size square
+
+# sets x and y range and labels
+set xrange[-2:2]
+set yrange[-2:2]
+
+set xlabel &quot;Re(z)&quot;
+set ylabel &quot;Im(z)&quot;
+
+# scaling the x, y, and colorbar tics to zero so they are not seen in the plot
+set xtics border scale 0,0
+set ytics border scale 0,0
+set cbtics border scale 0,0
+
+# sets tics in color bar at 0 and 2pi
+set cbtics (&quot;0&quot; -3.14159, '2pi' 3.14159)
+
+set cblabel &quot;Phase Angle&quot; 
+set cbrange [ -3.14159 : 3.14159 ]
+
+# use hsv for colorbar and set palette to use full hsv space
+set palette model HSV
+set palette defined ( 0 0 1 1, 1 1 1 1 )
+
+# setting isosamples for output grid and samples for input grid
+set isosamples 2000, 2000
+set samples 2000, 2000
+
+# setting functions necessary for domain coloring
+# setting threshold for gridlines. Smaller threshold will make smaller lines
+thresh = 0.1
+f(z) = z**2
+
+# atan2 returns a range from -pi to pi, so we need to add pi, but this offsets
+# the value by 180 degrees, so we also imput (-y, -x) for another 180 degrees
+# to invert rotation
+angle(x,y) = (pi + atan2(-y,-x)) / (2*pi)
+
+# complex magnitude
+r(x,y) = sqrt(x*x + y*y)
+
+# complex phase and magnitude
+theta(x,y) = atan2(y,x)
+z(x,y) = r(x,y)*exp(theta(x,y)*sqrt(-1))
+
+# imaginary and real output functions
+imaginary_f(z) = imag(f(z))
+real_f(z) = real(f(z))
+
+# magnitude contours
+magnitude_shading(x,y) = 0.5 + 0.5*(abs(f(z(x,y)))-floor(abs(f(z(x,y)))))
+
+# gridlines
+gridlines(x,y) = (abs(sin(real_f(z(x,y))*pi)**thresh) \
+                  * abs(sin(imaginary_f(z(x,y))*pi))**thresh)
+
+# overall coloring function
+color(x,y) = hsv2rgb(angle(real_f(z(x,y)), imaginary_f(z(x,y))), \
+                     magnitude_shading(x,y), \
+                     gridlines(x,y))
+
+save_encoding = &quot;utf8&quot;
+
+# Last datafile plotted: &quot;++&quot;
+# In this case, it means, &quot;plot the data file created with the
+#                          samples and isosamples&quot;
+splot '++' using 1:2:(color($1,$2)) with pm3d lc rgb variable nocontour
+</code></pre>
+<pre><code class="language-python">
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.colors
+from matplotlib.cm import ScalarMappable
+
+
+def f(z):
+    return z**2
+
+
+def magnitude_shading(f_val):
+    f_val_abs = np.abs(f_val)
+    return 0.5 + 0.5 * (f_val_abs - np.floor(f_val_abs))
+
+
+def gridlines(f_val, threshold):
+    return (np.abs(np.sin(np.pi * np.real(f_val))) ** threshold
+            * np.abs(np.sin(np.pi * np.imag(f_val))) ** threshold)
+
+
+def color(f_val, threshold):
+    hue = (np.pi - np.angle(f_val)) / (2.0 * np.pi)
+    saturation = magnitude_shading(f_val)
+    value = gridlines(f_val, threshold)
+
+    # Currently we have a tuple of 2D-arrays (hue, saturation, value).
+    # This makes it a 2D-array of tuples, which the conversion function requires.
+    hsv = np.moveaxis((hue, saturation, value), 0, -1)
+    return matplotlib.colors.hsv_to_rgb(hsv)
+
+
+if __name__ == &quot;__main__&quot;:
+    # Create a new figure containing a single plot
+    fig, axes = plt.subplots(1, 1)
+
+    # Set the title for the plot
+    axes.set_title(&quot;$f(x)=z^2$&quot;)
+
+    # Create color bar
+    cbar = fig.colorbar(
+        ScalarMappable(matplotlib.colors.Normalize(0.0, 2.0 * np.pi), &quot;hsv&quot;),
+        ax=axes,
+        label=&quot;Phase Angle&quot;)
+
+    # Set x and y labels
+    axes.set_xlabel(&quot;$Re(z)$&quot;)
+    axes.set_ylabel(&quot;$Im(z)$&quot;)
+    
+    # Set color bar tick locations and labels
+    cbar.set_ticks([0.0, np.pi, 2.0 * np.pi])
+    cbar.set_ticklabels([&quot;$0.0$&quot;, &quot;$\pi$&quot;, &quot;$2\pi$&quot;])
+
+    # Hide x and y ticks
+    for tick in axes.get_xticklines():
+        tick.set_visible(False)
+
+    for tick in axes.get_yticklines():
+        tick.set_visible(False)
+
+    # Create a 500x500 input grid
+    coords = np.linspace(-2.0, 2.0, 500)
+    z_real, z_imag = np.meshgrid(coords, coords)
+    z = z_real + 1j * z_imag
+
+    # Calculate function values
+    f_val = f(z)
+
+    # Map function values to colors
+    colors = color(f_val, 0.1)
+
+    # Plot the colors
+    #   extent=(-2.0, 2.0, -2.0, 2.0) sets the x and y ranges
+    #   origin=&quot;lower&quot; places index (0,0) of the color array in the lower-left corner
+    #   aspect=&quot;equal&quot; ensures that the plot is square
+    axes.imshow(
+        colors,
+        extent=(-2.0, 2.0, -2.0, 2.0),
+        origin=&quot;lower&quot;,
+        aspect=&quot;equal&quot;)
+
+    # Save output
+    fig.savefig(&quot;domain.png&quot;)
+</code></pre>
+<h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
+<p>{% references %} {% endreferences %}</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<ul>
+<li>The image &quot;<a href="res/z2.png">z2</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/absz.png">absz</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/rgb1.png">rgb1</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/rgb2.png">rgb2</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/hsv.png">hsv1</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/hsv2.png">hsv2</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/hsv3.png">hsv3</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/hsv4.png">hsv4</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/shade.png">shade</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/hsv5.png">hsv5</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>The following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../plotting/plotting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../IFS/IFS.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../plotting/plotting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../IFS/IFS.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

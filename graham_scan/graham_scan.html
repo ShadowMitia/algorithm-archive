@@ -1,0 +1,1070 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Graham Scan - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html" class="active"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="graham-scan"><a class="header" href="#graham-scan">Graham Scan</a></h1>
+<p>At around the same time of the <a href="../jarvis_march/jarvis_march.html">Jarvis March</a>, R. L. Graham was also developing an algorithm to find the convex hull of a random set of points {{ &quot;gs1972&quot; | cite }}.
+Unlike the Jarvis March, which is an \( \mathcal{O}(nh) \) operation, the Graham Scan is \( \mathcal{O}(n\log(n)) \), where \( n \) is the number of points and \( h \) is the size for the hull.
+This means that the complexity of the Graham Scan is not output-sensitive; moreover, there are some cases where the Jarvis March is more optimal, depending on the size of the hull and the number of points to wrap.</p>
+<p>Rather than starting at the leftmost point like the Jarvis March, the Graham scan starts at the bottom.
+We then sort the distribution of points based on the angle between the bottom-most point, the origin, and each other point.
+After sorting, we go through point-by-point, searching for points that are on the convex hull and throwing out any other points.
+We do this by looking for counter-clockwise rotations.
+If an angle between three points turns inward, the shape is obviously not convex, so we can throw that result out.
+We can find whether a rotation is counter-clockwise with trigonometric functions or by using a cross-product, like so:</p>
+<pre><code class="language-julia">function ccw(a::Point, b::Point, c::Point)
+    return ((b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x))
+end
+</code></pre>
+<pre><code class="language-haskell">ccw :: Point -&gt; Point -&gt; Point -&gt; Double
+ccw (xa, ya) (xb, yb) (xc, yc) = (xb - xa) * (yc - ya) - (yb - ya) * (xc - xa)
+</code></pre>
+<pre><code class="language-c">double ccw(struct point a, struct point b, struct point c) {
+    return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+</code></pre>
+<pre><code class="language-javascript">function ccw(a, b, c) {
+  return (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
+}
+</code></pre>
+<pre><code class="language-python">def counter_clockwise(p1, p2, p3):
+    &quot;&quot;&quot;Is the turn counter-clockwise?&quot;&quot;&quot;
+    return (p3[1] - p1[1]) * (p2[0] - p1[0]) &gt;= (p2[1] - p1[1]) * (p3[0] - p1[0])
+</code></pre>
+<pre><code class="language-go">func counterClockwise(p1, p2, p3 point) bool {
+	return (p3.y-p1.y)*(p2.x-p1.x) &gt;= (p2.y-p1.y)*(p3.x-p1.x)
+}
+</code></pre>
+<pre><code class="language-java">    static double ccw(Point a, Point b, Point c) {
+        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+    }
+</code></pre>
+<pre><code class="language-lisp">(defun ccw (p1 p2 p3)
+  &quot;Determines if a turn between three points is counterclockwise&quot;
+  (-
+    (*
+      (- (point-y p2) (point-y p1))
+      (- (point-x p3) (point-x p1)))
+    (*
+      (- (point-y p3) (point-y p1))
+      (- (point-x p2) (point-x p1)))))
+</code></pre>
+<p>{% sample lang=&quot;cpp&quot; %}
+<a href="code/cpp/graham_scan.cpp">import:18-20, lang=&quot;cpp&quot;</a>
+{% sample lang=&quot;coco&quot; %}
+<a href="code/coconut/graham_scan.coco">import:4-8, lang=&quot;coconut&quot;</a></p>
+<p>If the output of this function is 0, the points are collinear.
+If the output is positive, then the points form a counter-clockwise &quot;left&quot; turn.
+If the output is negative, then the points form a clockwise &quot;right&quot; turn.
+We basically do not want clockwise rotations, because this means we are at an interior angle.</p>
+<!---ADD FIGURE--->
+<p>To save memory and expensive <code>append()</code> operations, we ultimately look for points that should be on the hull and swap them with the first elements in the array.
+If there are \( M \) elements on the hull, then the first \( M \) elements in our output random distribution of points will be the hull.
+In the end, the code should look something like this:</p>
+<pre><code class="language-julia">function graham_scan!(points::Vector{Point})
+    N = length(points)
+
+    # Place the lowest point at the start of the array
+    sort!(points, by = item -&gt; item.y)
+
+    # Sort all other points according to angle with that point
+    other_points = sort(points[2:end], by = item -&gt; atan(item.y - points[1].y,
+                                                         item.x - points[1].x))
+
+    # Place points sorted by angle back into points vector
+    for i in 1:length(other_points)
+        points[i+1] = other_points[i]
+    end
+
+    # M will be the point on the hull
+    M = 2
+    for i = 1:N
+        while (ccw(points[M-1], points[M], points[i]) &lt;= 0)
+            if (M &gt; 2)
+                M -= 1
+            # All points are collinear
+            elseif (i == N)
+                break
+            else
+                i += 1
+            end
+        end
+
+        # ccw point found, updating hull and swapping points
+        M += 1
+        points[i], points[M] = points[M], points[i]
+    end
+
+    return points[1:M]
+end
+</code></pre>
+<pre><code class="language-haskell">grahamScan :: [Point] -&gt; [Point]
+grahamScan [] = []
+grahamScan pts = wrap sortedPts [p0]
+  where p0@(x, y)= minimumBy (compare `on` snd) pts
+        sortedPts = sortOn (\(px, py) -&gt; atan2 (py-y) (px-x) ) $ filter (/=p0) pts
+        wrap [] ps = ps
+        wrap (s:ss) [p] = wrap ss [s, p]
+        wrap (s:ss) (p1:p2:ps)
+          | ccw s p1 p2 &gt; 0 = wrap (s:ss) (p2:ps)
+          | otherwise       = wrap ss (s:p1:p2:ps)
+</code></pre>
+<pre><code class="language-c">size_t graham_scan(struct point *points, size_t size) {
+    qsort(points, size, sizeof(struct point), cmp_points);
+    polar_angles_sort(points, points[0], size);
+
+    struct point tmp_points[size + 1];
+    memcpy(tmp_points + 1, points, size * sizeof(struct point));
+    tmp_points[0] = tmp_points[size];
+
+    size_t m = 1;
+    for (size_t i = 2; i &lt;= size; ++i) {
+        while (ccw(tmp_points[m - 1], tmp_points[m], tmp_points[i]) &lt;= 0) {
+            if (m &gt; 1) {
+                m--;
+                continue;
+            } else if (i == size) {
+                break;
+            } else {
+                i++;
+            }
+        }
+
+        m++;
+        struct point tmp = tmp_points[i];
+        tmp_points[i] = tmp_points[m];
+        tmp_points[m] = tmp;
+    }
+
+    memcpy(points, tmp_points + 1, size * sizeof(struct point));
+
+    return m;
+}
+</code></pre>
+<pre><code class="language-javascript">function grahamScan(points) {
+  // First, sort the points so the one with the lowest y-coordinate comes first (the pivot)
+  points = [...points].sort((a, b) =&gt; (a.y - b.y));
+  const pivot = points[0];
+
+  // Then sort all remaining points based on the angle between the pivot and itself
+  const hull = points.slice(1).sort((a, b) =&gt; polarAngle(a, pivot) - polarAngle(b, pivot));
+
+  // The pivot is always on the hull
+  hull.unshift(pivot);
+
+  let n = hull.length;
+  let m = 1;
+  for (let i = 2; i &lt; n; i++) {
+    while (ccw(hull[m - 1], hull[m], hull[i]) &lt;= 0) {
+      if (m &gt; 1) {
+        m -= 1;
+      } else if (m === i) {
+        break;
+      } else {
+        i += 1;
+      }
+    }
+
+    m += 1;
+    [hull[i], hull[m]] = [hull[m], hull[i]];
+  }
+
+  return hull.slice(0, m + 1);
+}
+</code></pre>
+<pre><code class="language-python">def graham_scan(gift):
+    gift = list(set(gift))  # Remove duplicate points
+    start = min(gift, key=lambda p: (p[1], p[0]))  # Must be in hull
+    gift.remove(start)
+
+    s = sorted(gift, key=lambda point: polar_angle(start, point))
+    hull = [start, s[0], s[1]]
+
+    # Remove points from hull that make the hull concave
+    for pt in s[2:]:
+        while not counter_clockwise(hull[-2], hull[-1], pt):
+            del hull[-1]
+        hull.append(pt)
+
+    return hull
+</code></pre>
+<pre><code class="language-go">func grahamScan(points []point) []point {
+	sort.Slice(points, func(a, b int) bool {
+		return points[a].y &lt; points[b].y || (points[a].y == points[b].y &amp;&amp; points[a].x &lt; points[b].x)
+	})
+
+	start := points[0]
+	points = points[1:]
+
+	sort.Slice(points, func(a, b int) bool {
+		return polarAngle(start, points[a]) &lt; polarAngle(start, points[b])
+	})
+
+	hull := []point{start, points[0], points[1]}
+	for _, p := range points[2:] {
+		for !counterClockwise(hull[len(hull)-2], hull[len(hull)-1], p) {
+			hull = hull[:len(hull)-1]
+		}
+		hull = append(hull, p)
+	}
+
+	return hull
+}
+</code></pre>
+<pre><code class="language-java">    static List&lt;Point&gt; grahamScan(List&lt;Point&gt; gift) {
+        gift = gift.stream()
+                   .distinct()
+                   .sorted(Comparator.comparingDouble(point -&gt; -point.y))
+                   .collect(Collectors.toList());
+
+        Point pivot = gift.get(0);
+
+        // Sort the remaining Points based on the angle between the pivot and itself
+        List&lt;Point&gt; hull = gift.subList(1, gift.size());
+        hull.sort(Comparator.comparingDouble(point -&gt; polarAngle(point, pivot)));
+
+        // The pivot is always on the hull
+        hull.add(0, pivot);
+
+        int n = hull.size();
+        int m = 1;
+
+        for (int i = 2; i &lt; n; i++) {
+            while (ccw(hull.get(m - 1), hull.get(m), hull.get(i)) &lt;= 0) {
+                if (m &gt; 1) {
+                    m--;
+                } else if (m == 1) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+            m++;
+
+            Point temp = hull.get(i);
+            hull.set(i, hull.get(m));
+            hull.set(m, temp);
+        }
+        return hull.subList(0, m + 1);
+    }
+</code></pre>
+<pre><code class="language-lisp">(defun atan2 (y x)
+  &quot;Calculates the angle of a point in the euclidean plane in radians&quot;
+  (cond
+    ((&gt; x 0)                    (atan y x))
+    ((and (&lt; x 0) (&gt;= y 0))     (+ (atan y x) pi))
+    ((and (&lt; x 0) (&lt; y 0))      (- (atan y x) pi))
+    ((and (eql x 0) (&gt; y 0))    (/ pi 2))
+    ((and (eql x 0) (&lt; y 0))    (- (/ pi 2)))
+    ;; The -1 signifies an exception and is usefull later for sorting by the polar angle
+    ((and (eql x 0) (eql y 0))  -1)))
+
+(defun polar-angle (ref point)
+  &quot;Returns the polar angle from a point relative to a reference point&quot;
+  (atan2 (- (point-y point) (point-y ref)) (- (point-x point) (point-x ref))))
+
+(defun lowest-point (gift)
+  &quot;Returns the lowest point of a gift&quot;
+  (reduce
+    (lambda (p1 p2)
+      (if (&lt; (point-y p1) (point-y p2)) p1 p2))
+    gift))
+
+(defun graham-scan (gift)
+  &quot;Finds the convex hull of a distribution of points with a graham scan&quot;
+  ;; An empty list evaluates to false (nil) and a non-empty list evaluates to true (t).
+  ;; We can therefore use 'gift' instead of '(&gt; (length gift) 0)'.
+  (if gift
+      (labels ((wrap (sorted-points hull)
+                 (if sorted-points
+                   ;; This covers the case where the hull has one or more element.
+                   ;; We aren't concerned about the hull being empty, because then the gift must
+                   ;; also be empty and this function is never given an empty gift.
+                     (if (rest hull)
+                         (if (&lt;= (ccw (first sorted-points) (first hull) (second hull)) 0)
+                             (wrap sorted-points (rest hull))
+                             (wrap (rest sorted-points) (cons (first sorted-points) hull)))
+                         (wrap (rest sorted-points) (list (first sorted-points) (first hull))))
+                     hull)))
+        ;; Because 'sort' shuffles things around destructively, graham-scan is also destructive. But
+        ;; since the order of the points is generally not important, this shouldn't cause a problem.
+        (let* ((lowest (lowest-point gift))
+                (sorted (sort gift #'&lt; :key (lambda (p) (polar-angle lowest p)))))
+          (wrap sorted (list lowest))))
+      nil))
+</code></pre>
+<p>{% sample lang=&quot;cpp&quot; %}
+<a href="code/cpp/graham_scan.cpp">import:26-62, lang=&quot;cpp&quot;</a>
+{% sample lang=&quot;coco&quot; %}
+<a href="code/coconut/graham_scan.coco">import:17-30, lang=&quot;coconut&quot;</a></p>
+<h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
+<p>{% references %} {% endreferences %}</p>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<pre><code class="language-julia">struct Point
+    x::Float64
+    y::Float64
+end
+
+function ccw(a::Point, b::Point, c::Point)
+    return ((b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x))
+end
+
+function graham_scan!(points::Vector{Point})
+    N = length(points)
+
+    # Place the lowest point at the start of the array
+    sort!(points, by = item -&gt; item.y)
+
+    # Sort all other points according to angle with that point
+    other_points = sort(points[2:end], by = item -&gt; atan(item.y - points[1].y,
+                                                         item.x - points[1].x))
+
+    # Place points sorted by angle back into points vector
+    for i in 1:length(other_points)
+        points[i+1] = other_points[i]
+    end
+
+    # M will be the point on the hull
+    M = 2
+    for i = 1:N
+        while (ccw(points[M-1], points[M], points[i]) &lt;= 0)
+            if (M &gt; 2)
+                M -= 1
+            # All points are collinear
+            elseif (i == N)
+                break
+            else
+                i += 1
+            end
+        end
+
+        # ccw point found, updating hull and swapping points
+        M += 1
+        points[i], points[M] = points[M], points[i]
+    end
+
+    return points[1:M]
+end
+
+function main()
+    # This hull is just a simple test so we know what the output should be
+    points = [
+        Point(-5,2), Point(5,7), Point(-6,-12), Point(-14,-14), Point(9,9),
+        Point(-1,-1), Point(-10,11), Point(-6,15), Point(-6,-8), Point(15,-9),
+        Point(7,-7), Point(-2,-9), Point(6,-5), Point(0,14), Point(2,8)
+    ]
+    hull = graham_scan!(points)
+    println(hull)
+end
+
+main()
+
+</code></pre>
+<pre><code class="language-haskell">import Data.List (sortOn, minimumBy)
+import Data.Function (on)
+
+type Point = (Double, Double)
+
+ccw :: Point -&gt; Point -&gt; Point -&gt; Double
+ccw (xa, ya) (xb, yb) (xc, yc) = (xb - xa) * (yc - ya) - (yb - ya) * (xc - xa)
+
+grahamScan :: [Point] -&gt; [Point]
+grahamScan [] = []
+grahamScan pts = wrap sortedPts [p0]
+  where p0@(x, y)= minimumBy (compare `on` snd) pts
+        sortedPts = sortOn (\(px, py) -&gt; atan2 (py-y) (px-x) ) $ filter (/=p0) pts
+        wrap [] ps = ps
+        wrap (s:ss) [p] = wrap ss [s, p]
+        wrap (s:ss) (p1:p2:ps)
+          | ccw s p1 p2 &gt; 0 = wrap (s:ss) (p2:ps)
+          | otherwise       = wrap ss (s:p1:p2:ps)
+
+main = do
+  -- We build the set of points of integer coordinates within a circle of radius 5
+  let pts = [(x,y) | x&lt;-[-5..5], y&lt;-[-5..5], x^2+y^2&lt;=5^2]
+  -- And extract the convex hull
+  print $ grahamScan pts
+</code></pre>
+<pre><code class="language-c">#include &lt;math.h&gt;
+#include &lt;stddef.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+struct point {
+    double x, y;
+};
+
+int cmp_points(const void *a, const void *b) {
+    struct point* pa = (struct point*) a;
+    struct point* pb = (struct point*) b;
+
+    if (pa-&gt;y &gt; pb-&gt;y) {
+        return 1;
+    } else if (pa-&gt;y &lt; pb-&gt;y) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+double ccw(struct point a, struct point b, struct point c) {
+    return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+
+double polar_angle(struct point origin, struct point p) {
+    return atan2(p.y - origin.y, p.x - origin.x);
+}
+
+void polar_angles_sort(struct point *points, struct point origin, size_t size) {
+    if (size &lt; 2) {
+        return;
+    }
+
+    double pivot_angle = polar_angle(origin, points[size / 2]);
+
+    int i = 0;
+    int j = size - 1;
+    while (1) {
+        while (polar_angle(origin, points[i]) &lt; pivot_angle) {
+            i++;
+        }
+        while (polar_angle(origin, points[j]) &gt; pivot_angle) {
+            j--;
+        }
+
+        if (i &gt;= j) {
+            break;
+        }
+
+        struct point tmp = points[i];
+        points[i] = points[j];
+        points[j] = tmp;
+
+        i++;
+        j--;
+    }
+
+    polar_angles_sort(points, origin, i);
+    polar_angles_sort(points + i, origin, size - i);
+}
+
+size_t graham_scan(struct point *points, size_t size) {
+    qsort(points, size, sizeof(struct point), cmp_points);
+    polar_angles_sort(points, points[0], size);
+
+    struct point tmp_points[size + 1];
+    memcpy(tmp_points + 1, points, size * sizeof(struct point));
+    tmp_points[0] = tmp_points[size];
+
+    size_t m = 1;
+    for (size_t i = 2; i &lt;= size; ++i) {
+        while (ccw(tmp_points[m - 1], tmp_points[m], tmp_points[i]) &lt;= 0) {
+            if (m &gt; 1) {
+                m--;
+                continue;
+            } else if (i == size) {
+                break;
+            } else {
+                i++;
+            }
+        }
+
+        m++;
+        struct point tmp = tmp_points[i];
+        tmp_points[i] = tmp_points[m];
+        tmp_points[m] = tmp;
+    }
+
+    memcpy(points, tmp_points + 1, size * sizeof(struct point));
+
+    return m;
+}
+
+int main() {
+    struct point points[] = {{-5, 2}, {5, 7}, {-6, -12}, {-14, -14}, {9, 9},
+                             {-1, -1}, {-10, 11}, {-6, 15}, {-6, -8}, {15, -9},
+                             {7, -7}, {-2, -9}, {6, -5}, {0, 14}, {2, 8}};
+    size_t num_initial_points = 15;
+
+    printf(&quot;Points:\n&quot;);
+    for (size_t i = 0; i &lt; num_initial_points; ++i) {
+        printf(&quot;(%f,%f)\n&quot;, points[i].x, points[i].y);
+    }
+
+    size_t hull_size = graham_scan(points, num_initial_points);
+
+    printf(&quot;\nHull:\n&quot;);
+    for (size_t i = 0; i &lt; hull_size; ++i) {
+        printf(&quot;(%f,%f)\n&quot;, points[i].x, points[i].y);
+    }
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-javascript">function grahamScan(points) {
+  // First, sort the points so the one with the lowest y-coordinate comes first (the pivot)
+  points = [...points].sort((a, b) =&gt; (a.y - b.y));
+  const pivot = points[0];
+
+  // Then sort all remaining points based on the angle between the pivot and itself
+  const hull = points.slice(1).sort((a, b) =&gt; polarAngle(a, pivot) - polarAngle(b, pivot));
+
+  // The pivot is always on the hull
+  hull.unshift(pivot);
+
+  let n = hull.length;
+  let m = 1;
+  for (let i = 2; i &lt; n; i++) {
+    while (ccw(hull[m - 1], hull[m], hull[i]) &lt;= 0) {
+      if (m &gt; 1) {
+        m -= 1;
+      } else if (m === i) {
+        break;
+      } else {
+        i += 1;
+      }
+    }
+
+    m += 1;
+    [hull[i], hull[m]] = [hull[m], hull[i]];
+  }
+
+  return hull.slice(0, m + 1);
+}
+
+function polarAngle(a, b) {
+  return Math.atan2(a.y - b.y, a.x - b.x);
+}
+
+function ccw(a, b, c) {
+  return (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
+}
+
+const points = [
+  { x: -5, y: 2 },
+  { x: 5, y: 7 },
+  { x: -6, y: -12 },
+  { x: -14, y: -14 },
+  { x: 9, y: 9 },
+  { x: -1, y: -1 },
+  { x: -10, y: 11 },
+  { x: -6, y: 15 },
+  { x: -6, y: -8 },
+  { x: 15, y: -9 },
+  { x: 7, y: -7 },
+  { x: -2, y: -9 },
+  { x: 6, y: -5 },
+  { x: 0, y: 14 },
+  { x: 2, y: 8 },
+];
+
+const convexHull = grahamScan(points);
+console.log(&quot;The points in the hull are:&quot;);
+convexHull.forEach(p =&gt; console.log(`(${p.x}, ${p.y})`));
+</code></pre>
+<pre><code class="language-python">from math import atan2
+
+
+def counter_clockwise(p1, p2, p3):
+    &quot;&quot;&quot;Is the turn counter-clockwise?&quot;&quot;&quot;
+    return (p3[1] - p1[1]) * (p2[0] - p1[0]) &gt;= (p2[1] - p1[1]) * (p3[0] - p1[0])
+
+
+def polar_angle(ref, point):
+    &quot;&quot;&quot;Find the polar angle of a point relative to a reference point&quot;&quot;&quot;
+    return atan2(point[1] - ref[1], point[0] - ref[0])
+
+
+def graham_scan(gift):
+    gift = list(set(gift))  # Remove duplicate points
+    start = min(gift, key=lambda p: (p[1], p[0]))  # Must be in hull
+    gift.remove(start)
+
+    s = sorted(gift, key=lambda point: polar_angle(start, point))
+    hull = [start, s[0], s[1]]
+
+    # Remove points from hull that make the hull concave
+    for pt in s[2:]:
+        while not counter_clockwise(hull[-2], hull[-1], pt):
+            del hull[-1]
+        hull.append(pt)
+
+    return hull
+
+
+def main():
+    test_gift = [
+        (-5, 2),
+        (5, 7),
+        (-6, -12),
+        (-14, -14),
+        (9, 9),
+        (-1, -1),
+        (-10, 11),
+        (-6, 15),
+        (-6, -8),
+        (15, -9),
+        (7, -7),
+        (-2, -9),
+        (6, -5),
+        (0, 14),
+        (2, 8),
+    ]
+    hull = graham_scan(test_gift)
+
+    print(&quot;The points in the hull are:&quot;)
+    for point in hull:
+        print(point)
+
+
+main()
+</code></pre>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math&quot;
+	&quot;sort&quot;
+)
+
+type point struct {
+	x, y int
+}
+
+func counterClockwise(p1, p2, p3 point) bool {
+	return (p3.y-p1.y)*(p2.x-p1.x) &gt;= (p2.y-p1.y)*(p3.x-p1.x)
+}
+
+func polarAngle(ref, point point) float64 {
+	return math.Atan2(float64(point.y-ref.y), float64(point.x-ref.x))
+}
+
+func grahamScan(points []point) []point {
+	sort.Slice(points, func(a, b int) bool {
+		return points[a].y &lt; points[b].y || (points[a].y == points[b].y &amp;&amp; points[a].x &lt; points[b].x)
+	})
+
+	start := points[0]
+	points = points[1:]
+
+	sort.Slice(points, func(a, b int) bool {
+		return polarAngle(start, points[a]) &lt; polarAngle(start, points[b])
+	})
+
+	hull := []point{start, points[0], points[1]}
+	for _, p := range points[2:] {
+		for !counterClockwise(hull[len(hull)-2], hull[len(hull)-1], p) {
+			hull = hull[:len(hull)-1]
+		}
+		hull = append(hull, p)
+	}
+
+	return hull
+}
+
+func main() {
+	points := []point{{-5, 2}, {5, 7}, {-6, -12}, {-14, -14}, {9, 9},
+		{-1, -1}, {-10, 11}, {-6, 15}, {-6, -8}, {15, -9},
+		{7, -7}, {-2, -9}, {6, -5}, {0, 14}, {2, 8}}
+
+	fmt.Println(&quot;The points in the hull are:&quot;)
+	hull := grahamScan(points)
+	for _, p := range hull {
+		fmt.Println(p)
+	}
+}
+</code></pre>
+<pre><code class="language-java">import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class GrahamScan {
+
+    static class Point {
+        public double x;
+        public double y;
+
+        public Point(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null) return false;
+            if (o == this) return true;
+            if (!(o instanceof Point)) return false;
+            Point p = (Point)o;
+            return p.x == this.x &amp;&amp; p.y == this.y;
+        }
+    }
+
+    static double ccw(Point a, Point b, Point c) {
+        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+    }
+
+    static double polarAngle(Point origin, Point p) {
+        return Math.atan2(p.y - origin.y, p.x - origin.x);
+    }
+
+    static List&lt;Point&gt; grahamScan(List&lt;Point&gt; gift) {
+        gift = gift.stream()
+                   .distinct()
+                   .sorted(Comparator.comparingDouble(point -&gt; -point.y))
+                   .collect(Collectors.toList());
+
+        Point pivot = gift.get(0);
+
+        // Sort the remaining Points based on the angle between the pivot and itself
+        List&lt;Point&gt; hull = gift.subList(1, gift.size());
+        hull.sort(Comparator.comparingDouble(point -&gt; polarAngle(point, pivot)));
+
+        // The pivot is always on the hull
+        hull.add(0, pivot);
+
+        int n = hull.size();
+        int m = 1;
+
+        for (int i = 2; i &lt; n; i++) {
+            while (ccw(hull.get(m - 1), hull.get(m), hull.get(i)) &lt;= 0) {
+                if (m &gt; 1) {
+                    m--;
+                } else if (m == 1) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+            m++;
+
+            Point temp = hull.get(i);
+            hull.set(i, hull.get(m));
+            hull.set(m, temp);
+        }
+        return hull.subList(0, m + 1);
+    }
+
+    public static void main(String[] args) {
+        ArrayList&lt;Point&gt; points = new ArrayList&lt;&gt;();
+
+        points.add(new Point(-5, 2));
+        points.add(new Point(5, 7));
+        points.add(new Point(-6, -12));
+        points.add(new Point(-14, -14));
+        points.add(new Point(9, 9));
+        points.add(new Point(-1, -1));
+        points.add(new Point(-10, 11));
+        points.add(new Point(-6, 15));
+        points.add(new Point(-6, -8));
+        points.add(new Point(15, -9));
+        points.add(new Point(7, -7));
+        points.add(new Point(-2, -9));
+        points.add(new Point(6, -5));
+        points.add(new Point(0, 14));
+        points.add(new Point(2, 8));
+
+        List&lt;Point&gt; convexHull = grahamScan(points);
+
+        convexHull.forEach(p -&gt; System.out.printf(&quot;% 1.0f, % 1.0f\n&quot;, p.x, p.y));
+    }
+}
+</code></pre>
+<pre><code class="language-lisp">;;;; Graham scan implementation in Common Lisp
+
+(defstruct (point (:constructor make-point (x y))) x y)
+
+(defun ccw (p1 p2 p3)
+  &quot;Determines if a turn between three points is counterclockwise&quot;
+  (-
+    (*
+      (- (point-y p2) (point-y p1))
+      (- (point-x p3) (point-x p1)))
+    (*
+      (- (point-y p3) (point-y p1))
+      (- (point-x p2) (point-x p1)))))
+
+(defun atan2 (y x)
+  &quot;Calculates the angle of a point in the euclidean plane in radians&quot;
+  (cond
+    ((&gt; x 0)                    (atan y x))
+    ((and (&lt; x 0) (&gt;= y 0))     (+ (atan y x) pi))
+    ((and (&lt; x 0) (&lt; y 0))      (- (atan y x) pi))
+    ((and (eql x 0) (&gt; y 0))    (/ pi 2))
+    ((and (eql x 0) (&lt; y 0))    (- (/ pi 2)))
+    ;; The -1 signifies an exception and is usefull later for sorting by the polar angle
+    ((and (eql x 0) (eql y 0))  -1)))
+
+(defun polar-angle (ref point)
+  &quot;Returns the polar angle from a point relative to a reference point&quot;
+  (atan2 (- (point-y point) (point-y ref)) (- (point-x point) (point-x ref))))
+
+(defun lowest-point (gift)
+  &quot;Returns the lowest point of a gift&quot;
+  (reduce
+    (lambda (p1 p2)
+      (if (&lt; (point-y p1) (point-y p2)) p1 p2))
+    gift))
+
+(defun graham-scan (gift)
+  &quot;Finds the convex hull of a distribution of points with a graham scan&quot;
+  ;; An empty list evaluates to false (nil) and a non-empty list evaluates to true (t).
+  ;; We can therefore use 'gift' instead of '(&gt; (length gift) 0)'.
+  (if gift
+      (labels ((wrap (sorted-points hull)
+                 (if sorted-points
+                   ;; This covers the case where the hull has one or more element.
+                   ;; We aren't concerned about the hull being empty, because then the gift must
+                   ;; also be empty and this function is never given an empty gift.
+                     (if (rest hull)
+                         (if (&lt;= (ccw (first sorted-points) (first hull) (second hull)) 0)
+                             (wrap sorted-points (rest hull))
+                             (wrap (rest sorted-points) (cons (first sorted-points) hull)))
+                         (wrap (rest sorted-points) (list (first sorted-points) (first hull))))
+                     hull)))
+        ;; Because 'sort' shuffles things around destructively, graham-scan is also destructive. But
+        ;; since the order of the points is generally not important, this shouldn't cause a problem.
+        (let* ((lowest (lowest-point gift))
+                (sorted (sort gift #'&lt; :key (lambda (p) (polar-angle lowest p)))))
+          (wrap sorted (list lowest))))
+      nil))
+
+(defvar gift
+  (map
+    'list
+    (lambda (e) (apply #'make-point e))
+    '((-5 2) (5 7) (-6 -12) (-14 -14) (9 9)
+      (-1 -1) (-10 11) (-6 15) (-6 -8) (15 -9)
+      (7 -7) (-2 -9) (6 -5) (0 14) (2 8))))
+
+;; This should print out the following:
+;; (#S(POINT :X -10 :Y 11) #S(POINT :X -6 :Y 15) #S(POINT :X 0 :Y 14)
+;; #S(POINT :X 9 :Y 9) #S(POINT :X 7 :Y -7) #S(POINT :X -6 :Y -12))
+(print (graham-scan gift))
+</code></pre>
+<p>{% sample lang=&quot;cpp&quot; %}
+<a href="code/cpp/graham_scan.cpp">import, lang=&quot;cpp&quot;</a>
+{%sample lang=&quot;coco&quot; %}
+<a href="code/coconut/graham_scan.coco">import, lang=&quot;coconut&quot;</a></p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../jarvis_march/jarvis_march.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../cooley_tukey/cooley_tukey.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../jarvis_march/jarvis_march.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../cooley_tukey/cooley_tukey.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

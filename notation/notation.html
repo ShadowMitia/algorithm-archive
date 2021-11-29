@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Complexity Notation - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html" class="active"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="complexity-notation"><a class="header" href="#complexity-notation">Complexity Notation</a></h1>
+<p>Algorithms are designed to solve problems.
+Over time, new algorithms are created to solve problems that old algorithms have already solved.
+In some cases, the new algorithms are not intrinsically <em>better</em> than the older ones.
+In other cases, these new algorithms breathe life into areas of research and engineering that could not exist without them.
+The question is: what makes an algorithm &quot;better&quot; than another one?</p>
+<p>Obviously, there is no good answer to this question.
+If you write an algorithm to solve a problem, whatever you come up with will probably work just fine for small problems.
+That said, if you need to use the algorithm for a larger system, you might find yourself waiting for longer and longer on your code to run.
+In these cases, it's obvious that <em>if you are working on a large system, you need an algorithm that scales well with a large size</em>.
+Ideally, an algorithm that works well for a large system will also work with a smaller one; however, this is not always the case.</p>
+<p>In order to determine the best algorithm for your system, it's often best to consult a tool computer scientists use to describe how algorithms scale with system size: <em>complexity theory</em>.
+Here's the idea: algorithms operate on data.
+Complexity theory uses different notations to describe how many operations an algorithm will need.
+In this way, computational complexity measures runtime in terms of the number of operations an algorithm takes to complete its task.
+To be clear, the notations used are not at all exact, but they roughly describe the run-time of code and can be used to estimate how long an algorithm should take to run.
+In addition, there are many different notations depending on who you ask, but for now we'll focus on the big 3: \( O \), \( \Omega \), and \( \Theta \).
+Big \( O \) assumes the worst, which is the often the most useful description of an algorithm.
+On the other hand, \( \Omega \) assumes the best and \( \Theta \) is used when the best and worst cases are the same.</p>
+<p>Of the three Big \( O \) is used the most, and is used in conversation to mean that the algorithm will take &quot;on the order of&quot; \( n \) operations.
+Unfortunately, at this point, these notations might be a little vague.
+In fact, it was incredibly vague for me for a long time, and it wasn't until I saw the notations in action that it all started to make sense, so that's what this section is about: providing concrete examples to better understand computational complexity notation.</p>
+<h2 id="constant-time"><a class="header" href="#constant-time">Constant Time</a></h2>
+<p>Let's write some code that reads in an array of length <code>n</code> and runs with constant time:</p>
+<pre><code class="language-julia">function constant(a::Array{Float64})
+    println(a[1])
+end
+</code></pre>
+<p>Obviously, no matter how large <code>a</code> is, this function will not take any longer to run.
+Because of this, we say it has a constant runtime and notate it with \( O(1) = \Omega(1) = \Theta(1) \).
+Basically, we are saying that this function will run with 1 operation total (a single print).
+The best-case runtime will be 1 operation, the worst-case runtime will be 1 operation, and because they are both the same, we can use \( \Theta \) to notate that.
+Now imagine the following function:</p>
+<pre><code class="language-julia">function constant(a::Array{Float64})
+    if (length(a) &gt;= 3)
+        println(a[1])
+        println(a[2])
+        println(a[3])
+    end
+end
+</code></pre>
+<p>This function has 3 print statements, so it has 3 operations total.
+Because of this, it's tempting to say that the runtime would be \( O(3) = \Omega(3) = \Theta(3) \), and you would not be wrong; however, complexity notations often make a big assumption: <strong>we don't care about constants!</strong>
+What does this mean? Well, it means that we get rid of all constants that are not 1!
+In this case, that means we set \( O(3) = O(1) \).</p>
+<p>Now, I know what you are thinking, <em>That's stupid! It's clear that the second function will take 3 times as long to run, shouldn't we notate that?</em>
+You're not wrong; however, complexity notation is mostly interested in how algorithms scale with larger and larger inputs.
+Because we are talking about constant run-time, there is no scaling with larger inputs. No matter what array you read in to the above functions, they will always take a constant number of operations to finish.
+Whether that constant time is 1 operation or 3 operations doesn't really matter because different machines will have different runtimes anyway.</p>
+<p>Now, here's the thing: as we move on to more complicated examples, we will continue to ignore constants and extra terms to make the notation easier to understand.
+Just because this is common practice does not mean it's the <em>best</em> practice.
+I have run into several situation where knowing the constants has saved me hours of run-time, so keep in mind that all of these notations are somewhat vague and dependent on a number of auxiliary factors.
+Still, that doesn't mean the notation is completely useless. For now, let's keep moving forward with some more complicated (and useful) examples!</p>
+<h2 id="linear-time"><a class="header" href="#linear-time">Linear Time</a></h2>
+<p>Now we are moving into interesting territory!
+Let's consider the following function:</p>
+<pre><code class="language-julia">function linear(a::Array{Float64})
+    for i = 1:length(a)
+        println(a[i])
+    end
+end
+</code></pre>
+<p>Here, it's clear that if we increase <code>a</code> by one element, we will need to do another operation.
+That is, with an array of size \( n \), we will need to do \( n \) operations, which means that our complexity is \( O(n) = \Omega(n) = \Theta(n) \).
+As before, adding more operations into the <code>for</code> loop will change the constant in front of \( n \) in our complexity notation, but we'll continue to ignore those constants.
+For example:</p>
+<pre><code class="language-julia">function linear(a::Array{Float64})
+    println(&quot;The first element in our array is: &quot;, a[1])
+
+    println(&quot;The sum of all pairs of elements in our array are...&quot;)
+    for i = 1:length(a)/2
+        println(&quot;a is: &quot;, a[2*i])
+        println(&quot;b is: &quot;, a[2*i+1])
+        println(&quot;The sum of a and b is: &quot;, a[2*i] + a[2*i+1])
+    end
+
+    println(&quot;The last element in our array is: &quot;, a[end])
+end
+</code></pre>
+<p>Technically has a complexity of \( \Theta(\frac{3n}{2} + 2) \), but we'll just call it \( \Theta(n) \).
+Regardless of the notation, if you see something that is \( O(n) \), you know that <em>at worst</em> it will run at the speed of a <code>for</code> loop, which is pretty good!</p>
+<h3 id="polynomial-time"><a class="header" href="#polynomial-time">Polynomial Time</a></h3>
+<p>A promise of \( O(n) \) is not bad in terms of run-time; however, it is unlikely that you will run into too many straightforward algorithms that are \( O(n) \).
+For example, let's say you have a square, 2D image and want to iterate through all of its points.
+Well, to do this, we might write code that looks something like:</p>
+<pre><code class="language-julia"># Here, size is the length of a single side of the image
+function access_image(img::Array{Float64}, size::Int64)
+    for i = 1:size
+        for j = 1:size
+            index = j + i*size
+            println(img[index])
+        end
+    end
+end
+</code></pre>
+<p>This is a simple case where a nested <code>for</code> loop is perfectly acceptable, and it's obvious geometrically that we need to access \( \mathrm{size}\times\mathrm{size} \) number of elements (because we are working with a square).
+This means that this example has \( \Theta(n^2) \) complexity. This is not great.
+If you have to access 3D space, this might require \( \Theta(n^3) \), which is even worse! Don't even get me started on 4D!
+Intuitively, if you see anything that has a polynomial runtime, it's easy to think of it as a bunch of nested <code>for</code> loops.
+That said, there have been several cases throughout the history of algorithms where polynomial runtimes have inhibited certain algorithms from being used entirely, simply because it takes too long to run!</p>
+<p>For this reason, if you can avoid writing nested <code>for</code> loops, you certainly should!
+However, there are several cases where this cannot be avoided, so don't spend too much time worrying about it unless runtime becomes an issue!</p>
+<h2 id="exponential-and-logarithmic-time"><a class="header" href="#exponential-and-logarithmic-time">Exponential and Logarithmic Time</a></h2>
+<p>These are two more cases that come up all the time and often require a common theme: <em>recursion</em>.
+Generally speaking, logarithmic algorithms are some of the fastest algorithms out there, while exponential algorithms are some of the slowest.
+Unfortunately, this means that recursion can be either the most useful tool in existence for realizing certain algorithms or the most harmful one, depending on your problem.</p>
+<p>Here is a simple example of a function with exponential runtime:</p>
+<pre><code class="language-julia"># Here, n is the number of iterations
+function exponential(value::Int64, n::Int64)
+    println(value)
+    value += 1
+    exponential(value, n-1)
+    exponential(value, n-1)
+end
+</code></pre>
+<p>Here, we read in the maximum number <code>n</code> we are iterating through and recursively call the <code>exponential</code> function, decrementing the number of iterations left each time.
+Because we are calling the <code>exponential</code> function twice, this has a complexity of \( \Theta(2^n) \), which is not great, but if it's the only way to get a job done, it's the only way to get a job done.</p>
+<p>Logarithmic algorithms can be thought of as the opposite of exponential ones.
+Instead of taking a value and computing more and more values each time, a good example of a logarithmic algorithm is one that takes an array and recursively divides it up, like so:</p>
+<pre><code class="language-julia"># Here, cutoff is an arbitrary variable to know when to stop recursing
+function logarithmic(a::Array{Float64}, cutoff::Int64)
+    if (length(a) &gt; cutoff)
+        logarithmic(a[1:length(a)/2], cutoff)
+        logarithmic(a[length(a)/2+1:end], cutoff)
+    end
+    println(length(a))
+end
+</code></pre>
+<p>To be honest, it is not obvious that the provided <code>logarithmic</code> function should operate in \( \Theta(\log(n)) \) time, where \( n \) is the size of <code>a</code>.
+That said, I encourage you to think about an array of size 8.
+First, we split it in half, creating 2 arrays of 4 elements each.
+If we split these new arrays, we have 4 arrays of 2, and if we split these by two we have 8 arrays of 1 element each.
+This is as far as we can go, and we ended up dividing the array 3 times to get to this point.
+\( 3 = \log_2(8) \), so this function runs with a logarithmic number of operations.</p>
+<h2 id="putting-it-all-together"><a class="header" href="#putting-it-all-together">Putting it all together</a></h2>
+<p>We've outlined the most common complexity cases of different algorithms here, but at this point things might still be unclear.
+Which is better: \( O(n^2) \) or \( O(log(n)) \)?
+Well, let's plot all the different cases out, and the answer should become obvious.</p>
+<p>
+    <img  class="center" src="res/cplot.png" />
+</p>
+<p>Here, we see each of the complexity cases as \( n \) increases.
+Clearly, linear time is not bad when compared to polynomial or exponential time; however, if you can manage something in logarithmic or constant time, do it!</p>
+<p>Now, there is a lot more to say about computational complexity and we'll definitely cover it at some point, but I can only move so fast!
+In particular, I would love to have a discussion on the \( P=NP \) issue that has been rustling the jimmies of a few computer scientists for a while, but we'll get to that in due time.</p>
+<h3 id="final-warning"><a class="header" href="#final-warning">Final Warning</a></h3>
+<p>This is a book about algorithms.
+It would be nearly impossible to talk about most algorithms without touching on complexity theory and explaining why certain algorithms are faster than others.
+That said, just because an algorithm runs in \( O(\log n) \) does not mean it will always be faster than one that runs in \( O(n^2) \).
+Because complexity notation often ignores constants, there could be a crazy constant that we are missing that actually makes a huge difference in runtime.
+In addition, in order to use an algorithm that seems faster based on complexity notation, you may need to use a library that massively increases runtime due to a plethora of other reasons.</p>
+<p>Basically, take complexity notation with a grain of salt.
+It is a useful descriptor of how fast algorithms should run in an ideal world; however, ideal worlds do not exist.
+When it comes to programming, there may be hundreds of other factors that need to be considered before implementing anything.
+That said, complexity notation should not be ignored.
+If you can easily implement an algorithm that is notationally faster with no repercussions, go for it!
+Just be sure you do not waste time trying to optimize code you haven't written yet.</p>
+<p>In general, my advice would be the following:
+write code first and optimize what you can on the first run-through without going too far out of your way.
+If the runtime is awful, go back and see about implementing algorithms that are faster based on complexity notation.</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<ul>
+<li>The image &quot;<a href="res/cplot.png">Complexity Scaling</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../mathematical_background/mathematical_background.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../affine_transformations/affine_transformations.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../mathematical_background/mathematical_background.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../affine_transformations/affine_transformations.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,918 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Barnsley Fern - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html" class="active"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-barnsley-fern"><a class="header" href="#the-barnsley-fern">The Barnsley Fern</a></h1>
+<p>At the end of the chapter on <a href="../IFS/IFS.html">Iterated Function Systems</a>, we introduced two separate attractors: the Sierpinski triangle, and a uniform two-dimensional square, shown below with their corresponding Hutchinson operator.</p>
+<table><thead><tr><th>Hutchinson Operator</th><th>Attractor</th></tr></thead><tbody>
+<tr><td>\( \begin{align} f_1(P) &amp;= \frac{P+A}{2} \\  f_2(P) &amp;= \frac{P+B}{2} \\  f_3(P) &amp;= \frac{P+C}{2} \end{align} \)</td><td><img class="center" src="../IFS/res/IFS_triangle_1.png" alt="Sierpinsky Triangle Chaos Game"  style="width:100%"></td></tr>
+<tr><td>\( \begin{align} f_1(P) &amp;= \frac{P+A}{2} \\  f_2(P) &amp;= \frac{P+B}{2} \\  f_3(P) &amp;= \frac{P+C}{2} \\ f_4(P) &amp;= \frac{P+D}{2} \end{align} \)</td><td><img class="center" src="../IFS/res/IFS_square_3.png" alt="Square Chaos Game"  style="width:100%"></td></tr>
+</tbody></table>
+<p>As a reminder, the Hutchinson operator is a set of functions that act on a point in space, \( P \), and return another another point at a new location.
+These functions are meant to be used over and over again in some fashion, and as you continually iterate through them, some shape will eventually be drawn.
+This shape is known as an attractor, and the entire system is called an <em>iterated function system</em> due to the iterative nature of drawing the attractor.</p>
+<p>In these cases, each function will move the point to be halfway between its original position and the position of \( A \), \( B \), \( C \), and \( D \) for \( f_1 \), \( f_2 \), \( f_3 \), and \( f_4 \), respectively.
+Even though \( f_1 \), \( f_2 \), and \( f_3 \) are the same for both attractors, the addition of \( f_4 \) drastically changes the final result!
+It is surprising that two seemingly identical sets of functions can look so different in the end, and this leads us to a somewhat challenging question: given a set of functions, is there any way to predict what the attractor will be without iterating through the functions?</p>
+<p>In general, the answer is no.
+You <em>must</em> sample the function set in some fashion to get find the resulting attractor.</p>
+<p>This feels somewhat unsettling to me.
+After all, each individual function is simple, so why is the result so difficult to predict?
+In this chapter, I hope to provide a slightly more satisfying answer by introducing another iterated function system with beautiful attractor, known as the Barnsley fern {{ &quot;barnsley2014fractals&quot; | cite }}:</p>
+<table><thead><tr><th>Hutchinson Operator</th><th>Attractor</th></tr></thead><tbody>
+<tr><td>\( \begin{align} f_1(P) &amp;= \begin{bmatrix} 0 &amp;0 \\ 0 &amp;0.16 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\ f_2(P) &amp;= \begin{bmatrix} 0.85 &amp;0.04 \\ -0.04 &amp;0.85 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \\ f_3(P) &amp;= \begin{bmatrix} 0.2 &amp;-0.26 \\ 0.23 &amp;0.22 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \\ f_4(P) &amp;= \begin{bmatrix} -0.15 &amp;0.28 \\ 0.26 &amp;0.24 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0.44 \end{bmatrix} \end{align} \)</td><td><img class="center" src="res/full_fern.png" alt="Barnsley Chaos Game"  style="width:100%"></td></tr>
+</tbody></table>
+<p>At first glance, this set of functions looks like an incomprehensible mess of magic numbers to create a specific result, and in a sense, that is precisely correct.
+That said, we will go through each function and explain how it works, while also providing a simple chaos game implementation in code.
+By the end of this chapter, we do not hope to provide a general strategy for understanding all iterated function systems, but we hope to at least make this one set of functions a bit more understandable.</p>
+<h2 id="individual-affine-transforms"><a class="header" href="#individual-affine-transforms">Individual affine transforms</a></h2>
+<p>The first thing to note about the Barnsley set of functions is that each one is an <a href="../affine_transformations/affine_transformations.html">affine transformation</a>.
+Though it is not a hard rule, most iterated function systems use affine transforms, so this notation is common.
+In fact, the Sierpinski operators can also be written in an affine form:</p>
+<table><thead><tr><th>Non-affine</th><th>Affine</th></tr></thead><tbody>
+<tr><td>\( \begin{align} f_1(P) &amp;= \frac{P+A}{2} \\  f_2(P) &amp;= \frac{P+B}{2} \\  f_3(P) &amp;= \frac{P+C}{2} \end{align} \)</td><td>\( \begin{align} f_1(P) &amp;= \begin{bmatrix} 0.5 &amp;0 \\ 0 &amp;0.5 \end{bmatrix}P + \frac{A}{2} \\ f_2(P) &amp;= \begin{bmatrix} 0.5 &amp;0 \\ 0 &amp;0.5 \end{bmatrix}P + \frac{B}{2} \\ f_3(P) &amp;= \begin{bmatrix} 0.5 &amp;0 \\ 0 &amp;0.5 \end{bmatrix}P + \frac{C}{2} \end{align} \)</td></tr>
+</tbody></table>
+<p>The affine variant performs the same operation by scaling the \( x \) and \( y \) component of \( P \) by \( 0.5 \) and then adding half of either \( A \), \( B \), or \( C \) for \( f_1 \), \( f_2 \), or \( f_3 \), respectively.
+Each of these transforms involves some linear component (scaling or shearing) with an additional translation.</p>
+<p>As an important side-note: in both the Barnsley and Sierpinski function systems, the coefficients of the transformation matrix are all less than 1.
+This property is known as <em>contractivity</em>, and an iterated function system can only have an attractor if the system is contractive.
+Upon reflection, this makes sense.
+If the matrix elements were greater than 1, the point could tend towards infinity after successive iterations of the function.</p>
+<p>Now let's hop into disecting the Barnsley fern by seeing how each transform affects a random distribution of points:</p>
+<table><thead><tr><th>Function</th><th>Operation</th></tr></thead><tbody>
+<tr><td>\( f_1(P) = \begin{bmatrix} 0 &amp;0 \\ 0 &amp;0.16 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0 \end{bmatrix} \) <p> This operation moves every point to a single line.</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_rnd_0.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_2(P) = \begin{bmatrix} 0.85 &amp;0.04 \\ -0.04 &amp;0.85 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \) <p> This operation moves every point up and to the right.</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_rnd_1.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_3(P) = \begin{bmatrix} 0.2 &amp;-0.26 \\ 0.23 &amp;0.22 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \) <p> This operation rotates every point to the left.</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_rnd_2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_4(P) = \begin{bmatrix} -0.15 &amp;0.28 \\ 0.26 &amp;0.24 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0.44 \end{bmatrix} \) <p> This operation flips every point and rotates to the right.</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_rnd_3.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+</tbody></table>
+<p>At this stage, it <em>might</em> be clear what is going on, but it's not exactly obvious.
+Essentially, each operation corresponds to another part of the fern:</p>
+<ul>
+<li>\( f_1 \) creates the stem.</li>
+<li>\( f_2 \) creates successively smaller ferns moving up and to the right.</li>
+<li>\( f_3 \) creates the leaves on the right.</li>
+<li>\( f_4 \) creates the leaves on the left.</li>
+</ul>
+<p>The easiest way to make sense of this is to show the operations on the Barnsley fern, itself, instead of a random distribution of points.</p>
+<table><thead><tr><th>Function</th><th>Operation</th></tr></thead><tbody>
+<tr><td>\( f_1(P) = \begin{bmatrix} 0 &amp;0 \\ 0 &amp;0.16 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0 \end{bmatrix} \)</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_fern_0.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_2(P) = \begin{bmatrix} 0.85 &amp;0.04 \\ -0.04 &amp;0.85 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \)</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_fern_1.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_3(P) = \begin{bmatrix} 0.2 &amp;-0.26 \\ 0.23 &amp;0.22 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \)</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_fern_2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_4(P) = \begin{bmatrix} -0.15 &amp;0.28 \\ 0.26 &amp;0.24 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0.44 \end{bmatrix} \)</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/affine_fern_3.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+</tbody></table>
+<p>Here, the self-similar nature of the fern becomes apparent.
+Each operation is effectively moving a point on one part of the fern to a point on another part of the fern.</p>
+<p>In the final construction, it is clear that fewer points are necessary on some parts than others.
+The stem, for example, does not need many points at all.
+Meanwhile, the bulk of the fern seems to be generated by \( f_2 \), so we probably want the majority of the points to choose that function when iterating through he set.
+To account for this, each function is also given a probability of being chosen:</p>
+<table><thead><tr><th>Function</th><th>Probability</th></tr></thead><tbody>
+<tr><td>\( f_1(P) = \begin{bmatrix} 0 &amp;0 \\ 0 &amp;0.16 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0 \end{bmatrix} \)</td><td>0.01</td></tr>
+<tr><td>\( f_2(P) = \begin{bmatrix} 0.85 &amp;0.04 \\ -0.04 &amp;0.85 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \)</td><td>0.85</td></tr>
+<tr><td>\( f_3(P) = \begin{bmatrix} 0.2 &amp;-0.26 \\ 0.23 &amp;0.22 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \)</td><td>0.07</td></tr>
+<tr><td>\( f_4(P) = \begin{bmatrix} -0.15 &amp;0.28 \\ 0.26 &amp;0.24 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0.44 \end{bmatrix} \)</td><td>0.07</td></tr>
+</tbody></table>
+<h2 id="playing-around-a-bit"><a class="header" href="#playing-around-a-bit">Playing around a bit...</a></h2>
+<p>One big advantage of using affine transformations to construct an attractor is that mathematicians and programmers can leverage their knowledge of how these transformations work to also modify the resulting image.
+Here are a few examples of ferns that can be generated by modifying constituent functions:</p>
+<table><thead><tr><th>Function</th><th>Operation</th></tr></thead><tbody>
+<tr><td>\( f_1(P) = \begin{bmatrix} \tau &amp;0 \\ 0 &amp;0.16 \end{bmatrix}P + \begin{bmatrix} 0 \\ 0 \end{bmatrix} \) <p> where \( -0.5 &lt; \tau &lt; 0.5  \) <p> Turning stems to leaves</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/fern_twiddle_0.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_2(P) = \begin{bmatrix} 0.85 &amp; \tau \\ -0.04 &amp;0.85 \end{bmatrix}P + \begin{bmatrix} 0 \\ 1.6 \end{bmatrix} \) <p> where \(  -0.01 &lt; \tau &lt; 0.09  \) <p> Changing fern tilt</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/fern_twiddle_1.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_3(P) = \begin{bmatrix} 0.2 &amp;-0.26 \\ 0.23 &amp;0.22 \end{bmatrix}P + \begin{bmatrix} \tau \\ 1.6 \end{bmatrix} \) <p> where \( -0.5 &lt; \tau &lt; 0.5 \) <p> Plucking left leaves</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/fern_twiddle_2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+<tr><td>\( f_4(P) = \begin{bmatrix} -0.15 &amp;0.28 \\ 0.26 &amp;0.24 \end{bmatrix}P + \begin{bmatrix} \tau \\ 0.44 \end{bmatrix} \) <p> where \( -0.5 &lt; \tau &lt; 0.5 \) <p> Plucking right leaves</td><td><div style="text-align:center"> <video style="width:100%" controls loop> <source src="res/fern_twiddle_3.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </div></td></tr>
+</tbody></table>
+<p>As an important note: the idea of modifying a resulting image by twiddling the knobs of an affine transform is the heart of many interesting methods, including fractal image compression where a low resolution version of an image is stored along with a reconstructing function set to generate high-quality images on-the-fly {{ &quot;fractal-compression&quot; | cite }}{{ &quot;saupe1994review&quot; | cite }}.
+If this seems mystifying, don't worry!
+We'll definitely come back to this soon, I just wanted to briefly mention it now so it's on everyone's mind as we move forward.</p>
+<h2 id="video-explanation"><a class="header" href="#video-explanation">Video Explanation</a></h2>
+<p>Here is a video describing the Barnsley fern:</p>
+<div style="text-align:center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xoXe0AljUMA"
+ frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; pic
+ture-in-picture" allowfullscreen></iframe>
+</div>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<p>Similar to the chapter on <a href="../IFS/IFS.html">iterated function systems</a>, the example code here will show a chaos game for the construction of an attractor;
+however, in this case the attractor will be the Barnsley fern instead of the Sierpinski triangle.
+The biggest differences between the two code implementations is that the Barnsley implementation must take into account the varying probabilities for choosing each function path and that we will be choosing an initial point that is <em>on</em> the attractor this time (namely \( (0,0) \)).</p>
+<pre><code class="language-julia">using DelimitedFiles
+
+# This is a function that reads in the Hutchinson operator and corresponding
+#     probabilities and outputs a randomly selected transform
+# This works by choosing a random number and then iterating through all 
+#     probabilities until it finds an appropriate bin
+function select_array(hutchinson_op, probabilities)
+
+    # random number to be binned
+    rnd = rand()
+
+    # This checks to see if a random number is in a bin, if not, that 
+    #     probability is subtracted from the random number and we check the
+    #     next bin in the list
+    for i = 1:length(probabilities)
+        if (rnd &lt; probabilities[i])
+            return hutchinson_op[i]
+        end
+        rnd -= probabilities[i]
+    end
+end
+
+# This is a general function to simulate a chaos game
+# n is the number of iterations
+# initial_location is the starting point of the chaos game
+# hutchinson_op is the set of functions to iterate through
+# probabilities is the set of probabilities corresponding to the likelihood
+#     of choosing their corresponding function in hutchinson_op
+function chaos_game(n::Int, initial_location, hutchinson_op, probabilities)
+
+    # Initializing the output array and the initial point
+    output_points = zeros(n,2)
+
+    # extending point to 3D for affine transform
+    point = [initial_location[1], initial_location[2], 1]
+
+    for i = 1:n
+        output_points[i,:] .= point[1:2]
+        point = select_array(hutchinson_op, probabilities)*point
+    end
+
+    return output_points
+
+end
+
+barnsley_hutchinson = [[0.0 0.0 0.0;
+                        0.0 0.16 0.0;
+                        0.0 0.0 1.0],
+                       [0.85 0.04 0.0;
+                        -0.04 0.85 1.60;
+                        0.0 0.0 1.0],
+                       [0.20 -0.26 0.0;
+                        0.23 0.22 1.60;
+                        0.0 0.0 1.0],
+                       [-0.15 0.28 0.0;
+                        0.26 0.24 0.44;
+                        0.0 0.0 1.0]]
+
+barnsley_probabilities = [0.01, 0.85, 0.07, 0.07]
+output_points = chaos_game(10000, [0,0],
+                           barnsley_hutchinson, barnsley_probabilities)
+writedlm(&quot;out.dat&quot;, output_points)
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">use rand::prelude::*;
+#[derive(Clone, Copy)]
+struct Point2 {
+    x: f64,
+    y: f64,
+}
+
+#[derive(Clone, Copy)]
+struct Point3 {
+    x: f64,
+    y: f64,
+    z: f64,
+}
+
+impl Point3 {
+    fn new(x: f64, y: f64, z: f64) -&gt; Self {
+        Self { x, y, z }
+    }
+
+    fn matrix_mul(self, rhs: Vec&lt;Point3&gt;) -&gt; Self {
+        let x = rhs[0].x * self.x + rhs[0].y * self.y + rhs[0].z * self.z;
+        let y = rhs[1].x * self.x + rhs[1].y * self.y + rhs[1].z * self.z;
+        let z = rhs[2].x * self.x + rhs[2].y * self.y + rhs[2].z * self.z;
+        Self::new(x, y, z)
+    }
+}
+
+fn select_array(hutchinson_op: &amp;[Vec&lt;Point3&gt;], probabilities: &amp;[f64]) -&gt; Vec&lt;Point3&gt; {
+    let mut rng = rand::thread_rng();
+    let mut rnd = rng.gen::&lt;f64&gt;();
+
+    for (i, probability) in probabilities.iter().enumerate() {
+        if rnd &lt; *probability {
+            return hutchinson_op[i].clone();
+        }
+        rnd -= probability;
+    }
+
+    return vec![];
+}
+
+fn chaos_game(
+    iters: usize,
+    initial_location: Point2,
+    hutchinson_op: &amp;[Vec&lt;Point3&gt;],
+    probabilities: &amp;[f64],
+) -&gt; Vec&lt;Point2&gt; {
+    let mut point = Point3 {
+        x: initial_location.x,
+        y: initial_location.y,
+        z: 1.0,
+    };
+    (0..iters)
+        .into_iter()
+        .map(|_| {
+            let old_point = point;
+            let operation = select_array(hutchinson_op, probabilities);
+            point = point.matrix_mul(operation);
+            Point2 {
+                x: old_point.x,
+                y: old_point.y,
+            }
+        })
+        .collect()
+}
+
+fn main() {
+    let barnsley_hutchinson = vec![
+        vec![
+            Point3::new(0.0, 0.0, 0.0),
+            Point3::new(0.0, 0.16, 0.0),
+            Point3::new(0.0, 0.0, 1.0),
+        ],
+        vec![
+            Point3::new(0.85, 0.04, 0.0),
+            Point3::new(-0.04, 0.85, 1.60),
+            Point3::new(0.0, 0.0, 1.0),
+        ],
+        vec![
+            Point3::new(0.20, -0.26, 0.0),
+            Point3::new(0.23, 0.22, 1.60),
+            Point3::new(0.0, 0.0, 1.0),
+        ],
+        vec![
+            Point3::new(-0.15, 0.28, 0.0),
+            Point3::new(0.26, 0.24, 0.44),
+            Point3::new(0.0, 0.0, 1.0),
+        ],
+    ];
+
+    let barnsley_probabilities = vec![0.01, 0.85, 0.07, 0.07];
+
+    let mut out = String::new();
+
+    for point in chaos_game(
+        10_000,
+        Point2 { x: 0.0, y: 0.0 },
+        &amp;barnsley_hutchinson,
+        &amp;barnsley_probabilities,
+    ) {
+        out += format!(&quot;{}\t{}\n&quot;, point.x, point.y).as_str();
+    }
+
+    std::fs::write(&quot;./out.dat&quot;, out).unwrap();
+}
+</code></pre></pre>
+<pre><code class="language-cpp">// The code bellow uses C++-17 features, compile it with C++-17 flags, e.g.:
+// clang++ -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -gdwarf-3 -D_GLIBCXX_DEBUG -std=c++17 -O3 -c ./barnsley.cpp barnsley
+
+#include &lt;array&gt;
+#include &lt;cassert&gt;
+#include &lt;fstream&gt;
+#include &lt;random&gt;
+
+using Vec2 = std::array&lt;double, 2&gt;;
+using Vec3 = std::array&lt;double, 3&gt;;
+using Row = std::array&lt;double, 3&gt;;
+using Op = std::array&lt;Row, 3&gt;;
+
+constexpr auto OpN = 4U;
+
+template &lt;size_t N&gt;
+auto operator+(std::array&lt;double, N&gt; x, std::array&lt;double, N&gt; y) {
+  for (auto i = 0U; i &lt; N; ++i)
+    x[i] += y[i];
+  return x;
+}
+
+template &lt;size_t N&gt;
+auto operator*(double k, std::array&lt;double, N&gt; v) {
+  for (auto i = 0U; i &lt; N; ++i)
+    v[i] *= k;
+  return v;
+}
+
+template &lt;size_t N&gt;
+auto operator*(std::array&lt;double, N&gt; v, double k) {
+  return k * v;
+}
+
+auto operator*(const Op&amp; x, const Vec3&amp; y) {
+  auto ret = Vec3{};
+  for (auto i = 0U; i &lt; 3U; ++i) {
+    ret[i] = 0;
+    for (auto j = 0U; j &lt; 3U; ++j)
+      ret[i] += y[j] * x[i][j];
+  }
+  return ret;
+}
+
+// Returns a pseudo-random number generator
+std::default_random_engine&amp; rng() {
+  // Initialize static pseudo-random engine with non-deterministic random seed
+  static std::default_random_engine randEngine(std::random_device{}());
+  return randEngine;
+}
+
+// Returns a random double in [0, 1)
+double drand() {
+  return std::uniform_real_distribution&lt;double&gt;(0.0, 1.0)(rng());
+}
+
+// This is a function that reads in the Hutchinson operator and
+// corresponding
+//     probabilities and outputs a randomly selected transform
+// This works by choosing a random number and then iterating through all
+//     probabilities until it finds an appropriate bin
+auto select_array(
+    const std::array&lt;Op, OpN&gt;&amp; hutchinson_op,
+    const std::array&lt;double, OpN&gt;&amp; probabilities) {
+
+  // random number to be binned
+  auto rnd = drand();
+
+  // This checks to see if a random number is in a bin, if not, that
+  //     probability is subtracted from the random number and we check the
+  //     next bin in the list
+  for (auto i = 0U; i &lt; probabilities.size(); ++i) {
+    if (rnd &lt; probabilities[i])
+      return hutchinson_op[i];
+    rnd -= probabilities[i];
+  }
+  assert(!static_cast&lt;bool&gt;(&quot;check if probabilities adding up to 1&quot;));
+}
+
+// This is a general function to simulate a chaos game
+// n is the number of iterations
+// initial_location is the the starting point of the chaos game
+// hutchinson_op is the set of functions to iterate through
+// probabilities is the set of probabilities corresponding to the likelihood
+//     of choosing their corresponding function in hutchinson_op
+auto chaos_game(
+    size_t n,
+    Vec2 initial_location,
+    const std::array&lt;Op, OpN&gt;&amp; hutchinson_op,
+    const std::array&lt;double, OpN&gt;&amp; probabilities) {
+
+  // Initializing the output array and the initial point
+  auto output_points = std::vector&lt;Vec2&gt;{};
+
+  // extending point to 3D for affine transform
+  auto point = Vec3{initial_location[0], initial_location[1], 1};
+
+  for (auto i = 0U; i &lt; n; ++i) {
+    output_points.push_back(Vec2{point[0], point[1]});
+    point = select_array(hutchinson_op, probabilities) * point;
+  }
+
+  return output_points;
+}
+
+int main() {
+
+  const std::array barnsley_hutchinson = {
+      Op{Row{0.0, 0.0, 0.0}, Row{0.0, 0.16, 0.0}, Row{0.0, 0.0, 1.0}},
+      Op{Row{0.85, 0.04, 0.0}, Row{-0.04, 0.85, 1.60}, Row{0.0, 0.0, 1.0}},
+      Op{Row{0.20, -0.26, 0.0}, Row{0.23, 0.22, 1.60}, Row{0.0, 0.0, 1.0}},
+      Op{Row{-0.15, 0.28, 0.0}, Row{0.26, 0.24, 0.44}, Row{0.0, 0.0, 1.0}}};
+
+  const std::array barnsley_probabilities = {0.01, 0.85, 0.07, 0.07};
+  auto output_points = chaos_game(
+      10'000, Vec2{0, 0}, barnsley_hutchinson, barnsley_probabilities);
+
+  std::ofstream ofs(&quot;out.dat&quot;);
+  for (auto pt : output_points)
+    ofs &lt;&lt; pt[0] &lt;&lt; '\t' &lt;&lt; pt[1] &lt;&lt; '\n';
+}
+</code></pre>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct matrix {
+    double xx, xy, xz,
+           yx, yy, yz,
+           zx, zy, zz;
+};
+
+struct point2d {
+    double x, y;
+};
+
+struct point3d {
+    double x, y, z;
+};
+
+struct point3d matmul(struct matrix mat, struct point3d point)
+{
+    struct point3d out = {
+        mat.xx * point.x + mat.xy * point.y + mat.xz * point.z,
+        mat.yx * point.x + mat.yy * point.y + mat.yz * point.z,
+        mat.zx * point.x + mat.zy * point.y + mat.zz * point.z
+    };
+    return out;
+}
+
+// This function reads in the Hutchinson operator and corresponding
+// probabilities and returns a randomly selected transform
+// This works by choosing a random number and then iterating through all
+// probabilities until it finds an appropriate bin
+struct matrix select_array(struct matrix *hutchinson_op, double *probabilities,
+                           size_t num_op)
+{
+    // random number to be binned
+    double rnd = (double)rand() / RAND_MAX;
+
+    // This checks to see if a random number is in a bin, if not, that
+    // probability is subtracted from the random number and we check the next
+    // bin in the list
+    for (size_t i = 0; i &lt; num_op; ++i) {
+        if (rnd &lt; probabilities[i]) {
+            return hutchinson_op[i];
+        }
+        rnd -= probabilities[i];
+    }
+}
+
+// This is a general function to simulate a chaos game
+//  - output_points: pointer to an initialized output array
+//  - num: the number of iterations
+//  - initial_point: the starting point of the chaos game
+//  - hutchinson_op: the set of functions to iterate through
+//  - probabilities: the set of probabilities corresponding to the likelihood
+//      of choosing their corresponding function in hutchingson_op
+//  - nop: the number of functions in hutchinson_op
+void chaos_game(struct point2d *output_points, size_t num,
+                struct point2d initial_point, struct matrix *hutchinson_op,
+                double *probabilities, size_t nop)
+{
+    // extending point to 3D for affine transform
+    struct point3d point = {initial_point.x, initial_point.y, 1.0};
+
+    for (size_t i = 0; i &lt; num; ++i) {
+        point = matmul(select_array(hutchinson_op, probabilities, nop), point);
+        output_points[i].x = point.x;
+        output_points[i].y = point.y;
+    }
+}
+
+int main()
+{
+    struct matrix barnsley_hutchinson[4] = {
+        {
+            0.0, 0.0, 0.0,
+            0.0, 0.16, 0.0,
+            0.0, 0.0, 1.0
+        },
+        {
+            0.85, 0.04, 0.0,
+            -0.04, 0.85, 1.60,
+            0.0, 0.0, 1.0
+        },
+        {
+            0.2, -0.26, 0.0,
+            0.23, 0.22, 1.60,
+            0.0, 0.0, 1.0
+        },
+        {
+            -0.15, 0.28, 0.0,
+            0.26, 0.24, 0.44,
+            0.0, 0.0, 1.0
+        }
+    };
+
+    double barnsley_probabilities[4] = {0.01, 0.85, 0.07, 0.07};
+    struct point2d output_points[10000];
+    struct point2d initial_point = {0.0, 0.0};
+    chaos_game(output_points, 10000, initial_point, barnsley_hutchinson,
+               barnsley_probabilities, 4);
+    FILE *f = fopen(&quot;barnsley.dat&quot;, &quot;w&quot;);
+    for (size_t i = 0; i &lt; 10000; ++i) {
+        fprintf(f, &quot;%f\t%f\n&quot;, output_points[i].x, output_points[i].y);
+    }
+    fclose(f);
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-java">import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
+public class Barnsley {
+
+    private static class Point {
+        public double x, y, z;
+
+        public Point(double x, double y, double z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public Point(double[] coordinates) {
+            this.x = coordinates[0];
+            this.y = coordinates[1];
+            this.z = coordinates[2];
+        }
+
+        public Point matrixMultiplication(double[][] matrix) {
+            double[] results = new double[3];
+            for (int i = 0; i &lt; 3; i++) {
+                results[i] = matrix[i][0] * x + matrix[i][1] * y + matrix[i][2] * z;
+            }
+            return new Point(results);
+        }
+    }
+
+    // This is a function that reads in the Hutchinson operator and corresponding
+    //   probabilities and outputs a randomly selected transform
+    // This works by choosing a random number and then iterating through all
+    //   probabilities until it finds an appropriate bin
+    public static double[][] selectArray(double[][][] hutchinsonOp, double[] probabilities) {
+        Random rng = new Random();
+        // Random number to be binned
+        double rand = rng.nextDouble();
+
+        // This checks to see if a random number is in a bin, if not, that
+        // probability is subtracted from the random number and we check the
+        // next bin in the list
+        for (int i = 0; i &lt; probabilities.length; i++) {
+            if (rand &lt; probabilities[i])
+                return hutchinsonOp[i];
+            rand -= probabilities[i];
+        }
+        // This return will never be reached, as the loop above ensures that at some point rand will be smaller
+        // than a probability. However, Java does not know this and thus this return is needed for compilation.
+        return null;
+    }
+
+    // This is a general function to simulate a chaos game
+    // n is the number of iterations
+    // initialLocation is the starting point of the chaos game
+    // hutchinsonOp is the set of functions to iterate through
+    // probabilities is the set of probabilities corresponding to the likelihood
+    //   of choosing their corresponding function in hutchinsonOp
+    public static Point[] chaosGame(int n, Point initialLocation, double[][][] hutchinsonOp, double[] probabilities) {
+        // Initializing output points
+        Point[] outputPoints = new Point[n];
+        Point point = initialLocation;
+
+        for (int i = 0; i &lt; n; i++) {
+            outputPoints[i] = point;
+            point = point.matrixMultiplication(selectArray(hutchinsonOp, probabilities));
+        }
+
+        return outputPoints;
+    }
+
+    public static void main(String[] args) {
+        double[][][] barnsleyHutchinson = {
+                {{0.0, 0.0, 0.0},
+                 {0.0, 0.16, 0.0},
+                 {0.0, 0.0, 1.0}},
+                {{0.85, 0.04, 0.0},
+                 {-0.04, 0.85, 1.60},
+                 {0.0, 0.0, 1.0}},
+                {{0.20, -0.26, 0.0},
+                 {0.23, 0.22, 1.60},
+                 {0.0, 0.0, 1.0}},
+                {{-0.15, 0.28, 0.0},
+                 {0.26, 0.24, 0.44},
+                 {0.0, 0.0, 1.0}}
+        };
+        double[] barnsleyProbabilities = new double[]{0.01, 0.85, 0.07, 0.07};
+        Point[] outputPoints = chaosGame(10000, new Point(0.0, 0.0, 1.0), barnsleyHutchinson, barnsleyProbabilities);
+        try (FileWriter fw = new FileWriter(&quot;barnsley.dat&quot;)) {
+            for (Point p : outputPoints) {
+                fw.write(p.x + &quot;\t&quot; + p.y + &quot;\n&quot;);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+</code></pre>
+<pre><code class="language-coconut">from random import choices
+import numpy as np
+
+data Point(x=0, y=0):
+    def __rmatmul__(self, mat: np.array):
+        point_array = np.array([self.x, self.y, 1])
+        x, y, *_ = tuple(*(mat @ point_array))
+        return Point(x, y)
+
+
+def chaos_game(initial_location is Point, hutchinson_op, probabilities):
+    point = initial_location
+    while True:
+        yield (point := choices(hutchinson_op, probabilities) @ point)
+
+barnsley_hutchinson = [
+    np.array([
+        [0., 0., 0.],
+        [0., 0.16, 0.],
+        [0., 0., 1.],
+    ]),
+    np.array([
+        [0.85, 0.04, 0.],
+        [-0.04, 0.85, 1.6],
+        [0., 0., 1.],
+    ]),
+    np.array([
+        [0.2, -0.26, 0.],
+        [0.23, 0.22, 1.6],
+        [0., 0., 1.],
+    ]),
+    np.array([
+        [-0.15, 0.28, 0.],
+        [0.26, 0.24, 0.44],
+        [0., 0., 1.],
+    ]),
+]
+
+barnsley_probabilities = [0.01, 0.85, 0.07, 0.07]
+
+if __name__ == '__main__':
+    output_gen = chaos_game(Point(0, 0), barnsley_hutchinson, barnsley_probabilities)
+    output_points = np.array([*output_gen$[:10000]])
+    np.savetxt(&quot;out.dat&quot;, output_points)
+</code></pre>
+<pre><code class="language-haskell">import Data.Array (Array, bounds, elems, listArray, (!))
+import Data.List (intercalate)
+import System.Random
+
+data Point = Point Double Double
+
+chaosGame :: RandomGen g =&gt; g -&gt; Int -&gt; Array Int (Double, (Point -&gt; Point)) -&gt; [Point]
+chaosGame g n hutchinson = take n points
+  where
+    (x, g') = random g
+    (y, g'') = random g'
+
+    cumulProbabilities = scanl1 (+) $ map fst $ elems hutchinson
+    to_choice x = length $ takeWhile (x &gt;) cumulProbabilities
+
+    picks = map to_choice $ randomRs (0, 1) g''
+    step = fmap snd hutchinson
+
+    points = Point x y : zipWith (step !) picks points
+
+affine :: (Double, Double, Double, Double) -&gt; (Double, Double) -&gt; Point -&gt; Point
+affine (xx, xy, yx, yy) (a, b) (Point x y) = Point (a + xx * x + xy * y) (b + yx * x + yy * y)
+
+showPoint :: Point -&gt; String
+showPoint (Point x y) = show x ++ &quot;\t&quot; ++ show y
+
+main :: IO ()
+main = do
+  g &lt;- newStdGen
+  let barnsley =
+        listArray
+          (0, 3)
+          [ (0.01, affine (0, 0, 0, 0.16) (0, 0)),
+            (0.85, affine (0.85, 0.04, -0.04, 0.85) (0, 1.6)),
+            (0.07, affine (0.2, -0.26, 0.23, 0.22) (0, 1.6)),
+            (0.07, affine (-0.15, 0.28, 0.26, 0.24) (0, 0.44))
+          ]
+      points = chaosGame g 100000 barnsley
+
+  writeFile &quot;out.dat&quot; $ intercalate &quot;\n&quot; $ map showPoint points
+</code></pre>
+<h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
+<p>{% references %} {% endreferences %}</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h4 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h4>
+<ul>
+<li>The image &quot;<a href="../IFS/res/IFS_triangle_1.png">IFS triangle 1</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="../IFS/res/IFS_square_3.png">IFS square 3</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/full_fern.png">Simple Barnsley fern</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_rnd_0.mp4">Affine random transform 0</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_rnd_1.mp4">Affine random transform 1</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_rnd_2.mp4">Affine random transform 2</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_rnd_3.mp4">Affine random transform 3</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_fern_0.mp4">Affine fern transform 0</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_fern_1.mp4">Affine fern transform 1</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_fern_2.mp4">Affine fern transform 2</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/affine_fern_3.mp4">Affine fern transform 3</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/fern_twiddle_0.mp4">Fern twiddle 0</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/fern_twiddle_1.mp4">Fern twiddle 1</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/fern_twiddle_2.mp4">Fern twiddle 2</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="res/fern_twiddle_3.mp4">Fern twiddle 3</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../IFS/IFS.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../data_structures/data_structures.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../IFS/IFS.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../data_structures/data_structures.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

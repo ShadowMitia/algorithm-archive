@@ -1,0 +1,1388 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Monte Carlo - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html" class="active"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="monte-carlo-integration"><a class="header" href="#monte-carlo-integration">Monte Carlo Integration</a></h1>
+<p>Monte Carlo methods were some of the first methods I ever used for research, and when I learned about them, they seemed like some sort of magic.
+Their premise is simple: random numbers can be used to integrate arbitrary shapes embedded into other objects.
+Nowadays, &quot;Monte Carlo&quot; has become a bit of a catch-all term for methods that use random numbers to produce real results, but it all started as a straightforward method to integrate objects.
+No matter how you slice it, the idea seems a bit crazy at first.
+After all, random numbers are random.
+How could they possibly be used to find non-random values?</p>
+<p>Well, imagine you have a square.
+The area of the square is simple, \( \text{Area}<em>{\text{square}} = \text{length} \times \text{width} \).
+Since it's a square, the \( \text{length} \) and \( \text{width} \) are the same, so the formula is technically just \( \text{Area}</em>{\text{square}} = \text{length}^2 \).
+If we embed a circle into the square with a radius \( r = \tfrac{length}{2} \) (shown below), then its area is \( \text{Area}<em>{\text{circle}}=\pi r^2 \).
+For simplicity, we can also say that \( \text{Area}</em>{\text{square}}=4r^2 \).</p>
+<p>
+    <img  class="center" src="res/square_circle.png" style="width:40%"/>
+</p>
+<p>Now, let's say we want to find the area of the circle without an equation.
+As we said before, it's embedded in the square, so we should be able to find some ratio of the area of the square to the area of the circle:</p>
+<p>\[ \text{Ratio} = \frac{\text{Area}<em>{\text{circle}}}{\text{Area}</em>{\text{square}}} \]</p>
+<p>This means,</p>
+<p>\[ \text{Area}<em>{\text{circle}} = \text{Area}</em>{\text{square}}\times\text{Ratio} = 4r^2 \times \text{ratio} \]</p>
+<p>So, if we can find the \( \text{Ratio} \) and we know \( r \), we should be able to easily find the \( \text{Area}_{\text{circle}} \).
+The question is, &quot;How do we easily find the \( \text{Ratio} \)?&quot;
+Well, one way is with <em>random sampling</em>.
+We basically just pick a bunch of points randomly in the square, and
+each point is tested to see whether it's in the circle or not:</p>
+<pre><code class="language-julia">function in_circle(x_pos::Float64, y_pos::Float64)
+
+    # Setting radius to 1 for unit circle
+    radius = 1
+    return x_pos^2 + y_pos^2 &lt; radius^2
+end
+</code></pre>
+<pre><code class="language-clojure">(defn in-circle? [pv r]
+  &quot;take a vector representing point and radius return true if the
+  point is inside the circle&quot;
+  (&lt; (-&gt;&gt;
+      pv
+      (map #(* % %))
+      (reduce +))
+     (* r r)))
+</code></pre>
+<pre><code class="language-c">bool in_circle(double x, double y) {
+    return x * x + y * y &lt; 1;
+}
+</code></pre>
+<pre><code class="language-cpp">/**
+ * Check if the point (x, y) is within a circle of a given radius.
+ * @param x coordinate one
+ * @param y coordinate two
+ * @param r radius of the circle (optional)
+ * @return true if (x, y) is within the circle.
+ */
+inline bool in_circle(double x, double y, double r = 1) {
+    return x * x + y * y &lt; r * r;
+}
+</code></pre>
+<pre><code class="language-javascript">function inCircle(xPos, yPos) {
+  // Setting radius to 1 for unit circle
+  let radius = 1;
+  return xPos * xPos + yPos * yPos &lt; radius * radius;
+}
+</code></pre>
+<pre><code class="language-haskell">        inCircle (x, y) = x^2 + y^2 &lt; 1
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn in_circle(x: f64, y: f64, radius: f64) -&gt; bool {
+    x * x + y * y &lt; radius * radius
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-d">bool inCircle(real x, real y)
+{
+    return x ^^ 2 + y ^^ 2 &lt; 1.0;
+}
+</code></pre>
+<pre><code class="language-go">func inCircle(x, y float64) bool {
+	return x*x+y*y &lt; 1.0 // the radius of an unit circle is 1.0
+}
+</code></pre>
+<pre><code class="language-r">in_circle &lt;- function(x, y, radius = 1){
+        # Return True if the point is in the circle and False otherwise.
+        return((x*x + y*y) &lt; radius*radius)
+}
+
+</code></pre>
+<pre><code class="language-java">    private static boolean inCircle(double x, double y) {
+        return x * x + y * y &lt; 1;
+    }
+</code></pre>
+<pre><code class="language-swift">func inCircle(x: Double, y: Double, radius: Double) -&gt; Bool {
+    return (x*x) + (y*y) &lt; radius*radius
+}
+</code></pre>
+<pre><code class="language-python">def in_circle(x, y, radius = 1):
+	&quot;&quot;&quot;Return True if the point is in the circle and False otherwise.&quot;&quot;&quot;
+	return (x*x + y*y) &lt; radius*radius
+</code></pre>
+<pre><code class="language-csharp">        public bool IsInMe(Point point) =&gt; Math.Pow(point.X, 2) + Math.Pow(point.Y, 2) &lt; Math.Pow(Radius, 2);
+</code></pre>
+<pre><code class="language-nim">proc in_circle(x, y, radius: float): bool =
+  return x * x + y * y &lt; radius * radius
+</code></pre>
+<pre><code class="language-ruby">def in_circle(x, y, radius=1)
+  # Check if coords are in circle via Pythagorean Thm
+  return (x*x + y*y) &lt; radius*radius
+end
+</code></pre>
+<pre><code class="language-fortran">FUNCTION in_circle(pos_x, pos_y, r)
+    IMPLICIT NONE
+    REAL(16), INTENT(IN) :: pos_x, pos_y, r
+    LOGICAL              :: in_circle
+
+    in_circle = (pos_x ** 2 + pos_y ** 2) &lt; r ** 2
+
+END FUNCTION in_circle 
+</code></pre>
+<p>{% sample lang=&quot;factor&quot; %}
+<a href="code/factor/monte_carlo.factor">import:9-12 lang:&quot;factor&quot;</a></p>
+<pre><code class="language-emojicode">  ❗️ 📥 point ☝️ ➡️ 👌 🍇
+    📪 point❗️ ➡️ point_x
+    📫 point❗️ ➡️ point_y
+    ↩️ 🤜point_x ✖️ point_x ➕ point_y ✖️ point_y🤛 ◀️ 🤜radius ✖️ radius🤛
+  🍉
+</code></pre>
+<pre><code class="language-php">function in_circle(float $positionX, float $positionY, float $radius = 1): bool
+{
+    return pow($positionX, 2) + pow($positionY, 2) &lt; pow($radius, 2);
+}
+</code></pre>
+<p>{% sample lang=&quot;lua&quot; %}
+<a href="code/lua/monte_carlo.lua">import:2-4, lang=&quot;lua&quot;</a></p>
+<pre><code class="language-racket">(define (in-circle x y)
+  &quot;Checks if a point is in a unit circle&quot;
+  (&lt; (+ (sqr x) (sqr y)) 1))
+</code></pre>
+<pre><code class="language-scala">  def inCircle(x: Double, y: Double) = x * x + y * y &lt; 1
+</code></pre>
+<pre><code class="language-lisp">(defun in-circle-p (x y)
+  &quot;Checks if a point is in a unit circle&quot;
+  (&lt; (+ (* x x) (* y y)) 1))
+</code></pre>
+<pre><code class="language-asm-x64"># xmm0 - x
+# xmm1 - y
+# RET rax - bool
+in_circle:
+  mulsd  xmm0, xmm0                  # Calculate x * x + y * y
+  mulsd  xmm1, xmm1
+  addsd  xmm0, xmm1
+  movsd  xmm1, one                   # Set circle radius to 1
+  xor    rax, rax
+  comisd xmm1, xmm0                  # Return bool xmm0 &lt; xmm1
+  seta al
+  ret
+</code></pre>
+<pre><code class="language-bash">inCircle() {
+    local ret
+    local mag
+    ((ret = 0))
+    if (($1 ** 2 + $2 ** 2 &lt; 1073676289)); then # 1073676289 = 32767 ** 2
+        ((ret = 1))
+    fi
+    printf &quot;%d&quot; $ret
+}
+</code></pre>
+<pre><code class="language-kotlin">private fun inCircle(x: Double, y: Double, radius: Double = 1.0) = (x * x + y * y) &lt; radius * radius
+</code></pre>
+<pre><code class="language-matlab">    % a 2 by n array, rows are xs and ys
+    xy_array = rand(2, n);   
+
+    % square every element in the array
+    squares_array = xy_array.^2;            
+    
+    % sum the xs and ys and check if it's in the quarter circle
+    incircle_array = sum(squares_array)&lt;1;  
+</code></pre>
+<p>{% sample lang=&quot;scratch&quot; %}</p>
+<p>
+    <img  class="center" src="code/scratch/InCircle.svg" style="width:40%" />
+</p>
+```coconut
+data point(x, y):
+    def __abs__(self) = (self.x, self.y) |> map$(pow$(?, 2)) |> sum |> math.sqrt
+<p>def in_circle(p is point, radius = 1):
+&quot;&quot;&quot;Return True if the point is in the circle and False otherwise.&quot;&quot;&quot;
+return abs(p) &lt; radius</p>
+<pre><code>```powershell
+﻿function Is-InCircle($x, $y, $radius=1) {
+    return ([Math]::Pow($x, 2) + [Math]::Pow($y, 2)) -lt [Math]::Pow($radius, 2)
+}
+</code></pre>
+<p>If it's in the circle, we increase an internal count by one, and in the end,</p>
+<p>\[ \text{Ratio} = \frac{\text{count in circle}}{\text{total number of points used}} \]</p>
+<p>If we use a small number of points, this will only give us a rough approximation, but as we start adding more and more points, the approximation becomes much, much better (as shown below)!</p>
+<p>
+    <img  class="center" src="res/monte_carlo.gif" style="width:60%"/>
+</p>
+<p>The true power of Monte Carlo comes from the fact that it can be used to integrate literally any object that can be embedded into the square.
+As long as you can write some function to tell whether the provided point is inside the shape you want (like <code>in_circle()</code> in this case), you can use Monte Carlo integration!
+This is obviously an incredibly powerful tool and has been used time and time again for many different areas of physics and engineering.
+I can guarantee that we will see similar methods crop up all over the place in the future!</p>
+<h2 id="video-explanation"><a class="header" href="#video-explanation">Video Explanation</a></h2>
+<p>Here is a video describing Monte Carlo integration:</p>
+<div style="text-align:center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AyBNnkYrSWY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<p>Monte Carlo methods are famous for their simplicity.
+It doesn't take too many lines to get something simple going.
+Here, we are just integrating a circle, like we described above; however, there is a small twist and trick.
+Instead of calculating the area of the circle, we are instead trying to find the value of \( \pi \), and
+rather than integrating the entire circle, we are only integrating the upper right quadrant of the circle from \( 0 &lt; x, y &lt; 1 \).
+This saves a bit of computation time, but also requires us to multiply our output by \( 4 \).</p>
+<p>That's all there is to it!
+Feel free to submit your version via pull request, and thanks for reading!</p>
+<pre><code class="language-julia"># function to determine whether an x, y point is in the unit circle
+function in_circle(x_pos::Float64, y_pos::Float64)
+
+    # Setting radius to 1 for unit circle
+    radius = 1
+    return x_pos^2 + y_pos^2 &lt; radius^2
+end
+
+# function to integrate a unit circle to find pi via monte_carlo
+function monte_carlo(n::Int64)
+
+    pi_count = 0
+    for i = 1:n
+        point_x = rand()
+        point_y = rand()
+
+        if (in_circle(point_x, point_y))
+            pi_count += 1
+        end
+    end
+
+    # This is using a quarter of the unit sphere in a 1x1 box.
+    # The formula is pi = (box_length^2 / radius^2) * (pi_count / n), but we
+    #     are only using the upper quadrant and the unit circle, so we can use
+    #     4*pi_count/n instead
+    return 4*pi_count/n
+end
+
+pi_estimate = monte_carlo(10000000)
+println(&quot;The pi estimate is: &quot;, pi_estimate)
+println(&quot;Percent error is: &quot;, 100 * abs(pi_estimate - pi) / pi, &quot; %&quot;)
+</code></pre>
+<pre><code class="language-clojure">(ns monte-carlo.core)
+
+(defn in-circle? [pv r]
+  &quot;take a vector representing point and radius return true if the
+  point is inside the circle&quot;
+  (&lt; (-&gt;&gt;
+      pv
+      (map #(* % %))
+      (reduce +))
+     (* r r)))
+
+(defn rand-point [r]
+  &quot;return a random point from (0,0) inclusive to (r,r) exclusive&quot;
+  (repeatedly 2 #(rand r)))
+
+(defn monte-carlo [n r]
+  &quot;take the number of random points and radius return an estimate to
+pi&quot;
+  (*' 4 (/ n)
+      (loop [i n count 0]
+        (if (zero? i)
+          count
+          (recur (dec i)
+                 (if (in-circle? (rand-point r) r)
+                   (inc count)
+                   count))))))
+
+(defn -main []
+  (let [constant-pi Math/PI
+        computed-pi (monte-carlo 10000000 2) ;; this may take some time on lower end machines
+        difference (Math/abs (- constant-pi computed-pi))
+        error (* 100 (/ difference constant-pi))]
+    (println &quot;world's PI: &quot; constant-pi
+             &quot;,our PI: &quot; (double computed-pi)
+             &quot;,error: &quot; error)))
+</code></pre>
+<pre><code class="language-c">#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+bool in_circle(double x, double y) {
+    return x * x + y * y &lt; 1;
+}
+
+double monte_carlo(unsigned int samples) {
+    unsigned int count = 0;
+
+    for (unsigned int i = 0; i &lt; samples; ++i) {
+        double x = (double)rand() / RAND_MAX;
+        double y = (double)rand() / RAND_MAX;
+
+        if (in_circle(x, y)) {
+            count += 1;
+        }
+    }
+
+    return 4.0 * count / samples;
+}
+
+int main() {
+    srand(time(NULL));
+
+    double estimate = monte_carlo(1000000);
+
+    printf(&quot;The estimate of pi is %g\n&quot;, estimate);
+    printf(&quot;Percentage error: %0.2f%%\n&quot;, 100 * fabs(M_PI - estimate) / M_PI);
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;random&gt;
+
+constexpr double PI = 3.14159265358979323846264338;
+
+/**
+ * Check if the point (x, y) is within a circle of a given radius.
+ * @param x coordinate one
+ * @param y coordinate two
+ * @param r radius of the circle (optional)
+ * @return true if (x, y) is within the circle.
+ */
+inline bool in_circle(double x, double y, double r = 1) {
+    return x * x + y * y &lt; r * r;
+}
+
+/**
+ * Return an estimate of PI using Monte Carlo integration.
+ * @param samples number of iterations to use
+ * @return estimate of pi
+ */
+double monte_carlo_pi(unsigned samples) {
+    static std::default_random_engine generator;
+    static std::uniform_real_distribution&lt;double&gt; dist(0, 1);
+
+    unsigned count = 0;
+    for (unsigned i = 0; i &lt; samples; ++i) {
+        double x = dist(generator);
+        double y = dist(generator);
+
+        if (in_circle(x, y))
+            ++count;
+    }
+
+    return 4.0 * count / samples;
+}
+
+int main() {
+    unsigned samples;
+
+    double pi_estimate = monte_carlo_pi(10000000);
+    std::cout &lt;&lt; &quot;Pi = &quot; &lt;&lt; pi_estimate &lt;&lt; '\n';
+    std::cout &lt;&lt; &quot;Percent error is: &quot; &lt;&lt; 100 * std::abs(pi_estimate - PI) / PI &lt;&lt; &quot; %\n&quot;;
+}
+</code></pre>
+<pre><code class="language-javascript">// submitted by xam4lor
+function inCircle(xPos, yPos) {
+  // Setting radius to 1 for unit circle
+  let radius = 1;
+  return xPos * xPos + yPos * yPos &lt; radius * radius;
+}
+
+function monteCarlo(n) {
+  let piCount = 0;
+
+  for (let i = 0; i &lt; n; i++) {
+    const pointX = Math.random();
+    const pointY = Math.random();
+
+    if (inCircle(pointX, pointY)) {
+      piCount++;
+    }
+  }
+
+  // This is using a quarter of the unit sphere in a 1x1 box.
+  // The formula is pi = (boxLength^2 / radius^2) * (piCount / n), but we
+  // are only using the upper quadrant and the unit circle, so we can use
+  // 4*piCount/n instead
+  // piEstimate = 4*piCount/n
+  const piEstimate = 4 * piCount / n;
+  console.log('Percent error is: %s%', 100 * Math.abs(piEstimate - Math.PI) / Math.PI);
+}
+
+monteCarlo(100000000);
+</code></pre>
+<pre><code class="language-haskell">import System.Random
+
+monteCarloPi :: RandomGen g =&gt; g -&gt; Int -&gt; Float
+monteCarloPi g n = count $ filter inCircle $ makePairs
+  where makePairs = take n $ toPair (randomRs (0, 1) g :: [Float])
+        toPair (x:y:rest) = (x, y) : toPair rest
+        inCircle (x, y) = x^2 + y^2 &lt; 1
+        count l = 4 * fromIntegral (length l) / fromIntegral n
+
+main = do
+  g &lt;- newStdGen
+  let p = monteCarloPi g 100000
+  putStrLn $ &quot;Estimated pi: &quot; ++ show p
+  putStrLn $ &quot;Percent error: &quot; ++ show (100 * abs (pi - p) / pi)
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">// Submitted by jess 3jane
+
+extern crate rand;
+
+use std::f64::consts::PI;
+
+fn in_circle(x: f64, y: f64, radius: f64) -&gt; bool {
+    x * x + y * y &lt; radius * radius
+}
+
+fn monte_carlo(n: i64) -&gt; f64 {
+    let mut count = 0;
+
+    for _ in 0..n {
+        let x = rand::random();
+        let y = rand::random();
+        if in_circle(x, y, 1.0) {
+            count += 1;
+        }
+    }
+
+    // return our pi estimate
+    (4 * count) as f64 / n as f64
+}
+
+fn main() {
+    let pi_estimate = monte_carlo(10000000);
+
+    println!(
+        &quot;Percent error is {:.3}%&quot;,
+        (100.0 * (pi_estimate - PI).abs() / PI)
+    );
+}
+</code></pre></pre>
+<pre><code class="language-d">///Returns true if a point (x, y) is in the circle with radius r
+bool inCircle(real x, real y)
+{
+    return x ^^ 2 + y ^^ 2 &lt; 1.0;
+}
+
+///Calculate pi using monte carlo
+real monteCarloPI(ulong n)
+{
+    import std.algorithm : count;
+    import std.random : uniform01;
+    import std.range : generate, take;
+    import std.typecons : tuple;
+
+    auto piCount =  generate(() =&gt; tuple!(&quot;x&quot;, &quot;y&quot;)(uniform01, uniform01))
+        .take(n)
+        .count!(a =&gt; inCircle(a.x, a.y));
+    return piCount * 4.0 / n;
+}
+
+void main()
+{
+    import std.math : abs, PI;
+    import std.stdio : writeln;
+
+    auto p = monteCarloPI(100_000);
+    writeln(&quot;Estimated pi: &quot;, p);
+    writeln(&quot;Percent error: &quot;, abs(p - PI) * 100 / PI);
+}
+</code></pre>
+<pre><code class="language-go">// Submitted by Chinmaya Mahesh (chin123)
+
+package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math&quot;
+	&quot;math/rand&quot;
+	&quot;time&quot;
+)
+
+func inCircle(x, y float64) bool {
+	return x*x+y*y &lt; 1.0 // the radius of an unit circle is 1.0
+}
+
+func monteCarlo(samples int) {
+	count := 0
+	s := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(s)
+
+	for i := 0; i &lt; samples; i++ {
+		x, y := r.Float64(), r.Float64()
+
+		if inCircle(x, y) {
+			count += 1
+		}
+	}
+	
+	estimate := 4.0 * float64(count) / float64(samples)
+
+	fmt.Println(&quot;The estimate of pi is&quot;, estimate)
+	fmt.Printf(&quot;Which has an error of %f%%\n&quot;, 100*math.Abs(math.Pi-estimate)/math.Pi)
+}
+
+func main() {
+	monteCarlo(10000000)
+}
+</code></pre>
+<pre><code class="language-r">
+in_circle &lt;- function(x, y, radius = 1){
+        # Return True if the point is in the circle and False otherwise.
+        return((x*x + y*y) &lt; radius*radius)
+}
+
+monte_carlo &lt;- function(n_samples, radius = 1){
+# Return the estimate of pi using the monte carlo algorithm.
+        
+        # Sample x, y from the uniform distribution
+        x &lt;- runif(n_samples, 0, radius)
+        y &lt;- runif(n_samples, 0, radius)
+
+        # Count the number of points inside the circle
+        in_circle_count &lt;- sum(in_circle(x, y, radius))
+
+        # Since we've generated points in upper left quadrant ([0,radius], [0,])
+        # We need to multiply the number of points by 4	
+        pi_estimate &lt;- 4 * in_circle_count / n_samples
+
+        return(pi_estimate)
+}
+
+pi_estimate &lt;- monte_carlo(10000000)
+percent_error &lt;- abs(pi - pi_estimate)/pi
+
+print(paste(&quot;The estimate of pi is: &quot;, formatC(pi_estimate)))
+print(paste(&quot;The percent error is:: &quot;, formatC(percent_error)))
+</code></pre>
+<pre><code class="language-java">import java.util.Random;
+
+public class MonteCarlo {
+
+    public static void main(String[] args) {
+        double piEstimation = monteCarlo(1000);
+        System.out.println(&quot;Estimated pi value: &quot; + piEstimation);
+        System.out.printf(&quot;Percent error: &quot; + 100 * Math.abs(piEstimation - Math.PI) / Math.PI);
+    }
+
+    // function to check whether point (x,y) is in unit circle
+    private static boolean inCircle(double x, double y) {
+        return x * x + y * y &lt; 1;
+    }
+
+    // function to calculate estimation of pi
+    public static double monteCarlo(int samples) {
+        int piCount = 0;
+
+        Random random = new Random();
+
+        for (int i = 0; i &lt; samples; i++) {
+            double x = random.nextDouble();
+            double y = random.nextDouble();
+            if (inCircle(x, y)) {
+                piCount++;
+            }
+        }
+
+        return 4.0 * piCount / samples;
+    }
+}
+</code></pre>
+<pre><code class="language-swift">func inCircle(x: Double, y: Double, radius: Double) -&gt; Bool {
+    return (x*x) + (y*y) &lt; radius*radius
+}
+
+func monteCarlo(n: Int) -&gt; Double {
+    let radius: Double = 1
+    var piCount = 0
+    var randX: Double
+    var randY: Double
+
+    for _ in 0...n {
+        randX = Double.random(in: 0..&lt;radius)
+        randY = Double.random(in: 0..&lt;radius)
+
+        if(inCircle(x: randX, y: randY, radius: radius)) {
+            piCount += 1
+        }
+    }
+
+    let piEstimate = Double(4 * piCount)/(Double(n))
+    return piEstimate
+}
+
+func main() {
+    let piEstimate = monteCarlo(n: 10000)
+    print(&quot;Pi estimate is: &quot;, piEstimate)
+    print(&quot;Percent error is: \(100 * abs(piEstimate - Double.pi)/Double.pi)%&quot;)
+}
+
+main()
+</code></pre>
+<pre><code class="language-python">import math
+import random
+
+
+def in_circle(x, y, radius = 1):
+	&quot;&quot;&quot;Return True if the point is in the circle and False otherwise.&quot;&quot;&quot;
+	return (x*x + y*y) &lt; radius*radius
+
+def monte_carlo(n_samples, radius = 1):
+	&quot;&quot;&quot;Return the estimate of pi using the monte carlo algorithm.&quot;&quot;&quot;
+	in_circle_count = 0
+	for i in range(n_samples):
+		
+		# Sample x, y from the uniform distribution
+		x = random.uniform(0, radius)
+		y = random.uniform(0, radius)
+		
+		# Count the number of points inside the circle
+		if(in_circle(x, y, radius)):
+			in_circle_count += 1
+
+	# Since we've generated points in upper right quadrant ([0,radius], [0, radius])
+	# We need to multiply the number of points by 4	
+	pi_estimate = 4 * in_circle_count / (n_samples)
+
+	return pi_estimate
+
+if __name__ == '__main__':
+
+	pi_estimate = monte_carlo(100000)
+	percent_error = 100*abs(math.pi - pi_estimate)/math.pi
+
+	print(&quot;The estimate of pi is: {:.3f}&quot;.format(pi_estimate))
+	print(&quot;The percent error is: {:.3f}&quot;.format(percent_error))
+
+</code></pre>
+<p>{% sample lang=&quot;cs&quot; %}</p>
+<h5 id="montecarlocs"><a class="header" href="#montecarlocs">MonteCarlo.cs</a></h5>
+<p><a href="code/csharp/MonteCarlo.cs">import, lang:&quot;csharp&quot;</a></p>
+<h5 id="circlecs"><a class="header" href="#circlecs">Circle.cs</a></h5>
+<p><a href="code/csharp/Circle.cs">import, lang:&quot;csharp&quot;</a></p>
+<h5 id="programcs"><a class="header" href="#programcs">Program.cs</a></h5>
+<p><a href="code/csharp/Program.cs">import, lang:&quot;csharp&quot;</a></p>
+<pre><code class="language-nim">import random
+import math
+
+randomize()
+
+proc in_circle(x, y, radius: float): bool =
+  return x * x + y * y &lt; radius * radius
+
+proc monte_carlo(samples: int): float =
+  const radius: float = 1
+  var count: int = 0
+
+  for i in 0 .. &lt; samples:
+    let
+      x: float = random(radius)
+      y: float = random(radius)
+        
+    if in_circle(x, y, radius):
+      count += 1
+    
+  let pi_estimate: float = 4 * count / samples
+  return pi_estimate
+
+let estimate: float = monte_carlo(1000000)
+
+echo &quot;the estimate of pi is &quot;, estimate
+echo &quot;percent error: &quot;, 100 * (abs(estimate - PI)/PI)
+</code></pre>
+<pre><code class="language-ruby">def in_circle(x, y, radius=1)
+  # Check if coords are in circle via Pythagorean Thm
+  return (x*x + y*y) &lt; radius*radius
+end
+
+def monte_carlo(n_samples, radius=1)
+  # estimate pi via monte carlo sampling
+  in_circle_count = 0.0
+  
+  for _ in 0...n_samples
+    # randomly choose coords within square
+	x = rand()*radius
+	y = rand()*radius
+	if in_circle(x, y, radius)
+	  in_circle_count += 1
+	end
+  end
+  
+  # circle area is pi*r^2 and rect area is 4r^2
+  # ratio between the two is then pi/4 so multiply by 4 to get pi
+  return 4 * (in_circle_count / n_samples)
+  
+end
+
+
+# Main
+pi_estimate = monte_carlo(100000)
+percent_error = 100 * (pi_estimate - Math::PI).abs / Math::PI
+
+puts &quot;The estimate of pi is: #{pi_estimate.round(3)}&quot;
+puts &quot;The percent error is: #{percent_error.round(3)}&quot;
+
+</code></pre>
+<pre><code class="language-fortran">FUNCTION in_circle(pos_x, pos_y, r)
+    IMPLICIT NONE
+    REAL(16), INTENT(IN) :: pos_x, pos_y, r
+    LOGICAL              :: in_circle
+
+    in_circle = (pos_x ** 2 + pos_y ** 2) &lt; r ** 2
+
+END FUNCTION in_circle 
+
+PROGRAM monte_carlo
+    
+    IMPLICIT NONE
+    
+    INTERFACE
+        FUNCTION in_circle(pos_x, pos_y, r) 
+            IMPLICIT NONE
+            REAL(16), INTENT(IN) :: pos_x, pos_y, r
+            LOGICAL              :: in_circle
+        END FUNCTION in_circle 
+    END INTERFACE
+    
+    INTEGER  :: i,n
+    REAL(16) :: pos_x,pos_y, r, pi_est, pi_count, pi_error, pi
+    
+    ! Calculate Pi from trigonometric functions as reference
+    pi       = DACOS(-1.d0)
+    n        = 1000000
+    r        = 1d0
+    pos_x    = 0d0
+    pos_y    = 0d0
+    pi_count = 0d0
+    
+    DO i=0,n
+    
+        CALL RANDOM_NUMBER(pos_x)
+        CALL RANDOM_NUMBER(pos_y)
+    
+        IF (in_circle(pos_x, pos_y, r) .EQV. .TRUE.) THEN 
+    
+            pi_count = pi_count + 1d0
+    
+        END IF
+    END DO
+    
+    pi_est   = 4d0 * pi_count / n
+    pi_error = 100d0 * (abs(pi_est - pi)/pi)
+    
+    WRITE(*,'(A, F12.4)') 'The pi estimate is: ', pi_est
+    WRITE(*,'(A, F12.4, A)') 'Percent error is: ', pi_error, ' %'
+    
+END PROGRAM monte_carlo
+</code></pre>
+<pre><code class="language-factor">USING: locals random math.ranges math.functions ;
+
+:: monte-carlo ( n in-shape?: ( x y -- ? ) -- % )
+  n &lt;iota&gt; [ drop random-unit random-unit in-shape? call ] count n /
+; inline
+
+! Use the monte-carlo approximation to calculate pi
+: monte-carlo-pi ( n -- pi-approx )
+  [ ! in-circle check
+    [ 2 ^ ] bi@ + ! get the distance from the center
+    1 &lt;           ! see if it's less than the radius
+  ]
+  monte-carlo 4 * &gt;float
+;
+
+USING: math.constants ;
+10000000 monte-carlo-pi ! Approximate pi
+dup .                   ! Print the approximation
+pi - pi / 100 * &gt;float abs .  ! And the error margin
+
+
+</code></pre>
+<pre><code class="language-emojicode">🐇 ☝️ 🍇
+  🖍🆕 x 💯
+  🖍🆕 y 💯
+
+  🆕 🍼 x 💯 🍼 y 💯 🍇 🍉
+
+  ❗️ 📪 ➡️ 💯 🍇
+    ↩️ x
+  🍉
+
+  ❗️ 📫 ➡️ 💯 🍇
+    ↩️ y
+  🍉
+🍉
+
+🐇 🌕 🍇
+  🖍🆕 radius 💯
+
+  🆕 given_radius 💯 🍇
+    🏧 given_radius❗️ ➡️ 🖍radius
+  🍉
+
+  ❗️ 📥 point ☝️ ➡️ 👌 🍇
+    📪 point❗️ ➡️ point_x
+    📫 point❗️ ➡️ point_y
+    ↩️ 🤜point_x ✖️ point_x ➕ point_y ✖️ point_y🤛 ◀️ 🤜radius ✖️ radius🤛
+  🍉
+🍉
+
+🐇 🤡 🍇
+  🐇 ❗️ 🏃‍♀️ samples 🔢 ➡️ 💯 🍇
+    🆕🌕🆕 1.0 ❗️ ➡️ circle
+    0 ➡️ 🖍🆕 count
+
+    🆕🎰🆕 ❗️ ➡️ random
+
+    🔂 i 🆕⏩⏩ 0 samples❗️ 🍇
+      🆕☝️🆕 💯 random❗️ 💯 random❗️❗️ ➡️ point
+      ↪️ 📥 circle point❗️ 🍇
+        count ⬅️ ➕ 1
+      🍉
+    🍉
+
+    ↩️ 4.0 ✖️ 💯 count❗️ ➗ 💯samples❗️
+  🍉
+🍉
+
+🏁 🍇
+  😀 🔤Running with 10,000,000 samples.🔤❗️
+  🏃‍♀️🐇🤡 10000000❗️ ➡️ pi_estimate
+  😀 🍪🔤The estimate of pi is: 🔤 🔡 pi_estimate 10❗🍪❗️
+  🏧 🤜pi_estimate ➖ 🥧🕊💯 ❗️🤛❗️ ➗ 🥧🕊💯 ❗️ ✖️ 100 ➡️ percent_error
+  😀 🍪🔤The percent error is: 🔤 🔡 percent_error 10❗ 🔤%🔤🍪❗️
+🍉
+</code></pre>
+<pre><code class="language-php">&lt;?php
+declare(strict_types=1);
+
+function in_circle(float $positionX, float $positionY, float $radius = 1): bool
+{
+    return pow($positionX, 2) + pow($positionY, 2) &lt; pow($radius, 2);
+}
+
+function random_zero_to_one(): float
+{
+    return mt_rand() / mt_getrandmax();
+}
+
+function monte_carlo(int $samples, float $radius = 1): float
+{
+    $inCircleCount = 0;
+
+    for ($i = 0; $i &lt; $samples; $i++) {
+        if (in_circle(random_zero_to_one() * $radius, random_zero_to_one() * $radius, $radius)) {
+            $inCircleCount++;
+        }
+    }
+
+    return 4 * $inCircleCount / $samples;
+}
+
+$piEstimate = monte_carlo(10000000);
+$percentError = abs($piEstimate - pi()) / pi() * 100;
+
+printf('The estimate of PI is: %s', $piEstimate);
+echo PHP_EOL;
+printf('The percent error is: %s', $percentError);
+echo PHP_EOL;
+</code></pre>
+<p>{% sample lang=&quot;lua&quot; %}
+<a href="code/lua/monte_carlo.lua">import, lang=&quot;lua&quot;</a></p>
+<pre><code class="language-racket">#lang racket/base
+
+(require racket/local)
+(require racket/math)
+
+(define (in-circle x y)
+  &quot;Checks if a point is in a unit circle&quot;
+  (&lt; (+ (sqr x) (sqr y)) 1))
+
+(define (monte-carlo-pi n)
+  &quot;Returns an approximation of pi&quot;
+  (* (/ (local ((define (monte-carlo-pi* n count)
+                  (if (= n 0)
+                      count
+                      (monte-carlo-pi* (sub1 n) 
+                                       (if (in-circle (random) (random)) 
+                                           (add1 count)
+                                           count)))))
+          (monte-carlo-pi* n 0)) n) 4))
+
+(define nsamples 5000000)
+(define pi-estimate (monte-carlo-pi nsamples))
+(displayln (string-append &quot;Estimate (rational): &quot; (number-&gt;string pi-estimate)))
+(displayln (string-append &quot;Estimate (float): &quot; (number-&gt;string (real-&gt;single-flonum pi-estimate))))
+(displayln (string-append &quot;Error:&quot; (number-&gt;string (* (/ (abs (- pi-estimate pi)) pi) 100))))
+</code></pre>
+<pre><code class="language-scala">object MonteCarlo {
+
+  def inCircle(x: Double, y: Double) = x * x + y * y &lt; 1
+
+  def monteCarloPi(samples: Int) = {
+    def randCoord = math.random() * 2 - 1
+
+    var pointCount = 0
+
+    for (_ &lt;- 0 to samples)
+      if (inCircle(randCoord, randCoord)) 
+        pointCount += 1
+
+    4.0 * pointCount / samples
+  }
+
+  def main(args: Array[String]): Unit = {
+    val approxPi = monteCarloPi(1000)
+    println(&quot;Estimated pi value: &quot; + approxPi)
+    println(&quot;Percent error: &quot; + 100 * Math.abs(approxPi - Math.PI) / Math.PI)
+  }
+}
+</code></pre>
+<pre><code class="language-lisp">;;;; Monte carlo integration to approximate pi
+
+(defun in-circle-p (x y)
+  &quot;Checks if a point is in a unit circle&quot;
+  (&lt; (+ (* x x) (* y y)) 1))
+
+(defun monte-carlo (samples)
+  &quot;Returns an approximation of pi&quot;
+  (loop repeat samples
+    with count = 0 
+    do
+      (when (in-circle-p (random 1.0) (random 1.0))
+            (incf count))
+    finally (return (* (/ count samples) 4.0))))
+
+(defvar pi-estimate (monte-carlo 5000000))
+(format t &quot;Estimate: ~D ~%&quot; pi-estimate)
+(format t &quot;Error: ~D%&quot; (* (/ (abs (- pi-estimate pi)) pi) 100))
+</code></pre>
+<pre><code class="language-asm-x64">.intel_syntax noprefix
+
+.section .rodata
+  pi:            .double 3.141592653589793
+  one:           .double 1.0
+  four:          .double 4.0
+  hundred:       .double 100.0
+  rand_max:      .long 4290772992
+                 .long 1105199103
+  fabs_const:    .long 4294967295
+                 .long 2147483647
+                 .long 0
+                 .long 0
+  estimate_fmt:  .string &quot;The estaimate of pi is %lf\n&quot;
+  error_fmt:     .string &quot;Percentage error: %0.2f\n&quot;
+
+.section .text
+  .global main
+  .extern printf, srand, time, rand
+
+# xmm0 - x
+# xmm1 - y
+# RET rax - bool
+in_circle:
+  mulsd  xmm0, xmm0                  # Calculate x * x + y * y
+  mulsd  xmm1, xmm1
+  addsd  xmm0, xmm1
+  movsd  xmm1, one                   # Set circle radius to 1
+  xor    rax, rax
+  comisd xmm1, xmm0                  # Return bool xmm0 &lt; xmm1
+  seta al
+  ret
+
+# rdi - samples
+# RET xmm0 - estimate
+monte_carlo:
+  pxor   xmm2, xmm2                  # Setting it to zero for loop
+  cvtsi2sd xmm3, rdi                 # From int to double
+  pxor   xmm4, xmm4                  # Setting to zero for counter
+monte_carlo_iter:
+  comisd xmm2, xmm3                  # Check if we went through all samples
+  je     monte_carlo_return
+  call   rand                        # Get random point in the first quartile
+  cvtsi2sd xmm0, rax
+  divsd  xmm0, rand_max
+  call   rand
+  cvtsi2sd xmm1, rax
+  divsd  xmm1, rand_max
+  call   in_circle                   # Check if its in the circle
+  test   rax, rax
+  jz     monte_carlo_false
+  addsd  xmm4, one                   # if so increment counter
+monte_carlo_false:
+  addsd  xmm2, one
+  jmp    monte_carlo_iter
+monte_carlo_return:
+  mulsd  xmm4, four                  # Return estimate
+  divsd  xmm4, xmm2
+  movsd  xmm0, xmm4
+  ret
+
+main:
+  push   rbp
+  sub    rsp, 16
+  mov    rdi, 0
+  call   time
+  mov    rdi, rax
+  call   srand
+  mov    rdi, 1000000
+  call   monte_carlo
+  movsd  QWORD PTR [rsp], xmm0      # Save estimate to stack
+  mov    rdi, OFFSET estimate_fmt   # Print estimate
+  mov    rax, 1
+  call   printf
+  movsd  xmm0, QWORD PTR [rsp]      # Get estimate from stack
+  movsd  xmm1, pi                   # Calculate fabs(M_PI - estimate)
+  subsd  xmm0, xmm1
+  movq   xmm1, fabs_const
+  andpd  xmm0, xmm1
+  divsd  xmm0, pi                   # Print percentage error on pi
+  mulsd  xmm0, hundred
+  mov    rdi, OFFSET error_fmt
+  mov    rax, 1
+  call   printf
+  add    rsp, 16
+  pop    rbp
+  xor    rax, rax                   # Set exit code to 0
+  ret
+
+</code></pre>
+<pre><code class="language-bash">#!/usr/bin/env bash
+inCircle() {
+    local ret
+    local mag
+    ((ret = 0))
+    if (($1 ** 2 + $2 ** 2 &lt; 1073676289)); then # 1073676289 = 32767 ** 2
+        ((ret = 1))
+    fi
+    printf &quot;%d&quot; $ret
+}
+
+monteCarlo() {
+    local count
+    local i
+    ((count = 0))
+    for ((i = 0; i &lt; $1; i++)); do
+        if (($(inCircle RANDOM RANDOM) == 1)); then
+            ((count++))
+        fi
+    done
+    echo &quot;scale = 8; 4 * $count / $1&quot; | bc
+}
+
+est=$(monteCarlo 10000)
+echo &quot;The estimate of pi is $est&quot;
+echo &quot;Percentage error: $(echo &quot;scale = 8; 100 * sqrt( ( 1 - $est / (4*a(1)) ) ^ 2 )&quot; | bc -l)&quot;
+</code></pre>
+<pre><code class="language-kotlin">import java.util.Random
+
+private fun inCircle(x: Double, y: Double, radius: Double = 1.0) = (x * x + y * y) &lt; radius * radius
+
+fun monteCarlo(samples: Int): Double {
+    var piCount = 0
+    val random = Random()
+
+    for (i in 0 until samples) {
+        val x = random.nextDouble()
+        val y = random.nextDouble()
+        if (inCircle(x, y))
+            piCount++
+    }
+    return 4.0 * piCount / samples
+}
+
+fun main(args: Array&lt;String&gt;) {
+    val piEstimate = monteCarlo(100000)
+    println(&quot;Estimated pi value: $piEstimate&quot;)
+    val percentError = 100 * Math.abs(piEstimate - Math.PI) / Math.PI
+    println(&quot;Percent error: $percentError&quot;)
+}
+</code></pre>
+<pre><code class="language-matlab">pi_estimate = monte_carlo(10000000);
+
+fprintf(&quot;The pi estimate is: %f\n&quot;, pi_estimate);
+fprintf(&quot;Percent error is: %f%%\n&quot;, 100 * abs(pi_estimate - pi) / pi);
+
+function pi_estimate=monte_carlo(n)
+
+    % a 2 by n array, rows are xs and ys
+    xy_array = rand(2, n);   
+
+    % square every element in the array
+    squares_array = xy_array.^2;            
+    
+    % sum the xs and ys and check if it's in the quarter circle
+    incircle_array = sum(squares_array)&lt;1;  
+
+    % determine the average number of points in the circle
+    pi_estimate = 4*sum(incircle_array)/n;  
+    
+end
+
+</code></pre>
+<p>{% sample lang=&quot;scratch&quot; %}
+The code snippets were taken from this <a href="https://scratch.mit.edu/projects/319610349">scratch project</a></p>
+<p>
+    <img  class="center" src="code/scratch/Algorithm.svg" style="width:100%" />
+</p>
+```coconut
+import math
+import random
+<p>data point(x, y):
+def <strong>abs</strong>(self) = (self.x, self.y) |&gt; map$(pow$(?, 2)) |&gt; sum |&gt; math.sqrt</p>
+<p>def in_circle(p is point, radius = 1):
+&quot;&quot;&quot;Return True if the point is in the circle and False otherwise.&quot;&quot;&quot;
+return abs(p) &lt; radius</p>
+<p>def monte_carlo(n_samples, radius = 1) = (range(n_samples)
+|&gt; map$(-&gt; point(random.uniform(0, radius), random.uniform(0, radius)))
+|&gt; filter$(in_circle$(?, radius))
+|&gt; tuple
+|&gt; len) * 4 / n_samples</p>
+<p>if <strong>name</strong> == '<strong>main</strong>':</p>
+<pre><code>samples = 100_000
+
+print(f&quot;Using {samples:_} samples.&quot;)
+
+pi_estimate = monte_carlo(samples)
+percent_error = 100*abs(math.pi - pi_estimate)/math.pi
+
+print(&quot;The estimate of pi is: {:.3f}&quot;.format(pi_estimate))
+print(&quot;The percent error is: {:.3f}&quot;.format(percent_error))
+</code></pre>
+<pre><code>```powershell
+﻿function Is-InCircle($x, $y, $radius=1) {
+    return ([Math]::Pow($x, 2) + [Math]::Pow($y, 2)) -lt [Math]::Pow($radius, 2)
+}
+
+function Monte-Carlo([int]$n) {
+    $PiCount = 0;
+    for ($i = 0; $i -lt $n; $i++) {
+        $x = Get-Random -Minimum 0.0 -Maximum 1.0
+        $y = Get-Random -Minimum 0.0 -Maximum 1.0
+
+        if (Is-InCircle $x $y) {
+            $PiCount++
+        }
+    }
+    return 4.0 * $PiCount / $n
+}
+
+# This could take some time
+$PiEstimate = Monte-Carlo 10000000
+Write-Host &quot;The pi estimate is: $PiEstimate&quot;
+Write-Host &quot;Percent error is: $(100 * [Math]::Abs($PiEstimate - ([Math]::PI)) / ([Math]::PI))&quot;
+</code></pre>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<ul>
+<li>The image &quot;<a href="res/square_circle.png">squarecircle</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The animation &quot;<a href="res/monte_carlo.gif">simplemontecarlo</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../euclidean_algorithm/euclidean_algorithm.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../matrix_methods/matrix_methods.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../euclidean_algorithm/euclidean_algorithm.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../matrix_methods/matrix_methods.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

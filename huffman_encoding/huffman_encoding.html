@@ -1,0 +1,3066 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Huffman Encoding - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html" class="active"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="huffman-encoding"><a class="header" href="#huffman-encoding">Huffman Encoding</a></h1>
+<p>If there were ever a data compression method to take the world by storm, it would be Huffman encoding.
+In fact, this was the method that got me into computational methods to begin with.
+I distinctly remember sitting in my data compression class and talking about the great information theorist Claude Shannon and Robert Fano, when suddenly my professor introduced a new kid to the mix: David Huffman.
+He managed to rip the heart out of the methods described by leaders of the field and create a data compression method that was easier to understand and implement, while also providing more robust results, and apparently this was all done for a school project!</p>
+<p>It was in that moment, I knew I would never amount to anything.
+I have since accepted that fact and moved on.</p>
+<p>Huffman encoding follows from the problem described in the <a href="../data_compression/data_compression.html">Data Compression</a> section.
+We have a string that we want to encode into bits.
+Huffman encoding ensures that our encoded bitstring is as small as possible without losing any information.
+Because it is both lossless and guarantees the smallest possible bit length, it outright replaces both Shannon and Shannon-Fano encoding in most cases, which is a little weird because the method was devised while Huffman was taking a course from Fano, himself!</p>
+<p>The idea is somewhat straightforward in principle, but a little difficult to code in practice.
+By creating a binary tree of the input alphabet, every branch can be provided a unique bit representation simply by assigning a binary value to each child and reading to a character in a leaf node if starting from the root node.</p>
+<p>So now the question is: how do we create a binary tree?
+Well, here we build it from the bottom up like so:</p>
+<ol>
+<li>Order all characters according to the frequency they appear in the input bitstring, with the most frequent character at the top of the list. Be sure to keep track of the frequencies, too!</li>
+<li>Add the smallest two values together to create a new node with a new frequency.</li>
+<li>Keep doing step 2 until the tree is complete.</li>
+<li>Read the tree backwards from the root node and concatenate the final bitstring codeword. Keep all codewords and put them into your final set of codewords (sometimes called a codebook)</li>
+<li>Encode your phrase with the codebook.</li>
+</ol>
+<p>And that's it.
+Here's an image of what this might look like for the phrase <code>bibbity_bobbity</code>:</p>
+<p>
+    <img  class="center" src="res/huffman_tree.png" style="width:70%" />
+</p>
+<p>This will create a codebook that looks like this:</p>
+<table><thead><tr><th>Character</th><th>Bit Representation</th></tr></thead><tbody>
+<tr><td><em>b</em></td><td>0</td></tr>
+<tr><td><em>i</em></td><td>100</td></tr>
+<tr><td><em>t</em></td><td>101</td></tr>
+<tr><td><em>y</em></td><td>110</td></tr>
+<tr><td><em>o</em></td><td>1110</td></tr>
+<tr><td>___</td><td>1111</td></tr>
+</tbody></table>
+<p>and <code>bibbity_bobbity</code> becomes <code>01000010010111011110111000100101110</code>.
+As mentioned this uses the minimum number of bits possible for encoding.
+The fact that this algorithm is both conceptually simple and provably useful is rather extraordinary to me and is why Huffman encoding will always hold a special place in my heart.</p>
+<h2 id="video-explanation"><a class="header" href="#video-explanation">Video Explanation</a></h2>
+<p>Here is a quick video explanation for Huffman encoding:</p>
+<div style="text-align:center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wHyUxTc2Ohk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<p>In code, this can be a little tricky. It requires a method to continually sort the nodes as you add more and more nodes to the system.
+The most straightforward way to do this in some languages is with a priority queue, but depending on the language, this might be more or less appropriate.
+In addition, to read the tree backwards, some sort of <a href="../tree_traversal/tree_traversal.html">Depth First Search</a> needs to be implemented.
+Whether you use a stack or straight-up recursion also depends on the language, but the recursive method is a little easier to understand in most cases.</p>
+<pre><code class="language-julia">using Test
+
+# This is for the PriorityQueue
+using DataStructures
+
+struct Leaf
+    weight::Int64
+    key::Char
+end
+
+struct Branch
+    right::Union{Leaf, Branch}
+    left::Union{Leaf, Branch}
+    weight::Int64
+end
+
+const Node = Union{Leaf, Branch}
+
+function codebook_recurse!(leaf::Leaf, code::String,
+                          dict::Dict{Char,String})
+    dict[leaf.key] = code
+end
+
+function codebook_recurse!(branch::Branch, code::String,
+                          dict::Dict{Char,String})
+    codebook_recurse!(branch.left, string(code, &quot;1&quot;), dict)
+    codebook_recurse!(branch.right, string(code, &quot;0&quot;), dict)
+end
+
+# This will depth-first search through the tree
+# to create bitstrings for each character.
+# Note: Any depth-first search method will work
+# This outputs encoding Dict to be used for encoding
+function create_codebook(n::Node)
+    codebook = Dict{Char,String}()
+    if isa(n, Leaf)
+        codebook[n.key]=&quot;0&quot;
+    else
+        codebook_recurse!(n, &quot;&quot;, codebook)
+    end
+    return codebook
+end
+
+# This outputs huffman tree to generate dictionary for encoding
+function create_tree(phrase::String)
+
+    # creating weights
+    weights = PriorityQueue()
+    for i in phrase
+        temp_string = string(i)
+        if (haskey(weights, temp_string))
+            weights[temp_string] += 1
+        else
+            weights[temp_string] = 1
+        end
+    end
+
+    # Creating all nodes to iterate through
+    nodes = PriorityQueue{Node, Int64}()
+    while(length(weights) &gt; 0)
+        weight = peek(weights)[2]
+        key = dequeue!(weights)[1]
+        temp_node = Leaf(weight, key)
+        enqueue!(nodes, temp_node, weight)
+    end
+
+    while(length(nodes) &gt; 1)
+        node1 = dequeue!(nodes)
+        node2 = dequeue!(nodes)
+        temp_node = Branch(node1, node2, node1.weight + node2.weight)
+        enqueue!(nodes, temp_node, temp_node.weight)
+    end
+
+    huffman_tree = dequeue!(nodes)
+    return huffman_tree
+
+end
+
+function encode(codebook::Dict{Char, String}, phrase::String)
+    final_bitstring = &quot;&quot;
+    for i in phrase
+        final_bitstring = final_bitstring * codebook[i]
+    end
+
+    return final_bitstring
+end
+
+function decode(huffman_tree::Node, bitstring::String)
+    current = huffman_tree
+    final_string = &quot;&quot;
+    for i in bitstring
+        if isa(huffman_tree, Branch)
+            if (i == '1')
+                current = current.left
+            else
+                current = current.right
+            end
+
+            if (!isa(current, Branch))
+                final_string *= string(current.key)
+                current = huffman_tree
+            end
+        else
+            final_string *= string(huffman_tree.key)
+        end
+    end
+
+    return final_string
+end
+
+function two_pass_huffman(phrase::String)
+    huffman_tree = create_tree(phrase)
+    codebook = create_codebook(huffman_tree)
+    bitstring = encode(codebook, phrase)
+    final_string = decode(huffman_tree, bitstring)
+    return final_string
+end
+
+@testset &quot;b-string tests&quot; begin
+    @test two_pass_huffman(&quot;b&quot;) == &quot;b&quot;
+    @test two_pass_huffman(&quot;bbbbbbbb&quot;) == &quot;bbbbbbbb&quot;
+    @test two_pass_huffman(&quot;bibbity bobbity&quot;) == &quot;bibbity bobbity&quot;
+end
+``````julia
+using Test
+
+# This is for the PriorityQueue
+using DataStructures
+
+struct Leaf
+    weight::Int64
+    key::Char
+end
+
+struct Branch
+    right::Union{Leaf, Branch}
+    left::Union{Leaf, Branch}
+    weight::Int64
+end
+
+const Node = Union{Leaf, Branch}
+
+function codebook_recurse!(leaf::Leaf, code::String,
+                          dict::Dict{Char,String})
+    dict[leaf.key] = code
+end
+
+function codebook_recurse!(branch::Branch, code::String,
+                          dict::Dict{Char,String})
+    codebook_recurse!(branch.left, string(code, &quot;1&quot;), dict)
+    codebook_recurse!(branch.right, string(code, &quot;0&quot;), dict)
+end
+
+# This will depth-first search through the tree
+# to create bitstrings for each character.
+# Note: Any depth-first search method will work
+# This outputs encoding Dict to be used for encoding
+function create_codebook(n::Node)
+    codebook = Dict{Char,String}()
+    if isa(n, Leaf)
+        codebook[n.key]=&quot;0&quot;
+    else
+        codebook_recurse!(n, &quot;&quot;, codebook)
+    end
+    return codebook
+end
+
+# This outputs huffman tree to generate dictionary for encoding
+function create_tree(phrase::String)
+
+    # creating weights
+    weights = PriorityQueue()
+    for i in phrase
+        temp_string = string(i)
+        if (haskey(weights, temp_string))
+            weights[temp_string] += 1
+        else
+            weights[temp_string] = 1
+        end
+    end
+
+    # Creating all nodes to iterate through
+    nodes = PriorityQueue{Node, Int64}()
+    while(length(weights) &gt; 0)
+        weight = peek(weights)[2]
+        key = dequeue!(weights)[1]
+        temp_node = Leaf(weight, key)
+        enqueue!(nodes, temp_node, weight)
+    end
+
+    while(length(nodes) &gt; 1)
+        node1 = dequeue!(nodes)
+        node2 = dequeue!(nodes)
+        temp_node = Branch(node1, node2, node1.weight + node2.weight)
+        enqueue!(nodes, temp_node, temp_node.weight)
+    end
+
+    huffman_tree = dequeue!(nodes)
+    return huffman_tree
+
+end
+
+function encode(codebook::Dict{Char, String}, phrase::String)
+    final_bitstring = &quot;&quot;
+    for i in phrase
+        final_bitstring = final_bitstring * codebook[i]
+    end
+
+    return final_bitstring
+end
+
+function decode(huffman_tree::Node, bitstring::String)
+    current = huffman_tree
+    final_string = &quot;&quot;
+    for i in bitstring
+        if isa(huffman_tree, Branch)
+            if (i == '1')
+                current = current.left
+            else
+                current = current.right
+            end
+
+            if (!isa(current, Branch))
+                final_string *= string(current.key)
+                current = huffman_tree
+            end
+        else
+            final_string *= string(huffman_tree.key)
+        end
+    end
+
+    return final_string
+end
+
+function two_pass_huffman(phrase::String)
+    huffman_tree = create_tree(phrase)
+    codebook = create_codebook(huffman_tree)
+    bitstring = encode(codebook, phrase)
+    final_string = decode(huffman_tree, bitstring)
+    return final_string
+end
+
+@testset &quot;b-string tests&quot; begin
+    @test two_pass_huffman(&quot;b&quot;) == &quot;b&quot;
+    @test two_pass_huffman(&quot;bbbbbbbb&quot;) == &quot;bbbbbbbb&quot;
+    @test two_pass_huffman(&quot;bibbity bobbity&quot;) == &quot;bibbity bobbity&quot;
+end
+``````julia
+using Test
+
+# This is for the PriorityQueue
+using DataStructures
+
+struct Leaf
+    weight::Int64
+    key::Char
+end
+
+struct Branch
+    right::Union{Leaf, Branch}
+    left::Union{Leaf, Branch}
+    weight::Int64
+end
+
+const Node = Union{Leaf, Branch}
+
+function codebook_recurse!(leaf::Leaf, code::String,
+                          dict::Dict{Char,String})
+    dict[leaf.key] = code
+end
+
+function codebook_recurse!(branch::Branch, code::String,
+                          dict::Dict{Char,String})
+    codebook_recurse!(branch.left, string(code, &quot;1&quot;), dict)
+    codebook_recurse!(branch.right, string(code, &quot;0&quot;), dict)
+end
+
+# This will depth-first search through the tree
+# to create bitstrings for each character.
+# Note: Any depth-first search method will work
+# This outputs encoding Dict to be used for encoding
+function create_codebook(n::Node)
+    codebook = Dict{Char,String}()
+    if isa(n, Leaf)
+        codebook[n.key]=&quot;0&quot;
+    else
+        codebook_recurse!(n, &quot;&quot;, codebook)
+    end
+    return codebook
+end
+
+# This outputs huffman tree to generate dictionary for encoding
+function create_tree(phrase::String)
+
+    # creating weights
+    weights = PriorityQueue()
+    for i in phrase
+        temp_string = string(i)
+        if (haskey(weights, temp_string))
+            weights[temp_string] += 1
+        else
+            weights[temp_string] = 1
+        end
+    end
+
+    # Creating all nodes to iterate through
+    nodes = PriorityQueue{Node, Int64}()
+    while(length(weights) &gt; 0)
+        weight = peek(weights)[2]
+        key = dequeue!(weights)[1]
+        temp_node = Leaf(weight, key)
+        enqueue!(nodes, temp_node, weight)
+    end
+
+    while(length(nodes) &gt; 1)
+        node1 = dequeue!(nodes)
+        node2 = dequeue!(nodes)
+        temp_node = Branch(node1, node2, node1.weight + node2.weight)
+        enqueue!(nodes, temp_node, temp_node.weight)
+    end
+
+    huffman_tree = dequeue!(nodes)
+    return huffman_tree
+
+end
+
+function encode(codebook::Dict{Char, String}, phrase::String)
+    final_bitstring = &quot;&quot;
+    for i in phrase
+        final_bitstring = final_bitstring * codebook[i]
+    end
+
+    return final_bitstring
+end
+
+function decode(huffman_tree::Node, bitstring::String)
+    current = huffman_tree
+    final_string = &quot;&quot;
+    for i in bitstring
+        if isa(huffman_tree, Branch)
+            if (i == '1')
+                current = current.left
+            else
+                current = current.right
+            end
+
+            if (!isa(current, Branch))
+                final_string *= string(current.key)
+                current = huffman_tree
+            end
+        else
+            final_string *= string(huffman_tree.key)
+        end
+    end
+
+    return final_string
+end
+
+function two_pass_huffman(phrase::String)
+    huffman_tree = create_tree(phrase)
+    codebook = create_codebook(huffman_tree)
+    bitstring = encode(codebook, phrase)
+    final_string = decode(huffman_tree, bitstring)
+    return final_string
+end
+
+@testset &quot;b-string tests&quot; begin
+    @test two_pass_huffman(&quot;b&quot;) == &quot;b&quot;
+    @test two_pass_huffman(&quot;bbbbbbbb&quot;) == &quot;bbbbbbbb&quot;
+    @test two_pass_huffman(&quot;bibbity bobbity&quot;) == &quot;bibbity bobbity&quot;
+end
+```m```julia
+using Test
+
+# This is for the PriorityQueue
+using DataStructures
+
+struct Leaf
+    weight::Int64
+    key::Char
+end
+
+struct Branch
+    right::Union{Leaf, Branch}
+    left::Union{Leaf, Branch}
+    weight::Int64
+end
+
+const Node = Union{Leaf, Branch}
+
+function codebook_recurse!(leaf::Leaf, code::String,
+                          dict::Dict{Char,String})
+    dict[leaf.key] = code
+end
+
+function codebook_recurse!(branch::Branch, code::String,
+                          dict::Dict{Char,String})
+    codebook_recurse!(branch.left, string(code, &quot;1&quot;), dict)
+    codebook_recurse!(branch.right, string(code, &quot;0&quot;), dict)
+end
+
+# This will depth-first search through the tree
+# to create bitstrings for each character.
+# Note: Any depth-first search method will work
+# This outputs encoding Dict to be used for encoding
+function create_codebook(n::Node)
+    codebook = Dict{Char,String}()
+    if isa(n, Leaf)
+        codebook[n.key]=&quot;0&quot;
+    else
+        codebook_recurse!(n, &quot;&quot;, codebook)
+    end
+    return codebook
+end
+
+# This outputs huffman tree to generate dictionary for encoding
+function create_tree(phrase::String)
+
+    # creating weights
+    weights = PriorityQueue()
+    for i in phrase
+        temp_string = string(i)
+        if (haskey(weights, temp_string))
+            weights[temp_string] += 1
+        else
+            weights[temp_string] = 1
+        end
+    end
+
+    # Creating all nodes to iterate through
+    nodes = PriorityQueue{Node, Int64}()
+    while(length(weights) &gt; 0)
+        weight = peek(weights)[2]
+        key = dequeue!(weights)[1]
+        temp_node = Leaf(weight, key)
+        enqueue!(nodes, temp_node, weight)
+    end
+
+    while(length(nodes) &gt; 1)
+        node1 = dequeue!(nodes)
+        node2 = dequeue!(nodes)
+        temp_node = Branch(node1, node2, node1.weight + node2.weight)
+        enqueue!(nodes, temp_node, temp_node.weight)
+    end
+
+    huffman_tree = dequeue!(nodes)
+    return huffman_tree
+
+end
+
+function encode(codebook::Dict{Char, String}, phrase::String)
+    final_bitstring = &quot;&quot;
+    for i in phrase
+        final_bitstring = final_bitstring * codebook[i]
+    end
+
+    return final_bitstring
+end
+
+function decode(huffman_tree::Node, bitstring::String)
+    current = huffman_tree
+    final_string = &quot;&quot;
+    for i in bitstring
+        if isa(huffman_tree, Branch)
+            if (i == '1')
+                current = current.left
+            else
+                current = current.right
+            end
+
+            if (!isa(current, Branch))
+                final_string *= string(current.key)
+                current = huffman_tree
+            end
+        else
+            final_string *= string(huffman_tree.key)
+        end
+    end
+
+    return final_string
+end
+
+function two_pass_huffman(phrase::String)
+    huffman_tree = create_tree(phrase)
+    codebook = create_codebook(huffman_tree)
+    bitstring = encode(codebook, phrase)
+    final_string = decode(huffman_tree, bitstring)
+    return final_string
+end
+
+@testset &quot;b-string tests&quot; begin
+    @test two_pass_huffman(&quot;b&quot;) == &quot;b&quot;
+    @test two_pass_huffman(&quot;bbbbbbbb&quot;) == &quot;bbbbbbbb&quot;
+    @test two_pass_huffman(&quot;bibbity bobbity&quot;) == &quot;bibbity bobbity&quot;
+end
+</code></pre>
+<p><a href="code/c/huffman.c">import, lang:&quot;c&quot;</a>
+{% sample lang=&quot;hs&quot; %}
+<a href="code/haskell/huffman.hs">import, lang:&quot;haskell&quot;</a>
+{% sample lang=&quot;cs&quot; %}</p>
+<h5 id="huffmancodingcs"><a class="header" href="#huffmancodingcs">HuffmanCoding.cs</a></h5>
+<p><a href="code/csharp/HuffmanCoding.cs">import, lang:&quot;csharp&quot;</a></p>
+<h5 id="programcs"><a class="header" href="#programcs">Program.cs</a></h5>
+<p><a href="code/csharp/Program.cs">import, lang:&quot;csharp&quot;</a>
+{% sample lang=&quot;lua&quot; %}
+<a href="code/lua/huffman.lua">import, lang=&quot;lua&quot;</a></p>
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+``````cpp
+#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+``````cpp
+#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+```l```cpp
+#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+``````cpp
+#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+```y```cpp
+#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+``````cpp
+#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+```m```cpp
+#include &lt;algorithm&gt;
+#include &lt;array&gt;
+#include &lt;bitset&gt;
+#include &lt;cassert&gt;
+#include &lt;cctype&gt;
+#include &lt;cstddef&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &lt;iostream&gt;
+
+using std::begin;
+using std::end;
+
+namespace huffman {
+
+[[noreturn]] inline void unreachable() {
+  std::cerr &lt;&lt; &quot;this should never happen\n&quot;;
+  std::abort();
+}
+
+// --- interface ---
+class codebook {
+  struct node {
+    int frequency;
+
+    node(int freq) : frequency(freq) {}
+    virtual ~node() = 0;
+  };
+
+  // never null
+  using node_ptr = std::unique_ptr&lt;node const&gt;;
+  using bitstring = std::vector&lt;bool&gt;;
+
+  // this is a flatmap between char and a bitstring
+  // there should only ever be one character with a given
+  // value at any time.
+  using encoder_t = std::vector&lt;std::pair&lt;char, bitstring&gt;&gt;;
+
+  struct leaf final : node {
+    char key;
+
+    leaf(int freq, char key) : node(freq), key(key) {}
+  };
+
+  struct branch final : node {
+    node_ptr lhs;
+    node_ptr rhs;
+
+    branch(node_ptr lhs, node_ptr rhs)
+        : node(lhs-&gt;frequency + rhs-&gt;frequency), lhs(std::move(lhs)),
+          rhs(std::move(rhs)) {}
+  };
+
+  // this allows us to share [codebook]s among encoded strings
+  struct data {
+    node_ptr decoder;
+    encoder_t encoder;
+  };
+  std::shared_ptr&lt;data const&gt; underlying_;
+
+public:
+  template &lt;typename Iter&gt;
+  codebook(Iter const first, Iter const last);
+
+  template &lt;typename Iter&gt;
+  std::vector&lt;bool&gt; encode(Iter first, Iter last) const;
+
+  template &lt;typename Iter&gt;
+  std::string decode(Iter first, Iter last) const;
+};
+
+struct encoded_string {
+  codebook codes;
+  std::vector&lt;bool&gt; string;
+
+  explicit encoded_string(std::string const&amp; s)
+      : codes(begin(s), end(s)), string(codes.encode(begin(s), end(s))) {}
+
+  encoded_string(codebook codes, std::string const&amp; s)
+      : codes(codes), string(codes.encode(begin(s), end(s))) {}
+
+  std::string decoded() const {
+    return codes.decode(begin(string), end(string));
+  }
+};
+
+// --- implementation ---
+inline codebook::node::~node() {}
+
+inline std::vector&lt;bool&gt; with_new_bit(std::vector&lt;bool&gt; bits, bool b) {
+  bits.push_back(b);
+  return bits;
+}
+
+template &lt;typename Iter&gt;
+codebook::codebook(Iter const first, Iter const last) {
+  struct helper {
+    static node_ptr make_decoder(Iter const first, Iter const last) {
+      // in this part of the function, we build up a frequency list
+      // sorted by frequency, descending
+      auto freq = std::vector&lt;leaf&gt;();
+
+      std::for_each(first, last, [&amp;freq](char c) {
+        auto const it = std::find_if(
+            begin(freq), end(freq), [c](auto const&amp; p) { return p.key == c; });
+        if (it != end(freq)) {
+          // it's already in the list
+          it-&gt;frequency += 1;
+        } else {
+          // it's not already in the list
+          freq.emplace_back(1, c);
+        }
+      });
+
+      if (freq.empty()) {
+        throw std::invalid_argument(&quot;attempted to codebook an empty range&quot;);
+      }
+
+      std::sort(begin(freq), end(freq), [](auto const&amp; lhs, auto const&amp; rhs) {
+        return lhs.frequency &gt; rhs.frequency;
+      });
+
+      auto ret = std::vector&lt;std::unique_ptr&lt;node&gt;&gt;();
+      std::transform(
+          begin(freq), end(freq), std::back_inserter(ret), [](auto const l) {
+            return std::make_unique&lt;leaf&gt;(l);
+          });
+
+      while (ret.size() &gt; 1) {
+        auto rhs = std::move(ret.back());
+        ret.pop_back();
+        auto lhs = std::move(ret.back());
+        ret.pop_back();
+
+        auto new_node =
+            std::make_unique&lt;branch&gt;(std::move(lhs), std::move(rhs));
+        auto const new_freq = new_node-&gt;frequency;
+
+        // look for the first element with a smaller frequency
+        auto const it =
+            std::find_if(begin(ret), end(ret), [new_freq](auto const&amp; n) {
+              return n-&gt;frequency &lt; new_freq;
+            });
+        // and insert the new_node before that element
+        ret.insert(it, std::move(new_node));
+        // in this way, we keep the list sorted by frequency
+      }
+
+      return std::move(ret.back());
+    }
+
+    static void
+    encoder_rec(node const* cur, std::vector&lt;bool&gt; bits, encoder_t&amp; out) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(cur)) {
+        out.push_back(std::make_pair(l-&gt;key, std::move(bits)));
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(cur)) {
+        encoder_rec(b-&gt;lhs.get(), with_new_bit(bits, 0), out);
+        encoder_rec(b-&gt;rhs.get(), with_new_bit(std::move(bits), 1), out);
+      } else {
+        unreachable();
+      }
+    }
+
+    static encoder_t make_encoder(node const&amp; decoder) {
+      auto ret = encoder_t();
+
+      encoder_rec(&amp;decoder, std::vector&lt;bool&gt;(), ret);
+
+      return ret;
+    }
+  };
+
+  auto decoder = helper::make_decoder(first, last);
+  auto encoder = helper::make_encoder(*decoder);
+  underlying_ = std::make_shared&lt;data const&gt;(
+      data{std::move(decoder), std::move(encoder)});
+}
+
+template &lt;typename Iter&gt;
+std::vector&lt;bool&gt; codebook::encode(Iter const first, Iter const last) const {
+  std::vector&lt;bool&gt; ret;
+
+  auto&amp; encoder = underlying_-&gt;encoder;
+  std::for_each(first, last, [&amp;ret, &amp;encoder](char c) {
+    auto const it =
+        std::find_if(begin(encoder), end(encoder), [c](auto const&amp; p) {
+          return p.first == c;
+        });
+    if (it != end(encoder)) {
+      auto const&amp; code = it-&gt;second;
+      std::copy(begin(code), end(code), std::back_inserter(ret));
+    } else {
+      throw std::invalid_argument(
+          &quot;The range has a character which was not in the huffman set&quot;);
+    }
+  });
+
+  return ret;
+}
+
+template &lt;typename Iter&gt;
+std::string codebook::decode(Iter const first, Iter const last) const {
+  std::string ret;
+
+  node const* const top = underlying_-&gt;decoder.get();
+
+  // returns a pair:
+  // the second member is the decoded character
+  // the first member is the place we've gotten to in the range
+  // i.e., if [0] is an 'a', and we have
+  // [it, last) = { 0, 1, 1, 0 }
+  // we return (it', 'a') such that
+  // [it', last) = { 1, 1, 0 }
+  auto decode_single =
+      [top](Iter it, Iter const last) -&gt; std::pair&lt;Iter, char&gt; {
+    node const* current_node = top;
+
+    for (; it != last; ++it) {
+      if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+        return std::make_pair(it, l-&gt;key);
+      } else if (auto b = dynamic_cast&lt;branch const*&gt;(current_node)) {
+        if (*it) {
+          current_node = b-&gt;rhs.get();
+        } else {
+          current_node = b-&gt;lhs.get();
+        }
+      } else {
+        unreachable();
+      }
+    }
+
+    if (auto l = dynamic_cast&lt;leaf const*&gt;(current_node)) {
+      return std::make_pair(last, l-&gt;key);
+    } else {
+      throw std::invalid_argument(
+          &quot;The range was not encoded with this huffman set&quot;);
+    }
+  };
+
+  for (auto it = first; it != last;) {
+    auto p = decode_single(it, last);
+    it = p.first;
+    ret.push_back(p.second);
+  }
+
+  return ret;
+}
+
+} // namespace huffman
+
+int main() {
+  std::string to_be_encoded = R&quot;(bibbity bobbity)&quot;;
+
+  auto encoded = huffman::encoded_string(to_be_encoded);
+
+  std::cout &lt;&lt; &quot;Encoded, the string looks like: &quot;;
+  for (bool b : encoded.string) {
+    std::cout &lt;&lt; b;
+  }
+  std::cout &lt;&lt; &quot;\nand decoded, the string looks like: &quot; &lt;&lt; encoded.decoded();
+  std::cout &lt;&lt; &quot;\n\nAs opposed to the original, which is &quot;
+            &lt;&lt; to_be_encoded.size() * 8 &lt;&lt; &quot; bits, the encoded has size &quot;
+            &lt;&lt; encoded.string.size() &lt;&lt; &quot;.\n&quot;;
+}
+</code></pre>
+<p><a href="code/java/huffman.java">import, lang:&quot;java&quot;</a>
+{% sample lang=&quot;go&quot; %}
+<a href="code/go/huffman.go">import, lang:&quot;go&quot;</a>
+{% sample lang=&quot;asm-x64&quot; %}
+<a href="code/asm-x64/huffman.s">import, lang:&quot;asm-x64&quot;</a>
+{% sample lang=&quot;scala&quot; %}
+<a href="code/scala/huffman_encoding.scala">import, lang:&quot;scala&quot;</a>
+{% sample lang=&quot;scratch&quot; %}
+The code snippet was taken from this <a href="https://scratch.mit.edu/projects/389604255/">scratch project</a></p>
+<p>
+    <img  class="center" src="code/scratch/huffman.svg" width="700" />
+</p>
+```coconut
+from collections import Counter, deque
+from bisect import bisect
+<p>class Tree</p>
+<p>data Empty() from Tree
+data Leaf(char, n is int) from Tree:
+def <strong>str</strong>(self):
+return f'Leaf({self.char}, {self.n})'</p>
+<pre><code>__repr__ = __str__
+</code></pre>
+<p>data Node(left is Tree, right is Tree) from Tree:
+def <strong>str</strong>(self):
+return f'Node({str(self.left)}, {str(self.right)})'
+<strong>repr</strong> = <strong>str</strong></p>
+<p>def weight(Tree()) = 0
+addpattern def weight(Leaf(char, n)) = n
+addpattern def weight(Node(left, right)) = weight(left) + weight(right)</p>
+<p>def build_huffman_tree(message):</p>
+<pre><code># get sorted list of character and frequency pairs
+frequencies = Counter(message)
+trees = frequencies.most_common() |&gt; map$(t -&gt; Leaf(*t)) |&gt; reversed |&gt; deque
+
+if not trees:
+    return Empty()
+
+# while there is more than one tree
+while len(trees) &gt; 1:
+
+    # pop off the two trees of least weight from the trees list
+    tree_left = trees.popleft()
+    tree_right = trees.popleft()
+
+    # combine the nodes and add back to the nodes list
+    new_tree = Node(tree_left, tree_right)
+
+    # find the first tree that has a weight smaller than new_weight
+    # and returns its index in the list.
+    # If no such tree can be found, use len(trees) instead to append
+    index = bisect(trees |&gt; map$(weight) |&gt; list, weight(new_tree))
+
+    # insert the new tree there
+    trees.insert(index, new_tree)
+
+huffman_tree = trees[0]
+return huffman_tree
+</code></pre>
+<p>def build_codebook(Empty(), code='') = []
+addpattern def build_codebook(Leaf(char, n), code='') = [(char, code)]
+addpattern def build_codebook(Node(left, right), code='') = 
+build_codebook(left, code+'0') + build_codebook(right, code+'1')</p>
+<p>def huffman_encode(codebook, message):</p>
+<pre><code>if len(codebook) == 1:
+    return '0' * len(message)
+
+# build a char -&gt; code dictionary
+forward_dict = dict(codebook)
+
+return ''.join(message |&gt; map$(forward_dict[]))
+</code></pre>
+<p>def huffman_decode(codebook, encoded_message):</p>
+<pre><code>decoded_message = []
+key = ''
+
+if not codebook:
+    return ''
+elif len(codebook) == 1:
+    return codebook[0][0] * len(encoded_message)
+
+# build a code -&gt; char dictionary
+inverse_dict = dict((v, k) for k, v in codebook)
+
+# for each bit in the encoding
+# if the bit is in the dictionary, replace the bit with the paired
+# character else look at the bit and the following bits together
+# until a match occurs move to the next bit not yet looked at.
+if encoded_message == '':
+    return inverse_dict['']
+
+for bit in encoded_message:
+    key += bit
+    if key in inverse_dict:
+        decoded_message.append(inverse_dict[key])
+        key = ''
+
+return ''.join(decoded_message)
+</code></pre>
+<p>if <strong>name</strong> == '<strong>main</strong>':
+# test example
+message = 'bibbity_bobbity'
+tree = build_huffman_tree(message)
+codebook = build_codebook(tree)
+encoded_message = huffman_encode(codebook, message)
+decoded_message = huffman_decode(codebook, encoded_message)</p>
+<pre><code>print('message:', message)
+print('huffman tree:', tree)
+print('codebook:', codebook)
+print('encoded message:', encoded_message)
+print('decoded message:', decoded_message)
+
+# prints the following:
+#
+#  message: bibbity_bobbity
+#  huffman_tree: Node(Leaf(b, 6), Node(Node(Leaf(y, 2), Leaf(t, 2)),
+#                     Node(Node(Leaf(o, 1), Leaf(_, 1)), Leaf(i, 3))))
+#  codebook: [('b', '0'), ('y', '100'), ('t', '101'),
+#             ('o', '1100'), ('_', '1101'), ('i', '111')]
+#  encoded_message: 01110011110110011010110000111101100
+#  decoded_message: bibbity_bobbity
+</code></pre>
+<pre><code>
+
+
+
+## License
+
+##### Code Examples
+
+The code examples are licensed under the MIT license (found in [LICENSE.md](https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md)).
+
+##### Text
+
+The text of this chapter was written by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+
+[&lt;p&gt;&lt;img  class=&quot;center&quot; src=&quot;../cc/CC-BY-SA_icon.svg&quot; /&gt;&lt;/p&gt;](https://creativecommons.org/licenses/by-sa/4.0/)
+
+##### Images/Graphics
+- The image &quot;[huffman_tree](res/huffman_tree.png)&quot; was created by [Julian Schacher](https://github.com/julianschacher) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+
+##### Pull Requests
+
+After initial licensing ([#560](https://github.com/algorithm-archivists/algorithm-archive/pull/560)), the following pull requests have modified the text or graphics of this chapter:
+- none
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../data_compression/data_compression.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../computer_graphics/computer_graphics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../data_compression/data_compression.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../computer_graphics/computer_graphics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,954 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Thomas Algorithm - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html" class="active"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="thomas-algorithm"><a class="header" href="#thomas-algorithm">Thomas Algorithm</a></h1>
+<p>As alluded to in the <a href="../gaussian_elimination/gaussian_elimination.html">Gaussian Elimination chapter</a>, the Thomas Algorithm (or TDMA, Tri-Diagonal Matrix Algorithm) allows for programmers to <strong>massively</strong> cut the computational cost of their code from \(  O(n^3) \) to \( O(n) \) in certain cases!
+This is done by exploiting a particular case of Gaussian Elimination where the matrix looks like this:</p>
+<p>\[
+\left[
+\begin{array}{ccccc|c}
+b_0 &amp; c_0 &amp; &amp; &amp; &amp; d_0 \\
+a_1 &amp; b_1 &amp; c_1 &amp; &amp; &amp; d_1 \\
+&amp; a_2 &amp; \ddots &amp; &amp; &amp; \vdots \\
+&amp; &amp; &amp; &amp; c_{n-1}&amp; d_{n-1} \\
+&amp; &amp; &amp; a_n &amp; b_n &amp; d_n
+\end{array}
+\right]
+\]</p>
+<p>This matrix shape is called <em>Tri-Diagonal</em> (excluding the right-hand side of our system of equations, of course!).
+Now, at first, it might not be obvious how this helps. Well, firstly, it makes the system easier to encode: we may divide it into four separate vectors corresponding to \( a \), \( b \), \( c \), and \( d \) (in some implementations, you will see the missing \( a_0 \) and \( c_n \) set to zero to get four vectors of the same size).
+Secondly, and most importantly, equations this short and regular are easy to solve analytically.</p>
+<p>We'll start by applying mechanisms familiar to those who have read the <a href="../gaussian_elimination/gaussian_elimination.html">Gaussian Elimination</a> chapter.
+Our first goal is to eliminate the \( a_i \) terms and set the diagonal values \( b_i \) to \( 1 \). The \( c_i \) and \( d_i \) terms will be transformed into \( c'_i \) and \( d'_i \).
+The first row is particularly easy to transform since there is no \( a_0 \), we simply need to divide the row by \( b_0 \):</p>
+<p>\[
+\left{
+\begin{align}
+c'_0 &amp;= \frac{c_0}{b_0} \\
+d'_0 &amp;= \frac{d_0}{b_0}
+\end{align}
+\right.
+\]</p>
+<p>Let's assume that we found a way to transform the first \( i-1 \) rows. How would we transform the next one? We have</p>
+<p>\[
+\begin{array}{ccccccc|c}
+&amp;  &amp; \ddots &amp; &amp; &amp; &amp; &amp;  \\
+(i-1) &amp; &amp; 0 &amp; 1 &amp; c'<em>{i-1} &amp; &amp; &amp; d'</em>{i-1} \\
+(i)   &amp; &amp;   &amp; a_i &amp; b_i &amp; c_i &amp; &amp; d_i \\
+&amp; &amp;   &amp;   &amp;   &amp;  \ddots &amp;  &amp;
+\end{array}
+\]</p>
+<p>Let's transform row \( (i) \) in two steps.</p>
+<p><strong>Step one</strong>: eliminate \( a_i \) with the transformation \( (i)^* = (i) - a_i \times (i-1) \):</p>
+<p>\[
+\left{
+\begin{align}
+a^<em>_i &amp;= 0 \\
+b^</em><em>i &amp;= b_i - a_i \times c'</em>{i-1} \\
+c^<em>_i &amp;= c_i \\
+d^</em><em>i &amp;= d_i - a_i \times d'</em>{i-1}
+\end{align}
+\right.
+\]</p>
+<p><strong>Step two</strong>: get \( b'_i=1 \) with the transformation \( (i)' = (i)^* / b^*_i  \):</p>
+<p>\[
+\left{
+\begin{align}
+a'_i &amp;= 0 \\
+b'<em>i &amp;= 1 \\
+c'<em>i &amp;= \frac{c_i}{b_i - a_i \times c'</em>{i-1}} \\
+d'<em>i &amp;= \frac{d_i - a_i \times d'</em>{i-1}}{b_i - a_i \times c'</em>{i-1}}
+\end{align}
+\right.
+\]</p>
+<p>Brilliant! With the last two formula, we can calculate all the \( c'_i \) and \( d'_i \) in a single pass, starting from row \( 1 \), since we already know the values of \( c'_0 \) and \( d'_0 \).</p>
+<p>Of course, what we really need are the solutions \( x_i \). It's back substitution time!</p>
+<p>If we express our system in terms of equations instead of a matrix, we get</p>
+<p>\[ x_i + c'<em>i \times x</em>{i+1} = d'_i \]</p>
+<p>plus the last row that is even simpler: \( x_n = d'_n \). One solution for free!
+Maybe we can backtrack from the last solution? Let's (barely) transform the above equation:</p>
+<p>\[ x_i = d'_i - c'<em>i \times x</em>{i+1} \]</p>
+<p>and that's all there is to it. We can calculate all the \( x_i \) in a single pass starting from the end.</p>
+<p>Overall, we only need two passes, and that's why our algorithm is \( O(n) \)!
+The transformations are quite easy too, isn't that neat?</p>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<pre><code class="language-julia">function thomas(a::Vector{Float64}, b::Vector{Float64}, c::Vector{Float64},
+                d::Vector{Float64}, n::Int64)
+
+    x = copy(d)
+    c_prime = copy(c)
+
+    # Setting initial elements
+    c_prime[1] /= b[1]
+    x[1] /= b[1]
+
+    for i = 2:n
+        # Scale factor is for c_prime and x
+        scale = 1.0 / (b[i] - c_prime[i-1]*a[i])
+        c_prime[i] *= scale
+        x[i] = (x[i] - a[i] * x[i-1]) * scale
+    end
+
+    # Back-substitution
+    for i = n-1:-1:1
+        x[i] -= (c_prime[i] * x[i+1])
+    end
+
+    return x
+
+end
+
+function main()
+    a = [0.0, 2.0, 3.0]
+    b = [1.0, 3.0, 6.0]
+    c = [4.0, 5.0, 0.0]
+    d = [7.0, 5.0, 3.0]
+
+    println(
+        &quot;&quot;&quot;The system
+        $(join((b[1], c[1], &quot;&quot;,   &quot;|&quot;, d[1]), &quot;\t&quot;))
+        $(join((a[2], b[2], c[2], &quot;|&quot;, d[2]), &quot;\t&quot;))
+        $(join((&quot;&quot;,   a[3], b[3], &quot;|&quot;, d[3]), &quot;\t&quot;))
+        Has the solution:&quot;&quot;&quot;
+    )
+
+    soln = thomas(a, b, c, d, 3)
+
+    println(soln)
+end
+
+main()
+</code></pre>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+void thomas(double * const a, double * const b, double * const c,
+            double * const x, const size_t size) {
+
+    double y[size];
+    memset(y, 0, size * sizeof(double));
+
+    y[0] = c[0] / b[0];
+    x[0] = x[0] / b[0];
+
+    for (size_t i = 1; i &lt; size; ++i) {
+        double scale = 1.0 / (b[i] - a[i] * y[i - 1]);
+        y[i] = c[i] * scale;
+        x[i] = (x[i] - a[i] * x[i - 1]) * scale;
+    }
+
+    for (int i = size - 2; i &gt;= 0; --i) {
+        x[i] -= y[i] * x[i + 1];
+    }
+}
+
+int main() {
+    double a[] = {0.0, 2.0, 3.0};
+    double b[] = {1.0, 3.0, 6.0};
+    double c[] = {4.0, 5.0, 0.0};
+    double x[] = {7.0, 5.0, 3.0};
+
+    printf(&quot;The system,\n&quot;);
+    printf(&quot;[1.0  4.0  0.0][x] = [7.0]\n&quot;);
+    printf(&quot;[2.0  3.0  5.0][y] = [5.0]\n&quot;);
+    printf(&quot;[0.0  3.0  6.0][z] = [3.0]\n&quot;);
+    printf(&quot;has the solution:\n&quot;);
+
+    thomas(a, b, c, x, 3);
+
+    for (size_t i = 0; i &lt; 3; ++i) {
+        printf(&quot;[%f]\n&quot;, x[i]);
+    }
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-python"># Author: gammison
+
+# note this example is inplace and destructive
+def thomas(a, b, c, d):
+
+    # set the initial elements
+    c[0] = c[0] / b[0]
+    d[0] = d[0] / b[0]
+
+    n = len(d) # number of equations to solve
+    for i in range(1, n):
+        # scale factor for c and d
+        scale = 1 / (b[i] - c[i-1] * a[i])
+
+        c[i] *= scale
+        d[i] = (d[i] - a[i] * d[i-1]) * scale
+
+
+    # do the back substitution
+    for i in range(n-2, -1, -1):
+        d[i] -= c[i] * d[i+1]
+
+    return d
+
+def main():
+    # example for matrix
+    # [1  4  0][x]   [7]
+    # [2  3  5][y] = [5]
+    # [0  3  6][z]   [3]
+
+    #                 [.8666]
+    # soln will equal [1.533]
+    #                 [-.266]
+    # note we index a from 1 and c from 0
+    a = [0, 2, 3]
+    b = [1, 3, 6]
+    c = [4, 5, 0]
+    d = [7, 5, 3]
+
+    soln = thomas(a, b, c, d)
+    print(soln)
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<p>{% sample lang=&quot;scratch&quot; %}
+You will find this algorithm implemented <a href="https://scratch.mit.edu/projects/169418273/">in this project</a>.</p>
+<p>
+  <img  class="center" src="code/scratch/thomas.svg" style="width:100%" />
+</p>
+```java
+public class Thomas {
+    private static double[] thomasAlgorithm(double[] a, double[] b, double[] c, double[] x) {
+        int size = a.length;
+        double[] y = new double[size]; // This is needed so that we don't have to modify c
+        double[] solution = new double[size];
+<pre><code>    // Set initial elements
+    y[0] = c[0] / b[0];
+    solution[0] = x[0] / b[0];
+
+    for (int i = 1; i &lt; size; ++i) {
+        // Scale factor is for c and x
+        double scale = 1.0 / (b[i] - a[i] * y[i - 1]);
+        y[i] = c[i] * scale;
+        solution[i] = (x[i] - a[i] * solution[i - 1]) * scale;
+    }
+
+    // Back-substitution
+    for (int i = size - 2; i &gt;= 0; --i) {
+        solution[i] -= y[i] * solution[i + 1];
+    }
+
+    return solution;
+}
+
+public static void main(String[] args) {
+    double[] a = {0.0, 2.0, 3.0};
+    double[] b = {1.0, 3.0, 6.0};
+    double[] c = {4.0, 5.0, 0.0};
+    double[] x = {7.0, 5.0, 3.0};
+    double[] solution = thomasAlgorithm(a, b, c, x);
+
+    System.out.format(&quot;The system,\n&quot;);
+    System.out.format(&quot;[%.1f, %.1f, %.1f][x] = [%.1f]\n&quot;, b[0], c[0], 0f, x[0]);
+    System.out.format(&quot;[%.1f, %.1f, %.1f][y] = [%.1f]\n&quot;, a[1], b[1], c[1], x[1]);
+    System.out.format(&quot;[%.1f, %.1f, %.1f][z] = [%.1f]\n&quot;, 0f, a[2], b[2], x[2]);
+    System.out.format(&quot;has the solution:\n&quot;);
+
+    for (int i = 0; i &lt; solution.length; i++) {
+        System.out.format(&quot;[% .5f]\n&quot;, solution[i]);
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code>```haskell
+import Data.List (zip4)
+import Data.Ratio
+
+thomas :: Fractional a =&gt; [a] -&gt; [a] -&gt; [a] -&gt; [a] -&gt; [a]
+thomas a b c = init . scanr back 0 . tail . scanl forward (0, 0) . zip4 a b c
+  where
+    forward (c', d') (a, b, c, d) =
+      let denominator = b - a * c'
+       in (c / denominator, (d - a * d') / denominator)
+    back (c, d) x = d - c * x
+
+main :: IO ()
+main = do
+  let a = [0, 2, 3] :: [Ratio Int]
+      b = [1, 3, 6]
+      c = [4, 5, 0]
+      d = [7, 5, 3]
+  print $ thomas a b c d
+</code></pre>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func thomas(a, b, c, d []float64) []float64 {
+	c[0] = c[0] / b[0]
+	d[0] = d[0] / b[0]
+
+	for i := 1; i &lt; len(d); i++ {
+		scale := 1. / (b[i] - c[i-1]*a[i])
+		c[i] *= scale
+		d[i] = (d[i] - a[i]*d[i-1]) * scale
+	}
+
+	for i := len(d) - 2; i &gt;= 0; i-- {
+		d[i] -= c[i] * d[i+1]
+	}
+
+	return d
+}
+
+func main() {
+	a := []float64{0., 2., 3.}
+	b := []float64{1., 3., 6.}
+	c := []float64{4., 5., 0.}
+	d := []float64{7., 5., 3.}
+
+	fmt.Println(&quot;The system,&quot;)
+	fmt.Println(&quot;[1.0  4.0  0.0][x] = [7.0]&quot;)
+	fmt.Println(&quot;[2.0  3.0  5.0][y] = [5.0]&quot;)
+	fmt.Println(&quot;[0.0  3.0  6.0][z] = [3.0]&quot;)
+	fmt.Println(&quot;has the solution:&quot;)
+	solve := thomas(a, b, c, d)
+	for _, i := range solve {
+		fmt.Printf(&quot;[%f]\n&quot;, i)
+	}
+}
+</code></pre>
+<pre><code class="language-v">fn thomas(a []f32, b []f32, c []f32, d []f32) []f32 {
+	mut new_c := c
+	mut new_d := d
+	new_c[0] = new_c[0] / b[0]
+	new_d[0] = new_d[0] / b[0]
+
+	for i := 1; i &lt; d.len; i++ {
+		scale := 1. / (b[i] - new_c[i-1]*a[i])
+		new_c[i] *= scale
+		new_d[i] = (new_d[i] - a[i]*new_d[i-1]) * scale
+	}
+
+	for i := d.len - 2; i &gt;= 0; i-- {
+		new_d[i] -= new_c[i] * new_d[i+1]
+	}
+
+	return new_d
+}
+
+fn main() {
+	a := [0.0, 2.0, 3.0]
+	b := [1.0, 3.0, 6.0]
+	c := [4.0, 5.0, 0.0]
+	d := [7.0, 5.0, 3.0]
+
+	println(&quot;The system,&quot;)
+	println(&quot;[1.0  4.0  0.0][x] = [7.0]&quot;)
+	println(&quot;[2.0  3.0  5.0][y] = [5.0]&quot;)
+	println(&quot;[0.0  3.0  6.0][z] = [3.0]&quot;)
+	println(&quot;has the solution:&quot;)
+	solution := thomas(a, b, c, d)
+	for i in solution {
+		println(&quot;[$i]&quot;)
+	}
+}
+</code></pre>
+<pre><code class="language-swift">func thomas(a: [Double], b: [Double], c: [Double], d: [Double]) -&gt; [Double] {
+    var a = a
+    var b = b
+    var c = c
+    var d = d
+
+    // set the initial elements
+    c[0] = c[0] / b[0]
+    d[0] = d[0] / b[0]
+
+    let n = d.count // number of equations to solve
+    for i in 1..&lt;n {
+        // scale factor for c and d
+        let scale = 1 / (b[i] - c[i-1] * a[i])
+
+        c[i] = c[i] * scale
+        d[i] = (d[i] - a[i] * d[i-1]) * scale
+    }
+
+    // do the back substitution
+    for i in stride(from: n-2, to: -1, by: -1) {
+        d[i] = d[i] - c[i] * d[i+1]
+    }
+
+    return d
+}
+
+func main() {
+    let a = [0.0, 2.0, 3.0]
+    let b = [1.0, 3.0, 6.0]
+    let c = [4.0, 5.0, 0.0]
+    let d = [7.0, 5.0, 3.0]
+
+    print(thomas(a: a, b: b, c: c, d: d))
+}
+
+main()
+</code></pre>
+<pre><code class="language-php">&lt;?php
+declare(strict_types=1);
+
+function thomas_algorithm(array $a, array $b, array $c, array $x, int $size): array
+{
+    $y = [];
+    $y[0] = $b[0] == 0 ? 0 : $c[0] / $b[0];
+    $x[0] = $b[0] == 0 ? 0 : $x[0] / $b[0];
+
+    for ($i = 1; $i &lt; $size; ++$i) {
+        $scale = (float)(1 / ($b[$i] - $a[$i] * $y[$i - 1]));
+        $y[$i] = $c[$i] * $scale;
+        $x[$i] = ($x[$i] - $a[$i] * $x[$i - 1]) * $scale;
+    }
+
+    for ($i = $size - 2; $i &gt;= 0; --$i)
+        $x[$i] -= $y[$i] &amp; $x[$i + 1];
+
+    return $x;
+}
+
+
+$a = [0.0, 2.0, 3.0];
+$b = [1.0, 3.0, 6.0];
+$c = [4.0, 5.0, 0.0];
+$x = [7.0, 5.0, 3.0];
+
+printf('The system,%s', PHP_EOL);
+printf('  [%s, %s, %s][x] = [%s]%s', $b[0], $c[0], 0, $x[0], PHP_EOL);
+printf('  [%s, %s, %s][y] = [%s]%s', $a[1], $b[1], $c[1], $x[1], PHP_EOL);
+printf('  [%s, %s, %s][z] = [%s]%s', 0, $a[2], $b[2], $x[2], PHP_EOL);
+printf('has the solution:%s', PHP_EOL);
+
+$solution = thomas_algorithm($a, $a, $c, $x, count($x));
+for ($i = 0; $i &lt; count($solution); $i++)
+    printf('  [%s]%s', $solution[$i], PHP_EOL);
+</code></pre>
+<pre><code class="language-nim">proc thomas_algorithm(a, b, c_in, d_in: seq[float]): seq[float] = 
+
+  let n: int = len(d_in)
+
+  var c: seq[float] = c_in
+  var d: seq[float] = d_in
+    
+  c[0] /= b[0]
+  d[0] /= b[0]
+
+  for i in 1..n - 1:
+    let scale: float = (1 / (b[i] - c[i - 1] * a[i]))
+
+    c[i] *= scale
+    d[i] = (d[i] - a[i] * d[i - 1]) * scale
+
+  for i in countdown(n - 2,0):
+    d[i] -= c[i] * d[i + 1]
+
+  
+  return d
+            
+
+const x: seq[float] = @[0.0, 2.0, 3.0]
+const y: seq[float] = @[1.0, 3.0, 6.0]
+const z: seq[float] = @[4.0, 5.0, 0.0]
+const w: seq[float] = @[7.0, 5.0, 3.0]            
+            
+echo &quot;The system,&quot;
+echo &quot;[1.0 4.0 0.0][x] = [7.0]&quot;
+echo &quot;[2.0 3.0 5.0][y] = [5.0]&quot;
+echo &quot;[0.0 3.0 6.0][z] = [3.0]&quot;
+
+echo &quot;has the solution:&quot;
+
+const soln: seq[float] = thomas_algorithm(x, y, z, w)
+
+for i in 0..len(w) - 1:
+  echo soln[i]
+</code></pre>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cstring&gt;
+
+void thomas(std::vector&lt;double&gt; const a, std::vector&lt;double&gt; const b, std::vector&lt;double&gt; const c, std::vector&lt;double&gt;&amp; x) {
+    int size = a.size();
+    double y[size];
+    memset(y, 0, size * sizeof(double));
+
+    y[0] = c[0] / b[0];
+    x[0] = x[0] / b[0];
+
+    for (size_t i = 1; i &lt; size; ++i) {
+        double scale = 1.0 / (b[i] - a[i] * y[i - 1]);
+        y[i] = c[i] * scale;
+        x[i] = (x[i] - a[i] * x[i - 1]) * scale;
+    }
+
+    for (int i = size - 2; i &gt;= 0; --i) {
+        x[i] -= y[i] * x[i + 1];
+    }
+}
+
+int main() {
+    std::vector&lt;double&gt; a = {0.0, 2.0, 3.0};
+    std::vector&lt;double&gt; b = {1.0, 3.0, 6.0};
+    std::vector&lt;double&gt; c = {4.0, 5.0, 0.0};
+    std::vector&lt;double&gt; x = {7.0, 5.0, 3.0};
+
+    std::cout &lt;&lt; &quot;The system&quot; &lt;&lt; std::endl; 
+    std::cout &lt;&lt; &quot;[1.0  4.0  0.0][x] = [7.0]&quot; &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;[2.0  3.0  5.0][y] = [5.0]&quot; &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;[0.0  3.0  6.0][z] = [3.0]&quot; &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;has the solution&quot; &lt;&lt; std::endl;
+
+    thomas(a, b, c, x);
+
+    for (size_t i = 0; i &lt; 3; ++i) {
+        std::cout &lt;&lt; &quot;[&quot; &lt;&lt; x[i] &lt;&lt; &quot;]&quot; &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-lua">local function thomas(a, b, c, d)
+
+  -- Create tables and set initial elements
+  local c_prime = {c[1] / b[1]}
+  local result = {d[1] / b[1]}
+
+  for i = 2, #a do
+    -- Scale factor is for c_prime and result
+    local scale = 1.0 / (b[i] - a[i] * c_prime[i - 1])
+    c_prime[i] = c[i] * scale
+    result[i] = (d[i] - a[i] * result[i - 1]) * scale
+  end
+
+  -- Back-substitution
+  for i = #a-1, 1, -1 do
+    result[i] = result[i] - (c_prime[i] * result [i + 1])
+  end
+
+  return result
+end
+
+local a = {0.0, 2.0, 3.0}
+local b = {1.0, 3.0, 6.0}
+local c = {4.0, 5.0, 0.0}
+local d = {7.0, 5.0, 3.0}
+
+print(&quot;The system&quot;)
+print(b[1], c[1], &quot;&quot;,   &quot;|&quot;, d[1])
+print(a[2], b[2], c[2], &quot;|&quot;, d[2])
+print(&quot;&quot;,   a[3], b[3], &quot;|&quot;, d[3])
+print(&quot;Has the solution:&quot;)
+
+local solution = thomas(a, b, c, d)
+
+print(table.unpack(solution))
+</code></pre>
+<pre><code class="language-crystal">def thomas(a, b, c, d)
+  c_prime = c.dup
+  x = d.dup
+
+  # Setting initial elements
+  c_prime[0] /= b[0]
+  x[0] /= b[0]
+
+  1.upto(a.size - 1) do |i|
+    # Scale factor is for c_prime and x
+    scale = 1.0 / (b[i] - c_prime[i - 1]*a[i])
+    c_prime[i] *= scale
+    x[i] = (x[i] - a[i] * x[i - 1]) * scale
+  end
+
+  # Back-substitution
+  (a.size - 2).downto(0) do |i|
+    x[i] -= (c_prime[i] * x[i + 1])
+  end
+
+  x
+end
+
+def main
+  a = [0.0, 2.0, 3.0]
+  b = [1.0, 3.0, 6.0]
+  c = [4.0, 5.0, 0.0]
+  d = [7.0, 5.0, 3.0]
+
+  puts &quot;The system&quot;
+  puts [b[0], c[0], &quot;&quot;,   &quot;|&quot;, d[0]].join(&quot;\t&quot;)
+  puts [a[1], b[1], c[1], &quot;|&quot;, d[1]].join(&quot;\t&quot;)
+  puts [&quot;&quot;,   a[2], b[2], &quot;|&quot;, d[2]].join(&quot;\t&quot;)
+  puts &quot;Has the solution:&quot;
+
+  soln = thomas(a, b, c, d)
+
+  puts soln.join(&quot;\t&quot;)
+end
+
+main
+</code></pre>
+<pre><code class="language-kotlin">private fun thomas(a: DoubleArray, b: DoubleArray, c: DoubleArray, d: DoubleArray): DoubleArray {
+    val cPrime = c.clone()
+    val x = d.clone()
+    val size = a.size
+    cPrime[0] /= b[0]
+    x[0] /= b[0]
+    for (i in 1 until size) {
+        val scale = 1.0 / (b[i] - cPrime[i - 1] * a[i])
+        cPrime[i] *= scale
+        x[i] = (x[i] - a[i] * x[i - 1]) * scale
+    }
+    for (i in (size - 2) downTo 0) {
+        x[i] -= cPrime[i] * x[i + 1]
+    }
+    return x
+}
+
+fun main(args: Array&lt;String&gt;) {
+    val a = doubleArrayOf(0.0, 2.0, 3.0)
+    val b = doubleArrayOf(1.0, 3.0, 6.0)
+    val c = doubleArrayOf(4.0, 5.0, 0.0)
+    val x = doubleArrayOf(7.0, 5.0, 3.0)
+    val solution = thomas(a, b, c, x)
+
+    println(&quot;System:&quot;)
+    println(&quot;[%.1f, %.1f, %.1f][x] = [%.1f]&quot;.format(b[0], c[0], 0f, x[0]))
+    println(&quot;[%.1f, %.1f, %.1f][y] = [%.1f]&quot;.format(a[1], b[1], c[1], x[1]))
+    println(&quot;[%.1f, %.1f, %.1f][z] = [%.1f]\n&quot;.format(0f, a[2], b[2], x[2]))
+    println(&quot;Solution:&quot;)
+    for (i in solution.indices) {
+        println(&quot;[% .5f]&quot;.format(solution[i]))
+    }
+}
+</code></pre>
+<pre><code class="language-lisp">;;;; Thomas algorithm implementation in Common Lisp
+
+(defmacro divf (place divisor)
+  &quot;Divides the value at place by divisor&quot;
+  `(setf ,place (/ ,place ,divisor)))
+
+(defun helper (v1 v2 v3 row)
+  (- (svref v1 row) (* (svref v2 row) (svref v3 (1- row)))))
+
+(defun thomas (diagonal-a diagonal-b diagonal-c last-column)
+  &quot;Returns the solutions to a tri-diagonal matrix non-destructively&quot;
+  ;; We have to copy the inputs to ensure non-destructiveness
+  (let ((a (copy-seq diagonal-a))
+         (b (copy-seq diagonal-b))
+         (c (copy-seq diagonal-c))
+         (d (copy-seq last-column)))
+    (divf (svref c 0) (svref b 0))
+    (divf (svref d 0) (svref b 0))
+    (loop
+      for i from 1 upto (1- (length a)) do
+      (divf (svref c i) (helper b a c i))
+      (setf (svref d i) (/ (helper d a d i) (helper b a c i))))
+    (loop
+      for i from (- (length a) 2) downto 0 do
+      (decf (svref d i) (* (svref c i) (svref d (1+ i)))))
+    d))
+
+(defparameter diagonal-a #(0 2 3))
+(defparameter diagonal-b #(1 3 6))
+(defparameter diagonal-c #(4 5 0))
+(defparameter last-column #(7 5 3))
+
+;; should print 0.8666667 1.5333333 -0.26666668
+(format t &quot;~{~f ~}~%&quot; (coerce (thomas diagonal-a diagonal-b diagonal-c last-column) 'list))
+</code></pre>
+<p>{% sample lang=&quot;ruby&quot; %}
+<a href="code/ruby/thomas.rb">import, lang=&quot;ruby&quot;</a></p>
+<pre><code class="language-javascript">function thomas(a, b, c, x) {
+	const y = [];
+
+	y[0] = c[0] / b[0];
+	x[0] = x[0] / b[0];
+
+	for (let i = 1; i &lt; a.length; i++) {
+		const scale = 1.0 / (b[i] - a[i] * y[i - 1]);
+		y[i] = c[i] * scale;
+		x[i] = (x[i] - a[i] * x[i - 1]) * scale;
+	}
+
+	for (let i = a.length - 2; i &gt;= 0; i--)
+		x[i] -= y[i] * x[i + 1];
+}
+
+let a = [0.0, 2.0, 3.0];
+let b = [1.0, 3.0, 6.0];
+let c = [4.0, 5.0, 0.0];
+let x = [7.0, 5.0, 3.0];
+
+console.log(&quot;The system,&quot;);
+console.log(&quot;[1.0  4.0  0.0][x] = [7.0]&quot;);
+console.log(&quot;[2.0  3.0  5.0][y] = [5.0]&quot;);
+console.log(&quot;[0.0  3.0  6.0][z] = [3.0]&quot;);
+console.log(&quot;has the solution:\n&quot;);
+
+thomas(a, b, c, x);
+
+for (let i = 0; i &lt; 3; i++)
+	console.log(&quot;[&quot; + x[i] + &quot;]&quot;);
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">fn thomas(a: &amp;[f64], b: &amp;[f64], c: &amp;[f64], x: &amp;[f64]) -&gt; Vec&lt;f64&gt; {
+    let size = a.len();
+    let mut y = vec![0.0; size];
+    let mut z = Vec::from(x);
+
+    y[0] = c[0] / b[0];
+    z[0] = x[0] / b[0];
+
+    for i in 1..size {
+        let scale = 1.0 / (b[i] - a[i] * y[i - 1]);
+        y[i] = c[i] * scale;
+        z[i] = (z[i] - a[i] * z[i - 1]) * scale;
+    }
+
+    for i in (0..(size - 1)).rev() {
+        z[i] -= y[i] * z[i + 1];
+    }
+
+    z
+}
+
+fn main() {
+    let a = vec![0.0, 2.0, 3.0];
+    let b = vec![1.0, 3.0, 6.0];
+    let c = vec![4.0, 5.0, 0.0];
+    let x = vec![7.0, 5.0, 3.0];
+
+    println!(&quot;The system&quot;);
+    println!(&quot;[{:?} {:?} {:?}][x] = [{:?}]&quot;, a[0], b[0], c[0], &amp;x[0]);
+    println!(&quot;[{:?} {:?} {:?}][x] = [{:?}]&quot;, a[1], b[1], c[1], &amp;x[1]);
+    println!(&quot;[{:?} {:?} {:?}][x] = [{:?}]&quot;, a[2], b[2], c[2], &amp;x[2]);
+    println!(&quot;has the solution&quot;);
+
+    let y = thomas(&amp;a, &amp;b, &amp;c, &amp;x);
+
+    y.iter()
+        .for_each(|i| println!(&quot;[{:&gt;19}]&quot;, format!(&quot;{:18}&quot;, format!(&quot;{:?}&quot;, i))));
+}
+</code></pre></pre>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../gaussian_elimination/gaussian_elimination.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../computational_geometry/computational_geometry.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../gaussian_elimination/gaussian_elimination.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../computational_geometry/computational_geometry.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

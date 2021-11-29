@@ -1,0 +1,1900 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Split-Operator Method - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html" class="active"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-split-operator-method"><a class="header" href="#the-split-operator-method">The Split-Operator Method</a></h1>
+<p>The Split-Operator Method (also called the Split-Step Method), was actually the primary method I used to solve the Schrödinger equation during my PhD.
+It is one of the simplest and fastest methods for this purpose and is widely used throughout modern quantum research in the area, in particular when dealing with the Non-linear Schrödinger Equation (NLSE):</p>
+<p>\[ i \hbar \frac{\partial \Psi(\mathbf{r},t)}{\partial t} = \left[-\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r}) + g|\Psi(\mathbf{r},t)|^2 \right] \Psi(\mathbf{r},t), \]</p>
+<p>which follows from the notation provided in the <a href="../quantum_systems/quantum_systems.html">quantum systems</a> chapter: \( \Psi(\mathbf{r},t) \) is a quantum wave-function with spatial (\( \mathbf{r} \)) and time (\( t \)) dependence, \( \nabla^2 \) is a Laplacian, and \( V(\mathbf{r}) \) is a potential of some sort (like \( \omega x^2 \) or something).
+In this case, we also add an interaction term \( g \) next to a nonlinear \( |\Psi(\mathbf{r},t)|^2 \) term.
+This is the system I studied for most of my PhD (granted, we played a few tricks with parallelization and such, so it was <em>slightly</em> more complicated).</p>
+<p>At its heart, the split-op method is nothing more than a pseudo-spectral differential equation solver... That is to say, it solves the Schrödinger equation with <a href="../cooley_tukey/cooley_tukey.html">FFTs</a>.
+In fact, there is a large class of spectral and pseudo-spectral methods used to solve a number of different physical systems, and we'll definitely be covering those in the future.
+As mentioned in the <a href="../quantum_systems/quantum_systems.html">quantum systems</a> section, we can represent a quantum wavefunction in momentum space, which is parameterized with the wavevector \( k \).
+In the Hamiltonian shown above, we can split our system into position space components, \( \hat{H}_r = \left[V(\mathbf{r}) + g|\Psi(\mathbf{r},t)|^2 \right] \Psi(\mathbf{r},t) \), and momentum space components, \( \hat{H}_k = \left[-\frac{\hbar^2}{2m}\nabla^2 \right]\Psi(\mathbf{r},t) \).
+I'll be honest, I didn't know what notation to use for \( \hat H_r \) because \( p \) is used to describe momentum.
+I settled on \( r \) for <em>real space</em>, but that is somewhat notationally ambiguous.
+In addition, \( k \) will indicate momentum space because it is a sum of all wavevectors, typically notated as \( k \).
+Bad notation aside, let's continue.</p>
+<p>If we assume a somewhat general solution to our quantum system:</p>
+<p>\[ \Psi(\mathbf{r},t + dt) = \left[e^{-\frac{i\hat{H}dt}{\hbar}}\right]\Psi(\mathbf{r},t) = \left[e^{-\frac{i(\hat{H}_r + \hat{H}_k)dt}{\hbar}}\right]\Psi(\mathbf{r},t) \]</p>
+<p>and assume we are simulating our system by a series of small timesteps (\( dt \)), we can perform similar splitting by using the Baker-Campbell-Housdorff formula:</p>
+<p>\[ \Psi(\mathbf{r},t+dt) = \left[e^{-\frac{i\hat{H}_rdt}{\hbar}}e^{-\frac{i\hat{H}_kdt}{\hbar}}e^{-\frac{[i\hat{H}_r, i\hat{H}_k]dt^2}{2}}\right]\Psi(\mathbf{r},t) \]</p>
+<p>This accrues a small amount of error (\( dt^2 \)) related to the commutation of the real and momentum-space components of the Hamiltonian.
+This is a relatively large error and that's not okay.
+In order to change the \( dt^2 \) error to \( dt^3 \), we can split the system by performing a half-step in position space before doing a full-step in momentum space, through a process called <em>Strang Splitting</em> like so:</p>
+<p>\[ \Psi(\mathbf{r},t+dt) = \left[e^{-\frac{i\hat{H}_rdt}{2\hbar}}e^{-\frac{i\hat{H}_kdt}{\hbar}}e^{-\frac{i\hat{H}_rdt}{2\hbar}} \right]\Psi(\mathbf{r},t) + \mathcal{O}(dt^3) \]</p>
+<p>We can then address each part of this solution in chunks, first in position space, then in momentum space, then in position space again by using <a href="../cooley_tukey/cooley_tukey.html">Fourier Transforms</a>.
+Which looks something like this:</p>
+<p>\[ \Psi(\mathcal{r}, t+dt) = \left[\hat{U}_r\left(\frac{dt}{2}\right)\mathcal{F}^{-1}\left[\hat{U}_k(dt) \mathcal{F} \left[\hat{U}_r\left(\frac{dt}{2}\right) \Psi(\mathbf{r},t) \right] \right] \right] + \mathcal{O}(dt^3) \]</p>
+<p>where \( \hat{U}_r = e^{-\frac{i\hat{H}_rdt}{\hbar}} \), \( \hat{U}_k = e^{-\frac{i\hat{H}_kdt}{\hbar}} \), and \( \mathcal{F} \) and \( \mathcal{F}^{-1} \) indicate forward and inverse Fourier Transforms.
+Here's a flowchart of what we are looking for every timestep:</p>
+<p>
+    <img  class="center" src="res/split_op_method.svg" style="width:70%" />
+</p>
+<p>For the most part, that's it:</p>
+<ol>
+<li>Multiply the wavefunction in real space with the real-space operator.</li>
+<li>Flip to momentum space with a Fourier transform.</li>
+<li>Multiply the momentum-space wavefunction by the momentum-space operator.</li>
+<li>Flip to position space with an inverse Fourier transform.</li>
+<li>Repeat 1-4 until satisfied.</li>
+</ol>
+<p>If we guess that our initial wavefunction is Gaussian-like and is slightly offset from the center or the trap, this should allow us to see our wavefunction &quot;sloshing&quot; back and forth in our trap, like so:</p>
+<p>
+    <img  class="center" src="res/real_time.gif" style="width:70%" />
+</p>
+<p>As a small concession, using this method enforces periodic boundary conditions, where the wavefunction will simply slide from one side of your simulation box to the other, but that's fine for most cases.
+In fact, for many cases (such as large-scale turbulence models) it's ideal.</p>
+<p>That said, there is more to the story.
+As we mentioned in the <a href="../quantum_systems/quantum_systems.html">quantum systems</a> section, many simulations of quantum systems desire to find the ground state of our system.
+The split-operator method can be used for that too!
+If we run this simulation in <em>imaginary time</em>, by simply setting \( \tau = it \) and stepping through \( \tau \) instead of \( t \), we will no longer see an &quot;real-world&quot; example of how the atoms should behave, but will instead see an exponential decay of higher-energy states.
+If we run the simulation for long enough with a small enough timestep, all higher energy states will vanish.
+This means that we can find the ground state of our system by running the simulation in imaginary time, which is an incredibly useful feature!
+If we run the same simulation as above in imaginary time, we should see our wavefunction smoothly move to the center of our trap (the lowest energy position), like so:</p>
+<p>
+    <img  class="center" src="res/imaginary_time.gif" style="width:70%" />
+</p>
+<h2 id="the-algorithm"><a class="header" href="#the-algorithm">The Algorithm</a></h2>
+<p>Luckily, the code in this case is pretty straightforward.
+As a note before starting, we will be using normalized units in this simulation where \( \hbar = c = 1 \).
+These units are often called <em>natural</em> units.
+Many of you (<em>cough</em> experimentalists <em>cough</em>) will probably think that these units are completely unphysical, and they are; however, they allow us to output fractions and whole numbers.
+For example, if we are trying to find the energy of the ground state of atoms in a simple harmonic oscillator, we know it should be \( \frac{1}{2}\hbar \omega \), where \( \omega \) is the coefficient in front of the \( x^2 \) term known as the <em>frequency</em> of the trap.
+If we were to calculate the energy in real units, our simulation would output \( 5.272859 \times 10^{-35} \), which is hard to interpret.
+By instead using natural units, we get precisely \( \frac{1}{2} \) and we know that those are in units of \( \hbar\omega \).
+There is no doubt that it makes the simulation easier to understand (albeit a little misleading in the end).</p>
+<p>Regardless, we first need to set all the initial parameters, including the initial grids in real and momentum space:</p>
+<pre><code class="language-julia">struct Param
+    xmax::Float64
+    res::Int64
+    dt::Float64
+    timesteps::Int64
+    dx::Float64
+    x::Vector{Float64}
+    dk::Float64
+    k::Vector{Float64}
+    im_time::Bool
+
+    Param() = new(10.0, 512, 0.05, 1000, 2 * 10.0/512,
+                  Vector{Float64}(-10.0 + 10.0/512 : 20.0/512 : 10.0),
+                  pi / 10.0,
+                  Vector{Float64}(vcat(0:512/2 - 1, -512/2 : -1) * pi/10.0),
+                  false)
+    Param(xmax::Float64, res::Int64, dt::Float64, timesteps::Int64,
+          im_val::Bool) = new(
+              xmax, res, dt, timesteps,
+              2*xmax/res, Vector{Float64}(-xmax+xmax/res:2*xmax/res:xmax),
+              pi/xmax, Vector{Float64}(vcat(0:res/2-1, -res/2:-1)*pi/(xmax)),
+              im_val
+          )
+end
+</code></pre>
+<pre><code class="language-c">struct params {
+    double xmax;
+    unsigned int res;
+    double dt;
+    unsigned int timesteps;
+    double dx;
+    double *x;
+    double dk;
+    double *k;
+    bool im_time;
+};
+</code></pre>
+<p><a href="code/c/split_op.c">import:52-73, lang:&quot;c&quot;</a></p>
+<pre><code class="language-cpp">using complex = std::complex&lt;double&gt;;
+using vector_real = std::vector&lt;double&gt;;
+using vector_complex = std::vector&lt;complex&gt;;
+
+struct Params {
+    Params(double _xmax, unsigned int _res, double _dt, unsigned int _timesteps, bool im) {
+        xmax = _xmax;
+        res = _res;
+        dt = _dt;
+        timesteps = _timesteps;
+        dx = 2.0 * xmax / res;
+        x.reserve(res);
+        dk = M_PI / xmax;
+        k.reserve(res);
+        im_time = im;
+
+        for (size_t i = 0; i &lt; res; ++i) {
+            x.emplace_back(xmax / res - xmax + i * (2.0 * xmax / res));
+            if (i &lt; res / 2) {
+                k.push_back(i * M_PI / xmax);
+            } else {
+                k.push_back((static_cast&lt;double&gt;(i) - res) * M_PI / xmax);
+            }
+        }
+    }
+
+    double xmax;
+    unsigned int res;
+    double dt;
+    unsigned int timesteps;
+    double dx;
+    vector_real x;
+    double dk;
+    vector_real k;
+    bool im_time;
+};
+</code></pre>
+<pre><code class="language-python">class Param:
+    &quot;&quot;&quot;Container for holding all simulation parameters.&quot;&quot;&quot;
+    def __init__(self,
+                 xmax: float,
+                 res: int,
+                 dt: float,
+                 timesteps: int,
+                 im_time: bool) -&gt; None:
+
+        self.xmax = xmax
+        self.res = res
+        self.dt = dt
+        self.timesteps = timesteps
+        self.im_time = im_time
+
+        self.dx = 2 * xmax / res
+        self.x = np.arange(-xmax + xmax / res, xmax, self.dx)
+        self.dk = pi / xmax
+        self.k = np.concatenate((np.arange(0, res / 2),
+                                 np.arange(-res / 2, 0))) * self.dk
+</code></pre>
+<pre><code class="language-haskell">data Parameters = Parameters
+  { xmax :: Double
+  , res :: Int
+  , dt :: Double
+  , timesteps :: Int
+  , dx :: Double
+  , x :: Vector
+  , dk :: Double
+  , ks :: Vector
+  , imTime :: Bool
+  }
+
+defaultParameters :: Parameters
+defaultParameters = makeParameters 10 512 0.01 1000 True
+
+makeParameters :: Double -&gt; Int -&gt; Double -&gt; Int -&gt; Bool -&gt; Parameters
+makeParameters xmax res dt timesteps imTime =
+  let fi = fromIntegral
+      rng = (0, res - 1)
+      ks = [0 .. div res 2 - 1] ++ [-div res 2 .. -1]
+   in Parameters
+        xmax
+        res
+        dt
+        timesteps
+        (2 * xmax / fi res)
+        (listArray rng $
+         map (\n -&gt; xmax * (-1 + 2 * fi n / fi res) :+ 0) [1 .. res])
+        (pi / xmax)
+        (listArray rng $ map ((:+ 0) . (pi / xmax *) . fi) ks)
+        imTime
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Parameters {
+    xmax: f64,
+    res: usize,
+    dt: f64,
+    timesteps: usize,
+    dx: f64,
+    x: Vec&lt;f64&gt;,
+    dk: f64,
+    k: Vec&lt;f64&gt;,
+    im_time: bool,
+}
+
+impl Parameters {
+    pub fn new(xmax: f64, res: usize, dt: f64, timesteps: usize, im_time: bool) -&gt; Parameters {
+        let dx = 2.0_f64 * xmax / (res as f64);
+        let mut x: Vec&lt;f64&gt; = Vec::with_capacity(res);
+        let dk = PI / xmax;
+        let mut k: Vec&lt;f64&gt; = Vec::with_capacity(res);
+        for i in 0..res {
+            x.push(xmax / (res as f64) - xmax + (i as f64) * dx);
+            match i {
+                i if (i &lt; res / 2) =&gt; k.push((i as f64) * PI / xmax),
+                _ =&gt; k.push(((i as f64) - (res as f64)) * PI / xmax),
+            }
+        }
+        Parameters {
+            xmax,
+            res,
+            dt,
+            timesteps,
+            im_time,
+            dx,
+            x,
+            dk,
+            k,
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>As a note, when we generate our grid in momentum space <code>k</code>, we need to split the grid into two lines, one that is going from <code>0</code> to <code>-kmax</code> and is then discontinuous and goes from <code>kmax</code> to <code>0</code>.
+This is simply because the FFT will naturally assume that the <code>0</code> in our grid is at the left side of the simulation, so we shift k-space to match this expectation.
+Also, for this code we will be using notation to what we used above: <code>opr.R</code> will be the real space operators and <code>opr.K</code> will be the momentum space operators.
+There is another Boolean value here called <code>im_time</code>, which is for imaginary time evolution.</p>
+<p>Afterwards, we turn them into operators:</p>
+<pre><code class="language-julia">mutable struct Operators
+    V::Vector{Complex{Float64}}
+    R::Vector{Complex{Float64}}
+    K::Vector{Complex{Float64}}
+    wfc::Vector{Complex{Float64}}
+
+    Operators(res) = new(zeros(res),
+                         zeros(res),
+                         zeros(res),
+                         zeros(res))
+end
+
+# Function to initialize the wfc and potential
+function init(par::Param, voffset::Float64, wfcoffset::Float64)
+    opr = Operators(length(par.x))
+    opr.V = 0.5 * (par.x .- voffset).^2
+    opr.wfc = exp.(-(par.x .- wfcoffset).^2/2)
+    if (par.im_time)
+        opr.K = exp.(-0.5*par.k.^2*par.dt)
+        opr.R = exp.(-0.5*opr.V*par.dt)
+    else
+        opr.K = exp.(-im*0.5*par.k.^2*par.dt)
+        opr.R = exp.(-im*0.5*opr.V*par.dt)
+    end
+
+    return opr
+end
+</code></pre>
+<pre><code class="language-c">struct operators {
+    size_t size;
+    double complex *v;
+    double complex *pe;
+    double complex *ke;
+    double complex *wfc;
+};
+</code></pre>
+<p><a href="code/c/split_op.c">import:75-96, lang:&quot;c&quot;</a></p>
+<pre><code class="language-cpp">struct Operators {
+public:
+    Operators(Params &amp;par, double voffset,
+              double wfcoffset) {
+        size = par.res;
+        v.reserve(size);
+        pe.reserve(size);
+        ke.reserve(size);
+        wfc.reserve(size);
+
+        for (size_t i = 0; i &lt; size; ++i) {
+            v.push_back(0.5 * pow(par.x[i] - voffset, 2));
+            wfc.push_back(exp(-pow(par.x[i] - wfcoffset, 2) / 2.0));
+
+            if (par.im_time) {
+                ke.push_back(exp(-0.5 * par.dt * pow(par.k[i], 2)));
+                pe.push_back(exp(-0.5 * par.dt * v[i]));
+            } else {
+                ke.push_back(exp(-0.5 * par.dt * pow(par.k[i], 2) * complex(0.0, 1.0)));
+                pe.push_back(exp(-0.5 * par.dt * v[i] * complex(0.0, 1.0)));
+            }
+        }
+    }
+
+    size_t size;
+    vector_complex v;
+    vector_complex pe;
+    vector_complex ke;
+    vector_complex wfc;
+};
+</code></pre>
+<pre><code class="language-python">class Operators:
+    &quot;&quot;&quot;Container for holding operators and wavefunction coefficients.&quot;&quot;&quot;
+    def __init__(self, res: int) -&gt; None:
+
+        self.V = np.empty(res, dtype=complex)
+        self.R = np.empty(res, dtype=complex)
+        self.K = np.empty(res, dtype=complex)
+        self.wfc = np.empty(res, dtype=complex)
+
+
+def init(par: Param, voffset: float, wfcoffset: float) -&gt; Operators:
+    &quot;&quot;&quot;Initialize the wavefunction coefficients and the potential.&quot;&quot;&quot;
+    opr = Operators(len(par.x))
+    opr.V = 0.5 * (par.x - voffset) ** 2
+    opr.wfc = np.exp(-((par.x - wfcoffset) ** 2) / 2, dtype=complex)
+    if par.im_time:
+        opr.K = np.exp(-0.5 * (par.k ** 2) * par.dt)
+        opr.R = np.exp(-0.5 * opr.V * par.dt)
+    else:
+        opr.K = np.exp(-0.5 * (par.k ** 2) * par.dt * 1j)
+        opr.R = np.exp(-0.5 * opr.V * par.dt * 1j)
+    return opr
+</code></pre>
+<pre><code class="language-haskell">data Operators = Operators
+  { v :: Vector
+  , rStep :: Vector
+  , kStep :: Vector
+  , wfc :: Vector
+  }
+
+makeOperators :: Parameters -&gt; Complex Double -&gt; Complex Double -&gt; Operators
+makeOperators param v0 wfc0 =
+  let rng = (0, res param - 1)
+      time
+        | imTime param = dt param :+ 0
+        | otherwise = 0 :+ dt param
+      v = liftArray (\x -&gt; 0.5 * (x - v0) ^ 2) (x param)
+      rStep = liftArray (\x -&gt; exp (-0.5 * time * x)) v
+      kStep = liftArray (\k -&gt; exp (-0.5 * time * k ^ 2)) (ks param)
+      wfc = liftArray (\x -&gt; exp (-(x - wfc0) ^ 2 / 2)) (x param)
+   in Operators v rStep kStep (normalize (dx param) wfc)
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Operators {
+    v: Vec&lt;Complex&lt;f64&gt;&gt;,
+    pe: Vec&lt;Complex&lt;f64&gt;&gt;,
+    ke: Vec&lt;Complex&lt;f64&gt;&gt;,
+    wfc: Vec&lt;Complex&lt;f64&gt;&gt;,
+}
+
+impl Operators {
+    pub fn new(par: &amp;Parameters, v_offset: f64, wfc_offset: f64) -&gt; Operators {
+        let mut v: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+        let mut pe: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+        let mut ke: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+        let mut wfc: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+
+        for i in 0..par.res {
+            v.push(Complex::new(
+                0.5_f64 * (par.x[i] - v_offset).powi(2),
+                0.0_f64,
+            ));
+            wfc.push(Complex::new(
+                (-((par.x[i] - wfc_offset).powi(2)) / 2.0_f64).exp(),
+                0.0_f64,
+            ));
+            if par.im_time {
+                ke.push(Complex::new(
+                    (-0.5_f64 * par.dt * par.k[i].powi(2)).exp(),
+                    0.0_f64,
+                ));
+                pe.push(Complex::new((-0.5_f64 * par.dt * v[i].re).exp(), 0.0_f64));
+            } else {
+                ke.push(Complex::new(
+                    0.0_f64,
+                    (-0.5_f64 * par.dt * par.k[i].powi(2)).exp(),
+                ));
+                pe.push(Complex::new(0.0_f64, (-0.5_f64 * par.dt * v[i].re).exp()));
+            }
+        }
+        Operators { v, pe, ke, wfc }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Here, we use a standard harmonic potential for the atoms to sit in and a Gaussian distribution for an initial guess for the probability distribution.
+If we give either the trap or the atoms a slight offset (so the Gaussian distribution of atoms does not <em>quite</em> rest at the bottom of the \( x^2 \) potential, we can see the atoms moving back and forth in the potential as we move the simulation forward in time.
+This means that we can easily see the dynamics of our quantum system!
+If we run the simulation in imaginary time, we will see the Gaussian distribution of atoms move towards the center of the potential, which is the location with the lowest energy.
+Both of these have been shown in the figures above.</p>
+<p>The final step is to do the iteration, itself.</p>
+<pre><code class="language-julia">function split_op!(par::Param, opr::Operators)
+
+    for i = 1:par.timesteps
+        # Half-step in real space
+        opr.wfc = opr.wfc .* opr.R
+
+        # fft to momentum space
+        opr.wfc = fft(opr.wfc)
+
+        # Full step in momentum space
+        opr.wfc = opr.wfc .* opr.K
+
+        # ifft back
+        opr.wfc = ifft(opr.wfc)
+
+        # final half-step in real space
+        opr.wfc = opr.wfc .* opr.R
+
+        # density for plotting and potential
+        density = abs2.(opr.wfc)
+
+        # renormalizing for imaginary time
+        if (par.im_time)
+            renorm_factor = sum(density) * par.dx
+
+            for j = 1:length(opr.wfc)
+                opr.wfc[j] /= sqrt(renorm_factor)
+            end
+        end
+
+        # Outputting data to file. Plotting can also be done in a similar way
+        # This is set to output exactly 100 files, no matter how many timesteps
+        if ((i-1) % div(par.timesteps, 100) == 0)
+            outfile = open(&quot;output&quot; * string(lpad(string(i-1), 5, string(0)))
+                                    * &quot;.dat&quot;,&quot;w&quot;)
+
+            # Outputting for gnuplot. Any plotter will do.
+            for j = 1:length(density)
+                write(outfile, string(par.x[j]) * &quot;\t&quot;
+                               * string(density[j]) * &quot;\t&quot;
+                               * string(real(opr.V[j])) * &quot;\n&quot;)
+            end
+
+            close(outfile)
+            println(&quot;Outputting step: &quot;, i)
+        end
+    end
+end
+</code></pre>
+<pre><code class="language-c">void split_op(struct params par, struct operators opr) {
+    double density[opr.size];
+
+    for (size_t i = 0; i &lt; par.timesteps; ++i) {
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        fft(opr.wfc, opr.size, false);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.ke[j];
+        }
+
+        fft(opr.wfc, opr.size, true);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            density[j] = pow(cabs(opr.wfc[j]), 2);
+        }
+
+        if (par.im_time) {
+            double sum = 0;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                sum += density[j];
+            }
+
+            sum *= par.dx;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                opr.wfc[j] /= sqrt(sum);
+            }
+        }
+
+        // Writing data into a file in the format of:
+        // index, density, real potential.
+        char filename[256];
+        sprintf(filename, &quot;output%lu.dat&quot;, i);
+        FILE *fp = fopen(filename, &quot;w&quot;);
+
+        for (int i = 0; i &lt; opr.size; ++i) {
+            fprintf(fp, &quot;%d\t%f\t%f\n&quot;, i, density[i], creal(opr.v[i]));
+        }
+
+        fclose(fp);
+    }
+}
+</code></pre>
+<pre><code class="language-cpp">void split_op(Params &amp;par, Operators &amp;opr) {
+    double density[opr.size];
+
+    for (size_t i = 0; i &lt; par.timesteps; ++i) {
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        fft(opr.wfc, false);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.ke[j];
+        }
+
+        fft(opr.wfc, true);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            density[j] = pow(abs(opr.wfc[j]), 2);
+        }
+
+        if (par.im_time) {
+            double sum = 0;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                sum += density[j];
+            }
+
+            sum *= par.dx;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                opr.wfc[j] /= sqrt(sum);
+            }
+        }
+
+        // Writing data into a file in the format of:
+        // index, density, real potential.
+        std::stringstream filename_stream;
+        filename_stream &lt;&lt; &quot;output&quot; &lt;&lt; i &lt;&lt; &quot;.dat&quot;;
+
+        std::ofstream fstream = std::ofstream(filename_stream.str());
+
+        if (fstream) {
+            for (int i = 0; i &lt; opr.size; ++i) {
+                std::stringstream data_stream;
+
+                data_stream &lt;&lt; i &lt;&lt; &quot;\t&quot; &lt;&lt; density[i] &lt;&lt; &quot;\t&quot; &lt;&lt; real(opr.v[i]) &lt;&lt; &quot;\n&quot;;
+
+                fstream.write(data_stream.str().c_str(), data_stream.str().length());
+            }
+        }
+
+        fstream.close();
+    }
+}
+</code></pre>
+<pre><code class="language-python">def split_op(par: Param, opr: Operators) -&gt; None:
+
+    for i in range(par.timesteps):
+
+        # Half-step in real space
+        opr.wfc *= opr.R
+
+        # FFT to momentum space
+        opr.wfc = np.fft.fft(opr.wfc)
+
+        # Full step in momentum space
+        opr.wfc *= opr.K
+
+        # iFFT back
+        opr.wfc = np.fft.ifft(opr.wfc)
+
+        # Final half-step in real space
+        opr.wfc *= opr.R
+
+        # Density for plotting and potential
+        density = np.abs(opr.wfc) ** 2
+
+        # Renormalizing for imaginary time
+        if par.im_time:
+            renorm_factor = sum(density) * par.dx
+            opr.wfc /= sqrt(renorm_factor)
+
+        # Outputting data to file. Plotting can also be done in a
+        # similar way. This is set to output exactly 100 files, no
+        # matter how many timesteps were specified.
+        if i % (par.timesteps // 100) == 0:
+            filename = &quot;output{}.dat&quot;.format(str(i).rjust(5, str(0)))
+            with open(filename, &quot;w&quot;) as outfile:
+                # Outputting for gnuplot. Any plotter will do.
+                for j in range(len(density)):
+                    template = &quot;{}\t{}\t{}\n&quot;.format
+                    line = template(par.x[j], density[j].real, opr.V[j].real)
+                    outfile.write(line)
+            print(&quot;Outputting step: &quot;, i + 1)
+</code></pre>
+<pre><code class="language-haskell">evolve :: Parameters -&gt; Operators -&gt; [Operators]
+evolve param op@(Operators _ rStep kStep _) = iterate splitop op
+  where
+    splitop op = op {wfc = wfc' op}
+    wfc' = norm . (rStep .*) . idft . (kStep .*) . dft . (rStep .*) . wfc
+    norm = if imTime param then normalize (dx param) else id
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn split_op(par: &amp;Parameters, opr: &amp;mut Operators) {
+    let mut density: Vec&lt;f64&gt;;
+
+    for i in 0..par.timesteps {
+        for j in 0..par.res {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        fft(&amp;mut opr.wfc, false);
+
+        for j in 0..par.res {
+            opr.wfc[j] *= opr.ke[j];
+        }
+
+        fft(&amp;mut opr.wfc, true);
+
+        for j in 0..par.res {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        density = opr.wfc.iter().map(|x| x.norm().powi(2)).collect();
+
+        if par.im_time {
+            let sum = density.iter().sum::&lt;f64&gt;() * par.dx;
+
+            for j in 0..par.res {
+                opr.wfc[j] /= sum.sqrt();
+            }
+        }
+
+        // Writing data into a file in the format of:
+        // index, density, real potential.
+        let path_name = format!(&quot;output{}.dat&quot;, i);
+        let path = Path::new(&amp;path_name);
+        let display = path.display();
+
+        let mut file = match File::create(&amp;path) {
+            Err(why) =&gt; panic!(&quot;Couldn't create {}: {}&quot;, display, why),
+            Ok(good) =&gt; good,
+        };
+
+        for j in 0..par.res {
+            if let Err(why) = writeln!(file, &quot;{}\t{}\t{}&quot;, j, density[j], opr.v[j].re) {
+                panic!(&quot;Couldn't write to {}: {}&quot;, display, why)
+            }
+            if let Err(why) = file.flush() {
+                panic!(&quot;Couldn't flush {}: {}&quot;, display, why)
+            }
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>And that's it.</p>
+<p>There is something a bit odd about the simulation in imaginary time, though.
+Basically, in imaginary time, we see an exponential decay of all the higher energy states, which means we are technically losing a large amount of our wavefunction density every timestep!
+To solve this issue, we <em>renormalize</em> by enforcing that \( \int_{-\infty}^{+\infty}\Psi^\ast\Psi dx = 1 \).
+As you can see from the code, this involves summing the density, multiplying that sum by <code>dx</code>, and then dividing each element in the wavefunction by the <code>sqrt()</code> of that value.</p>
+<p>The Split-Operator method is one of the most commonly used quantum simulation algorithms because of how straightforward it is to code and how quickly you can start really digging into the physics of the simulation results!</p>
+<h2 id="video-explanation"><a class="header" href="#video-explanation">Video Explanation</a></h2>
+<p>Here is a video describing the split-operator method:</p>
+<div style="text-align:center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BBt8EugN03Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<p>This example code is a simulation of a Gaussian distribution of atoms slightly offset in a harmonic trap in imaginary time.
+So long as the code is written appropriately, this means that the atoms should move towards the center of the trap and the energy should decay to \( \frac{1}{2}\hbar\omega \), which will be simply \( \frac{1}{2} \) in this simulation.
+Checking to make sure your code can output the correct energy for a harmonic trap is a good test to make sure it is all working under-the-hood before simulating systems with more complicated Hamiltonians.</p>
+<pre><code class="language-julia">#------------split_op.jl-------------------------------------------------------#
+#
+# Plotting: to plot individual timesteps, use gnuplot like so:
+#               p &quot;output00000.dat&quot; u 1:2 w l
+#               rep &quot;output00000.dat&quot; u 1:3 w l
+#
+#------------------------------------------------------------------------------#
+
+using FFTW
+
+struct Param
+    xmax::Float64
+    res::Int64
+    dt::Float64
+    timesteps::Int64
+    dx::Float64
+    x::Vector{Float64}
+    dk::Float64
+    k::Vector{Float64}
+    im_time::Bool
+
+    Param() = new(10.0, 512, 0.05, 1000, 2 * 10.0/512,
+                  Vector{Float64}(-10.0 + 10.0/512 : 20.0/512 : 10.0),
+                  pi / 10.0,
+                  Vector{Float64}(vcat(0:512/2 - 1, -512/2 : -1) * pi/10.0),
+                  false)
+    Param(xmax::Float64, res::Int64, dt::Float64, timesteps::Int64,
+          im_val::Bool) = new(
+              xmax, res, dt, timesteps,
+              2*xmax/res, Vector{Float64}(-xmax+xmax/res:2*xmax/res:xmax),
+              pi/xmax, Vector{Float64}(vcat(0:res/2-1, -res/2:-1)*pi/(xmax)),
+              im_val
+          )
+end
+
+mutable struct Operators
+    V::Vector{Complex{Float64}}
+    R::Vector{Complex{Float64}}
+    K::Vector{Complex{Float64}}
+    wfc::Vector{Complex{Float64}}
+
+    Operators(res) = new(zeros(res),
+                         zeros(res),
+                         zeros(res),
+                         zeros(res))
+end
+
+# Function to initialize the wfc and potential
+function init(par::Param, voffset::Float64, wfcoffset::Float64)
+    opr = Operators(length(par.x))
+    opr.V = 0.5 * (par.x .- voffset).^2
+    opr.wfc = exp.(-(par.x .- wfcoffset).^2/2)
+    if (par.im_time)
+        opr.K = exp.(-0.5*par.k.^2*par.dt)
+        opr.R = exp.(-0.5*opr.V*par.dt)
+    else
+        opr.K = exp.(-im*0.5*par.k.^2*par.dt)
+        opr.R = exp.(-im*0.5*opr.V*par.dt)
+    end
+
+    return opr
+end
+
+# Function for the split-operator loop
+function split_op!(par::Param, opr::Operators)
+
+    for i = 1:par.timesteps
+        # Half-step in real space
+        opr.wfc = opr.wfc .* opr.R
+
+        # fft to momentum space
+        opr.wfc = fft(opr.wfc)
+
+        # Full step in momentum space
+        opr.wfc = opr.wfc .* opr.K
+
+        # ifft back
+        opr.wfc = ifft(opr.wfc)
+
+        # final half-step in real space
+        opr.wfc = opr.wfc .* opr.R
+
+        # density for plotting and potential
+        density = abs2.(opr.wfc)
+
+        # renormalizing for imaginary time
+        if (par.im_time)
+            renorm_factor = sum(density) * par.dx
+
+            for j = 1:length(opr.wfc)
+                opr.wfc[j] /= sqrt(renorm_factor)
+            end
+        end
+
+        # Outputting data to file. Plotting can also be done in a similar way
+        # This is set to output exactly 100 files, no matter how many timesteps
+        if ((i-1) % div(par.timesteps, 100) == 0)
+            outfile = open(&quot;output&quot; * string(lpad(string(i-1), 5, string(0)))
+                                    * &quot;.dat&quot;,&quot;w&quot;)
+
+            # Outputting for gnuplot. Any plotter will do.
+            for j = 1:length(density)
+                write(outfile, string(par.x[j]) * &quot;\t&quot;
+                               * string(density[j]) * &quot;\t&quot;
+                               * string(real(opr.V[j])) * &quot;\n&quot;)
+            end
+
+            close(outfile)
+            println(&quot;Outputting step: &quot;, i)
+        end
+    end
+end
+
+# We are calculating the energy to check &lt;Psi|H|Psi&gt;
+function calculate_energy(par, opr)
+    # Creating real, momentum, and conjugate wavefunctions
+    wfc_r = opr.wfc
+    wfc_k = fft(wfc_r)
+    wfc_c = conj(wfc_r)
+
+    # Finding the momentum and real-space energy terms
+    energy_k = 0.5*wfc_c.*ifft((par.k.^2) .* wfc_k)
+    energy_r = wfc_c.*opr.V .* wfc_r
+
+    # Integrating over all space
+    energy_final = 0
+    for i = 1:length(energy_k)
+        energy_final += real(energy_k[i] + energy_r[i])
+    end
+
+    return energy_final*par.dx
+end
+
+# main function
+function main()
+    par = Param(5.0, 256, 0.05, 100, true)
+
+    # Starting wavefunction slightly offset so we can see it change
+    opr = init(par, 0.0, -1.00)
+    split_op!(par, opr)
+
+    energy = calculate_energy(par, opr)
+    println(&quot;Energy is: &quot;, energy)
+end
+
+main()
+</code></pre>
+<pre><code class="language-c">#include &lt;complex.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+
+// Using fftw3 library.
+#include &lt;fftw3.h&gt;
+
+struct params {
+    double xmax;
+    unsigned int res;
+    double dt;
+    unsigned int timesteps;
+    double dx;
+    double *x;
+    double dk;
+    double *k;
+    bool im_time;
+};
+
+struct operators {
+    size_t size;
+    double complex *v;
+    double complex *pe;
+    double complex *ke;
+    double complex *wfc;
+};
+
+void fft(double complex *x, int n, bool inverse) {
+    double complex y[n];
+    memset(y, 0, sizeof(y));
+    fftw_plan p;
+
+    if (inverse) {
+        p = fftw_plan_dft_1d(n, (fftw_complex*)x, (fftw_complex*)y,
+                             FFTW_BACKWARD, FFTW_ESTIMATE);
+    } else {
+        p = fftw_plan_dft_1d(n, (fftw_complex*)x, (fftw_complex*)y,
+                             FFTW_FORWARD, FFTW_ESTIMATE);
+    }
+
+    fftw_execute(p);
+    fftw_destroy_plan(p);
+
+    for (size_t i = 0; i &lt; n; ++i) {
+        x[i] = y[i] / sqrt((double)n);
+    }
+}
+
+void init_params(struct params *par, double xmax, unsigned int res, double dt,
+                 unsigned int timesteps, bool im) {
+
+    par-&gt;xmax = xmax;
+    par-&gt;res = res;
+    par-&gt;dt = dt;
+    par-&gt;timesteps = timesteps;
+    par-&gt;dx = 2.0 * xmax / res;
+    par-&gt;x = malloc(sizeof(double) * res);
+    par-&gt;dk = M_PI / xmax;
+    par-&gt;k = malloc(sizeof(double) * res);
+    par-&gt;im_time = im;
+
+    for (size_t i = 0; i &lt; res; ++i) {
+        par-&gt;x[i] = xmax / res - xmax + i * (2.0 * xmax / res);
+        if (i &lt; res / 2) {
+            par-&gt;k[i] = i * M_PI / xmax;
+        } else {
+            par-&gt;k[i] = ((double)i - res) * M_PI / xmax;
+        }
+    }
+}
+
+void init_operators(struct operators *opr, struct params par, double voffset,
+                    double wfcoffset) {
+
+    opr-&gt;size = par.res;
+    opr-&gt;v = malloc(sizeof(double complex) * par.res);
+    opr-&gt;pe = malloc(sizeof(double complex) * par.res);
+    opr-&gt;ke = malloc(sizeof(double complex) * par.res);
+    opr-&gt;wfc = malloc(sizeof(double complex) * par.res);
+
+    for (size_t i = 0; i &lt; par.res; ++i) {
+        opr-&gt;v[i] = 0.5 * cpow(par.x[i] - voffset, 2);
+        opr-&gt;wfc[i] = cexp(-cpow(par.x[i] - wfcoffset, 2) / 2.0);
+
+        if (par.im_time) {
+            opr-&gt;ke[i] = cexp(-0.5 * par.dt * cpow(par.k[i], 2));
+            opr-&gt;pe[i] = cexp(-0.5 * par.dt * opr-&gt;v[i]);
+        } else {
+            opr-&gt;ke[i] = cexp(-0.5 * par.dt * cpow(par.k[i], 2) * I);
+            opr-&gt;pe[i] = cexp(-0.5 * par.dt * opr-&gt;v[i] * I);
+        }
+    }
+}
+
+void split_op(struct params par, struct operators opr) {
+    double density[opr.size];
+
+    for (size_t i = 0; i &lt; par.timesteps; ++i) {
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        fft(opr.wfc, opr.size, false);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.ke[j];
+        }
+
+        fft(opr.wfc, opr.size, true);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            density[j] = pow(cabs(opr.wfc[j]), 2);
+        }
+
+        if (par.im_time) {
+            double sum = 0;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                sum += density[j];
+            }
+
+            sum *= par.dx;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                opr.wfc[j] /= sqrt(sum);
+            }
+        }
+
+        // Writing data into a file in the format of:
+        // index, density, real potential.
+        char filename[256];
+        sprintf(filename, &quot;output%lu.dat&quot;, i);
+        FILE *fp = fopen(filename, &quot;w&quot;);
+
+        for (int i = 0; i &lt; opr.size; ++i) {
+            fprintf(fp, &quot;%d\t%f\t%f\n&quot;, i, density[i], creal(opr.v[i]));
+        }
+
+        fclose(fp);
+    }
+}
+
+double calculate_energy(struct params par, struct operators opr) {
+    double complex wfc_r[opr.size];
+    double complex wfc_k[opr.size];
+    double complex wfc_c[opr.size];
+    memcpy(wfc_r, opr.wfc, sizeof(wfc_r));
+
+    memcpy(wfc_k, opr.wfc, sizeof(wfc_k));
+    fft(wfc_k, opr.size, false);
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        wfc_c[i] = conj(wfc_r[i]);
+    }
+
+    double complex energy_k[opr.size];
+    double complex energy_r[opr.size];
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        energy_k[i] = wfc_k[i] * cpow(par.k[i] + 0.0*I, 2);
+    }
+
+    fft(energy_k, opr.size, true);
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        energy_k[i] *= 0.5 * wfc_c[i];
+        energy_r[i] = wfc_c[i] * opr.v[i] * wfc_r[i];
+    }
+
+    double energy_final = 0;
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        energy_final += creal(energy_k[i] + energy_r[i]);
+    }
+
+    return energy_final * par.dx;
+}
+
+void free_params(struct params par) {
+    free(par.x);
+    free(par.k);
+}
+
+void free_operators(struct operators opr) {
+    free(opr.v);
+    free(opr.pe);
+    free(opr.ke);
+    free(opr.wfc);
+}
+
+int main() {
+    struct params par;
+    struct operators opr;
+
+    init_params(&amp;par, 5.0, 256, 0.05, 100, true);
+    init_operators(&amp;opr, par, 0.0, -1.0);
+
+    split_op(par, opr);
+
+    printf(&quot;the energy is %f\n&quot;, calculate_energy(par, opr));
+
+    free_params(par);
+    free_operators(opr);
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-cpp">#include &lt;complex&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;fstream&gt;
+
+// Using fftw3 library.
+#include &lt;fftw3.h&gt;
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+using complex = std::complex&lt;double&gt;;
+using vector_real = std::vector&lt;double&gt;;
+using vector_complex = std::vector&lt;complex&gt;;
+
+struct Params {
+    Params(double _xmax, unsigned int _res, double _dt, unsigned int _timesteps, bool im) {
+        xmax = _xmax;
+        res = _res;
+        dt = _dt;
+        timesteps = _timesteps;
+        dx = 2.0 * xmax / res;
+        x.reserve(res);
+        dk = M_PI / xmax;
+        k.reserve(res);
+        im_time = im;
+
+        for (size_t i = 0; i &lt; res; ++i) {
+            x.emplace_back(xmax / res - xmax + i * (2.0 * xmax / res));
+            if (i &lt; res / 2) {
+                k.push_back(i * M_PI / xmax);
+            } else {
+                k.push_back((static_cast&lt;double&gt;(i) - res) * M_PI / xmax);
+            }
+        }
+    }
+
+    double xmax;
+    unsigned int res;
+    double dt;
+    unsigned int timesteps;
+    double dx;
+    vector_real x;
+    double dk;
+    vector_real k;
+    bool im_time;
+};
+
+struct Operators {
+public:
+    Operators(Params &amp;par, double voffset,
+              double wfcoffset) {
+        size = par.res;
+        v.reserve(size);
+        pe.reserve(size);
+        ke.reserve(size);
+        wfc.reserve(size);
+
+        for (size_t i = 0; i &lt; size; ++i) {
+            v.push_back(0.5 * pow(par.x[i] - voffset, 2));
+            wfc.push_back(exp(-pow(par.x[i] - wfcoffset, 2) / 2.0));
+
+            if (par.im_time) {
+                ke.push_back(exp(-0.5 * par.dt * pow(par.k[i], 2)));
+                pe.push_back(exp(-0.5 * par.dt * v[i]));
+            } else {
+                ke.push_back(exp(-0.5 * par.dt * pow(par.k[i], 2) * complex(0.0, 1.0)));
+                pe.push_back(exp(-0.5 * par.dt * v[i] * complex(0.0, 1.0)));
+            }
+        }
+    }
+
+    size_t size;
+    vector_complex v;
+    vector_complex pe;
+    vector_complex ke;
+    vector_complex wfc;
+};
+
+void fft(vector_complex &amp;x, bool inverse) {
+    std::vector&lt;std::complex&lt;double&gt;&gt; y(x.size(), std::complex&lt;double&gt;(0.0, 0.0));
+    fftw_plan p;
+
+    fftw_complex *in = reinterpret_cast&lt;fftw_complex*&gt;(x.data());
+    fftw_complex *out = reinterpret_cast&lt;fftw_complex*&gt;(y.data());
+    p = fftw_plan_dft_1d(x.size(), in, out,
+                         (inverse ? FFTW_BACKWARD : FFTW_FORWARD), FFTW_ESTIMATE);
+
+    fftw_execute(p);
+    fftw_destroy_plan(p);
+
+    for (size_t i = 0; i &lt; x.size(); ++i) {
+        x[i] = y[i] / sqrt(static_cast&lt;double&gt;(x.size()));
+    }
+}
+
+void split_op(Params &amp;par, Operators &amp;opr) {
+    double density[opr.size];
+
+    for (size_t i = 0; i &lt; par.timesteps; ++i) {
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        fft(opr.wfc, false);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.ke[j];
+        }
+
+        fft(opr.wfc, true);
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        for (size_t j = 0; j &lt; opr.size; ++j) {
+            density[j] = pow(abs(opr.wfc[j]), 2);
+        }
+
+        if (par.im_time) {
+            double sum = 0;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                sum += density[j];
+            }
+
+            sum *= par.dx;
+
+            for (size_t j = 0; j &lt; opr.size; ++j) {
+                opr.wfc[j] /= sqrt(sum);
+            }
+        }
+
+        // Writing data into a file in the format of:
+        // index, density, real potential.
+        std::stringstream filename_stream;
+        filename_stream &lt;&lt; &quot;output&quot; &lt;&lt; i &lt;&lt; &quot;.dat&quot;;
+
+        std::ofstream fstream = std::ofstream(filename_stream.str());
+
+        if (fstream) {
+            for (int i = 0; i &lt; opr.size; ++i) {
+                std::stringstream data_stream;
+
+                data_stream &lt;&lt; i &lt;&lt; &quot;\t&quot; &lt;&lt; density[i] &lt;&lt; &quot;\t&quot; &lt;&lt; real(opr.v[i]) &lt;&lt; &quot;\n&quot;;
+
+                fstream.write(data_stream.str().c_str(), data_stream.str().length());
+            }
+        }
+
+        fstream.close();
+    }
+}
+
+double calculate_energy(Params &amp;par, Operators &amp;opr) {
+    vector_complex wfc_r(opr.wfc);
+    vector_complex wfc_k(opr.wfc);
+    vector_complex wfc_c(opr.size);
+    fft(wfc_k, false);
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        wfc_c[i] = conj(wfc_r[i]);
+    }
+
+    vector_complex energy_k(opr.size);
+    vector_complex energy_r(opr.size);
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        energy_k[i] = wfc_k[i] * pow(complex(par.k[i], 0.0), 2);
+    }
+
+    fft(energy_k, true);
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        energy_k[i] *= 0.5 * wfc_c[i];
+        energy_r[i] = wfc_c[i] * opr.v[i] * wfc_r[i];
+    }
+
+    double energy_final = 0;
+
+    for (size_t i = 0; i &lt; opr.size; ++i) {
+        energy_final += real(energy_k[i] + energy_r[i]);
+    }
+
+    return energy_final * par.dx;
+}
+
+int main() {
+    Params par = Params(5.0, 256, 0.05, 100, true);
+    Operators opr = Operators(par, 0.0, -1.0);
+
+    split_op(par, opr);
+
+    std::cout &lt;&lt; &quot;The energy is &quot; &lt;&lt; calculate_energy(par, opr) &lt;&lt; &quot;\n&quot;;
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-python">from math import pi
+from math import sqrt
+
+import numpy as np
+
+
+class Param:
+    &quot;&quot;&quot;Container for holding all simulation parameters.&quot;&quot;&quot;
+    def __init__(self,
+                 xmax: float,
+                 res: int,
+                 dt: float,
+                 timesteps: int,
+                 im_time: bool) -&gt; None:
+
+        self.xmax = xmax
+        self.res = res
+        self.dt = dt
+        self.timesteps = timesteps
+        self.im_time = im_time
+
+        self.dx = 2 * xmax / res
+        self.x = np.arange(-xmax + xmax / res, xmax, self.dx)
+        self.dk = pi / xmax
+        self.k = np.concatenate((np.arange(0, res / 2),
+                                 np.arange(-res / 2, 0))) * self.dk
+
+
+class Operators:
+    &quot;&quot;&quot;Container for holding operators and wavefunction coefficients.&quot;&quot;&quot;
+    def __init__(self, res: int) -&gt; None:
+
+        self.V = np.empty(res, dtype=complex)
+        self.R = np.empty(res, dtype=complex)
+        self.K = np.empty(res, dtype=complex)
+        self.wfc = np.empty(res, dtype=complex)
+
+
+def init(par: Param, voffset: float, wfcoffset: float) -&gt; Operators:
+    &quot;&quot;&quot;Initialize the wavefunction coefficients and the potential.&quot;&quot;&quot;
+    opr = Operators(len(par.x))
+    opr.V = 0.5 * (par.x - voffset) ** 2
+    opr.wfc = np.exp(-((par.x - wfcoffset) ** 2) / 2, dtype=complex)
+    if par.im_time:
+        opr.K = np.exp(-0.5 * (par.k ** 2) * par.dt)
+        opr.R = np.exp(-0.5 * opr.V * par.dt)
+    else:
+        opr.K = np.exp(-0.5 * (par.k ** 2) * par.dt * 1j)
+        opr.R = np.exp(-0.5 * opr.V * par.dt * 1j)
+    return opr
+
+
+def split_op(par: Param, opr: Operators) -&gt; None:
+
+    for i in range(par.timesteps):
+
+        # Half-step in real space
+        opr.wfc *= opr.R
+
+        # FFT to momentum space
+        opr.wfc = np.fft.fft(opr.wfc)
+
+        # Full step in momentum space
+        opr.wfc *= opr.K
+
+        # iFFT back
+        opr.wfc = np.fft.ifft(opr.wfc)
+
+        # Final half-step in real space
+        opr.wfc *= opr.R
+
+        # Density for plotting and potential
+        density = np.abs(opr.wfc) ** 2
+
+        # Renormalizing for imaginary time
+        if par.im_time:
+            renorm_factor = sum(density) * par.dx
+            opr.wfc /= sqrt(renorm_factor)
+
+        # Outputting data to file. Plotting can also be done in a
+        # similar way. This is set to output exactly 100 files, no
+        # matter how many timesteps were specified.
+        if i % (par.timesteps // 100) == 0:
+            filename = &quot;output{}.dat&quot;.format(str(i).rjust(5, str(0)))
+            with open(filename, &quot;w&quot;) as outfile:
+                # Outputting for gnuplot. Any plotter will do.
+                for j in range(len(density)):
+                    template = &quot;{}\t{}\t{}\n&quot;.format
+                    line = template(par.x[j], density[j].real, opr.V[j].real)
+                    outfile.write(line)
+            print(&quot;Outputting step: &quot;, i + 1)
+
+
+def calculate_energy(par: Param, opr: Operators) -&gt; float:
+    &quot;&quot;&quot;Calculate the energy &lt;Psi|H|Psi&gt;.&quot;&quot;&quot;
+    # Creating real, momentum, and conjugate wavefunctions.
+    wfc_r = opr.wfc
+    wfc_k = np.fft.fft(wfc_r)
+    wfc_c = np.conj(wfc_r)
+
+    # Finding the momentum and real-space energy terms
+    energy_k = 0.5 * wfc_c * np.fft.ifft((par.k ** 2) * wfc_k)
+    energy_r = wfc_c * opr.V * wfc_r
+
+    # Integrating over all space
+    energy_final = sum(energy_k + energy_r).real
+
+    return energy_final * par.dx
+
+
+def main() -&gt; None:
+    par = Param(5.0, 256, 0.05, 100, True)
+
+    # Starting wavefunction slightly offset so we can see it change
+    opr = init(par, 0.0, -1.00)
+    split_op(par, opr)
+
+    energy = calculate_energy(par, opr)
+    print(&quot;Energy is: &quot;, energy)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<pre><code class="language-haskell">import Data.Array.CArray
+import Data.Complex
+import Data.List (intercalate, transpose)
+import Math.FFT (dft, idft)
+
+type Vector = CArray Int (Complex Double)
+
+(.*), (.+) :: Vector -&gt; Vector -&gt; Vector
+a .* b = liftArray2 (*) a b
+a .+ b = liftArray2 (+) a b
+
+normalize :: Double -&gt; Vector -&gt; Vector
+normalize dx v =
+  let factor = 1 / sqrt dx / norm2 v :+ 0
+   in liftArray (factor *) v
+
+data Parameters = Parameters
+  { xmax :: Double
+  , res :: Int
+  , dt :: Double
+  , timesteps :: Int
+  , dx :: Double
+  , x :: Vector
+  , dk :: Double
+  , ks :: Vector
+  , imTime :: Bool
+  }
+
+defaultParameters :: Parameters
+defaultParameters = makeParameters 10 512 0.01 1000 True
+
+makeParameters :: Double -&gt; Int -&gt; Double -&gt; Int -&gt; Bool -&gt; Parameters
+makeParameters xmax res dt timesteps imTime =
+  let fi = fromIntegral
+      rng = (0, res - 1)
+      ks = [0 .. div res 2 - 1] ++ [-div res 2 .. -1]
+   in Parameters
+        xmax
+        res
+        dt
+        timesteps
+        (2 * xmax / fi res)
+        (listArray rng $
+         map (\n -&gt; xmax * (-1 + 2 * fi n / fi res) :+ 0) [1 .. res])
+        (pi / xmax)
+        (listArray rng $ map ((:+ 0) . (pi / xmax *) . fi) ks)
+        imTime
+
+data Operators = Operators
+  { v :: Vector
+  , rStep :: Vector
+  , kStep :: Vector
+  , wfc :: Vector
+  }
+
+makeOperators :: Parameters -&gt; Complex Double -&gt; Complex Double -&gt; Operators
+makeOperators param v0 wfc0 =
+  let rng = (0, res param - 1)
+      time
+        | imTime param = dt param :+ 0
+        | otherwise = 0 :+ dt param
+      v = liftArray (\x -&gt; 0.5 * (x - v0) ^ 2) (x param)
+      rStep = liftArray (\x -&gt; exp (-0.5 * time * x)) v
+      kStep = liftArray (\k -&gt; exp (-0.5 * time * k ^ 2)) (ks param)
+      wfc = liftArray (\x -&gt; exp (-(x - wfc0) ^ 2 / 2)) (x param)
+   in Operators v rStep kStep (normalize (dx param) wfc)
+
+evolve :: Parameters -&gt; Operators -&gt; [Operators]
+evolve param op@(Operators _ rStep kStep _) = iterate splitop op
+  where
+    splitop op = op {wfc = wfc' op}
+    wfc' = norm . (rStep .*) . idft . (kStep .*) . dft . (rStep .*) . wfc
+    norm = if imTime param then normalize (dx param) else id
+
+calculateEnergy :: Parameters -&gt; Operators -&gt; Double
+calculateEnergy param ops = (* dx param) . sum . map realPart $ elems totalE
+  where
+    totalE = potentialE .+ kineticE
+    potentialE = wfcConj .* v ops .* wfc ops
+    kineticOp = liftArray ((/ 2) . (^ 2)) (ks param)
+    kineticE = wfcConj .* idft (kineticOp .* dft (wfc ops))
+    wfcConj = liftArray conjugate $ wfc ops
+
+-- Use gnuplot to make an animated  GIF using ../gnuplot/plot_output.plt
+-- $ gnuplot -e &quot;folder='../haskell'&quot; plot_output.plt
+printEvolution :: Parameters -&gt; [Operators] -&gt; IO ()
+printEvolution param =
+  mapM_ (export . (format &lt;$&gt;)) . zip [0 ..] . take 100 . skip
+  where
+    skip (x:xs) = x : skip (drop (div (timesteps param) 100 - 1) xs)
+    format (Operators v _ _ wfc) =
+      let density = liftArray ((^ 2) . abs) wfc
+          values = map (map (show . realPart) . elems) [x param, density, v]
+       in intercalate &quot;\n&quot; $ map (intercalate &quot;\t&quot;) $ transpose values
+    export (i, f) = writeFile (&quot;output&quot; ++ pad (show i) ++ &quot;.dat&quot;) f
+    pad n = replicate (5 - length n) '0' ++ n
+
+main :: IO ()
+main = do
+  let p = defaultParameters
+      o = makeOperators p 0 4
+      evol = evolve p o
+  print $ calculateEnergy p (evol !! timesteps p)
+  printEvolution p evol
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">extern crate num;
+extern crate rustfft;
+
+use num::complex::Complex;
+use rustfft::FFTplanner;
+use std::f64::consts::PI;
+use std::fs::File;
+use std::io::Write;
+use std::path::Path;
+
+// This implementation is based on the C and C++ implementations.
+
+#[derive(Clone)]
+struct Parameters {
+    xmax: f64,
+    res: usize,
+    dt: f64,
+    timesteps: usize,
+    dx: f64,
+    x: Vec&lt;f64&gt;,
+    dk: f64,
+    k: Vec&lt;f64&gt;,
+    im_time: bool,
+}
+
+impl Parameters {
+    pub fn new(xmax: f64, res: usize, dt: f64, timesteps: usize, im_time: bool) -&gt; Parameters {
+        let dx = 2.0_f64 * xmax / (res as f64);
+        let mut x: Vec&lt;f64&gt; = Vec::with_capacity(res);
+        let dk = PI / xmax;
+        let mut k: Vec&lt;f64&gt; = Vec::with_capacity(res);
+        for i in 0..res {
+            x.push(xmax / (res as f64) - xmax + (i as f64) * dx);
+            match i {
+                i if (i &lt; res / 2) =&gt; k.push((i as f64) * PI / xmax),
+                _ =&gt; k.push(((i as f64) - (res as f64)) * PI / xmax),
+            }
+        }
+        Parameters {
+            xmax,
+            res,
+            dt,
+            timesteps,
+            im_time,
+            dx,
+            x,
+            dk,
+            k,
+        }
+    }
+}
+
+struct Operators {
+    v: Vec&lt;Complex&lt;f64&gt;&gt;,
+    pe: Vec&lt;Complex&lt;f64&gt;&gt;,
+    ke: Vec&lt;Complex&lt;f64&gt;&gt;,
+    wfc: Vec&lt;Complex&lt;f64&gt;&gt;,
+}
+
+impl Operators {
+    pub fn new(par: &amp;Parameters, v_offset: f64, wfc_offset: f64) -&gt; Operators {
+        let mut v: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+        let mut pe: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+        let mut ke: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+        let mut wfc: Vec&lt;Complex&lt;f64&gt;&gt; = Vec::with_capacity(par.res);
+
+        for i in 0..par.res {
+            v.push(Complex::new(
+                0.5_f64 * (par.x[i] - v_offset).powi(2),
+                0.0_f64,
+            ));
+            wfc.push(Complex::new(
+                (-((par.x[i] - wfc_offset).powi(2)) / 2.0_f64).exp(),
+                0.0_f64,
+            ));
+            if par.im_time {
+                ke.push(Complex::new(
+                    (-0.5_f64 * par.dt * par.k[i].powi(2)).exp(),
+                    0.0_f64,
+                ));
+                pe.push(Complex::new((-0.5_f64 * par.dt * v[i].re).exp(), 0.0_f64));
+            } else {
+                ke.push(Complex::new(
+                    0.0_f64,
+                    (-0.5_f64 * par.dt * par.k[i].powi(2)).exp(),
+                ));
+                pe.push(Complex::new(0.0_f64, (-0.5_f64 * par.dt * v[i].re).exp()));
+            }
+        }
+        Operators { v, pe, ke, wfc }
+    }
+}
+
+fn fft(x: &amp;mut Vec&lt;Complex&lt;f64&gt;&gt;, inverse: bool) {
+    let mut y = vec![Complex::new(0.0_f64, 0.0_f64); x.len()];
+    let mut p = FFTplanner::new(inverse);
+    let fft = p.plan_fft(x.len());
+    fft.process(x, &amp;mut y);
+
+    for i in 0..x.len() {
+        x[i] = y[i] / (x.len() as f64).sqrt();
+    }
+}
+
+fn split_op(par: &amp;Parameters, opr: &amp;mut Operators) {
+    let mut density: Vec&lt;f64&gt;;
+
+    for i in 0..par.timesteps {
+        for j in 0..par.res {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        fft(&amp;mut opr.wfc, false);
+
+        for j in 0..par.res {
+            opr.wfc[j] *= opr.ke[j];
+        }
+
+        fft(&amp;mut opr.wfc, true);
+
+        for j in 0..par.res {
+            opr.wfc[j] *= opr.pe[j];
+        }
+
+        density = opr.wfc.iter().map(|x| x.norm().powi(2)).collect();
+
+        if par.im_time {
+            let sum = density.iter().sum::&lt;f64&gt;() * par.dx;
+
+            for j in 0..par.res {
+                opr.wfc[j] /= sum.sqrt();
+            }
+        }
+
+        // Writing data into a file in the format of:
+        // index, density, real potential.
+        let path_name = format!(&quot;output{}.dat&quot;, i);
+        let path = Path::new(&amp;path_name);
+        let display = path.display();
+
+        let mut file = match File::create(&amp;path) {
+            Err(why) =&gt; panic!(&quot;Couldn't create {}: {}&quot;, display, why),
+            Ok(good) =&gt; good,
+        };
+
+        for j in 0..par.res {
+            if let Err(why) = writeln!(file, &quot;{}\t{}\t{}&quot;, j, density[j], opr.v[j].re) {
+                panic!(&quot;Couldn't write to {}: {}&quot;, display, why)
+            }
+            if let Err(why) = file.flush() {
+                panic!(&quot;Couldn't flush {}: {}&quot;, display, why)
+            }
+        }
+    }
+}
+
+fn calculate_energy(par: &amp;Parameters, opr: &amp;Operators) -&gt; f64 {
+    let wfc_r = opr.wfc.clone();
+    let mut wfc_k = opr.wfc.clone();
+    let mut wfc_c = vec![Complex::new(0.0_f64, 0.0_f64); par.res];
+
+    fft(&amp;mut wfc_k, false);
+
+    for i in 0..par.res {
+        wfc_c[i] = wfc_r[i].conj();
+    }
+
+    let mut energy_k = vec![Complex::new(0.0_f64, 0.0_f64); par.res];
+    let mut energy_r = vec![Complex::new(0.0_f64, 0.0_f64); par.res];
+
+    for i in 0..par.res {
+        energy_k[i] = wfc_k[i] * Complex::new(par.k[i], 0.0_f64).powi(2);
+    }
+
+    fft(&amp;mut energy_k, true);
+
+    for i in 0..par.res {
+        energy_k[i] *= wfc_c[i].scale(0.5_f64);
+        energy_r[i] = wfc_c[i] * opr.v[i] * wfc_r[i];
+    }
+
+    let energy_final = energy_k
+        .into_iter()
+        .zip(energy_r.into_iter())
+        .fold(0.0_f64, |acc, x| acc + (x.0 + x.1).re);
+
+    energy_final * par.dx
+}
+
+fn main() {
+    let par = Parameters::new(5.0, 256, 0.05, 100, true);
+    let mut opr = Operators::new(&amp;par, 0.0, -1.0);
+
+    split_op(&amp;par, &amp;mut opr);
+
+    println!(&quot;The energy is {}&quot;, calculate_energy(&amp;par, &amp;opr));
+}
+</code></pre></pre>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<ul>
+<li>The image &quot;<a href="res/split_op_method.svg">split_op_method</a>&quot; was created by <a href="https://github.com/julianschacher">Julian Schacher</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The animation &quot;<a href="res/real_time.gif">realsplitop</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The animation &quot;<a href="res/imaginary_time.gif">imaginarysplitop</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../quantum_systems/quantum_systems.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../data_compression/data_compression.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../quantum_systems/quantum_systems.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../data_compression/data_compression.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

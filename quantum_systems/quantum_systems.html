@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Quantum Systems - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html" class="active"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="quantum-systems"><a class="header" href="#quantum-systems">Quantum Systems</a></h1>
+<p>As I am sure you have heard, the quantum world is weird.
+As you deal with progressively smaller and smaller systems, at some point, it becomes less accurate to describe objects as particles.
+Instead, it is better to describe objects as probability densities.
+These densities are easiest to understand in terms of <em>wavefunctions</em>, which are complex functions characterizing a quantum system's behavior.</p>
+<p>Again, this is pretty common knowledge; however, there is a distinct lack of readable literature on how to simulate quantum systems, even though there are numerous methods for exactly that!
+This section will deal with the computation of quantum states with classical machines.
+Now, I know what you are thinking, &quot;Wait. Why are we simulating quantum systems on classical computers? Why not simulate it with some sort of experiment or with quantum computers?&quot;
+Well, here's where the notation gets really sticky.</p>
+<p>There is a clear difference between quantum computers and quantum simulators.
+A <em>quantum computer</em> is the quantum analog to a classical computer, replacing bits with qubits by using quantum information theory.
+Quantum computers are usually thought of as a way to use quantum mechanics to eventually solve real-world problems with new quantum algorithms.
+Both Grover's and Shor's algorithms are good examples of cases where quantum computation could greatly change the landscape of modern computation as we know it!</p>
+<p><em>Quantum simulators</em> on the other hand are quantum systems used to better understand quantum mechanics.
+These will often come in the form of experimental quantum systems that express quantum behavior and allow us to better understand other areas of quantum systems.
+In other words, quantum simulators are general techniques to study quantum systems on quantum hardware; however, quantum computers are quantum hardware used for the explicit purpose of quantum computation with qubits.
+Because supercomputers are not great at performing quantum computations, certain quantum simulators exist as a building block for quantum computation.
+A <em>universal quantum simulator</em> is often called a quantum computer for this reason.</p>
+<p>The truth is that quantum simulators are hard to make in laboratories, so simulating quantum systems on classical hardware is as good as we can do in most cases.
+This section is devoted to all the different methods currently used to solve complex quantum systems, so let's start with the Schrödinger Equation, which has many different formulations.
+Here is the easiest one to explain:</p>
+<p>\[ i \hbar \frac{\partial \Psi(\mathbf{r},t)}{\partial t} = \left[-\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r},t) \right] \Psi(\mathbf{r},t) \]</p>
+<p>Where \( \Psi(\mathbf{r},t) \) is a quantum wavefunction, \( V(\mathbf{r},t) \) is a <em>trapping potential</em>, \( \nabla^2 \) is a <em>Laplacian</em>, \( \mathbf{r} \) is some sort of spatial component, and \( t \) is time.
+There is a lot to take in here; however, it's ultimately just some time derivative on the left-hand side and a spatial derivative (with some extra steps) on the right-hand side.
+In this way, it isn't too different from the diffusion (heat) equation:</p>
+<p>\[ \frac{\partial\phi(\mathbf{r},t)}{\partial t} = D \nabla^2 \phi(\mathbf{r},t) \]</p>
+<p>where \( D \) is some positive definite matrix and \( \phi(\mathbf{r},t) \) is the density (or temperature) of the system.
+In fact, this is why one of the most common types of quantum simulation is sometimes called  <em>diffusion Monte Carlo</em>.
+There really isn't that much of a difference between the two systems in terms of how they are simulated on classical hardware... but we are getting ahead of ourselves.
+For now, let's talk about how quantum mechanics differs from classical mechanics and how we can use this to our advantage.</p>
+<h2 id="probability-density"><a class="header" href="#probability-density">Probability Density</a></h2>
+<p>Quantum mechanics works fundamentally differently than classical mechanics in physics.
+The wavefunction can be thought of as a set of all possible states for an object to be in, where there is some probability for the particle to be found in each state.
+This means that it is not possible to say that a particle is at a particular location, and instead we often say that it could be at any location with probability, as shown in the <em>probability density</em>:</p>
+<p>\[ P(\mathbf{r}, t) = |\Psi(\mathbf{r},t)|^2 = \Psi(\mathbf{r},t)^{*}\Psi(\mathbf{r},t) \]</p>
+<p>Here, there are 2 things to note:</p>
+<ol>
+<li>The absolute value squared of a complex parameter \( \Psi(\mathbf{r},t) \) is a dot product (inner product) between a complex function and it's Hermitian conjugate. This means the value will always be real, while the wavefunction, itself, might not be.</li>
+<li>As you have probably heard, once a wavefunction is observed it collapses onto a single state. This can be simply interpreted as absolute knowledge of the particle's location. A probability density doesn't make sense if we know where the particle is!</li>
+</ol>
+<p>Now, to be clear: the probabilities must all sum to 1, or (more formally):</p>
+<p>\[ \int_{-\infty}^{+\infty}|\Psi(\mathbf{r},t)|^2 d\mathbf{r} = 1 \]</p>
+<p>This simply means that the probability of finding our quantum particle <em>somewhere in real space</em> is 1.
+In other words, our particle must exist somewhere in the known universe.</p>
+<p>As another note: Just like position space can be parameterized by a position vector \( \textbf{x} \), wavefunctions can also be parameterized by a <em>wave</em> vector \( \textbf{k} \) in frequency space.
+Any wavevector \( \textbf{k} \) has the same units as reciprocal space and is thus analogous to angular frequency \( \omega \).
+Often times, the wavevector space is called <em>momentum</em> space, which makes sense when considering the de Broglie formula:</p>
+<p>\[ p = \frac{h}{\lambda} = \frac{2 \pi h}{2 \pi \lambda} = \hbar k \]</p>
+<p>where \( h \) is Planck's constant and \( \lambda \) is the wavelength.
+This means that we can ultimately move between position and momentum space by using <a href="../../algorithms/cooley_tukey/cooley_tukey.html">Fourier Transforms</a>, which is incredibly useful in a number of cases!</p>
+<p>Even though the relation between position and momentum space is an essential cornerstone of understanding modern quantum mechanics, it is difficult to understand at a fundamental level.
+Position space and momentum space are related by a Fourier transform; however, the rather hand-wavey argument above might not have been convincing enough and it does not offer any intuitive description of <em>why</em> the Fourier transform comes into this discussion at all.
+The easiest way to understand this might be to look at the <em>Heisenberg uncertainty principle</em>, which is a fundamental relation between position and momentum space.</p>
+<h2 id="heisenberg-uncertainty-principle"><a class="header" href="#heisenberg-uncertainty-principle">Heisenberg Uncertainty Principle</a></h2>
+<p>Simply put, the Heisenberg uncertainty principle states that we cannot definitely know both the position and momentum of a quantum particle.
+In particular, it says:</p>
+<p>\[ \sigma_x \sigma_p \geq \frac{\hbar}{2} \]</p>
+<p>where \( \hbar \) is Planck's constant and \( \sigma_q = \sqrt{\frac{1}{N}\sum_{i=1}^{N}(q_i-\mu)^2} \).
+In this case, \( \sigma \) is the standard deviation, \( \mu \) is the statistical mean of your distribution, \( N \) is the number of points sampled, \( q_i \) is the value for each point \( i \), and \( q \) stands for \( r \) or \( p \).
+Ultimately, this means that if we have a higher precision in position space, we will have a lower precision in momentum space.
+The converse is also true: a higher precision in momentum space will lead to a lower precision in position space.</p>
+<p>This makes the most sense if we imagine having a Gaussian-like probability density (\( |\Psi(x)|^2 \)) in position space, which will provide a Gaussian-like density when in momentum space.
+Here, we see that if we have a broader distribution in one space, we must have a thinner distribution in the opposite space, as shown here:</p>
+<p>
+    <img  class="center" src="res/gaussian.gif" style="width:70%" />
+</p>
+<p>Because the density can be interpreted as &quot;the probability of finding a quantum particle at any provided location in position (\( x_i \)) or momentum (\( k_i \)) space, the interpretation is clear: the more we understand about a particle's position, the less we understand about it's momentum.
+This is a powerful statement and should be given some thought.</p>
+<p>To me, the most interesting part of this description is not the physical interpretation, but the fact that this act of transforming between larger and smaller Gaussians is precisely what Fourier transforms do!
+This further strengthens our argument from before.
+Position and momentum space are related by the Fourier transform!</p>
+<p>This is the heart of several algorithms for simulating quantum systems, including the <a href="../../algorithms/split-operator_method/split-operator_method">Split-operator method</a>.</p>
+<p>At least for me, I found this description to be intuitive, but not complete.
+There is still something missing from the picture that should be described in more depth, and to do that, we need to dive deeper into the heart of quantum mechanics and into <em>Hamiltonians</em>.</p>
+<h2 id="hamiltonian"><a class="header" href="#hamiltonian">Hamiltonian</a></h2>
+<p>Here is the Schrödinger equation again:</p>
+<p>\[ i \hbar \frac{\partial \Psi(\mathbf{r},t)}{\partial t} = \left[-\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r},t) \right] \Psi(\mathbf{r},t) \]</p>
+<p>We described it in the initial section of this chapter.
+For the most part, when we are trying to solve this equation the left-hand side does not change.
+It's always \( i \hbar \frac{\partial \Psi(\mathbf{r},t)}{\partial t} \).
+On the other hand, the right-hand side can change a lot depending on the situation.
+That is to say that we can easily simplify the Schrödinger equation by using a mathematical formalism known as the <em>Hamiltonian</em>.</p>
+<p>To be clear, Hamiltonian mechanics is not a quantum-specific idea.
+It's everywhere in statistical physics and is often taught in classical physics courses as an analogue to another notational form known as Lagrangian mechanics.
+For simplicity, we will restrict our discussion here to interpreting Hamiltonians physically.
+We can basically say that the Hamiltonian is a measure of the energy of our quantum system.
+More specifically, we can say that the Hamiltonian is a set of energy <em>operators</em> that act on our wavefunction.</p>
+<p>In the case of a 1D particle in a harmonic trap, we might use the following definitions:</p>
+<p>\[
+\begin{align}
+\hat H &amp;= \hat T + \hat V \\
+\hat T &amp;= \frac{p^2}{2m} \\
+\hat V &amp;= \frac{1}{2}\omega x^2
+\end{align}
+\]</p>
+<p>where \( p = -i\hbar \nabla \) is the <em>momentum operator</em> and \( \omega \) is the <em>trapping frequency</em> indicating how confined our quantum system will be.
+In this case, \( \hat T \) is an operator that works on our wavefunction in momentum space, while \( \hat V \) acts in position space.
+Both of these are operators.
+That is to say that they <em>operate</em> on our quantum system by transforming it in some way.
+Ultimately, this means that the operators are not meant to be interpreted on their own without acting on some other object, in this case, the wavefunction \( \Psi(x) \).</p>
+<p>In the end, we can update our Schrödinger equation to be</p>
+<p>\[ i \hbar \frac{\partial \Psi(\mathbf{r},t)}{\partial t} = \hat H \Psi(\mathbf{r},t) \]</p>
+<p>Which is a lot cleaner and more general.
+Now, the Schrödinger equation can solve any quantum system so long as it can be written in terms of Hamiltonian mechanics!</p>
+<p>When looking at the operators, it is clear that the \( \hat V \) operator is in position space.
+We can clearly see that it operates as a function of \( x \).
+That said, it is not immediately obvious why the \( \hat T \) is in momentum space.
+This is not an easy question to answer, but it is definitely important and will be covered in more depth when we discuss spectral methods.</p>
+<p>For now, we will blanketly say</p>
+<p>\[ \frac{\partial f}{\partial x} = \mathcal{F}^{-1}\left( 2\pi i k \mathcal{F}\left( f \right)\right) \]</p>
+<p>In other words, we can derive a function by performing a Fourier transform on the function, multiplying by some momentum-space grid, and then inverse-transforming it back.
+Because this operation inherently involves a transform into momentum space before transformation, it is a momentum-space operator.</p>
+<p>This is the most intuitive reasoning I can find; however, I am sure there are more intuitive explanations of why the derivatives are always momentum-space operations.
+This section will be updated further when we discuss spectral methods, but if you have better descriptions, please let me know!</p>
+<h2 id="bra-ket-notation"><a class="header" href="#bra-ket-notation">Bra Ket Notation</a></h2>
+<p>Unfortunately, the interpretation of quantum simulation is rather tricky and is sometimes easier to understand with slightly different notation.
+This notation is called <em>braket</em> notation, where a <em>ket</em> looks like this:</p>
+<p>\[ \lvert A \rangle \]</p>
+<p>and basically describes \( A \) as a column vector.
+The <em>bra</em> represents the Hermitian conjugate of the ket and looks like this:</p>
+<p>\[ \langle B \rvert \]</p>
+<p>The ket is often represented as a row vector for \( B \).
+Because of this, \(  \langle B \rvert A \rangle  \) represents the inner product of the two vectors and \(  \lvert A \rangle \langle B \rvert  \) represents the outer product.
+Now, to this point, the braket notation does not have any particularly quantum-like features; however, it becomes useful when describing actual quantum phenomenon.
+For example, if we want to indicate the probability of a wavefunction \( \psi \) collapsing onto state \( \phi \), we might write: \( \langle \phi \rvert \psi \rangle \), which is precisely the same as the probability density defined above.</p>
+<p>Now that we have a basic understanding of the notation, we should go through several other important quantum mechanical ideas and properties.</p>
+<h2 id="eigenstates"><a class="header" href="#eigenstates">Eigenstates</a></h2>
+<p>As mentioned, the wavefunction \( \Psi(x) \) is complex and has both real and imaginary parts; however, there are certain states that are exclusively real.
+These states are <em>eigenstates</em> of the system, and are often described as the constituent states that make up all other possible wavefunctions.
+In other words,</p>
+<p>\[ \lvert \Psi(x)\rangle = \sum_i c_i \lvert \Psi_i \rangle \]</p>
+<p>Where \( c_i \) is some constant describing <em>how much</em> of a given eigenstate \( i \) is in the full wavefunction.
+As you might expect, all of the \( c_i \)'s should sum to 1.</p>
+<h2 id="energy-calculations"><a class="header" href="#energy-calculations">Energy Calculations</a></h2>
+<p>When it comes to quantum systems, there is no quantity more important than energy.
+Basically, every eigenstate of the system has a different energy associated with it, and you can find this energy with a simple calculation:</p>
+<p>\[ E = \langle \Psi \lvert \hat H \lvert \Psi \rangle \]</p>
+<p>Which can be done rather trivially in code by finding the conjugate of the wavefunction and multiplying it with another wavefunction after operation in position and momentum space.
+This ultimately looks like this:</p>
+<pre><code class="language-julia">
+</code></pre>
+<pre><code class="language-haskell">
+</code></pre>
+<pre><code class="language-c">
+</code></pre>
+<pre><code class="language-cpp">
+</code></pre>
+<pre><code class="language-python">
+</code></pre>
+<p>This calculation will be used in many different simulations of quantum systems to check our results.
+In the end, many quantum simulations are focused on the <em>ground</em> state, which is the lowest energy state (\( \Psi_0 \)); however, sometimes higher energy states are desired.</p>
+<h2 id="the-future"><a class="header" href="#the-future">The Future</a></h2>
+<p>As we proceed to add new algorithms to simulate quantum systems, I will add more and more notation to this section; however, there are already huge textbooks out there related to understanding and studying quantum systems.
+We don't want to re-invent the wheel here.
+Instead, we want to focus on an area that is often not considered with too much detail: algorithms and methods researchers use to ascertain new knowledge about quantum mechanics, like the split-operator method, DMRG, quantum Monte Carlo, exact diagonalization, and many more.</p>
+<p>Quantum mechanics is one of those areas of physics that really does push the boundary of human knowledge in a number of different areas and computing is one of those areas.
+In fact, <a href="../quantum_information/quantum_information.html">quantum information theory</a> is currently set to be the next innovation to radically change the landscape of modern computation as we know it!
+Of course, because of the large-scale effects that this will likely have on the industry, it deserved it's own section.</p>
+<p>As always, if there is something that you feel is missing from this section, please feel free to contact me or create an issue on GitHub and we'll get to it as soon as we can!</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<ul>
+<li>The animation &quot;<a href="res/gaussian.gif">FTgaussian</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../verlet_integration/verlet_integration.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../split-operator_method/split-operator_method.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../verlet_integration/verlet_integration.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../split-operator_method/split-operator_method.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

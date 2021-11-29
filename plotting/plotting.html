@@ -1,0 +1,573 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Plotting - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html" class="active"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="plotting"><a class="header" href="#plotting">Plotting</a></h1>
+<p>Plotting is an essential tool for visualizing and understanding important details of several algorithms and methods and is necessary for studies in various areas of computational science.
+For many languages, such as python, julia, and matlab, it is relatively straightforward to create simple plots for various types of data; however, for several other languages, like fortran, C/C++, and java, plotting can be a chore.
+Because the Algorithm Archive strives to be language agnostic, we do not want to favor any particular set of languages and have decided instead to output all data that needs plotting into a file format that can easily be read in by various plotting scripts separate from the algorithm implementations.</p>
+<p>If you are implementing any algorithm in a language found on this page, you should be able to modify your existing code to allow for on-the-fly plotting.
+Otherwise, please use the language of your choice to write the initial implementation and output the data to a file before using one of the scripts available here for plotting.</p>
+<p>This chapter aims to explain how to plot several different types of data and will be updated as more algorithms require more complex plotting schemes.
+Though many complex file formats exist, we will be mainly storing data for plotting in simple ASCII text.
+If you wish to use these plotting scripts for other file formats or projects unrelated to the Algorithm Archive, some modification will be necessary.
+In addition, each plotting language used in this chapter will likely have many features we are not currently using, so there may be methods to create stunning visualizations that we are ignoring here.</p>
+<h2 id="plotting-a-series-of-functions"><a class="header" href="#plotting-a-series-of-functions">Plotting a series of functions</a></h2>
+<p>To begin, let's write a simple script that allows for plotting a sine wave</p>
+<pre><code class="language-gnuplot">plot sin(x) with lines
+</code></pre>
+<p>Where <code>x</code> is a range from negative to positive 10.
+To plot from the terminal, you can either:</p>
+<ul>
+<li>enter the gnuplot REPL (Read, Evaluate, Print, Loop -- the gnuplot shell) by using the <code>gnuplot</code> command and type the above command manually.</li>
+<li>write the command in an external script (let's call it <code>script.gp</code>) and run it with <code>gnuplot script.gp -</code>. The <code>-</code> will keep the terminal open in the background so the image stays up. If your plotting script outputs a <code>.png</code> file, the <code>-</code> is unnecessary.</li>
+</ul>
+<p>This command will create a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sine.png" style="width:70%" />
+</p>
+<p>For most gnuplot scripts, this command is written in short-hand.
+The phrase <code>with lines</code> is abbreviated to simply <code>w l</code> and <code>plot</code> is sometimes written as simply <code>p</code>, so the following command would also work:</p>
+<pre><code>p sin(x) w l
+</code></pre>
+<p>From here, it is rather straightforward to add more plots.
+For example, let's add in a cosine function.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}
+In this case, we need to add the following line to our script:
+<a href="code/gnuplot/sine.gp">import:2, lang:&quot;gnuplot&quot;</a></p>
+<p>Which will create an image that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos.png" style="width:70%" />
+</p>
+<p>If you would prefer to plot everything on a single line (which will become more relevant when plotting directly to an image file), then you can use the following command:</p>
+<pre><code>p sin(x) w l, cos(x) w l
+</code></pre>
+<p>In some sense, this chapter is meant as a guide so users can better understand plotting in their language of choice.
+As such, it is important to first understand how to perform a few basic tasks:</p>
+<ol>
+<li>Changing auxiliary features of the plot such as: title, axis, labels, x/ytic values, and plot dimensions</li>
+<li>Plotting multiple functions at the same time</li>
+<li>Outputting the plot to file</li>
+</ol>
+<p>At the end of this chapter, we will discuss the scatter plot; however, additional plotting techniques may be covered in the near future for specific algorithms and methods.</p>
+<h3 id="changing-auxiliary-features"><a class="header" href="#changing-auxiliary-features">Changing auxiliary features</a></h3>
+<p>Beauty is in the eye of the beholder, but it is rare for people to call plots &quot;beautiful.&quot;
+That said, there are plenty of things you can do to more clearly represent your data, and if your data is beautiful, so be it!
+In this section, we'll show you some small-scale modifications you can make to the plot we have already generated to make it little cleaner, but there are plenty of other ways to spruce up your plot that we are not covering here.
+Be sure to look at the documentation {{ &quot;gnuplot&quot; | cite }}  for plotting in your language of choice if you want to do anything more complicated.</p>
+<h4 id="x-and-y-range"><a class="header" href="#x-and-y-range">x and y range</a></h4>
+<p>All data that can be plotted has a scope at which the important features are more clear.
+It is sometimes important to zoom in or zoom out to highlight particular facets of the data available.
+This can be simply done by modifying the \( x \) and \( y \) ranges in your plotter of choice, like so:</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<pre><code>set xrange [0:10]
+set yrange [0:1]
+plot sin(x) w l, cos(x) w l
+</code></pre>
+<p>Here, the keywords <code>xrange</code> and <code>yrange</code> are known by gnuplot and take a range from <code>[n:m]</code>, where <code>n</code> and <code>m</code> are real units in the plot, itself.
+For this script, we generate a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_range.png" style="width:70%" />
+</p>
+<h4 id="x-and-y-tics"><a class="header" href="#x-and-y-tics">x and y tics</a></h4>
+<p>In addition to changing the plot scales, it is also important to notify your audience of what these scales actually mean.
+To help guide the reader's eye and better understand what the plot represents, plotters provide <em>tics</em> (little notches) on the \( x \) and \( y \) axes.
+As such, it is important to update the \( x \) and \( y \) tics with appropriate scales and labels.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>Firstly, to remove x and y tics, use</p>
+<pre><code>unset xtics
+unset ytics
+</code></pre>
+<p>This will create a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_notics.png" style="width:70%" />
+</p>
+<p>If you want to set particular x or y tic values, use</p>
+<pre><code>set xtics 0, 5, 10
+set ytics (&quot;bottom&quot; 0 , &quot;top&quot; 1)
+</code></pre>
+<p>which creates a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_customtics.png" style="width:70%" />
+</p>
+<p>Here, we are selecting 3 values to use for the x-axis and using words or phrases for the &quot;bottom&quot; and &quot;top&quot; of the y-axis.
+To be clear: we are not condoning the behavior of having mismatched x and y tic values by using words or phrases along the y axis and numbers along the x axis.
+This is simply meant as a showcase for using gnuplot in this way.</p>
+<p>As a note: there is a lot of information here we missed, specifically format specifiers, which allow users to modify the format of the numbers in their plots (to be in floating point, scientific notation, or something else).
+This can be found in <a href="http://gnuplot.sourceforge.net/docs_4.2/node184.html">the documentation</a>, along with anything else that is missed here.</p>
+<h4 id="logscale"><a class="header" href="#logscale">logscale</a></h4>
+<p>In addition to changing the values of the x and y tics, we can also change the axes to plot in log-scale by using the following command:</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<pre><code>set logscale x
+set logscale y
+</code></pre>
+<p>As a simple example, let's take the <code>exp(x)</code> function.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>In gnuplot, we can plot this by using <code>p exp(x) w l</code>, which will create the following:</p>
+<p>
+    <img  class="center" src="res/gnuplot/exp.png" style="width:70%" />
+</p>
+<p>Now let's plot the same function with log-scale along the \( y \) axis:</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>
+    <img  class="center" src="res/gnuplot/explog.png" style="width:70%" />
+</p>
+<p>Here, we see what we expect: <code>exp(x)</code> is a straight line when the \( y \) axis is in log-scale.
+When we use log-scale on the sine and cosine waves from before, we get the following:</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_log.png" style="width:70%" />
+</p>
+<p>This is an awful plot, so it is only fitting that we use it as out example for the a few more plots in this chapter.</p>
+<h4 id="labels-titles-and-legends"><a class="header" href="#labels-titles-and-legends">labels, titles, and legends</a></h4>
+<p>Many researchers are very particular about labels.
+Labels need to be in the right spot, say the right stuff, and be interpreted in the right way.
+As such, most plotters have a lot of options for labels, including LaTeX-like formatting for academic journals and such.</p>
+<p>There are also multiple labels associated with each plot.
+Every line has a label, often held in a box called a <em>legend</em>, and the plot, itself, has a title.</p>
+<h5 id="labels"><a class="header" href="#labels">labels</a></h5>
+<p>First, let's change the labels associated with each data set or function.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<pre><code>p sin(x) w l title &quot;sine wave&quot;, cos(x) w l title &quot;cos(x)&quot;
+</code></pre>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_label.png" style="width:70%" />
+</p>
+<p>Here, we show that we can modify the data labels to be whatever we want.
+Note that for LaTeX-like math in the label, we might need to change the output to TeX, which will be shown later.</p>
+<p>For now, let's move on to discuss what we can to with all of the labels in the legend</p>
+<h4 id="legend"><a class="header" href="#legend">legend</a></h4>
+<p>First things first, you should probably use a legend, unless you are a legend yourself and don't need one... In which case you can use the following:</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<pre><code>set nokey
+</code></pre>
+<p>which will produce a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_nokey.png" style="width:70%" />
+</p>
+<p>Admittedly, you are probably not important enough to remove the legend and doing so will prevent readers from understanding the data you are plotting, so this should be used sparingly.
+Instead, you should probably try to move the legend out of the way of the data, which can be done in a number of ways.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>In gnuplot, it is possible to specify where we place the legend by using certain keywords, like <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, and <code>center</code>, like so:</p>
+<pre><code>set key top left
+</code></pre>
+<p>which will produce a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_movekey.png" style="width:70%" />
+</p>
+<p>In addition, we can specify exact coordinates in the plot to place the legend.
+For example, if we wanted the legend to be at the position (1,0.5), then we would use the following command:</p>
+<pre><code>set key at 1, 0.5
+</code></pre>
+<p>which will produce a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_movekey2.png" style="width:70%" />
+</p>
+<p>This is certainly an awful place to put a legend for this plot, but this command could be useful for other plots.</p>
+<h5 id="titles"><a class="header" href="#titles">titles</a></h5>
+<p>Obviously, in addition to labels, we can also provide a title for the entire plot, like so:</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<pre><code>set title &quot;Gnuplot Test&quot;
+</code></pre>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_title.png" style="width:70%" />
+</p>
+<h4 id="square-output"><a class="header" href="#square-output">square output</a></h4>
+<p>Many times, plotting data in a 6:9 (or worse, 16:9) aspect ratio can feel like a misrepresentation of the data.
+For whatever reason, I was told time and time again as a fledgling researcher that there is no need for widescreen plots and that I should set the output to square whenever possible.</p>
+<p>That can be done by using</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<pre><code>set size square
+</code></pre>
+<p>which will output the following plot:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_square.png" style="width:70%" />
+</p>
+<h4 id="line-and-point-types"><a class="header" href="#line-and-point-types">line and point types</a></h4>
+<p>Finally, it's important to show your individuality by choosing your own point and line types.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}
+To find all the point or line types available in gnuplot, simply open the REPL and run the <code>test</code> command, which outputs something that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/test.png" style="width:70%" />
+</p>
+<p>As a note, changing the line color is not mentioned in the test image above, this can be done with the <code>linecolor</code> command, which takes an argument in a color space like <code>rgb</code>.</p>
+<p>If we would like to use a dashed black line for the sine function and purple crosses for cosine, we would use something like this:</p>
+<pre><code>p sin(x) with lines dashtype 2 linecolor rgb &quot;black&quot; title &quot;sin(x)&quot;
+rep cos(x) w p pt 17 lc rgb &quot;purple&quot; t &quot;cos(x)&quot;
+</code></pre>
+<p>This will create a plot that looks like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/sincos_lt.png" style="width:70%" />
+</p>
+<p>With this script, we are using a bunch of aliases, which can be found in the following section.
+For now, it is clear that you can make your plot look however you like without too much trouble.
+There are also a bunch of cool features that you can learn by looking up examples on the <a href="http://gnuplot.sourceforge.net/">gnuplot site</a>.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<h4 id="gnuplot-aliases"><a class="header" href="#gnuplot-aliases">gnuplot aliases</a></h4>
+<p>As we have seen in this chapter, it is common to use several aliases with gnuplot, and I have tried to introduce these slowly in the above text.
+Here are all the aliases stated explicitly:</p>
+<table><thead><tr><th align="center">command</th><th align="center">alias</th></tr></thead><tbody>
+<tr><td align="center"><code>plot</code></td><td align="center"><code>p</code></td></tr>
+<tr><td align="center"><code>replot</code></td><td align="center"><code>rep</code></td></tr>
+<tr><td align="center"><code>with lines</code></td><td align="center"><code>w l</code></td></tr>
+<tr><td align="center"><code>with points</code></td><td align="center"><code>w p</code></td></tr>
+<tr><td align="center"><code>linecolor</code></td><td align="center"><code>lc</code></td></tr>
+<tr><td align="center"><code>pointtype</code></td><td align="center"><code>pt</code></td></tr>
+<tr><td align="center"><code>title</code></td><td align="center"><code>t</code></td></tr>
+</tbody></table>
+<p>We will add more aliases to this table as they are used in the Algorithm Archive.</p>
+<h3 id="outputting-the-plot-to-file"><a class="header" href="#outputting-the-plot-to-file">Outputting the plot to file</a></h3>
+<p>At this point, all the scripts have shown so far will output an image directly to your computer screen; however, it is important to note that you can use any of the above methods when outputting to a file as well.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>For the most part, if you want to output any of the above scripts to a file, you simply need to run the following commands:</p>
+<pre><code>set terminal pngcairo
+set output &quot;check.png&quot;
+</code></pre>
+<p>In this case, we are changing the REPL type to work with png images with the Cairo back-end, which is a vector drawing library in C.
+We are also setting the output to &quot;check.png&quot;.</p>
+<p>If we would like to set the resolution of the output image, we could do the following:</p>
+<pre><code>set terminal pngcairo size 640, 480
+</code></pre>
+<p>As an example, here is the script for the image we generated above:</p>
+<p><a href="code/gnuplot/sine_to_file.gp">import, lang:&quot;gnuplot&quot;</a></p>
+<p>As mentioned above, for a lot of scientific papers and articles, it is worth outputting images into a format that is used commonly for typesetting, such as LaTeX.
+There are multiple ways to create TeX output with gnuplot by using different REPL modes like <code>epslatex</code>.</p>
+<p>The easiest method to generate a pdf output with gnuplot that uses LaTeX would be to create a <code>standalone</code> TeX file, like so</p>
+<pre><code>set terminal epslatex standalone size 10cm, 10cm
+set output &quot;check.tex&quot;
+</code></pre>
+<p>This can be quickly turned into a pdf with the <code>pdflatex check.tex</code> command.</p>
+<p>For example, if we run the following script:</p>
+<p><a href="code/gnuplot/example_tex.gp">import, lang:&quot;gnuplot&quot;</a></p>
+<p>and then run</p>
+<pre><code>gnuplot file.gp
+pdflatex out.tex
+</code></pre>
+<p>We will have a standalone pdf that uses LaTeX features in the file <code>out.pdf</code>.
+This file should look like this:</p>
+<p>
+    <img  class="center" src="res/gnuplot/exponential_tex.png" style="width:70%" />
+</p>
+<p>Note that in this process, we create auxiliary files like <code>*.eps</code> and <code>*.aux</code>, which are expected with LaTeX.</p>
+<p>If you would like to directly read the output <code>.tex</code> file from gnuplot into another LaTeX document, you can use the same command as above without the <code>standalone</code> option, like so:</p>
+<pre><code>set terminal epslatex size 10cm, 10cm
+set output &quot;check.tex&quot;
+</code></pre>
+<p>This will output another &quot;check.tex&quot; file that can be used by other LaTeX documents, and here is an example tex file to do that:</p>
+<p><a href="code/gnuplot/latex_import.tex">import, lang:&quot;gnuplot&quot;</a></p>
+<p>As a note, the units for the <code>epslatex</code> terminal are real units in terms of cm, inches, or whatever other measurement LaTeX takes.
+As such, you will probably want to make sure the size of the output image from gnuplot actually fits in the document you want to create.</p>
+<h2 id="plotting-data-from-a-file"><a class="header" href="#plotting-data-from-a-file">Plotting data from a file</a></h2>
+<p>Each algorithm in the Algorithm Archive that requires plotting will also output a data file to use for this purpose.
+Even though there are plenty of complex data formats to write to and read from, for the purposes of this text, we will focus on simple ASCII data.
+This is not preferred for any data-intensive task and there are a large number of different storage formats and file types available to choose from for your specific purposes; however, the Algorithm Archive intends to provide the simplest explanation of algorithms and methods and we do not want to over-complicate the process with file input and output.</p>
+<p>If multiple data sets are required to be plotted, they will also be provided a new file, usually with a zero-padded name such as <code>file_0000.dat</code>, <code>file_0001.dat</code>, <code>file_0002.dat</code>, and so on.
+We will assume that your plotter of choice has limited  three dimensional capabilities and will instead focus on the data format for one and two-dimensional data here</p>
+<h3 id="one-dimensional-output"><a class="header" href="#one-dimensional-output">One-dimensional output</a></h3>
+<p>In the case of one-dimensional output, the data file will have all numbers separated by a newline, such as in this case:</p>
+<p><a href="data/1d_sample_low_res.dat">import</a></p>
+<p>For the purposes of the Algorithm Archive, we will call these data files <code>.dat</code> files; however, the file extension does not matter and you can just as well name the files <code>.tsv</code> or <code>.csv</code> depending on your tastes.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>Gnuplot can read in this file in the same way it can plot functions above.
+So we can use the following command:</p>
+<pre><code>plot &quot;sample_data.dat&quot; with lines
+</code></pre>
+<p>Which will provide the following output:</p>
+<p>
+    <img  class="center" src="res/gnuplot/1d_sample.png" style="width:70%" />
+</p>
+<h3 id="two-dimensional-image-output"><a class="header" href="#two-dimensional-image-output">Two-dimensional image output</a></h3>
+<p>In the case of two-dimensional image output, the data file be similar, but this time, each number will be separated by a tab for different column entries and a newline for rows, as shown here:</p>
+<p><a href="data/2d_sample_low_res.dat">import</a></p>
+<p>It is expected that the number of columns does not vary in each row and that we are working with an \( n \times m \) matrix which can be simply plotted as a series of pixels that scale in color according to some defined colorbar.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>To create 2 dimensional plots in Gnuplot, we need to set the view to 2 dimensional and then do a 3 dimensional plot with the <code>splot</code> function that we set to a matrix image, like so:</p>
+<pre><code>set view map
+splot &quot;sample_data.dat&quot; matrix with image
+</code></pre>
+<p>
+    <img  class="center" src="res/gnuplot/2d_sample.png" style="width:70%" />
+</p>
+<h4 id="changing-the-colorbar"><a class="header" href="#changing-the-colorbar">changing the colorbar</a></h4>
+<p>For plotting images from data files, we will often need to specify how we color the image by setting a custom color bar</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>In Gnuplot, there are not many predefined themes, but it is fairly easy to set your own theme for coloring a 2 dimensional image.
+This is done by setting a <code>palette</code> and there are <a href="https://github.com/Gnuplotting/gnuplot-palettes">repositories online</a> that have a number of palettes to choose from.
+Simply put, a palette is a number line where you can set a color to be associated with whatever value you like, like in this example:</p>
+<pre><code>set view map
+set palette defined (0 0 0 1, 1 'red', 2 '#00FF00')
+splot &quot;2d_sample_low_res.dat&quot; matrix with image
+</code></pre>
+<p>The integer value corresponds to the location of the color on the color bar and the color can be set as either a recognized word (<code>blue</code>, <code>red</code>, <code>green</code>, etc.), HTML notation (<code>'#FF0000'</code>, <code>'#00FF00'</code>, <code>'#0000FF'</code>, etc.), or RGB colors (<code>1 0 0</code>, <code>0 1 0</code>, <code>0 0 1</code>, etc.).
+This example will output the following plot:</p>
+<p>
+    <img  class="center" src="res/gnuplot/2d_sample_cb.png" style="width:70%" />
+</p>
+<h3 id="scatter-plots"><a class="header" href="#scatter-plots">Scatter Plots</a></h3>
+<p>The scatter plot is another useful method for visualizing data that plots each point in an \( n \) -dimensional space.
+For the purposes of the Algorithm Archive, this space is mainly two-dimensional; however, scatter plots in three-dimensions may also be used for visualizing three-dimensional datasets.
+We will update this section if three-dimensional scatter plots are required.</p>
+<p>For the purposes of the Algorithm Archive, scatter plot data will be output as a series of \( x \) and \( y \) pairs, where each row has an \( x \) and a \( y \) value, separated by a tab character.
+For example, a datafile might look like this:</p>
+<p><a href="data/scatterplot_data.dat">import:1-10</a></p>
+<p>For three-dimensional scatter plots, there might be a third, \( z \) dimension.</p>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<p>In gnuplot, scatter plots are easy to generate with the provided data format, for example, you could use the following command:</p>
+<pre><code>p &quot;scatterplot_data.dat&quot; pt 7
+</code></pre>
+<p>Which will create the following image</p>
+<p>
+    <img  class="center" src="res/gnuplot/scatterplot.png" style="width:70%" />
+</p>
+<p>Here, we have chosen <code>pointtype 7</code>, simply because it is easier to see when compared to the default crosses.</p>
+<p>If you are interested in seeing this type of plot generate fractal patterns, please look at the chapter on <a href="../IFS/IFS.html">iterated function systems</a>.</p>
+<h2 id="conclusions"><a class="header" href="#conclusions">Conclusions</a></h2>
+<p>Plotting is a powerful tool that is essential for most of computational science.
+Here, we have provided all of the essential skills to plot any data that comes from the Algorithm Archive, and we will strive to provide the plotting scripts we used whenever possible.</p>
+<h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
+<p>{% references %} {% endreferences %}</p>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<p>{% sample lang=&quot;gnuplot&quot; %}</p>
+<ul>
+<li>The image &quot;<a href="res/gnuplot/sine.png">gnuplot_sine_wave</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos.png">gnuplot_sine_cosine_wave</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_range.png">gnuplot_sine_cosine_wave_range</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_notics.png">gnuplot_sine_cosine_notics</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_customtics.png">gnuplot_sine_cosine_customtics</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/exp.png">exp_fn</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/explog.png">exp_fn_log</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_log.png">gnuplot_sine_cosine_log</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_label.png">gnuplot_sine_cosine_label</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_nokey.png">gnuplot_sine_cosine_nokey</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_movekey.png">gnuplot_sine_cosine_movekey</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_movekey2.png">gnuplot_sine_cosine_movekey2</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_title.png">gnuplot_sine_cosine_title</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_square.png">gnuplot_sine_cosine_square</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/test.png">gnuplot_test</a>&quot; was created by the <code>gnuplot test</code> command, and gnuplot has <a href="https://sourceforge.net/p/gnuplot/gnuplot-main/ci/master/tree/Copyright">this copyright</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/sincos_lt.png">gnuplot_sine_cosine_linetype</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/exponential_tex.png">gnuplot_exp_tex</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/1d_sample.png">gnuplot_1d_sample</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/2d_sample.png">gnuplot_2d_sample</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/2d_sample_cb.png">gnuplot_2d_sample_colorbar</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="res/gnuplot/scatterplot.png">gnuplot_scatterplot</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>The following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>622: Initial PR for chapter</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../how_to_contribute/how_to_contribute.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../domain_coloring/domain_coloring.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../how_to_contribute/how_to_contribute.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../domain_coloring/domain_coloring.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,2546 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Gaussian Elimination - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html" class="active"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="gaussian-elimination"><a class="header" href="#gaussian-elimination">Gaussian Elimination</a></h1>
+<p>Let's say we have a system of equations,</p>
+<p>\[
+\begin{align}
+2x + 3y + 4z &amp;= 6 \\
+x + 2y + 3z &amp;= 4 \\
+3x - 4y &amp;= 10
+\end{align}
+\]</p>
+<p>and we want to solve for \( x \), \( y \), and \( z \).
+Well, one way to do this is with <em>Gaussian Elimination</em>, which you may have encountered before in a math class or two.</p>
+<p>The first step is to transform the system of equations into a matrix by using the coefficients in front of each variable, where each row corresponds to another equation and each column corresponds to an independent variable like \( x \), \( y \), or \( z \).
+For the previous system of equations, this might look like this:</p>
+<h1>\[
+\left[
+\begin{array}{ccc}
+2 &amp; 3  &amp; 4\\
+1 &amp; 2 &amp; 3\\
+3 &amp; -4 &amp; 0
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x \\
+y \\
+z
+\end{array}
+\right]</h1>
+<p>\left[
+\begin{array}{c}
+6 \\
+4 \\
+10
+\end{array}
+\right]
+\]</p>
+<p>Or more simply:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+1 &amp; 2 &amp; 3 &amp; 4 \\
+3 &amp; -4 &amp; 0 &amp; 10
+\end{array}
+\right]
+\]</p>
+<p>At first, translating the set of equations into a matrix like this doesn't seem to help with anything, so let's think of this in another way.</p>
+<h4 id="row-echelon-form"><a class="header" href="#row-echelon-form">Row Echelon Form</a></h4>
+<p>Instead of the complicated mess of equations shown above, imagine if the system looked like this:</p>
+<p>\[
+\begin{align}
+2x + 3y + 4z &amp;= 6 \\
+y + 2z &amp;= 2 \\
+11z &amp;= 18
+\end{align}
+\]</p>
+<p>Then we could just solve for \( z \) and plug that value in to the top two equations to solve for \( x \) and \( y \) through a process known as back-substitution.
+In matrix form, this set of equations would look like this:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+0 &amp; 1 &amp; 2 &amp; 2 \\
+0 &amp; 0 &amp; 11 &amp; 18
+\end{array}
+\right]
+\]</p>
+<p>This matrix form has a particular name: <em>Row Echelon Form</em>.
+Basically, any matrix can be considered in row echelon form if the leading coefficient or <em>pivot</em> (the first non-zero element in every row when reading from left to right) is right of the pivot of the row above it.</p>
+<p>This creates a matrix that sometimes resembles an upper-triangular matrix; however, that doesn't mean that all row-echelon matrices are upper-triangular.
+For example, all of the following matrices are in row echelon form:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+0 &amp; 1 &amp; 2 &amp; 2 \\
+0 &amp; 0 &amp; 11 &amp; 18
+\end{array}
+\right]
+;,;
+\left[
+\begin{array}{ccc|c}
+5 &amp; 4  &amp; 0 &amp; 10 \\
+0 &amp; 0 &amp; 5 &amp; 7 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}
+\right]
+;,;
+\left[
+\begin{array}{ccccc}
+1 &amp; -3 &amp; 4 &amp; 1 &amp; 6 \\
+0 &amp; 3 &amp; 3 &amp; 5 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 0
+\end{array}
+\right]
+;,;
+\left[
+\begin{array}{cc}
+1 &amp;  2 \\
+2 &amp;  0 \\
+0 &amp;  0
+\end{array}
+\right]
+\]</p>
+<p>The first two of these have the right dimensions to find a solution to a system of equations; however, the last two matrices are respectively under- and over-constrained, meaning they do not provide an appropriate solution to a system of equations.
+That said, this doesn't mean that every matrix in the correct form can be solved either.
+For example, if you translate the second matrix into a system of equations again, the last row translates into \( 0x+0y+0z=1 \), which is a contradiction.
+This is due to the fact that the matrix is singular, and there are no solutions to this particular system.
+Nevertheless, all of these matrices are in row echelon form.</p>
+<h4 id="reduced-row-echelon-form"><a class="header" href="#reduced-row-echelon-form"><em>Reduced</em> Row Echelon Form</a></h4>
+<p>Row echelon form is nice, but wouldn't it be even better if our system of equations looked simply like this:</p>
+<p>\[
+\begin{align}
+x &amp;= \frac{18}{11} \\
+y &amp;= \frac{-14}{11} \\
+z &amp;= \frac{18}{11}
+\end{align}
+\]</p>
+<p>Then we would know exactly what \( x \), \( y \), and \( z \) are without any fuss! In matrix form, it looks like this:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+1 &amp; 0 &amp; 0 &amp; \frac{18}{11} \\
+0 &amp; 1 &amp; 0 &amp; \frac{-14}{11} \\
+0 &amp; 0 &amp; 1 &amp; \frac{18}{11}
+\end{array}
+\right]
+\]</p>
+<p>This introduces yet another matrix configuration: * <strong>Reduced</strong> Row Echelon Form*.
+A matrix is in reduced row echelon form if it satisfies the following conditions:</p>
+<ol>
+<li>It is in row echelon form.</li>
+<li>Every pivot is 1 and is the only nonzero entry in its column.</li>
+</ol>
+<p>All the following examples are in the reduced row echelon form:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+1 &amp; 0 &amp; 0 &amp; 8 \\
+0 &amp; 1 &amp; 0 &amp; -3 \\
+0 &amp; 0 &amp; 1 &amp; 9
+\end{array}
+\right]
+;,;
+\left[
+\begin{array}{ccc|c}
+1 &amp; 4  &amp; 0 &amp; 9 \\
+0 &amp; 0 &amp; 1 &amp; 7 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}
+\right]
+;,;
+\left[
+\begin{array}{cc}
+0 &amp; 0 \\
+0 &amp; 0 \\
+0 &amp; 0
+\end{array}
+\right]
+\]</p>
+<p>Again, only the first of these (the one that looks like an identity matrix) is desirable in the context of solving a system of equations, but transforming any matrix in this form gives us an immediate and definitive answer at the question: can I solve my system of equations?</p>
+<p>Beyond solving a system of equations, reshaping a matrix in this form makes it very easy to deduce other properties of the matrix, such as its rank — the maximum number of linearly independent columns.
+In reduced row echelon form, the rank is simply the number of pivots.</p>
+<p>For now, I hope the motivation is clear: we want to convert a matrix into row echelon and then reduced row echelon form to make large systems of equations trivial to solve, so we need some method to do that.
+In general, the term <em>Gaussian Elimination</em> refers to the process of transforming a matrix into row echelon form, and the process of transforming a row echelon matrix into reduced row echelon form is called <em>Gauss-Jordan Elimination</em>.
+That said, the notation here is sometimes inconsistent.
+Several authors use the term <em>Gaussian Elimination</em> to include Gauss-Jordan elimination as well.
+In addition, the process of Gauss-Jordan elimination is sometimes called <em>Back-substitution</em>, which is also confusing because the term can also be used to mean solving a system of equations from row echelon form, without simplifying to reduced row echelon form.
+For this reason, we will be using the following definitions in this chapter:</p>
+<ul>
+<li><strong>Gaussian Elimination:</strong> The process of transforming a matrix into row echelon form</li>
+<li><strong>Gauss-Jordan Elimination:</strong> The process of transforming a row echelon matrix into <em>reduced</em> row echelon form</li>
+<li><strong>Back-substitution:</strong> The process of directly solving a row echelon matrix, <em>without transforming into reduced row echelon form</em></li>
+</ul>
+<h2 id="the-analytical-method"><a class="header" href="#the-analytical-method">The Analytical Method</a></h2>
+<p>Gaussian elimination is inherently analytical and can be done by hand for small systems of equations; however, for large systems, this (of course) become tedious and we will need to find an appropriate numerical solution.
+For this reason, I have split this section into two parts. One will cover the analytical framework, and the other will cover an algorithm you can write in your favorite programming language.</p>
+<p>In the end, reducing large systems of equations boils down to a game you play on a seemingly random matrix with 3 possible moves. You can:</p>
+<ol>
+<li>Swap any two rows.</li>
+<li>Multiply any row by a non-zero scale value.</li>
+<li>Add any row to a multiple of any other row.</li>
+</ol>
+<p>That's it.
+Before continuing, I suggest you try to recreate the row echelon matrix we made above.
+That is, do the following:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+1 &amp; 2 &amp; 3 &amp; 4 \\
+3 &amp; -4 &amp; 0 &amp; 10
+\end{array}
+\right]
+\quad \rightarrow \quad
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+0 &amp; 1 &amp; 2 &amp; 2 \\
+0 &amp; 0 &amp; 11 &amp; 18
+\end{array}
+\right]
+\]</p>
+<p>There are plenty of different strategies you could use to do this, and no one strategy is better than the rest.
+One method is to subtract a multiple of the top row from subsequent rows below it such that all values beneath the pivot value are zero.
+This process might be easier if you swap some rows around first and can be performed for each pivot.</p>
+<p>After you get a row echelon matrix, the next step is to find the reduced row echelon form. In other words, we do the following:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+0 &amp; 1 &amp; 2 &amp; 2 \\
+0 &amp; 0 &amp; 11 &amp; 18
+\end{array}
+\right]
+\quad \rightarrow \quad
+\left[
+\begin{array}{ccc|c}
+1 &amp; 0 &amp; 0 &amp; \frac{18}{11} \\
+0 &amp; 1 &amp; 0 &amp; \frac{-14}{11} \\
+0 &amp; 0 &amp; 1 &amp; \frac{18}{11}
+\end{array}
+\right]
+\]</p>
+<p>Here, the idea is similar to above and the same rules apply.
+In this case, we might start from the right-most column and subtracts upwards instead of downwards.</p>
+<h2 id="the-computational-method"><a class="header" href="#the-computational-method">The Computational Method</a></h2>
+<p>The analytical method for Gaussian Elimination may seem straightforward, but the computational method does not obviously follow from the &quot;game&quot; we were playing before.
+Ultimately, the computational method boils down to two separate steps and has a complexity of \( \mathcal{O}(n^3) \).</p>
+<p>As a note, this process iterates through all the rows in the provided matrix.
+When we say &quot;current row&quot; (<code>curr_row</code>), we mean the specific row iteration number we are on at that time, and as before, the &quot;pivot&quot; corresponds to the first non-zero element in that row.</p>
+<h4 id="step-1"><a class="header" href="#step-1">Step 1</a></h4>
+<p>For each element in the pivot column under the current row, find the highest value and switch the row with the highest value with the current row.
+The <em>pivot</em> is then considered to be the first element in the highest swapped row.</p>
+<p>For example, in this case the highest value is \( 3 \):</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+1 &amp; 2 &amp; 3 &amp; 4 \\
+\mathbf{3} &amp; -4 &amp; 0 &amp; 10
+\end{array}
+\right]
+\]</p>
+<p>After finding this value, we simply switch the row with the \( 3 \) to the current row:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+\mathbf{2} &amp; \mathbf{3}  &amp; \mathbf{4} &amp; \mathbf{6} \\
+1 &amp; 2 &amp; 3 &amp; 4 \\
+\mathbf{3} &amp; \mathbf{-4} &amp; \mathbf{0} &amp; \mathbf{10}
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c}
+\mathbf{3} &amp; \mathbf{-4} &amp; \mathbf{0} &amp; \mathbf{10} \\
+1 &amp; 2 &amp; 3 &amp; 4 \\
+\mathbf{2} &amp; \mathbf{3}  &amp; \mathbf{4} &amp; \mathbf{6}
+\end{array}
+\right]
+\]</p>
+<p>In this case, the new pivot is \( 3 \).</p>
+<p>In code, this process might look like this:</p>
+<pre><code class="language-julia">        # finding the maximum element for each column
+        max_index = argmax(abs.(A[row:end,col])) + row-1
+
+        # Check to make sure matrix is good!
+        if (A[max_index, col] == 0)
+            println(&quot;matrix is singular!&quot;)
+            continue
+        end
+
+        # swap row with highest value for that column to the top
+        temp_vector = A[max_index, :]
+        A[max_index, :] = A[row, :]
+        A[row, :] = temp_vector
+</code></pre>
+<pre><code class="language-java">            // finding the maximum element
+            for (int i = row + 1; i &lt; row; i++) {
+                if (Math.abs(a[i][col]) &gt; Math.abs(a[pivot][col])) {
+                    pivot = i;
+                }
+            }
+
+            if (a[pivot][col] == 0) {
+                System.err.println(&quot;The matrix is singular&quot;);
+                continue;
+            }
+
+            if (row != pivot) {
+                // Swap the row with the highest valued element
+                // with the current row
+                swapRow(a, col, pivot);
+            }
+</code></pre>
+<pre><code class="language-c">void swap_rows(double *a, const size_t i, const size_t pivot,
+               const size_t cols) {
+
+    for (size_t j = 0; j &lt; cols; ++j) {
+        double tmp = a[i * cols + j];
+        a[i * cols + j] = a[pivot * cols + j];
+        a[pivot * cols + j] = tmp;
+    }
+}
+</code></pre>
+<p><a href="code/c/gaussian_elimination.c">import:19-34, lang:&quot;c&quot;</a></p>
+<pre><code class="language-cpp">    int pivot = i;
+
+    for (int j = i + 1; j &lt; rows; j++) {
+      if (fabs(eqns[j][i]) &gt; fabs(eqns[pivot][i])) pivot = j;
+    }
+
+    if (eqns[pivot][i] == 0.0)
+      continue;  // But continuing to simplify the matrix as much as possible
+
+    if (i != pivot)  // Swapping the rows if new row with higher maxVals is found
+      std::swap(eqns[pivot], eqns[i]);  // C++ swap function
+</code></pre>
+<pre><code class="language-haskell">swapRows :: Int -&gt; Int -&gt; Matrix a -&gt; Matrix a
+swapRows r1 r2 m
+  | r1 == r2 = m
+  | otherwise =
+    m //
+    concat [[((r2, c), m ! (r1, c)), ((r1, c), m ! (r2, c))] | c &lt;- [c1 .. cn]]
+  where
+    ((_, c1), (_, cn)) = bounds m
+</code></pre>
+<p><a href="code/haskell/gaussianElimination.hs">import:44-46, lang:&quot;haskell&quot;</a></p>
+<pre><code class="language-javascript">    let pivot = row;
+    for (let i = row + 1; i &lt; rows; ++i) {
+      if (Math.abs(a[i][col]) &gt; Math.abs(a[pivot][col])) {
+        pivot = i;
+      }
+    }
+
+    if (a[pivot][col] === 0) {
+      console.log(&quot;The matrix is singular.&quot;);
+      continue;
+    }
+
+    if (col !== pivot) {
+      const t = a[col];
+      a[col] = a[pivot];
+      a[pivot] = t;
+    }
+</code></pre>
+<pre><code class="language-go">		// 1. find highest value in column below row to be pivot
+		p, highest := r, 0.
+		for i, row := range a[r:] {
+			if abs := math.Abs(row[c]); abs &gt; highest {
+				p = r + i
+				highest = abs
+			}
+		}
+		highest = a[p][c] // correct sign
+
+		if highest == 0. {
+			if !singular {
+				singular = true
+				fmt.Println(&quot;This matrix is singular.&quot;)
+			}
+			continue
+		}
+
+</code></pre>
+<pre><code class="language-python">        temp = A[pivot_row, :].copy()
+        A[pivot_row, :] = A[max_i, :]
+        A[max_i, :] = temp
+
+        # Skip on singular matrix,  not actually a pivot
+        if A[pivot_row, pivot_col] == 0:
+            continue
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>        // find the maximum element for this column
+        let mut max_row = k;
+        let mut max_value = a[(k, k)].abs();
+        for row in (k + 1)..a.rows {
+            if max_value &lt; a[(row, k)].abs() {
+                max_value = a[(row, k)].abs();
+                max_row = row;
+            }
+        }
+
+        // Check to make sure the matrix is good
+        if a[(max_row, k)] == 0.0 {
+            println!(&quot;Matrix is singular, aborting&quot;);
+            return;
+        }
+
+        // swap the row with the highest value for this kumn to the top
+        a.swap_rows(k, max_row);
+
+        // Loop over all remaining rows
+        for i in k + 1..a.rows {
+            // find the fraction
+            let fraction = a[(i, k)] / a[(k, k)];
+
+            // Loop through all columns for that row
+            for j in (k + 1)..a.cols {
+                // re-evaluate each element
+                a[(i, j)] -= a[(k, j)] * fraction;
+            }
+
+            // set lower elements to 0
+            a[(i, k)] = 0.0;
+        }
+    }
+<span class="boring">}
+</span></code></pre></pre>
+<p>As a note, if the highest value is \( 0 \), the matrix is singular and the system has no single solution.
+This makes sense because if the highest value in a column is 0, the entire column must be 0, thus there can be no unique solution when we read the matrix as a set of equations.
+That said, Gaussian elimination is more general and allows us to continue, even if the matrix is not necessarily solvable as a set of equations.
+Feel free to exit after finding a \( 0 \) if your end-goal is to solve a system of equations.</p>
+<h4 id="step-2"><a class="header" href="#step-2">Step 2</a></h4>
+<p>For the row beneath the current pivot row and within the pivot column, find a fraction that corresponds to the ratio of the value in that column to the pivot, itself.
+After this, subtract the current pivot row multiplied by the fraction from each corresponding row element.
+This process essentially subtracts an optimal multiple of the current row from each row underneath (similar to Step 3 from the above game).
+Ideally, this should always create a 0 under the current row's pivot value.</p>
+<p>For example, in this matrix, the next row is \( 1 \) and the pivot value is \( 3 \), so the fraction is \( \frac{1}{3} \).
+\[
+\rightarrow
+\left[
+\begin{array}{ccc|c}
+3 &amp; -4 &amp; 0 &amp; 10 \\
+\mathbf{1} &amp; 2 &amp; 3 &amp; 4 \\
+2 &amp; 3  &amp; 4 &amp; 6
+\end{array}
+\right] \\
+\begin{align}
+f &amp;= A(\text{curr_row}, \text{pivot}<em>{\text{col}}) /  A(\text{pivot}</em>{\text{row}}, \text{pivot}_{\text{col}}) \\
+&amp;= \frac{1}{3}
+\end{align}
+\]</p>
+<p>After finding the fraction, we simply subtract \( \text{current_row} - \frac{1}{3}\times \text{pivot_row} \), like so:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+3 &amp; -4 &amp; 0 &amp; 10 \\
+\mathbf{1} &amp; \mathbf{2} &amp; \mathbf{3} &amp; \mathbf{4} \\
+2 &amp; 3  &amp; 4 &amp; 6
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c}
+3 &amp; -4 &amp; 0 &amp; 10 \\
+0 &amp; \mathbf{\frac{10}{3}} &amp; \mathbf{3} &amp; \mathbf{\frac{2}{3}}
+\\
+2 &amp; 3  &amp; 4 &amp; 6
+\end{array}
+\right]
+\]</p>
+<p>After this, repeat the process for all other rows.</p>
+<p>Here is what it might look like in code:</p>
+<pre><code class="language-julia">        # Loop for all remaining rows
+        for i = (row+1):rows
+
+            # finding fraction
+            fraction = A[i,col]/A[row,col]
+
+            # loop through all columns for that row
+            for j = (col+1):cols
+
+                 # re-evaluate each element
+                 A[i,j] -= A[row,j]*fraction
+
+            end
+</code></pre>
+<pre><code class="language-java">            for (int i = row + 1; i &lt; rows; i++) {
+                // finding the inverse
+                double scale = a[i][col] / a[row][col];
+                // loop through all columns in current row
+                for (int j = col + 1; j &lt; cols; j++) {
+
+                    // Subtract rows
+                    a[i][j] -= a[row][j] * scale;
+                }
+</code></pre>
+<pre><code class="language-c">        for (size_t i = row + 1; i &lt; rows; ++i) {
+            double scale = a[i * cols + col] / a[row * cols + col];
+
+            for (size_t j = col + 1; j &lt; cols; ++j) {
+                a[i * cols + j] -= a[row * cols + j] * scale;
+            }
+</code></pre>
+<pre><code class="language-cpp">    for (int j = i + 1; j &lt; rows; j++) {
+      double scale = eqns[j][i] / eqns[i][i];
+
+      for (int k = i + 1; k &lt; cols; k++)   // k doesn't start at 0, since
+        eqns[j][k] -= scale * eqns[i][k];  // values before from 0 to i
+                                           // are already 0
+      eqns[j][i] = 0.0;
+    }
+</code></pre>
+<pre><code class="language-haskell">subRows ::
+     Fractional a
+  =&gt; (Int, Int) -- pivot location
+  -&gt; (Int, Int) -- rows to cover
+  -&gt; (Int, Int) -- columns to cover
+  -&gt; Matrix a
+  -&gt; Matrix a
+subRows (r, c) (r1, rn) (c1, cn) m =
+  accum
+    (-)
+    m
+    [ ((i, j), m ! (i, c) * m ! (r, j) / m ! (r, c))
+    | i &lt;- [r1 .. rn]
+    , j &lt;- [c1 .. cn]
+    ]
+</code></pre>
+<p><a href="code/haskell/gaussianElimination.hs">import:42-42, lang:&quot;haskell&quot;</a></p>
+<pre><code class="language-javascript">    for (let i = row + 1; i &lt; rows; ++i) {
+      const scale = a[i][col] / a[row][col];
+
+      for (let j = col + 1; j &lt; cols; ++j) {
+        a[i][j] -= a[row][j] * scale;
+      }
+</code></pre>
+<pre><code class="language-go">		for _, row := range a[r+1:] {
+			// 3. find fraction from pivot value
+			frac := row[c] / highest
+
+			// 4. subtract row to set rest of column to zero
+			for j := range row {
+				row[j] -= frac * a[r][j]
+			}
+
+			// 5. ensure col goes to zero (no float rounding)
+			row[c] = 0.
+		}
+</code></pre>
+<pre><code class="language-python">        # Zero out elements below pivot
+        for r in range(pivot_row + 1,  A.shape[0]):
+            # Get fraction
+            frac = -A[r, pivot_col] / A[pivot_row, pivot_col]
+            # Add rows
+            A[r, :] += frac * A[pivot_row, :]
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>        // Loop over all remaining rows
+        for i in k + 1..a.rows {
+            // find the fraction
+            let fraction = a[(i, k)] / a[(k, k)];
+
+            // Loop through all columns for that row
+            for j in (k + 1)..a.cols {
+                // re-evaluate each element
+                a[(i, j)] -= a[(k, j)] * fraction;
+            }
+
+            // set lower elements to 0
+            a[(i, k)] = 0.0;
+        }
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="all-together"><a class="header" href="#all-together">All together</a></h4>
+<p>When we put everything together, it looks like this:</p>
+<pre><code class="language-julia">function gaussian_elimination!(A::Array{Float64,2})
+
+    rows = size(A,1)
+    cols = size(A,2)
+
+    # Row index
+    row = 1
+
+    # Main loop going through all columns
+    for col = 1:(cols-1)
+
+        # finding the maximum element for each column
+        max_index = argmax(abs.(A[row:end,col])) + row-1
+
+        # Check to make sure matrix is good!
+        if (A[max_index, col] == 0)
+            println(&quot;matrix is singular!&quot;)
+            continue
+        end
+
+        # swap row with highest value for that column to the top
+        temp_vector = A[max_index, :]
+        A[max_index, :] = A[row, :]
+        A[row, :] = temp_vector
+
+        # Loop for all remaining rows
+        for i = (row+1):rows
+
+            # finding fraction
+            fraction = A[i,col]/A[row,col]
+
+            # loop through all columns for that row
+            for j = (col+1):cols
+
+                 # re-evaluate each element
+                 A[i,j] -= A[row,j]*fraction
+
+            end
+
+            # Set lower elements to 0
+            A[i,col] = 0
+        end
+        row += 1
+    end
+end
+</code></pre>
+<pre><code class="language-c">void gaussian_elimination(double *a, const size_t rows, const size_t cols) {
+    size_t row = 0;
+
+    for (size_t col = 0; col &lt; cols - 1; ++col) {
+        size_t pivot = row;
+
+        for (size_t i = row + 1; i &lt; rows; ++i) {
+            if (fabs(a[i * cols + col]) &gt; fabs(a[pivot * cols + col])) {
+                pivot = i;
+            }
+        }
+
+        if (a[pivot * cols + col] == 0) {
+            printf(&quot;The matrix is singular.\n&quot;);
+            continue;
+        }
+
+        if (col != pivot) {
+            swap_rows(a, col, pivot, cols);
+        }
+
+        for (size_t i = row + 1; i &lt; rows; ++i) {
+            double scale = a[i * cols + col] / a[row * cols + col];
+
+            for (size_t j = col + 1; j &lt; cols; ++j) {
+                a[i * cols + j] -= a[row * cols + j] * scale;
+            }
+
+            a[i * cols + col] = 0;
+        }
+
+        row++;
+    }
+}
+</code></pre>
+<pre><code class="language-cpp">void gaussianElimination(std::vector&lt;std::vector&lt;double&gt; &gt; &amp;eqns) {
+  // 'eqns' is the matrix, 'rows' is no. of vars
+  int rows = eqns.size(), cols = eqns[0].size();
+
+  for (int i = 0; i &lt; rows - 1; i++) {
+    int pivot = i;
+
+    for (int j = i + 1; j &lt; rows; j++) {
+      if (fabs(eqns[j][i]) &gt; fabs(eqns[pivot][i])) pivot = j;
+    }
+
+    if (eqns[pivot][i] == 0.0)
+      continue;  // But continuing to simplify the matrix as much as possible
+
+    if (i != pivot)  // Swapping the rows if new row with higher maxVals is found
+      std::swap(eqns[pivot], eqns[i]);  // C++ swap function
+
+    for (int j = i + 1; j &lt; rows; j++) {
+      double scale = eqns[j][i] / eqns[i][i];
+
+      for (int k = i + 1; k &lt; cols; k++)   // k doesn't start at 0, since
+        eqns[j][k] -= scale * eqns[i][k];  // values before from 0 to i
+                                           // are already 0
+      eqns[j][i] = 0.0;
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-haskell">swapRows :: Int -&gt; Int -&gt; Matrix a -&gt; Matrix a
+swapRows r1 r2 m
+  | r1 == r2 = m
+  | otherwise =
+    m //
+    concat [[((r2, c), m ! (r1, c)), ((r1, c), m ! (r2, c))] | c &lt;- [c1 .. cn]]
+  where
+    ((_, c1), (_, cn)) = bounds m
+
+subRows ::
+     Fractional a
+  =&gt; (Int, Int) -- pivot location
+  -&gt; (Int, Int) -- rows to cover
+  -&gt; (Int, Int) -- columns to cover
+  -&gt; Matrix a
+  -&gt; Matrix a
+subRows (r, c) (r1, rn) (c1, cn) m =
+  accum
+    (-)
+    m
+    [ ((i, j), m ! (i, c) * m ! (r, j) / m ! (r, c))
+    | i &lt;- [r1 .. rn]
+    , j &lt;- [c1 .. cn]
+    ]
+
+gaussianElimination :: (Fractional a, Ord a) =&gt; Matrix a -&gt; Matrix a
+gaussianElimination mat = go (r1, c1) mat
+</code></pre>
+<pre><code class="language-python">def gaussian_elimination(A):
+
+    pivot_row = 0
+    
+    # Go by column
+    for pivot_col in range(min(A.shape[0], A.shape[1])):
+
+        # Swap row with highest element in col
+        max_i = np.argmax(abs(A[pivot_row:, pivot_col])) + pivot_row
+        
+        temp = A[pivot_row, :].copy()
+        A[pivot_row, :] = A[max_i, :]
+        A[max_i, :] = temp
+
+        # Skip on singular matrix,  not actually a pivot
+        if A[pivot_row, pivot_col] == 0:
+            continue
+
+        # Zero out elements below pivot
+        for r in range(pivot_row + 1,  A.shape[0]):
+            # Get fraction
+            frac = -A[r, pivot_col] / A[pivot_row, pivot_col]
+            # Add rows
+            A[r, :] += frac * A[pivot_row, :]
+
+        pivot_row += 1
+</code></pre>
+<pre><code class="language-java">    static void gaussianElimination(double[][] a) {
+        int row = 0;
+
+        int rows = a.length;
+        int cols = a[0].length;
+
+        for (int col = 0; col &lt; cols - 1; col++) {
+            int pivot = row;
+
+            // finding the maximum element
+            for (int i = row + 1; i &lt; row; i++) {
+                if (Math.abs(a[i][col]) &gt; Math.abs(a[pivot][col])) {
+                    pivot = i;
+                }
+            }
+
+            if (a[pivot][col] == 0) {
+                System.err.println(&quot;The matrix is singular&quot;);
+                continue;
+            }
+
+            if (row != pivot) {
+                // Swap the row with the highest valued element
+                // with the current row
+                swapRow(a, col, pivot);
+            }
+
+            for (int i = row + 1; i &lt; rows; i++) {
+                // finding the inverse
+                double scale = a[i][col] / a[row][col];
+                // loop through all columns in current row
+                for (int j = col + 1; j &lt; cols; j++) {
+
+                    // Subtract rows
+                    a[i][j] -= a[row][j] * scale;
+                }
+
+                // Set lower elements to 0
+                a[i][col] = 0;
+            }
+            row++;
+        }
+    }
+</code></pre>
+<pre><code class="language-javascript">function gaussianElimination(a) {
+  const rows = a.length
+  const cols = a[0].length
+  let row = 0;
+  for (let col = 0; col &lt; cols - 1; ++col) {
+
+    let pivot = row;
+    for (let i = row + 1; i &lt; rows; ++i) {
+      if (Math.abs(a[i][col]) &gt; Math.abs(a[pivot][col])) {
+        pivot = i;
+      }
+    }
+
+    if (a[pivot][col] === 0) {
+      console.log(&quot;The matrix is singular.&quot;);
+      continue;
+    }
+
+    if (col !== pivot) {
+      const t = a[col];
+      a[col] = a[pivot];
+      a[pivot] = t;
+    }
+
+    for (let i = row + 1; i &lt; rows; ++i) {
+      const scale = a[i][col] / a[row][col];
+
+      for (let j = col + 1; j &lt; cols; ++j) {
+        a[i][j] -= a[row][j] * scale;
+      }
+
+      a[i][col] = 0;
+    }
+
+    ++row;
+  }
+  return a;
+}
+</code></pre>
+<pre><code class="language-go">func gaussianElimination(a [][]float64) {
+	singular := false
+	rows := len(a)
+	cols := len(a[0])
+
+	for c, r := 0, 0; c &lt; cols &amp;&amp; r &lt; rows; c++ {
+		// 1. find highest value in column below row to be pivot
+		p, highest := r, 0.
+		for i, row := range a[r:] {
+			if abs := math.Abs(row[c]); abs &gt; highest {
+				p = r + i
+				highest = abs
+			}
+		}
+		highest = a[p][c] // correct sign
+
+		if highest == 0. {
+			if !singular {
+				singular = true
+				fmt.Println(&quot;This matrix is singular.&quot;)
+			}
+			continue
+		}
+
+		// 2. swap pivot with current row
+		if p != r {
+			a[r], a[p] = a[p], a[r]
+		}
+
+		for _, row := range a[r+1:] {
+			// 3. find fraction from pivot value
+			frac := row[c] / highest
+
+			// 4. subtract row to set rest of column to zero
+			for j := range row {
+				row[j] -= frac * a[r][j]
+			}
+
+			// 5. ensure col goes to zero (no float rounding)
+			row[c] = 0.
+		}
+
+		r++
+	}
+}
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn gaussian_elimination(a: &amp;mut Matrix) {
+    for k in 0..min(a.cols, a.rows) {
+        // find the maximum element for this column
+        let mut max_row = k;
+        let mut max_value = a[(k, k)].abs();
+        for row in (k + 1)..a.rows {
+            if max_value &lt; a[(row, k)].abs() {
+                max_value = a[(row, k)].abs();
+                max_row = row;
+            }
+        }
+
+        // Check to make sure the matrix is good
+        if a[(max_row, k)] == 0.0 {
+            println!(&quot;Matrix is singular, aborting&quot;);
+            return;
+        }
+
+        // swap the row with the highest value for this kumn to the top
+        a.swap_rows(k, max_row);
+
+        // Loop over all remaining rows
+        for i in k + 1..a.rows {
+            // find the fraction
+            let fraction = a[(i, k)] / a[(k, k)];
+
+            // Loop through all columns for that row
+            for j in (k + 1)..a.cols {
+                // re-evaluate each element
+                a[(i, j)] -= a[(k, j)] * fraction;
+            }
+
+            // set lower elements to 0
+            a[(i, k)] = 0.0;
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>To be clear: if the matrix is found to be singular during this process, the system of equations is either over- or under-determined and no general solution exists.
+For this reason, many implementations of this method will stop the moment the matrix is found to have no unique solutions.
+In this implementation, we allowed for the more general case and opted to simply output when the matrix is singular instead.
+If you intend to solve a system of equations, then it makes sense to stop the method the moment you know there is no unique solution, so some small modification of this code might be necessary!</p>
+<p>So what do we do from here?
+Well, we continue reducing the matrix; however, there are two ways to do this:</p>
+<ol>
+<li>Reduce the matrix further into <em>reduced</em> row echelon form with Gauss-Jordan elimination</li>
+<li>Solve the system directly with <em>back-substitution</em> if the matrix allows for such solutions</li>
+</ol>
+<p>Let's start with Gauss-Jordan Elimination and then back-substitution</p>
+<h2 id="gauss-jordan-elimination"><a class="header" href="#gauss-jordan-elimination">Gauss-Jordan Elimination</a></h2>
+<p>Gauss-Jordan Elimination is precisely what we said above; however, in this case, we often work from the bottom-up instead of the top-down.
+We basically need to find the pivot of every row and set that value to 1 by dividing the entire row by the pivot value.
+Afterwards, we subtract upwards until all values above the pivot are 0 before moving on to the next column from right to left (instead of left to right, like before).
+Here it is in code:</p>
+<pre><code class="language-julia">function gauss_jordan_elimination!(A::Array{Float64,2})
+
+    rows = size(A,1)
+    cols = size(A,2)
+
+
+    # After this, we know what row to start on (r-1)
+    # to go back through the matrix
+    row = 1
+    for col = 1:cols-1
+        if (A[row, col] != 0)
+
+            # divide row by pivot and leaving pivot as 1
+            for i = cols:-1:col
+                A[row,i] /= A[row,col]
+            end
+
+            # subtract value from above row and set values above pivot to 0
+            for i = 1:row-1
+                for j = cols:-1:col
+                    A[i,j] -= A[i,col]*A[row,j]
+                end
+            end
+            row += 1
+        end
+    end
+end
+</code></pre>
+<pre><code class="language-c">void gauss_jordan(double *a, const size_t rows, const size_t cols) {
+    int row = 0;
+
+    for (int col = 0; col &lt; cols - 1; ++col) {
+        if (a[row * cols + col] != 0) {
+            for (int i = cols - 1; i &gt; col - 1; --i) {
+                a[row * cols + i] /= a[row * cols + col];
+            }
+
+            for (int i = 0; i &lt; row; ++i) {
+                for (int j = cols - 1; j &gt; col - 1; --j) {
+                    a[i * cols + j] -= a[i * cols + col] * a[row * cols + j];
+                }
+            }
+
+            row++;
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-cpp">void gaussJordan(std::vector&lt;std::vector&lt;double&gt; &gt; &amp;eqns) {
+  // 'eqns' is the (Row-echelon) matrix, 'rows' is no. of vars
+  int rows = eqns.size();
+
+  for (int i = rows - 1; i &gt;= 0; i--) {
+
+    if (eqns[i][i] != 0) {
+
+      eqns[i][rows] /= eqns[i][i];
+      eqns[i][i] = 1;  // We know that the only entry in this row is 1
+
+      // subtracting rows from below
+      for (int j = i - 1; j &gt;= 0; j--) {
+        eqns[j][rows] -= eqns[j][i] * eqns[i][rows];
+        eqns[j][i] = 0;  // We also set all the other values in row to 0 directly
+      }
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-haskell">    ((r1, c1), (rn, cn)) = bounds mat
+    go (r, c) m
+      | c == cn = m
+      | pivot == 0 = go (r, c + 1) m
+      | otherwise = go (r + 1, c + 1) $ subRows (r, c) (r + 1, rn) (c, cn) m'
+      where
+        (target, pivot) =
+          maximumBy (compare `on` abs . snd) [(k, m ! (k, c)) | k &lt;- [r .. rn]]
+        m' = swapRows r target m
+</code></pre>
+<pre><code class="language-python"># Assumes A is already row echelon form
+def gauss_jordan_elimination(A):
+    
+    col = 0
+
+    # Scan for pivots
+    for row in range(A.shape[0]):
+        while col &lt; A.shape[1] and A[row, col] == 0:
+            col += 1
+            
+        if col &gt;= A.shape[1]:
+            continue
+
+        # Set each pivot to one via row scaling
+        A[row, :] /= A[row, col]
+
+        # Zero out elements above pivot
+        for r in range(row):
+            A[r, :] -= A[r, col] * A[row, :]
+</code></pre>
+<pre><code class="language-java">    static void gaussJordan(double[][] a) {
+        int row = 0;
+
+        int cols = a[0].length;
+
+        for (int col = 0; col &lt; cols - 1; col++) {
+            if (a[row][col] != 0) {
+                for (int i = cols - 1; i &gt; col - 1; i--) {
+                    // divide row by pivot so the pivot is set to 1
+                    a[row][i] /= a[row][col];
+                }
+
+                // subtract the value form above row and set values above pivot to 0
+                for (int i = 0; i &lt; row; i++) {
+                    for (int j = cols - 1; j &gt; col - 1; j--) {
+                        a[i][j] -= a[i][col] * a[row][j];
+                    }
+                }
+                row++;
+            }
+        }
+    }
+</code></pre>
+<pre><code class="language-javascript">function gaussJordan(a) {
+  const cols = a[0].length;
+  let row = 0;
+
+  for (let col = 0; col &lt; cols - 1; ++col) {
+    if (a[row][col] !== 0) {
+      for (let i = cols - 1; i &gt; col - 1; --i) {
+        a[row][i] /= a[row][col];
+      }
+
+      for (let i = 0; i &lt; row; ++i) {
+        for (let j = cols - 1; j &gt; col - 1; --j) {
+          a[i][j] -= a[i][col] * a[row][j];
+        }
+      }
+
+      ++row;
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-go">func gaussJordan(a [][]float64) {
+	for r := len(a) - 1; r &gt;= 0; r-- {
+		// Find pivot col
+		p := -1
+		for c, cell := range a[r] {
+			if cell != 0. {
+				p = c
+				break
+			}
+		}
+		if p &lt; 0 {
+			continue
+		}
+
+		// Scale pivot r to 1.
+		scale := a[r][p]
+		for c := range a[r][p:] {
+			a[r][p+c] /= scale
+		}
+		// Subtract pivot row from each row above
+		for _, row := range a[:r] {
+			scale = row[p]
+			for c, cell := range a[r][p:] {
+				row[p+c] -= cell * scale
+			}
+		}
+	}
+}
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn gauss_jordan(a: &amp;mut Matrix) {
+    let mut row = 0;
+    for k in 0..(a.cols - 1) {
+        if a[(row, k)] != 0.0 {
+            for i in (k..a.cols).rev() {
+                a[(row, i)] /= a[(row, k)];
+            }
+
+            for i in 0..row {
+                for j in (k..a.cols).rev() {
+                    a[(i, j)] -= a[(i, k)] * a[(row, j)];
+                }
+            }
+
+            row += 1;
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>As a note: Gauss-Jordan elimination can also be used to find the inverse of a matrix by following the same procedure to generate a reduced row echelon matrix, but with an identity matrix on the other side instead of the right-hand side of each equation.
+This process is straightforward but will not be covered here, simply because there are much faster numerical methods to find an inverse matrix; however, if you would like to see this, let me know and I can add it in for completeness.</p>
+<h2 id="back-substitution"><a class="header" href="#back-substitution">Back-substitution</a></h2>
+<p>The idea of back-substitution is straightforward: we create a matrix of solutions and iteratively solve for each variable by plugging in all variables before it.
+For example, if our matrix looks like this:</p>
+<p>\[
+\left[
+\begin{array}{ccc|c}
+2 &amp; 3  &amp; 4 &amp; 6 \\
+0 &amp; 1 &amp; 2 &amp; 2 \\
+0 &amp; 0 &amp; 11 &amp; 18
+\end{array}
+\right]
+\]</p>
+<p>We can quickly solve \( 11z = 18 \) for \( z \), and then use that to solve \( y + 2z = 2 \) for \( y \) by plugging in for \( z \).
+After that, we simply need to solve \( 2x + 3y + 4z = 6 \) for \( x \) in a similar fashion.
+In code, this involves keeping a rolling sum of all the values we substitute, subtracting that sum from the solution column and then dividing by the coefficient variable.
+In code, it looks like this:</p>
+<pre><code class="language-julia">function back_substitution(A::Array{Float64,2})
+
+    rows = size(A,1)
+    cols = size(A,2)
+
+    # Creating the solution Vector
+    soln = zeros(rows)
+
+    for i = rows:-1:1
+        sum = 0.0
+        for j = rows:-1:i
+            sum += soln[j]*A[i,j]
+        end
+        soln[i] = (A[i, cols] - sum) / A[i, i]
+    end
+
+    return soln
+end
+</code></pre>
+<pre><code class="language-c">void back_substitution(const double *a, double *x, const size_t rows,
+                       const size_t cols) {
+
+    for (int i = rows - 1; i &gt;= 0; --i) {
+        double sum = 0.0;
+
+        for (size_t j = cols - 2; j &gt; i; --j) {
+            sum += x[j] * a[i * cols + j];
+        }
+
+        x[i] = (a[i * cols + cols - 1] - sum) / a[i * cols + i];
+    }
+}
+</code></pre>
+<pre><code class="language-cpp">std::vector&lt;double&gt; backSubs(const std::vector&lt;std::vector&lt;double&gt; &gt; &amp;eqns) {
+  // 'eqns' is matrix, 'rows' is no. of variables
+  int rows = eqns.size();
+
+  std::vector&lt;double&gt; ans(rows);
+  for (int i = rows - 1; i &gt;= 0; i--) {
+    double sum = 0.0;
+
+    for (int j = i + 1; j &lt; rows; j++) sum += eqns[i][j] * ans[j];
+
+    if (eqns[i][i] != 0)
+      ans[i] = (eqns[i][rows] - sum) / eqns[i][i];
+    else
+      return std::vector&lt;double&gt;(0);
+  }
+  return ans;
+}
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn back_substitution(a: &amp;Matrix) -&gt; Vec&lt;f64&gt; {
+    let mut soln = vec![0.0; a.rows];
+
+    soln[a.rows - 1] = a[(a.rows - 1, a.cols - 1)] / a[(a.rows - 1, a.cols - 2)];
+
+    for i in (0..a.rows - 1).rev() {
+        let mut sum = 0.0;
+        for j in (i..a.rows).rev() {
+            sum += soln[j] * a[(i, j)];
+        }
+        soln[i] = (a[(i, a.cols - 1)] - sum) / a[(i, i)];
+    }
+
+    soln
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-haskell">gaussJordan :: (Fractional a, Eq a) =&gt; Matrix a -&gt; Matrix a
+gaussJordan mat = go (r1, c1) mat
+  where
+    ((r1, c1), (rn, cn)) = bounds mat
+    go (r, c) m
+      | c == cn = m
+</code></pre>
+<pre><code class="language-python"># Assumes A has a unique solution and A in row echelon form
+def back_substitution(A):
+    
+    sol = np.zeros(A.shape[0]).T
+
+    # Go by pivots along diagonal
+    for pivot_i in range(A.shape[0] - 1,  -1,  -1):
+        s = 0
+        for col in range(pivot_i + 1,  A.shape[1] - 1):
+            s += A[pivot_i, col] * sol[col]
+        sol[pivot_i] = (A[pivot_i, A.shape[1] - 1] - s) / A[pivot_i, pivot_i]
+        
+    return sol
+</code></pre>
+<pre><code class="language-java">    static double[] backSubstitution(double[][] a) {
+        int rows = a.length;
+        int cols = a[0].length;
+
+        double[] solution = new double[rows];
+
+        for (int i = rows - 1; i &gt;= 0; i--) {
+            double sum = 0;
+
+            for (int j = cols - 2; j &gt; i; j--) {
+                sum += solution[j] * a[i][j];
+            }
+            solution[i] = (a[i][cols - 1] - sum) / a[i][i];
+        }
+        return solution;
+    }
+</code></pre>
+<pre><code class="language-javascript">function backSubstitution(a) {
+  const rows = a.length;
+  const cols = a[0].length;
+  const sol = [];
+
+  for (let i = rows - 1; i &gt;= 0; --i) {
+
+    let sum = 0;
+    for (let j = cols - 2; j &gt; i; --j) {
+      sum += sol[j] * a[i][j];
+    }
+
+    sol[i] = (a[i][cols - 1] - sum) / a[i][i];
+  }
+  return sol;
+}
+</code></pre>
+<pre><code class="language-go">func backSubstitution(a [][]float64) []float64 {
+	rows := len(a)
+	cols := len(a[0])
+	x := make([]float64, rows)
+	for r := rows - 1; r &gt;= 0; r-- {
+		sum := 0.
+
+		for c := cols - 2; c &gt; r; c-- {
+			sum += x[c] * a[r][c]
+		}
+
+		x[r] = (a[r][cols-1] - sum) / a[r][r]
+	}
+	return x
+}
+</code></pre>
+<h2 id="visual-representation"><a class="header" href="#visual-representation">Visual Representation</a></h2>
+<p>We have thus far used Gaussian elimination as a method to solve a system of equations; however, there is often a much easier way to find a similar solution simply by plotting each row in our matrix.
+For the case of 2 equations and 2 unknowns, we would plot the two lines corresponding to each equation and the \( (x, y) \) location of their point of intersection would be the solution for \( x \) and \( y \).
+Similarly, for the case of 3 equations and 3 unknowns, we would plot 3 planes and the \( (x, y, z) \) location of their point of intersection would be the solution for \( x \), \( y \), and \( z \).</p>
+<p>What, then, is the point of Gaussian elimination if we can simply plot our set of equations to find a solution?
+Well, this analogy breaks down quickly when we start moving beyond 3D, so it is obvious we need some method to deal with higher-dimensional systems.
+That said, it is particularly interesting to see what happens as we plot our matrix during Gaussian elimination for the 3D case.</p>
+<div style="text-align:center">
+<video style="width:70%" controls loop>
+  <source src="res/GE_vis.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
+<p>As we can see in the above visualization, the planes wobble about in 3D until they reach row echelon form, where one plane is parallel to the \( x \) and \( y \) axes.
+At this point, it's trivial to find the \( z \)-coordinate for the solution because it's simply the \( z \) intercept of the parallel plane.
+From there, the matrices become even easier to interpret as they move to the reduced row echelon form.
+In this form, the solution is simply the \( x \), \( y \), and \( z \) intercepts of the appropriate planes.</p>
+<p>This visualization might have been obvious for some readers, but I found it particularly enlightening at first.
+By performing Gaussian elimination, we are manipulating our planes such that they can be interpreted at a glance -- which is precisely the same thing we are doing with the matrix interpretation!</p>
+<h2 id="conclusions"><a class="header" href="#conclusions">Conclusions</a></h2>
+<p>And with that, we have two possible ways to reduce our system of equations and find a solution.
+If we are sure our matrix is not singular and that a solution exists, it's fastest to use back-substitution to find our solution.
+If no solution exists or we are trying to find a reduced row echelon matrix, then Gauss-Jordan elimination is best.
+As we said at the start, the notation for Gaussian Elimination is rather ambiguous in the literature, so we are hoping that the definitions provided here are clear and consistent enough to cover all the bases.</p>
+<p>As for what's next... Well, we are in for a treat!
+The above algorithm clearly has 3 <code>for</code> loops and has a complexity of \( \sim O(n^3) \), which is abysmal!
+If we can reduce the matrix to a specifically <strong>tridiagonal</strong> matrix, we can actually solve the system in \( \sim O(n) \)!
+How? Well, we can use an algorithm known as the <em>Tri-Diagonal Matrix Algorithm</em> (TDMA) also known as the <a href="../thomas_algorithm/thomas_algorithm.html"><em>Thomas Algorithm</em></a>.</p>
+<p>There are also plenty of other solvers that do similar things that we will get to in due time.</p>
+<h2 id="video-explanation"><a class="header" href="#video-explanation">Video Explanation</a></h2>
+<p>Here's a video describing Gaussian elimination:</p>
+<div style="text-align:center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2tlwSqblrvU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<pre><code class="language-julia">function gaussian_elimination!(A::Array{Float64,2})
+
+    rows = size(A,1)
+    cols = size(A,2)
+
+    # Row index
+    row = 1
+
+    # Main loop going through all columns
+    for col = 1:(cols-1)
+
+        # finding the maximum element for each column
+        max_index = argmax(abs.(A[row:end,col])) + row-1
+
+        # Check to make sure matrix is good!
+        if (A[max_index, col] == 0)
+            println(&quot;matrix is singular!&quot;)
+            continue
+        end
+
+        # swap row with highest value for that column to the top
+        temp_vector = A[max_index, :]
+        A[max_index, :] = A[row, :]
+        A[row, :] = temp_vector
+
+        # Loop for all remaining rows
+        for i = (row+1):rows
+
+            # finding fraction
+            fraction = A[i,col]/A[row,col]
+
+            # loop through all columns for that row
+            for j = (col+1):cols
+
+                 # re-evaluate each element
+                 A[i,j] -= A[row,j]*fraction
+
+            end
+
+            # Set lower elements to 0
+            A[i,col] = 0
+        end
+        row += 1
+    end
+end
+
+function back_substitution(A::Array{Float64,2})
+
+    rows = size(A,1)
+    cols = size(A,2)
+
+    # Creating the solution Vector
+    soln = zeros(rows)
+
+    for i = rows:-1:1
+        sum = 0.0
+        for j = rows:-1:i
+            sum += soln[j]*A[i,j]
+        end
+        soln[i] = (A[i, cols] - sum) / A[i, i]
+    end
+
+    return soln
+end
+
+
+function gauss_jordan_elimination!(A::Array{Float64,2})
+
+    rows = size(A,1)
+    cols = size(A,2)
+
+
+    # After this, we know what row to start on (r-1)
+    # to go back through the matrix
+    row = 1
+    for col = 1:cols-1
+        if (A[row, col] != 0)
+
+            # divide row by pivot and leaving pivot as 1
+            for i = cols:-1:col
+                A[row,i] /= A[row,col]
+            end
+
+            # subtract value from above row and set values above pivot to 0
+            for i = 1:row-1
+                for j = cols:-1:col
+                    A[i,j] -= A[i,col]*A[row,j]
+                end
+            end
+            row += 1
+        end
+    end
+end
+
+function main()
+    A = [2. 3 4 6;
+         1 2 3 4;
+         3 -4 0 10]
+
+    gaussian_elimination!(A)
+    println(A)
+
+    gauss_jordan_elimination!(A)
+    println(A)
+
+    soln = back_substitution(A)
+    println(soln)
+
+end
+
+main()
+</code></pre>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+
+void swap_rows(double *a, const size_t i, const size_t pivot,
+               const size_t cols) {
+
+    for (size_t j = 0; j &lt; cols; ++j) {
+        double tmp = a[i * cols + j];
+        a[i * cols + j] = a[pivot * cols + j];
+        a[pivot * cols + j] = tmp;
+    }
+}
+
+void gaussian_elimination(double *a, const size_t rows, const size_t cols) {
+    size_t row = 0;
+
+    for (size_t col = 0; col &lt; cols - 1; ++col) {
+        size_t pivot = row;
+
+        for (size_t i = row + 1; i &lt; rows; ++i) {
+            if (fabs(a[i * cols + col]) &gt; fabs(a[pivot * cols + col])) {
+                pivot = i;
+            }
+        }
+
+        if (a[pivot * cols + col] == 0) {
+            printf(&quot;The matrix is singular.\n&quot;);
+            continue;
+        }
+
+        if (col != pivot) {
+            swap_rows(a, col, pivot, cols);
+        }
+
+        for (size_t i = row + 1; i &lt; rows; ++i) {
+            double scale = a[i * cols + col] / a[row * cols + col];
+
+            for (size_t j = col + 1; j &lt; cols; ++j) {
+                a[i * cols + j] -= a[row * cols + j] * scale;
+            }
+
+            a[i * cols + col] = 0;
+        }
+
+        row++;
+    }
+}
+
+void back_substitution(const double *a, double *x, const size_t rows,
+                       const size_t cols) {
+
+    for (int i = rows - 1; i &gt;= 0; --i) {
+        double sum = 0.0;
+
+        for (size_t j = cols - 2; j &gt; i; --j) {
+            sum += x[j] * a[i * cols + j];
+        }
+
+        x[i] = (a[i * cols + cols - 1] - sum) / a[i * cols + i];
+    }
+}
+
+void gauss_jordan(double *a, const size_t rows, const size_t cols) {
+    int row = 0;
+
+    for (int col = 0; col &lt; cols - 1; ++col) {
+        if (a[row * cols + col] != 0) {
+            for (int i = cols - 1; i &gt; col - 1; --i) {
+                a[row * cols + i] /= a[row * cols + col];
+            }
+
+            for (int i = 0; i &lt; row; ++i) {
+                for (int j = cols - 1; j &gt; col - 1; --j) {
+                    a[i * cols + j] -= a[i * cols + col] * a[row * cols + j];
+                }
+            }
+
+            row++;
+        }
+    }
+}
+
+int main() {
+    double a[3][4] = {{3.0, 2.0, -4.0, 3.0},
+                      {2.0, 3.0, 3.0, 15.0},
+                      {5.0, -3.0, 1.0, 14.0}};
+
+    gaussian_elimination((double *)a, 3, 4);
+
+    printf(&quot;Gaussian elimination:\n&quot;);
+    for (size_t i = 0; i &lt; 3; ++i) {
+        printf(&quot;[&quot;);
+        for (size_t j = 0; j &lt; 4; ++j) {
+            printf(&quot;%f &quot;, a[i][j]);
+        }
+        printf(&quot;]\n&quot;);
+    }
+
+    printf(&quot;\nGauss-Jordan:\n&quot;);
+
+    gauss_jordan((double *)a, 3, 4);
+
+    for (size_t i = 0; i &lt; 3; ++i) {
+        printf(&quot;[&quot;);
+        for (size_t j = 0; j &lt; 4; ++j) {
+            printf(&quot;%f &quot;, a[i][j]);
+        }
+        printf(&quot;]\n&quot;);
+    }
+
+    printf(&quot;\nSolutions are:\n&quot;);
+
+    double x[3] = {0, 0, 0};
+    back_substitution((double *)a, x, 3, 4);
+
+    printf(&quot;(%f,%f,%f)\n&quot;, x[0], x[1], x[2]);
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+
+void gaussianElimination(std::vector&lt;std::vector&lt;double&gt; &gt; &amp;eqns) {
+  // 'eqns' is the matrix, 'rows' is no. of vars
+  int rows = eqns.size(), cols = eqns[0].size();
+
+  for (int i = 0; i &lt; rows - 1; i++) {
+    int pivot = i;
+
+    for (int j = i + 1; j &lt; rows; j++) {
+      if (fabs(eqns[j][i]) &gt; fabs(eqns[pivot][i])) pivot = j;
+    }
+
+    if (eqns[pivot][i] == 0.0)
+      continue;  // But continuing to simplify the matrix as much as possible
+
+    if (i != pivot)  // Swapping the rows if new row with higher maxVals is found
+      std::swap(eqns[pivot], eqns[i]);  // C++ swap function
+
+    for (int j = i + 1; j &lt; rows; j++) {
+      double scale = eqns[j][i] / eqns[i][i];
+
+      for (int k = i + 1; k &lt; cols; k++)   // k doesn't start at 0, since
+        eqns[j][k] -= scale * eqns[i][k];  // values before from 0 to i
+                                           // are already 0
+      eqns[j][i] = 0.0;
+    }
+  }
+}
+
+void gaussJordan(std::vector&lt;std::vector&lt;double&gt; &gt; &amp;eqns) {
+  // 'eqns' is the (Row-echelon) matrix, 'rows' is no. of vars
+  int rows = eqns.size();
+
+  for (int i = rows - 1; i &gt;= 0; i--) {
+
+    if (eqns[i][i] != 0) {
+
+      eqns[i][rows] /= eqns[i][i];
+      eqns[i][i] = 1;  // We know that the only entry in this row is 1
+
+      // subtracting rows from below
+      for (int j = i - 1; j &gt;= 0; j--) {
+        eqns[j][rows] -= eqns[j][i] * eqns[i][rows];
+        eqns[j][i] = 0;  // We also set all the other values in row to 0 directly
+      }
+    }
+  }
+}
+
+std::vector&lt;double&gt; backSubs(const std::vector&lt;std::vector&lt;double&gt; &gt; &amp;eqns) {
+  // 'eqns' is matrix, 'rows' is no. of variables
+  int rows = eqns.size();
+
+  std::vector&lt;double&gt; ans(rows);
+  for (int i = rows - 1; i &gt;= 0; i--) {
+    double sum = 0.0;
+
+    for (int j = i + 1; j &lt; rows; j++) sum += eqns[i][j] * ans[j];
+
+    if (eqns[i][i] != 0)
+      ans[i] = (eqns[i][rows] - sum) / eqns[i][i];
+    else
+      return std::vector&lt;double&gt;(0);
+  }
+  return ans;
+}
+
+
+void printMatrix(const std::vector&lt;std::vector&lt;double&gt; &gt; &amp;matrix) {
+  for (int row = 0; row &lt; matrix.size(); row++) {
+    std::cout &lt;&lt; &quot;[&quot;;
+
+    for (int col = 0; col &lt; matrix[row].size() - 1; col++)
+      std::cout &lt;&lt; std::setw(8) &lt;&lt; std::fixed &lt;&lt; std::setprecision(3)
+                &lt;&lt; matrix[row][col];
+
+    std::cout &lt;&lt; &quot; |&quot; &lt;&lt; std::setw(8) &lt;&lt; std::fixed &lt;&lt; std::setprecision(3)
+              &lt;&lt; matrix[row].back() &lt;&lt; &quot; ]&quot; &lt;&lt; std::endl;
+  }
+}
+
+
+int main() {
+  std::vector&lt;std::vector&lt;double&gt; &gt; equations{
+      {2, 3, 4, 6},
+      {1, 2, 3, 4},
+      {3, -4, 0, 10}};
+
+  std::cout &lt;&lt; &quot;Initial matrix:&quot; &lt;&lt; std::endl;
+  printMatrix(equations);
+  std::cout &lt;&lt; std::endl;
+
+  gaussianElimination(equations);
+  std::cout &lt;&lt; &quot;Matrix after gaussian elimination:&quot; &lt;&lt; std::endl;
+  printMatrix(equations);
+  std::cout &lt;&lt; std::endl;
+
+  std::vector&lt;double&gt; ans = backSubs(equations);
+  std::cout &lt;&lt; &quot;Solution from backsubstitution&quot; &lt;&lt; std::endl;
+  std::cout &lt;&lt; &quot;x = &quot; &lt;&lt; ans[0] &lt;&lt; &quot;, y = &quot; &lt;&lt; ans[1] &lt;&lt; &quot;, z = &quot; &lt;&lt; ans[2]
+            &lt;&lt; std::endl
+            &lt;&lt; std::endl;
+
+  gaussJordan(equations);
+  std::cout &lt;&lt; &quot;Matrix after Gauss Jordan:&quot; &lt;&lt; std::endl;
+  printMatrix(equations);
+  std::cout &lt;&lt; std::endl;
+}
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">// submitted by jess 3jane
+
+use std::cmp::min;
+use std::ops::{Index, IndexMut};
+
+pub struct Matrix {
+    rows: usize,
+    cols: usize,
+    data: Vec&lt;f64&gt;,
+}
+
+impl Matrix {
+    fn new(rows: usize, cols: usize, data: &amp;[f64]) -&gt; Matrix {
+        Matrix {
+            rows,
+            cols,
+            data: data.to_vec(),
+        }
+    }
+
+    fn swap_rows(&amp;mut self, a: usize, b: usize) {
+        for col in 0..self.cols {
+            self.data.swap(a * self.cols + col, b * self.cols + col);
+        }
+    }
+}
+
+impl Index&lt;(usize, usize)&gt; for Matrix {
+    type Output = f64;
+    fn index(&amp;self, (row, col): (usize, usize)) -&gt; &amp;f64 {
+        &amp;self.data[row * self.cols + col]
+    }
+}
+
+impl IndexMut&lt;(usize, usize)&gt; for Matrix {
+    fn index_mut(&amp;mut self, (row, col): (usize, usize)) -&gt; &amp;mut f64 {
+        &amp;mut self.data[row * self.cols + col]
+    }
+}
+
+fn gaussian_elimination(a: &amp;mut Matrix) {
+    for k in 0..min(a.cols, a.rows) {
+        // find the maximum element for this column
+        let mut max_row = k;
+        let mut max_value = a[(k, k)].abs();
+        for row in (k + 1)..a.rows {
+            if max_value &lt; a[(row, k)].abs() {
+                max_value = a[(row, k)].abs();
+                max_row = row;
+            }
+        }
+
+        // Check to make sure the matrix is good
+        if a[(max_row, k)] == 0.0 {
+            println!(&quot;Matrix is singular, aborting&quot;);
+            return;
+        }
+
+        // swap the row with the highest value for this kumn to the top
+        a.swap_rows(k, max_row);
+
+        // Loop over all remaining rows
+        for i in k + 1..a.rows {
+            // find the fraction
+            let fraction = a[(i, k)] / a[(k, k)];
+
+            // Loop through all columns for that row
+            for j in (k + 1)..a.cols {
+                // re-evaluate each element
+                a[(i, j)] -= a[(k, j)] * fraction;
+            }
+
+            // set lower elements to 0
+            a[(i, k)] = 0.0;
+        }
+    }
+}
+
+fn gauss_jordan(a: &amp;mut Matrix) {
+    let mut row = 0;
+    for k in 0..(a.cols - 1) {
+        if a[(row, k)] != 0.0 {
+            for i in (k..a.cols).rev() {
+                a[(row, i)] /= a[(row, k)];
+            }
+
+            for i in 0..row {
+                for j in (k..a.cols).rev() {
+                    a[(i, j)] -= a[(i, k)] * a[(row, j)];
+                }
+            }
+
+            row += 1;
+        }
+    }
+}
+
+fn back_substitution(a: &amp;Matrix) -&gt; Vec&lt;f64&gt; {
+    let mut soln = vec![0.0; a.rows];
+
+    soln[a.rows - 1] = a[(a.rows - 1, a.cols - 1)] / a[(a.rows - 1, a.cols - 2)];
+
+    for i in (0..a.rows - 1).rev() {
+        let mut sum = 0.0;
+        for j in (i..a.rows).rev() {
+            sum += soln[j] * a[(i, j)];
+        }
+        soln[i] = (a[(i, a.cols - 1)] - sum) / a[(i, i)];
+    }
+
+    soln
+}
+
+fn main() {
+    // The example matrix from the text
+    let mut a = Matrix::new(
+        3,
+        4,
+        &amp;vec![2.0, 3.0, 4.0, 6.0, 1.0, 2.0, 3.0, 4.0, 3.0, -4.0, 0.0, 10.0],
+    );
+
+    gaussian_elimination(&amp;mut a);
+    gauss_jordan(&amp;mut a);
+    let soln = back_substitution(&amp;a);
+    println!(&quot;Solution: {:?}&quot;, soln);
+}
+</code></pre></pre>
+<pre><code class="language-haskell">import Data.Array
+import Data.Function (on)
+import Data.List (intercalate, maximumBy)
+import Data.Ratio
+
+type Matrix a = Array (Int, Int) a
+
+type Vector a = Array Int a
+
+swapRows :: Int -&gt; Int -&gt; Matrix a -&gt; Matrix a
+swapRows r1 r2 m
+  | r1 == r2 = m
+  | otherwise =
+    m //
+    concat [[((r2, c), m ! (r1, c)), ((r1, c), m ! (r2, c))] | c &lt;- [c1 .. cn]]
+  where
+    ((_, c1), (_, cn)) = bounds m
+
+subRows ::
+     Fractional a
+  =&gt; (Int, Int) -- pivot location
+  -&gt; (Int, Int) -- rows to cover
+  -&gt; (Int, Int) -- columns to cover
+  -&gt; Matrix a
+  -&gt; Matrix a
+subRows (r, c) (r1, rn) (c1, cn) m =
+  accum
+    (-)
+    m
+    [ ((i, j), m ! (i, c) * m ! (r, j) / m ! (r, c))
+    | i &lt;- [r1 .. rn]
+    , j &lt;- [c1 .. cn]
+    ]
+
+gaussianElimination :: (Fractional a, Ord a) =&gt; Matrix a -&gt; Matrix a
+gaussianElimination mat = go (r1, c1) mat
+  where
+    ((r1, c1), (rn, cn)) = bounds mat
+    go (r, c) m
+      | c == cn = m
+      | pivot == 0 = go (r, c + 1) m
+      | otherwise = go (r + 1, c + 1) $ subRows (r, c) (r + 1, rn) (c, cn) m'
+      where
+        (target, pivot) =
+          maximumBy (compare `on` abs . snd) [(k, m ! (k, c)) | k &lt;- [r .. rn]]
+        m' = swapRows r target m
+
+gaussJordan :: (Fractional a, Eq a) =&gt; Matrix a -&gt; Matrix a
+gaussJordan mat = go (r1, c1) mat
+  where
+    ((r1, c1), (rn, cn)) = bounds mat
+    go (r, c) m
+      | c == cn = m
+      | m ! (r, c) == 0 = go (r, c + 1) m
+      | otherwise = go (r + 1, c + 1) $ subRows (r, c) (r1, r - 1) (c, cn) m'
+      where
+        m' = accum (/) m [((r, j), m ! (r, c)) | j &lt;- [c .. cn]]
+
+backSubstitution :: (Fractional a) =&gt; Matrix a -&gt; Vector a
+backSubstitution m = sol
+  where
+    ((r1, _), (rn, cn)) = bounds m
+    sol =
+      listArray (r1, rn) [(m ! (r, cn) - sum' r) / m ! (r, r) | r &lt;- [r1 .. rn]]
+    sum' r = sum [m ! (r, k) * sol ! k | k &lt;- [r + 1 .. rn]]
+
+printM :: (Show a) =&gt; Matrix a -&gt; String
+printM m =
+  let ((r1, c1), (rn, cn)) = bounds m
+   in unlines
+        [ intercalate &quot;\t&quot; [show $ m ! (r, c) | c &lt;- [c1 .. cn]]
+        | r &lt;- [r1 .. rn]
+        ]
+
+printV :: (Show a) =&gt; Vector a -&gt; String
+printV = unlines . map show . elems
+
+main :: IO ()
+main = do
+  let mat = [2, 3, 4, 6, 1, 2, 3, 4, 3, -4, 0, 10] :: [Ratio Int]
+      m = listArray ((1, 1), (3, 4)) mat
+  putStrLn &quot;Original Matrix:&quot;
+  putStrLn $ printM m
+  putStrLn &quot;Echelon form&quot;
+  putStrLn $ printM $ gaussianElimination m
+  putStrLn &quot;Reduced echelon form&quot;
+  putStrLn $ printM $ gaussJordan $ gaussianElimination m
+  putStrLn &quot;Solution from back substitution&quot;
+  putStrLn $ printV $ backSubstitution $ gaussianElimination m
+</code></pre>
+<pre><code class="language-python">import numpy as np
+
+def gaussian_elimination(A):
+
+    pivot_row = 0
+    
+    # Go by column
+    for pivot_col in range(min(A.shape[0], A.shape[1])):
+
+        # Swap row with highest element in col
+        max_i = np.argmax(abs(A[pivot_row:, pivot_col])) + pivot_row
+        
+        temp = A[pivot_row, :].copy()
+        A[pivot_row, :] = A[max_i, :]
+        A[max_i, :] = temp
+
+        # Skip on singular matrix,  not actually a pivot
+        if A[pivot_row, pivot_col] == 0:
+            continue
+
+        # Zero out elements below pivot
+        for r in range(pivot_row + 1,  A.shape[0]):
+            # Get fraction
+            frac = -A[r, pivot_col] / A[pivot_row, pivot_col]
+            # Add rows
+            A[r, :] += frac * A[pivot_row, :]
+
+        pivot_row += 1
+
+
+# Assumes A is already row echelon form
+def gauss_jordan_elimination(A):
+    
+    col = 0
+
+    # Scan for pivots
+    for row in range(A.shape[0]):
+        while col &lt; A.shape[1] and A[row, col] == 0:
+            col += 1
+            
+        if col &gt;= A.shape[1]:
+            continue
+
+        # Set each pivot to one via row scaling
+        A[row, :] /= A[row, col]
+
+        # Zero out elements above pivot
+        for r in range(row):
+            A[r, :] -= A[r, col] * A[row, :]
+
+
+# Assumes A has a unique solution and A in row echelon form
+def back_substitution(A):
+    
+    sol = np.zeros(A.shape[0]).T
+
+    # Go by pivots along diagonal
+    for pivot_i in range(A.shape[0] - 1,  -1,  -1):
+        s = 0
+        for col in range(pivot_i + 1,  A.shape[1] - 1):
+            s += A[pivot_i, col] * sol[col]
+        sol[pivot_i] = (A[pivot_i, A.shape[1] - 1] - s) / A[pivot_i, pivot_i]
+        
+    return sol
+
+
+def main():
+    A = np.array([[2, 3, 4, 6],
+                  [1, 2, 3, 4,],
+                  [3, -4, 0, 10]], dtype=float)
+
+    print(&quot;Original&quot;)
+    print(A, &quot;\n&quot;)
+
+    gaussian_elimination(A)
+    print(&quot;Gaussian elimination&quot;)
+    print(A, &quot;\n&quot;)
+
+    print(&quot;Back subsitution&quot;)
+    print(back_substitution(A), &quot;\n&quot;)
+
+    gauss_jordan_elimination(A)
+    print(&quot;Gauss-Jordan&quot;)
+    print(A, &quot;\n&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+<pre><code class="language-java">import java.util.Arrays;
+
+public class GaussianElimination {
+
+    static void gaussianElimination(double[][] a) {
+        int row = 0;
+
+        int rows = a.length;
+        int cols = a[0].length;
+
+        for (int col = 0; col &lt; cols - 1; col++) {
+            int pivot = row;
+
+            // finding the maximum element
+            for (int i = row + 1; i &lt; row; i++) {
+                if (Math.abs(a[i][col]) &gt; Math.abs(a[pivot][col])) {
+                    pivot = i;
+                }
+            }
+
+            if (a[pivot][col] == 0) {
+                System.err.println(&quot;The matrix is singular&quot;);
+                continue;
+            }
+
+            if (row != pivot) {
+                // Swap the row with the highest valued element
+                // with the current row
+                swapRow(a, col, pivot);
+            }
+
+            for (int i = row + 1; i &lt; rows; i++) {
+                // finding the inverse
+                double scale = a[i][col] / a[row][col];
+                // loop through all columns in current row
+                for (int j = col + 1; j &lt; cols; j++) {
+
+                    // Subtract rows
+                    a[i][j] -= a[row][j] * scale;
+                }
+
+                // Set lower elements to 0
+                a[i][col] = 0;
+            }
+            row++;
+        }
+    }
+
+    static void gaussJordan(double[][] a) {
+        int row = 0;
+
+        int cols = a[0].length;
+
+        for (int col = 0; col &lt; cols - 1; col++) {
+            if (a[row][col] != 0) {
+                for (int i = cols - 1; i &gt; col - 1; i--) {
+                    // divide row by pivot so the pivot is set to 1
+                    a[row][i] /= a[row][col];
+                }
+
+                // subtract the value form above row and set values above pivot to 0
+                for (int i = 0; i &lt; row; i++) {
+                    for (int j = cols - 1; j &gt; col - 1; j--) {
+                        a[i][j] -= a[i][col] * a[row][j];
+                    }
+                }
+                row++;
+            }
+        }
+    }
+
+    static double[] backSubstitution(double[][] a) {
+        int rows = a.length;
+        int cols = a[0].length;
+
+        double[] solution = new double[rows];
+
+        for (int i = rows - 1; i &gt;= 0; i--) {
+            double sum = 0;
+
+            for (int j = cols - 2; j &gt; i; j--) {
+                sum += solution[j] * a[i][j];
+            }
+            solution[i] = (a[i][cols - 1] - sum) / a[i][i];
+        }
+        return solution;
+    }
+
+    static void swapRow(double[][] a, int rowA, int rowB) {
+        double[] temp = a[rowA];
+        a[rowA] = a[rowB];
+        a[rowB] = temp;
+    }
+
+    public static void main(String[] args) {
+        double[][] a = {
+            { 3, 2, -4, 3 },
+            { 2, 3, 3, 15 },
+            { 5, -3, 1, 14 }
+        };
+
+        gaussianElimination(a);
+        System.out.println(&quot;Gaussian elimination:&quot;);
+        Arrays.stream(a).forEach(x -&gt; System.out.println(Arrays.toString(x)));
+
+        gaussJordan(a);
+        System.out.println(&quot;\nGauss-Jordan:&quot;);
+        Arrays.stream(a).forEach(x -&gt; System.out.println(Arrays.toString(x)));
+
+        System.out.println(&quot;\nSolutions:&quot;);
+        System.out.println(Arrays.toString(backSubstitution(a)));
+    }
+}
+</code></pre>
+<pre><code class="language-javascript">function gaussianElimination(a) {
+  const rows = a.length
+  const cols = a[0].length
+  let row = 0;
+  for (let col = 0; col &lt; cols - 1; ++col) {
+
+    let pivot = row;
+    for (let i = row + 1; i &lt; rows; ++i) {
+      if (Math.abs(a[i][col]) &gt; Math.abs(a[pivot][col])) {
+        pivot = i;
+      }
+    }
+
+    if (a[pivot][col] === 0) {
+      console.log(&quot;The matrix is singular.&quot;);
+      continue;
+    }
+
+    if (col !== pivot) {
+      const t = a[col];
+      a[col] = a[pivot];
+      a[pivot] = t;
+    }
+
+    for (let i = row + 1; i &lt; rows; ++i) {
+      const scale = a[i][col] / a[row][col];
+
+      for (let j = col + 1; j &lt; cols; ++j) {
+        a[i][j] -= a[row][j] * scale;
+      }
+
+      a[i][col] = 0;
+    }
+
+    ++row;
+  }
+  return a;
+}
+
+function backSubstitution(a) {
+  const rows = a.length;
+  const cols = a[0].length;
+  const sol = [];
+
+  for (let i = rows - 1; i &gt;= 0; --i) {
+
+    let sum = 0;
+    for (let j = cols - 2; j &gt; i; --j) {
+      sum += sol[j] * a[i][j];
+    }
+
+    sol[i] = (a[i][cols - 1] - sum) / a[i][i];
+  }
+  return sol;
+}
+
+function gaussJordan(a) {
+  const cols = a[0].length;
+  let row = 0;
+
+  for (let col = 0; col &lt; cols - 1; ++col) {
+    if (a[row][col] !== 0) {
+      for (let i = cols - 1; i &gt; col - 1; --i) {
+        a[row][i] /= a[row][col];
+      }
+
+      for (let i = 0; i &lt; row; ++i) {
+        for (let j = cols - 1; j &gt; col - 1; --j) {
+          a[i][j] -= a[i][col] * a[row][j];
+        }
+      }
+
+      ++row;
+    }
+  }
+}
+
+function printMatrixRow(row) {
+  const text = row
+    .map(v =&gt; (v &lt; 0 ? &quot; &quot; : &quot;  &quot;) + v.toPrecision(8))
+    .join(&quot;&quot;);
+
+  console.log(text);
+}
+
+function printMatrix(a) {
+  for (const row of a) {
+    printMatrixRow(row);
+  }
+}
+
+const a = [
+  [3,  2, -4,  3],
+  [2,  3,  3, 15],
+  [5, -3,  1, 14]
+];
+
+gaussianElimination(a);
+console.log(&quot;Gaussian elimination:&quot;);
+printMatrix(a);
+
+gaussJordan(a);
+console.log(&quot;\nGauss-Jordan:&quot;);
+printMatrix(a);
+
+const sol = backSubstitution(a);
+console.log(&quot;\nSolutions are:&quot;);
+printMatrixRow(sol);
+</code></pre>
+<pre><code class="language-go">// Package demonstrates Gaussian Elimination
+package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math&quot;
+)
+
+func gaussianElimination(a [][]float64) {
+	singular := false
+	rows := len(a)
+	cols := len(a[0])
+
+	for c, r := 0, 0; c &lt; cols &amp;&amp; r &lt; rows; c++ {
+		// 1. find highest value in column below row to be pivot
+		p, highest := r, 0.
+		for i, row := range a[r:] {
+			if abs := math.Abs(row[c]); abs &gt; highest {
+				p = r + i
+				highest = abs
+			}
+		}
+		highest = a[p][c] // correct sign
+
+		if highest == 0. {
+			if !singular {
+				singular = true
+				fmt.Println(&quot;This matrix is singular.&quot;)
+			}
+			continue
+		}
+
+		// 2. swap pivot with current row
+		if p != r {
+			a[r], a[p] = a[p], a[r]
+		}
+
+		for _, row := range a[r+1:] {
+			// 3. find fraction from pivot value
+			frac := row[c] / highest
+
+			// 4. subtract row to set rest of column to zero
+			for j := range row {
+				row[j] -= frac * a[r][j]
+			}
+
+			// 5. ensure col goes to zero (no float rounding)
+			row[c] = 0.
+		}
+
+		r++
+	}
+}
+
+func gaussJordan(a [][]float64) {
+	for r := len(a) - 1; r &gt;= 0; r-- {
+		// Find pivot col
+		p := -1
+		for c, cell := range a[r] {
+			if cell != 0. {
+				p = c
+				break
+			}
+		}
+		if p &lt; 0 {
+			continue
+		}
+
+		// Scale pivot r to 1.
+		scale := a[r][p]
+		for c := range a[r][p:] {
+			a[r][p+c] /= scale
+		}
+		// Subtract pivot row from each row above
+		for _, row := range a[:r] {
+			scale = row[p]
+			for c, cell := range a[r][p:] {
+				row[p+c] -= cell * scale
+			}
+		}
+	}
+}
+
+func backSubstitution(a [][]float64) []float64 {
+	rows := len(a)
+	cols := len(a[0])
+	x := make([]float64, rows)
+	for r := rows - 1; r &gt;= 0; r-- {
+		sum := 0.
+
+		for c := cols - 2; c &gt; r; c-- {
+			sum += x[c] * a[r][c]
+		}
+
+		x[r] = (a[r][cols-1] - sum) / a[r][r]
+	}
+	return x
+}
+
+func printMatrixRow(row []float64) {
+	fmt.Print(&quot;[&quot;)
+	for _, cell := range row {
+		fmt.Printf(&quot;%9.4f &quot;, cell)
+	}
+	fmt.Println(&quot;]&quot;)
+}
+
+func printMatrix(a [][]float64) {
+	for _, row := range a {
+		printMatrixRow(row)
+	}
+	fmt.Println()
+}
+
+func main() {
+	a := [][]float64{
+		{2, 3, 4, 6},
+		{1, 2, 3, 4},
+		{3, -4, 0, 10},
+	}
+	fmt.Println(&quot;Original Matrix:&quot;)
+	printMatrix(a)
+
+	fmt.Println(&quot;Gaussian elimination:&quot;)
+	gaussianElimination(a)
+	printMatrix(a)
+
+	gaussJordan(a)
+	fmt.Println(&quot;Gauss-Jordan:&quot;)
+	printMatrix(a)
+
+	fmt.Println(&quot;Solutions are:&quot;)
+	x := backSubstitution(a)
+	printMatrixRow(x)
+}
+</code></pre>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<ul>
+<li>The animation &quot;<a href="res/GE_vis.mp4">GEvis</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../matrix_methods/matrix_methods.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../thomas_algorithm/thomas_algorithm.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../matrix_methods/matrix_methods.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../thomas_algorithm/thomas_algorithm.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

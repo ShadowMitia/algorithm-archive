@@ -1,0 +1,987 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Jarvis March - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html" class="active"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="jarvis-march"><a class="header" href="#jarvis-march">Jarvis March</a></h1>
+<p>The first two-dimensional convex hull algorithm was originally developed by R. A. Jarvis in 1973 {{ &quot;jm1973&quot; | cite }}.
+Though other convex hull algorithms exist, this algorithm is often called <em>the</em> gift-wrapping algorithm.</p>
+<p>The idea behind this algorithm is simple.
+If we start with a random distribution of points, we can find the convex hull by first starting with the left-most point and using the origin to calculate an angle between every other point in the simulation.
+As a note, the &quot;angle&quot; can be roughly approximated with a cross-product or a dot product, which is common for some implementations here.
+Whichever point has the largest interior angle is chosen as the next point in the convex hull and we draw a line between the two points.
+From there, we use the two known points to again calculate the angle between all other points in the simulation.
+We then choose the point with the largest interior angle and move the simulation forward.
+We keep repeating this process until we have returned to our original point.
+The set of points chosen in this simulation will be the convex hull.</p>
+<p>As we might expect, this algorithm is not incredibly efficient and has a runtime of \( \mathcal{O}(nh) \), where \( n \) is the number of points and \( h \) is the size of the hull.
+As a note, the Jarvis March can be generalized to higher dimensions.
+Since this algorithm, there have been many other algorithms that have advanced the field of two-dimensional gift-wrapping forward, including the Graham Scan and Chan's Algorithm, which will be discussed in due time.</p>
+<h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
+<p>{% references %} {% endreferences %}</p>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<p>{% sample lang=&quot;cs&quot; %}</p>
+<h5 id="jarvismarchcs"><a class="header" href="#jarvismarchcs">JarvisMarch.cs</a></h5>
+<p><a href="code/csharp/JarvisMarch.cs">import, lang=&quot;csharp&quot;</a></p>
+<h5 id="programcs"><a class="header" href="#programcs">Program.cs</a></h5>
+<p><a href="code/csharp/Program.cs">import, lang=&quot;csharp&quot;</a></p>
+<pre><code class="language-julia">struct Pos
+    x::Float64
+    y::Float64
+end
+
+function jarvis_cross(point1::Pos, point2::Pos, point3::Pos)
+    vec1 = Pos(point2.x - point1.x, point2.y - point1.y)
+    vec2 = Pos(point3.x - point2.x, point3.y - point2.y)
+    ret_cross = vec1.x*vec2.y - vec1.y*vec2.x
+    return ret_cross*ret_cross
+end
+
+function jarvis_march(points::Vector{Pos})
+    hull = Vector{Pos}()
+
+    # sorting array based on leftmost point
+    sort!(points, by = item -&gt; item.x)
+    push!(hull, points[1])
+
+    i = 1
+    curr_point = points[2]
+
+    # Find cross product between points
+    curr_product = jarvis_cross(Pos(0,0), hull[1], curr_point)
+    while (curr_point != hull[1])
+        for point in points
+                product = 0.0
+            if (i == 1)
+                if (hull[i] != point)
+                    product = jarvis_cross(Pos(0,0), hull[i], point)
+                end
+            else
+                if (hull[i] != point &amp;&amp; hull[i-1] != point)
+                    product = jarvis_cross(hull[i-1], hull[i], point)
+                end
+            end
+            if (product &gt; curr_product)
+                curr_point = point
+                curr_product = product
+            end
+        end
+        push!(hull, curr_point)
+        curr_product = 0
+        i += 1
+    end
+
+    return hull
+end
+
+function main()
+
+    points = [Pos(2,1.5), Pos(1, 1), Pos(2, 4), Pos(3, 1)]
+    hull = jarvis_march(points)
+    println(hull)
+end
+
+main()
+</code></pre>
+<pre><code class="language-haskell">import Data.List (sort, maximumBy)
+import Data.Function (on)
+
+type Point = (Double, Double)
+
+angle :: Point -&gt; Point -&gt; Point -&gt; Double
+angle a@(xa, ya) b@(xb, yb) c@(xc, yc)
+  | a==b || c==b = 0
+  | theta&lt;0      = theta+2*pi
+  | otherwise    = theta
+  where thetaA = atan2 (ya-yb) (xa-xb)
+        thetaC = atan2 (yc-yb) (xc-xb)
+        theta = thetaC - thetaA
+
+jarvisMarch :: [Point] -&gt; [Point]
+jarvisMarch [] = []
+jarvisMarch pts = p0 : wrap (x, y-1) p0
+  where p0@(x, y)= minimum pts
+        wrap p1 p2
+          | pm == p0  = []
+          | otherwise = pm : wrap p2 pm
+          where pm = maximumBy (compare `on` angle p1 p2) pts
+
+main = do
+  let pts = filter (\(x,y) -&gt; x^2+y^2&lt;=5^2) [(x,y)|x&lt;-[-5..5], y&lt;-[-5..5]]
+  print $ jarvisMarch pts
+</code></pre>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+#include &lt;stdbool.h&gt;
+
+struct point {
+    double x,y;
+};
+
+struct point left_most_point(struct point *points, size_t num_points) {
+    struct point ret = points[0];
+
+    for (size_t i = 0; i &lt; num_points; ++i) {
+        if (points[i].x &lt; ret.x) {
+            ret = points[i];
+        } else if(points[i].x == ret.x) {
+            if (points[i].y &lt; ret.y) {
+                ret = points[i];
+            }
+        }
+    }
+
+    return ret;
+}
+
+bool equal(struct point a, struct point b) {
+    return a.x == b.x &amp;&amp; a.y == b.y;
+}
+
+double winding(struct point p, struct point q, struct point r) {
+    return (q.x - p.x)*(r.y - p.y) - (q.y - p.y)*(r.x - p.x);
+}
+
+size_t jarvis_march(struct point *points, struct point *hull_points,
+                    size_t num_points) {
+    struct point hull_point = left_most_point(points, num_points);
+    struct point end_point;
+
+    size_t i = 0;
+    do {
+        hull_points[i] = hull_point;
+        end_point = points[0];
+
+        for (size_t j = 1; j &lt; num_points; ++j) {
+            if (equal(end_point, hull_point) ||
+                    winding(hull_points[i], end_point, points[j]) &gt; 0.0) {
+                end_point = points[j];
+            }
+        }
+
+        i++;
+        hull_point = end_point;
+    } while (!equal(end_point, hull_points[0]));
+
+    return i;
+}
+
+int main() {
+    struct point points[] = {
+        { -5.0, 2.0 },
+        { 5.0, 7.0 },
+        { -6.0, -12.0 },
+        { -14.0, -14.0 },
+        { 9.0, 9.0 },
+        { -1.0, -1.0 },
+        { -10.0, 11.0 },
+        { -6.0, 15.0 },
+        { -6.0, -8.0 },
+        { 15.0, -9.0 },
+        { 7.0, -7.0 },
+        { -2.0, -9.0 },
+        { 6.0, -5.0 },
+        { 0.0, 14.0 },
+        { 2.0, 8.0 }
+    };
+    struct point hull_points[15];
+
+    size_t num_hull_points = jarvis_march(points, hull_points, 15);
+
+    printf(&quot;The Hull points are:\n&quot;);
+    for (size_t i = 0; i &lt; num_hull_points; ++i) {
+        printf(&quot;x=%f y=%f\n&quot;, hull_points[i].x, hull_points[i].y);
+    }
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-javascript">function jarvisMarch(points) {
+  const hull = [];
+
+  let pointOnHull = points.reduce((leftmost, current) =&gt; leftmost.x &lt; current.x ? leftmost : current);
+  do {
+    hull.push(pointOnHull);
+    pointOnHull = points.reduce(chooseNextPointOnHull(pointOnHull));
+  } while (pointOnHull !== hull[0]);
+
+  return hull;
+}
+
+function chooseNextPointOnHull(currentPoint) {
+  return function (nextPoint, candidate) {
+      if (nextPoint === currentPoint || isLeftOf({ a: currentPoint, b: nextPoint }, candidate)) {
+        return candidate;
+      }
+      return nextPoint;
+  }
+}
+
+function isLeftOf({ a, b }, p) {
+  return (b.x - a.x) * (p.y - a.y) &gt; (p.x - a.x) * (b.y - a.y);
+}
+
+const points = [
+  { x: 1, y: 3 },
+  { x: 2, y: 4 },
+  { x: 4, y: 0 },
+  { x: 1, y: 0 },
+  { x: 0, y: 2 },
+  { x: 2, y: 2 },
+  { x: 3, y: 4 },
+  { x: 3, y: 1 },
+];
+
+const convexHull = jarvisMarch(points);
+convexHull.forEach(p =&gt; console.log(`(${p.x}, ${p.y})`));
+
+</code></pre>
+<pre><code class="language-python"># Is the turn counter clockwise?
+def ccw(p1, p2, p3):
+    return (p3[1] - p1[1]) * (p2[0] - p1[0]) \
+        &gt;= (p2[1] - p1[1]) * (p3[0] - p1[0])
+
+
+def jarvis_march(gift):
+    n = len(gift)  # Number of points in list
+    point_on_hull = min(gift)  # leftmost point in gift
+    hull = [point_on_hull]  # leftmost point guaranteed to be in hull
+
+    while True:
+        # Candidate for next point in hull
+        endpoint = gift[0]
+        for j in range(1, n):
+            if endpoint == point_on_hull \
+               or not ccw(gift[j], hull[-1], endpoint):
+                endpoint = gift[j]
+
+        point_on_hull = endpoint
+
+        # Check if we have completely wrapped gift
+        if hull[0] == endpoint:
+            break
+        else:
+            hull.append(point_on_hull)
+
+    return hull
+
+
+def main():
+    test_gift = [
+        (-5, 2), (5, 7), (-6, -12), (-14, -14), (9, 9),
+        (-1, -1), (-10, 11), (-6, 15), (-6, -8), (15, -9),
+        (7, -7), (-2, -9), (6, -5), (0, 14), (2, 8)
+    ]
+    hull = jarvis_march(test_gift)
+
+    print(&quot;The points in the hull are:&quot;)
+    for point in hull:
+        print(point)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<pre><code class="language-cpp">#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+struct Point
+{
+    double x, y;
+
+    bool operator==(const Point&amp; b) const
+    {
+        return x == b.x &amp;&amp; y == b.y;
+    }
+
+    bool operator!=(const Point&amp; b) const
+    {
+        return !(*this == b);
+    }
+};
+
+std::vector&lt;Point&gt; jarvis_march(const std::vector&lt;Point&gt;&amp; points)
+{
+    std::vector&lt;Point&gt; hull_points;
+
+    if(points.empty())
+        return hull_points;
+
+    // Left most point
+    auto first_point_it = std::min_element(points.begin(), points.end(), [](const Point&amp; a, const Point&amp; b){ return a.x &lt; b.x; });
+
+    auto next_point_it = first_point_it;
+    do
+    {
+        hull_points.push_back(*next_point_it);
+
+        const Point&amp; p1 = hull_points.back();
+
+        // Largest internal angle
+        next_point_it = std::max_element(
+            points.begin(),
+            points.end(),
+            [p1](const Point&amp; p2, const Point&amp; p3){
+                return (p1 == p2) || (p2.x - p1.x) * (p3.y - p1.y) &gt; (p3.x - p1.x) * (p2.y - p1.y);
+            }
+        );
+    }
+    while(*next_point_it != *first_point_it);
+
+    return hull_points;
+}
+
+int main() {
+    std::vector&lt;Point&gt; points = {
+        { -5.0, 2.0 },
+        { 5.0, 7.0 },
+        { -6.0, -12.0 },
+        { -14.0, -14.0 },
+        { 9.0, 9.0 },
+        { -1.0, -1.0 },
+        { -10.0, 11.0 },
+        { -6.0, 15.0 },
+        { -6.0, -8.0 },
+        { 15.0, -9.0 },
+        { 7.0, -7.0 },
+        { -2.0, -9.0 },
+        { 6.0, -5.0 },
+        { 0.0, 14.0 },
+        { 2.0, 8.0 }
+    };
+
+    auto hull_points = jarvis_march(points);
+
+    std::cout &lt;&lt; &quot;Hull points are:&quot; &lt;&lt; std::endl;
+
+    for(const Point&amp; point : hull_points) {
+        std::cout &lt;&lt; '(' &lt;&lt; point.x &lt;&lt; &quot;, &quot; &lt;&lt; point.y &lt;&lt; ')' &lt;&lt; std::endl;
+    }
+}
+</code></pre>
+<pre><code class="language-lisp">;;;; Jarvis March implementation
+
+(defstruct (point (:constructor make-point (x y))) x y)
+
+(defun is-left-p (p1 p2 p3)
+  &quot;Checks if the point p3 is to the left of the line p1 -&gt; p2&quot;
+  (&gt;
+    (*
+      (- (point-y p3) (point-y p1))
+      (- (point-x p2) (point-x p1)))
+    (*
+      (- (point-y p2) (point-y p1))
+      (- (point-x p3) (point-x p1)))))
+
+(defun next-point-on-hull (p1 p2 gift)
+  &quot;Finds the next point on the convex hull of a gift&quot;
+  (if (null gift)
+      p2
+      (if (is-left-p p1 p2 (first gift))
+          (next-point-on-hull p1 (first gift) (rest gift))
+          (next-point-on-hull p1 p2 (rest gift)))))
+
+(defun leftmost-point (gift)
+  &quot;Returns the lefmost point of a gift&quot;
+  (reduce 
+    (lambda (p1 p2)
+      (if (&lt; (point-x p1) (point-x p2)) p1 p2))
+    gift))
+
+(defun jarvis-march (gift)
+  &quot;finds the convex hull of any distribution of points&quot;
+  ;deals with the edge cases
+  (if (&lt; (length gift) 3)
+    gift
+    (loop
+      with start = (leftmost-point gift)
+      with hull = (list start (make-point (point-x start) (- (point-y start) 1)))
+      do 
+        (setq hull
+          (cons 
+            (next-point-on-hull (first hull) (second hull) gift)
+            hull))
+      until (equalp (first hull) start)
+      ;deletes extra points
+      finally (return (rest (butlast hull))))))
+
+(defvar gift
+  (map 
+    'list
+    (lambda (e) (apply #'make-point e))
+    '((2 1.5) (1 1) (2 4) (3 1))))
+
+(print (jarvis-march gift))
+</code></pre>
+<pre><code class="language-java">import java.util.*;
+
+public class JarvisMarch {
+    
+    static class Point {
+        private double x;
+        private double y;
+        
+        public Point(double a, double b) {
+            x = a;
+            y = b;
+        }
+        
+        public double getX() {
+            return x;
+        }
+        public double getY() {
+            return y;
+        }
+        
+        public boolean equals(Point p) {
+            if (p.getX() == x &amp;&amp; p.getY() == y) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public double magnitude() {
+            return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+        }
+    }
+    
+    //find the angle by creating two vectors and then using a property of dot products
+    private static double angle(Point a, Point b, Point c) {
+        Point ab = new Point(b.getX() - a.getX(), b.getY() - a.getY());
+        Point bc = new Point(c.getX() - b.getX(), c.getY() - b.getY());
+        return Math.acos(-1 * ((ab.getX() * bc.getX()) + (ab.getY() * bc.getY())) /
+                               (ab.magnitude() * bc.magnitude()));
+    }
+    
+    public static ArrayList&lt;Point&gt; jarvisMarch(ArrayList&lt;Point&gt; arr) {
+        ArrayList&lt;Point&gt; hull = new ArrayList&lt;Point&gt;();
+        Point pointOnHull = new Point(Double.MAX_VALUE, 0);
+        
+        //find leftmost point
+        for (Point p: arr) {
+            if (p.getX() &lt; pointOnHull.getX()) {
+                pointOnHull = p;
+            }
+        }
+        hull.add(pointOnHull);
+        
+        //look for the rest of the points on the hull
+        Point ref;
+        while (true) {
+            if (hull.size() == 1) {
+                ref = new Point(pointOnHull.getX(), pointOnHull.getY() + 1); //finds a third point to use in calculating the angle
+            } else {
+                ref = hull.get(hull.size() - 2);
+            }
+            Point endpoint = arr.get(0); //initial canidate for next point in hull
+            for (Point p: arr) {
+                if (angle(p, pointOnHull, ref) &gt; angle(endpoint, pointOnHull, ref)) { //found a point that makes a greater angle
+                    endpoint = p;
+                }
+            }
+            pointOnHull = endpoint;
+            if (pointOnHull.equals(hull.get(0))) { //add next point to hull if not equal to the leftmost point
+                break;
+            } else {
+                hull.add(pointOnHull);
+            }
+        }
+        return hull;
+    }
+    
+    public static void main(String[] args) {
+        
+        //test array setup
+        ArrayList&lt;Point&gt; gift = new ArrayList&lt;Point&gt;();
+        gift.add(new Point(-5, 2));
+        gift.add(new Point(5, 7));
+        gift.add(new Point(-6, -12));
+        gift.add(new Point(-14, -14));
+        gift.add(new Point(9, 9));
+        gift.add(new Point(-1, -1));
+        gift.add(new Point(-10, 11));
+        gift.add(new Point(-6, 15));
+        gift.add(new Point(-6, -8));
+        gift.add(new Point(15, -9));
+        gift.add(new Point(7, -7));
+        gift.add(new Point(-2, -9));
+        gift.add(new Point(6, -5));
+        gift.add(new Point(0, 14));
+        gift.add(new Point(2, 8));
+        
+        //print initial array of points
+        System.out.println(&quot;Gift:&quot;);
+        for (Point p: gift) {
+            System.out.println(&quot;[&quot; + p.getX() + &quot;, &quot; + p.getY() + &quot;]&quot;);
+        }
+        
+        //find and print the array of points in the hull
+        ArrayList&lt;Point&gt; hull = jarvisMarch(gift);
+        System.out.println(&quot;Wrapping:&quot;);
+        for (Point p: hull) {
+            System.out.println(&quot;[&quot; + p.getX() + &quot;, &quot; + p.getY() + &quot;]&quot;);
+        }
+    }
+    
+}
+</code></pre>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type point struct {
+	x, y float64
+}
+
+func leftMostPoint(points []point) point {
+	ret := points[0]
+
+	for _, p := range points {
+		if (p.x &lt; ret.x) || (p.x == ret.x &amp;&amp; p.y &lt; ret.y) {
+			ret = p
+		}
+	}
+
+	return ret
+}
+
+func (p point) equal(o point) bool {
+	return p.x == o.x &amp;&amp; p.y == o.y
+}
+
+func counterClockWise(p1, p2, p3 point) bool {
+	return (p3.y-p1.y)*(p2.x-p1.x) &gt;= (p2.y-p1.y)*(p3.x-p1.x)
+}
+
+func jarvisMarch(points []point) []point {
+	hullPoints := make([]point, 0)
+	hullPoint := leftMostPoint(points)
+	hullPoints = append(hullPoints, hullPoint)
+
+	for {
+		endPoint := points[0]
+
+		for _, p := range points[1:] {
+			if endPoint.equal(hullPoint) || !counterClockWise(p, hullPoints[len(hullPoints)-1], endPoint) {
+				endPoint = p
+			}
+		}
+
+		hullPoint = endPoint
+
+		if endPoint.equal(hullPoints[0]) {
+			break
+		}
+
+		hullPoints = append(hullPoints, hullPoint)
+	}
+	return hullPoints
+}
+
+func main() {
+	points := []point{{-5, 2}, {5, 7}, {-6, -12}, {-14, -14}, {9, 9},
+		{-1, -1}, {-10, 11}, {-6, 15}, {-6, -8}, {15, -9},
+		{7, -7}, {-2, -9}, {6, -5}, {0, 14}, {2, 8},
+	}
+
+	hullPoints := jarvisMarch(points)
+	fmt.Println(&quot;The hull points are:&quot;)
+
+	for _, p := range hullPoints {
+		fmt.Printf(&quot;x=%f y=%f\n&quot;, p.x, p.y)
+	}
+}
+</code></pre>
+<pre><code class="language-v">struct Point {
+	x int
+	y int
+}
+
+fn left_most_point(points []Point) Point {
+	mut ret := points[0]
+
+	for p in points {
+		if (p.x &lt; ret.x) || (p.x == ret.x &amp;&amp; p.y &lt; ret.y) {
+			ret = p
+		}
+	}
+
+	return ret
+}
+
+fn (p Point) equal(o Point) bool {
+	return p.x == o.x &amp;&amp; p.y == o.x
+}
+
+fn counter_clock_wise(p1, p2, p3 Point) bool {
+	return (p3.y-p1.y) * (p2.x-p1.x) &gt;= (p2.y-p1.y) * (p3.x-p1.x)
+}
+
+fn jarvis_march(points []Point) []Point {
+	mut hull_point := left_most_point(points)
+	mut hull_points := [hull_point]
+
+
+	for {
+		mut end_point := points[0]
+
+		for i := 1; i &lt; points.len; i++ {
+			if end_point.equal(points[i]) || !counter_clock_wise(points[i], hull_points[hull_points.len-1], end_point) {
+				end_point = points[i]
+			}
+		}
+
+		hull_point = end_point
+		if end_point.equal(hull_points[0]) {
+			break
+		}
+
+		hull_points &lt;&lt; hull_point
+	}
+	return hull_points
+}
+
+fn main() {
+	points := [
+		Point{-5, 2}, Point{5, 7}, Point{-6, -12}, Point{-14, -14}, Point{9, 9},
+		Point{-1, -1}, Point{-10, 11}, Point{-6, 15}, Point{-6, -8}, Point{15, -9},
+		Point{7, -7}, Point{-2, -9}, Point{6, -5}, Point{0, 14}, Point{2, 8}
+	]
+
+	hull_points := jarvis_march(points)
+
+	println('The hull points are:')
+	for p in hull_points {
+		println('x=$p.x y=$p.y')
+	}
+}
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+type Point = (i64, i64);
+
+// Is the turn counter clockwise?
+fn turn_counter_clockwise(p1: Point, p2: Point, p3: Point) -&gt; bool {
+    (p3.1 - p1.1) * (p2.0 - p1.0) &gt;= (p2.1 - p1.1) * (p3.0 - p1.0)
+}
+
+fn jarvis_march(gift: &amp;[Point]) -&gt; Option&lt;Vec&lt;Point&gt;&gt; {
+    // There can only be a convex hull if there are more than 2 points
+    if gift.len() &lt; 3 {
+        return None;
+    }
+
+    let leftmost_point = gift
+        // Iterate over all points
+        .iter()
+        // Find the point with minimum x
+        .min_by_key(|i| i.0)
+        // If there are no points in the gift, there might
+        // not be a minimum. Unwrap fails (panics) the program
+        // if there wasn't a minimum, but we know there always
+        // is because we checked the size of the gift.
+        .unwrap()
+        .clone();
+
+    let mut hull = vec![leftmost_point];
+
+    let mut point_on_hull = leftmost_point;
+    loop {
+        // Search for the next point on the hull
+        let mut endpoint = gift[0];
+        for i in 1..gift.len() {
+            if endpoint == point_on_hull || !turn_counter_clockwise(gift[i], hull[hull.len() - 1], endpoint) {
+                endpoint = gift[i];
+            }
+        }
+
+        point_on_hull = endpoint;
+
+        // Stop whenever we got back to the same point
+        // as we started with, and we wrapped the gift
+        // completely.
+        if hull[0] == endpoint {
+            break;
+        } else {
+            hull.push(point_on_hull);
+        }
+    }
+
+    Some(hull)
+}
+
+fn main() {
+    let test_gift = vec![
+        (-5, 2), (5, 7), (-6, -12), (-14, -14), (9, 9),
+        (-1, -1), (-10, 11), (-6, 15), (-6, -8), (15, -9),
+        (7, -7), (-2, -9), (6, -5), (0, 14), (2, 8)
+    ];
+
+    let hull = jarvis_march(&amp;test_gift);
+
+    println!(&quot;The points in the hull are: {:?}&quot;, hull);
+}
+</code></pre></pre>
+<pre><code class="language-coconut">data point(x=0, y=0):
+    def __str__(self):
+        return f'({self.x}, {self.y})'
+
+# Is the turn counter-clockwise?
+def counter_clockwise(p1 is point, p2 is point, p3 is point) =
+    (p3.y - p1.y) * (p2.x - p1.x) &gt;= (p2.y - p1.y) * (p3.x - p1.x)
+
+
+def jarvis_march(gift: point[]) -&gt; point[]:
+    point_on_hull = min(gift) # The leftmost point in the gift
+    hull = [point_on_hull] # It is guaranteed it will be on the hull.
+
+    while True:
+        # Candidate for the next point in the hull
+        endpoint = gift[0]
+        for p in gift:
+            if (endpoint == point_on_hull
+                or not counter_clockwise(p, hull[-1], endpoint)):
+                endpoint = p
+
+        point_on_hull = endpoint
+
+        # Check if the gift is completely covered.
+        if hull[0] == endpoint:
+            return hull
+        hull.append(point_on_hull)
+
+
+if __name__ == '__main__':
+    test_gift = [
+        (-5, 2), (5, 7), (-6, -12), (-14, -14), (9, 9),
+        (-1, -1), (-10, 11), (-6, 15), (-6, -8), (15, -9),
+        (7, -7), (-2, -9), (6, -5), (0, 14), (2, 8)
+    ] |&gt; map$(t -&gt; point(*t)) |&gt; list
+    hull = jarvis_march(test_gift)
+
+    print(&quot;[#] The points in the hull are:&quot;)
+    for point in hull:
+        print(point)
+</code></pre>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../gift_wrapping/gift_wrapping.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../graham_scan/graham_scan.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../gift_wrapping/gift_wrapping.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../graham_scan/graham_scan.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

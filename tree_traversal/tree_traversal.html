@@ -1,0 +1,3227 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tree Traversal - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../convolutions/2d/2d.html"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tree_traversal/tree_traversal.html" class="active"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="tree-traversal"><a class="header" href="#tree-traversal">Tree Traversal</a></h1>
+<p>Trees are naturally recursive data structures, and because of this, we cannot access their elements like we might access the elements of a vector or array. Instead, we need to use more interesting methods to work through each element. This is often called <em>Tree Traversal</em>, and there are many different ways to do this. For now, we will restrict the discussion to two common and related methods of tree traversal: <em>Depth-First</em> and <em>Breadth-First Search</em>. Note that trees vary greatly in shape and size depending on how they are used; however, they are composed primarily of nodes that house other, children nodes, like so:</p>
+<pre><code class="language-julia">struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+``````julia
+struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+``````julia
+struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+```c```julia
+struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+``````julia
+struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+``````julia
+struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+</code></pre>
+<p><a href="code/c/tree_traversal.c">import:7-11, lang:&quot;c&quot;</a>
+{% sample lang=&quot;java&quot; %}
+<a href="code/java/Tree.java">import:112-128, lang:&quot;java&quot;</a>
+{% sample lang=&quot;js&quot; %}
+<a href="code/javascript/tree.js">import:1-10, lang:&quot;javascript&quot;</a>
+As a note, a <code>node</code> struct is not necessary in javascript, so this is an example of how a tree might be constructed.</p>
+<pre><code class="language-python">class Node:
+    def __init__(self):
+        self.data = None
+        self.children = []
+</code></pre>
+<p>{% sample lang=&quot;scratch&quot; %}</p>
+<p>
+  <img  class="center" src="code/scratch/struct.svg" style="width:25%" />
+</p>
+```rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+```v```rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+```.```rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+``````rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+```t```rust
+struct Node {
+    children: Vec<Node>,
+    value: u64,
+}
+```
+[import:5-8, lang:"go"](code/go/treetraversal.go)
+{% sample lang="asm-x64" %}
+[import:24-27, lang:"asm-x64"](code/asm-x64/tree_traversal.s)
+{% sample lang="emojic" %}
+[import:1-3, lang:"emojicode"](code/emojicode/tree_traversal.emojic)
+{% sample lang="lisp" %}
+[import:3-3, lang:"lisp"](code/clisp/tree-traversal.lisp)
+{% sample lang="m" %}
+[import:6-6, lang:"matlab"](code/matlab/tree.m)
+{% sample lang="coco" %}
+[import:3-3, lang:"coconut"](code/coconut/tree_traversal.coco)
+<p>Because of this, the most straightforward way to traverse the tree might be recursive. This naturally leads us to the Depth-First Search (DFS) method:</p>
+<pre><code class="language-julia">function DFS_recursive(n::Node)
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+``````julia
+function DFS_recursive(n::Node)
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+``````julia
+function DFS_recursive(n::Node)
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+```p```julia
+function DFS_recursive(n::Node)
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+``````julia
+function DFS_recursive(n::Node)
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+```s```julia
+function DFS_recursive(n::Node)
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+``````julia
+function DFS_recursive(n::Node)
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+</code></pre>
+<p>{% sample lang=&quot;java&quot; %}
+<a href="code/java/Tree.java">import:20-26, lang:&quot;java&quot;</a>
+{% sample lang=&quot;js&quot; %}
+<a href="code/javascript/tree.js">import:12-19, lang:&quot;javascript&quot;</a>
+{% sample lang=&quot;py&quot; %}
+<a href="code/python/tree_traversal.py">import:17-22, lang:&quot;python&quot;</a>
+{% sample lang=&quot;scratch&quot; %}</p>
+<p>
+  <img  class="center" src="code/scratch/dfs-pre.svg" style="width:40%" />
+</p>
+{% sample lang="rs" %}
+[import:9-15 lang:"rust"](code/rust/tree.rs)
+```haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+```r```haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+``````haskell
+dfs :: Tree a -> [a]
+dfs (Node x ts) = x : concatMap dfs ts
+```
+{% sample lang="asm-x64" %}
+[import:290-314, lang:"asm-x64"](code/asm-x64/tree_traversal.s)
+{% sample lang="emojic" %}
+[import:27-34, lang:"emojicode"](code/emojicode/tree_traversal.emojic)
+{% sample lang="lisp" %}
+[import:5-10, lang:"lisp"](code/clisp/tree-traversal.lisp)
+{% sample lang="m" %}
+[import:31-45, lang:"matlab"](code/matlab/tree.m)
+{% sample lang="coco" %}
+[import:5-9, lang:"coconut"](code/coconut/tree_traversal.coco)
+<p>At least to me, this makes a lot of sense. We fight recursion with recursion! First, we first output the node we are on and then we call <code>DFS_recursive(...)</code> on each of its children nodes. This method of tree traversal does what its name implies: it goes to the depths of the tree first before going through the rest of the branches. In this case, the ordering looks like:</p>
+<p>
+    <img  class="center" src="res/DFS_pre.png" style="width:70%" />
+</p>
+<p>Note that the in the code above, we are missing a crucial step: <em>checking to see if the node we are using actually exists!</em> Because we are using a vector to store all the nodes, we will be careful not to run into a case where we call <code>DFS_recursive(...)</code> on a node that has yet to be initialized; however, depending on the language we are using, we might need to be careful of this to avoid recursion errors!</p>
+<p>Now, in this case the first element searched through is still the root of the tree. This type of tree traversal is known as <em>pre-order</em> DFS. We perform an action (output the ID) <em>before</em> searching through the children. If we shift the function around and place the data output at the end of the function, we can modify the order in which we search through the tree to be <em>post-order</em> and look something like this:</p>
+<pre><code class="language-julia">function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+end
+``````julia
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+end
+``````julia
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+end
+```p```julia
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+end
+``````julia
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+end
+```s```julia
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+end
+``````julia
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+    # Here we are doing something...
+    print(n.ID, &quot; &quot;)
+end
+</code></pre>
+<p>{% sample lang=&quot;java&quot; %}
+<a href="code/java/Tree.java">import:33-40, lang:&quot;java&quot;</a>
+{% sample lang=&quot;js&quot; %}
+<a href="code/javascript/tree.js">import:21-28, lang:&quot;javascript&quot;</a>
+{% sample lang=&quot;py&quot; %}
+<a href="code/python/tree_traversal.py">import:25-30, lang:&quot;python&quot;</a>
+{% sample lang=&quot;scratch&quot; %}</p>
+<p>
+  <img  class="center" src="code/scratch/dfs-post.svg" style="width:40%" />
+</p>
+```rust
+fn dfs_recursive_postorder(n: &Node) {
+    for child in &n.children {
+        dfs_recursive_postorder(child);
+    }
+<pre><code>print!(&quot;{} &quot;, n.value);
+</code></pre>
+<p>}</p>
+<pre><pre class="playground"><code class="language-rust">fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+``````rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+```v```rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+``````rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+``````rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+``````rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+```p```rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+``````rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+``````rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+``````rust
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+```ree_traversal.st)
+{% sample lang=&quot;go&quot; %}
+[import:17-22, lang:&quot;go&quot;](code/go/treetraversal.go)
+{% sample lang=&quot;asm-x64&quot; %}
+[import:316-344, lang:&quot;asm-x64&quot;](code/asm-x64/tree_traversal.s)
+{% sample lang=&quot;emojic&quot; %}
+[import:36-43, lang:&quot;emojicode&quot;](code/emojicode/tree_traversal.emojic)
+{% sample lang=&quot;lisp&quot; %}
+[import:12-17, lang:&quot;lisp&quot;](code/clisp/tree-traversal.lisp)
+{% sample lang=&quot;m&quot; %}
+[import:47-62, lang:&quot;matlab&quot;](code/matlab/tree.m)
+{% sample lang=&quot;coco&quot; %}
+[import:11-15, lang:=&quot;coconut&quot;](code/coconut/tree_traversal.coco)
+
+
+&lt;p&gt;
+    &lt;img  class=&quot;center&quot; src=&quot;res/DFS_post.png&quot; style=&quot;width:70%&quot; /&gt;
+&lt;/p&gt;
+
+In this case, the first node visited is at the bottom of the tree and moves up the tree branch by branch. In addition to these two types, binary trees have an *in-order* traversal scheme that looks something like this:
+
+
+```julia
+<span class="boring">This assumes only 2 children, but accounts for other possibilities
+</span>function DFS_recursive_inorder_btree(n::Node)
+
+    if (length(n.children) == 2)
+        DFS_recursive_inorder_btree(n.children[1])
+        print(n.ID, &quot; &quot;)
+        DFS_recursive_inorder_btree(n.children[2])
+    elseif (length(n.children) == 1)
+        DFS_recursive_inorder_btree(n.children[1])
+        print(n.ID, &quot; &quot;)
+    elseif (length(n.children) == 0)
+        print(n.ID, &quot; &quot;)
+    else
+        println(&quot;Not a binary tree!&quot;)
+    end
+end
+```
+{% sample lang=&quot;cpp&quot; %}
+[import:34-52 lang:&quot;cpp&quot;](code/cpp/tree_example.cpp)
+```csharp
+        public void DFSRecursiveInorderBinary()
+        {
+            DFSRecursiveInorderBinary(this);
+
+            void DFSRecursiveInorderBinary(Tree tree)
+            {
+                switch (tree._children.Count)
+                {
+                    case 2:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        DFSRecursiveInorderBinary(tree._children[1]);
+                        break;
+                    case 1:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    case 0:
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    default:
+                        throw new Exception(&quot;Not binary tree!&quot;);
+                }
+            }
+        }
+``````csharp
+        public void DFSRecursiveInorderBinary()
+        {
+            DFSRecursiveInorderBinary(this);
+
+            void DFSRecursiveInorderBinary(Tree tree)
+            {
+                switch (tree._children.Count)
+                {
+                    case 2:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        DFSRecursiveInorderBinary(tree._children[1]);
+                        break;
+                    case 1:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    case 0:
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    default:
+                        throw new Exception(&quot;Not binary tree!&quot;);
+                }
+            }
+        }
+``````csharp
+        public void DFSRecursiveInorderBinary()
+        {
+            DFSRecursiveInorderBinary(this);
+
+            void DFSRecursiveInorderBinary(Tree tree)
+            {
+                switch (tree._children.Count)
+                {
+                    case 2:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        DFSRecursiveInorderBinary(tree._children[1]);
+                        break;
+                    case 1:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    case 0:
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    default:
+                        throw new Exception(&quot;Not binary tree!&quot;);
+                }
+            }
+        }
+```)```csharp
+        public void DFSRecursiveInorderBinary()
+        {
+            DFSRecursiveInorderBinary(this);
+
+            void DFSRecursiveInorderBinary(Tree tree)
+            {
+                switch (tree._children.Count)
+                {
+                    case 2:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        DFSRecursiveInorderBinary(tree._children[1]);
+                        break;
+                    case 1:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    case 0:
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    default:
+                        throw new Exception(&quot;Not binary tree!&quot;);
+                }
+            }
+        }
+``````csharp
+        public void DFSRecursiveInorderBinary()
+        {
+            DFSRecursiveInorderBinary(this);
+
+            void DFSRecursiveInorderBinary(Tree tree)
+            {
+                switch (tree._children.Count)
+                {
+                    case 2:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        DFSRecursiveInorderBinary(tree._children[1]);
+                        break;
+                    case 1:
+                        DFSRecursiveInorderBinary(tree._children[0]);
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    case 0:
+                        Console.Write(tree.Id + &quot; &quot;);
+                        break;
+                    default:
+                        throw new Exception(&quot;Not binary tree!&quot;);
+                }
+            }
+        }
+```
+{% sample lang=&quot;js&quot; %}
+[import:30-51, lang:&quot;javascript&quot;](code/javascript/tree.js)
+{% sample lang=&quot;py&quot; %}
+[import:34-45, lang:&quot;python&quot;](code/python/tree_traversal.py)
+{% sample lang=&quot;scratch&quot; %}
+&lt;p&gt;
+  &lt;img  class=&quot;center&quot; src=&quot;code/scratch/dfs-in.svg&quot; style=&quot;width:40%&quot; /&gt;
+&lt;/p&gt;
+```rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+```v```rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+```p```rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+``````rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+```r```rust
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+```
+[import:24-38, lang:&quot;go&quot;](code/go/treetraversal.go)
+{% sample lang=&quot;asm-x64&quot; %}
+[import:346-396, lang:&quot;asm-x64&quot;](code/asm-x64/tree_traversal.s)
+{% sample lang=&quot;emojic&quot; %}
+[import:45-62, lang:&quot;emojicode&quot;](code/emojicode/tree_traversal.emojic)
+{% sample lang=&quot;lisp&quot; %}
+[import:19-32, lang:&quot;lisp&quot;](code/clisp/tree-traversal.lisp)
+{% sample lang=&quot;m&quot; %}
+[import:64-82, lang:&quot;matlab&quot;](code/matlab/tree.m)
+{% sample lang=&quot;coco&quot; %}
+[import:17-30, lang:&quot;coconut&quot;](code/coconut/tree_traversal.coco)
+
+
+&lt;p&gt;
+    &lt;img  class=&quot;center&quot; src=&quot;res/DFS_in.png&quot; width=&quot;500&quot; /&gt;
+&lt;/p&gt;
+
+The order here seems to be some mix of the other 2 methods and works through the binary tree from left to right.
+
+Now, at this point, it might seem that the only way to search through a recursive data structure is with recursion, but this is not necessarily the case! Rather surprisingly, we can perform a DFS non-recursively by using a stack, which are data structures that hold multiple elements, but only allow you to interact with the very last element you put in. The idea here is simple:
+
+1. Put the root node in the stack
+2. Take it out and put in its children
+3. Pop the top of the stack and put its children in
+4. Repeat 3 until the stack is empty
+
+In code, it looks like this:
+
+
+```julia
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+``````julia
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+``````julia
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+```p```julia
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+``````julia
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+```s```julia
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+``````julia
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+```
+{% sample lang=&quot;java&quot; %}
+[import:67-81, lang:&quot;java&quot;](code/java/Tree.java)
+{% sample lang=&quot;js&quot; %}
+[import:53-60, lang:&quot;javascript&quot;](code/javascript/tree.js)
+{% sample lang=&quot;py&quot; %}
+[import:48-59, lang:&quot;python&quot;](code/python/tree_traversal.py)
+{% sample lang=&quot;scratch&quot; %}
+&lt;p&gt;
+  &lt;img  class=&quot;center&quot; src=&quot;code/scratch/dfs-stack.svg&quot; style=&quot;width:70%&quot; /&gt;
+&lt;/p&gt;
+```rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+```v```rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+```p```rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+``````rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+```e```rust
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+```
+[import:40-49, lang:&quot;go&quot;](code/go/treetraversal.go)
+{% sample lang=&quot;asm-x64&quot; %}
+[import:398-445, lang:&quot;asm-x64&quot;](code/asm-x64/tree_traversal.s)
+{% sample lang=&quot;emojic&quot; %}
+[import:64-79, lang:&quot;emojicode&quot;](code/emojicode/tree_traversal.emojic)
+{% sample lang=&quot;lisp&quot; %}
+[import:34-43, lang:&quot;lisp&quot;](code/clisp/tree-traversal.lisp)
+{% sample lang=&quot;m&quot; %}
+[import:84-106, lang:&quot;matlab&quot;](code/matlab/tree.m)
+{% sample lang=&quot;coco&quot; %}
+[import:32-39, lang:&quot;coconut&quot;](code/coconut/tree_traversal.coco)
+
+
+All this said, there are a few details about DFS that might not be ideal, depending on the situation. For example, if we use DFS on an incredibly long tree, we will spend a lot of time going further and further down a single branch without searching the rest of the data structure. In addition, it is not the natural way humans would order a tree if asked to number all the nodes from top to bottom. I would argue a more natural traversal order would look something like this:
+
+&lt;p&gt;
+    &lt;img  class=&quot;center&quot; src=&quot;res/BFS_simple.png&quot; style=&quot;width:70%&quot; /&gt;
+&lt;/p&gt;
+
+And this is exactly what Breadth-First Search (BFS) does! On top of that, it can be implemented in the same way as the `DFS_stack(...)` function above, simply by swapping the `stack` for a `queue`, which is similar to a stack, except that it only allows you to interact with the very first element instead of the last. In code, this looks something like:
+
+
+```julia
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+``````julia
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+``````julia
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+```)```julia
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+``````julia
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+```.```julia
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+``````julia
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+```
+{% sample lang=&quot;java&quot; %}
+[import:83-97, lang:&quot;java&quot;](code/java/Tree.java)
+{% sample lang=&quot;js&quot; %}
+[import:62-69, lang:&quot;javascript&quot;](code/javascript/tree.js)
+{% sample lang=&quot;py&quot; %}
+[import:62-72, lang:&quot;python&quot;](code/python/tree_traversal.py)
+{% sample lang=&quot;scratch&quot; %}
+&lt;p&gt;
+  &lt;img  class=&quot;center&quot; src=&quot;code/scratch/bfs.svg&quot; style=&quot;width:70%&quot; /&gt;
+&lt;/p&gt;
+```rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+```v```rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+```.```rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+``````rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+```e```rust
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+```
+[import:51-60, lang:&quot;go&quot;](code/go/treetraversal.go)
+{% sample lang=&quot;asm-x64&quot; %}
+[import:447-498, lang:&quot;asm-x64&quot;](code/asm-x64/tree_traversal.s)
+{% sample lang=&quot;emojic&quot; %}
+[import:81-96, lang:&quot;emojicode&quot;](code/emojicode/tree_traversal.emojic)
+{% sample lang=&quot;lisp&quot; %}
+[import:45-56, lang:&quot;lisp&quot;](code/clisp/tree-traversal.lisp)
+{% sample lang=&quot;m&quot; %}
+[import:108-129, lang:&quot;matlab&quot;](code/matlab/tree.m)
+{% sample lang=&quot;coco&quot; %}
+[import:41-48, lang:&quot;coconut&quot;](code/coconut/tree_traversal.coco)
+
+
+# Video Explanation
+
+Here is a video describing tree traversal:
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/cZPXfl_tUkA&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+# Example Code
+
+```julia
+using DataStructures, Printf
+
+struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+
+function DFS_recursive(n::Node)
+<span class="boring">    Here we are doing something...
+</span>    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+<span class="boring">    Here we are doing something...
+</span>    print(n.ID, &quot; &quot;)
+end
+
+<span class="boring">This assumes only 2 children, but accounts for other possibilities
+</span>function DFS_recursive_inorder_btree(n::Node)
+
+    if (length(n.children) == 2)
+        DFS_recursive_inorder_btree(n.children[1])
+        print(n.ID, &quot; &quot;)
+        DFS_recursive_inorder_btree(n.children[2])
+    elseif (length(n.children) == 1)
+        DFS_recursive_inorder_btree(n.children[1])
+        print(n.ID, &quot; &quot;)
+    elseif (length(n.children) == 0)
+        print(n.ID, &quot; &quot;)
+    else
+        println(&quot;Not a binary tree!&quot;)
+    end
+end
+
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+
+<span class="boring">function to create a simple, balanced tree
+</span>function create_tree(num_row::Int64, num_child::Int64)
+    ret = Node(num_row)
+    if (num_row == 0)
+        return ret
+    end
+
+    for i = 1:num_child
+        child = create_tree(num_row - 1, num_child)
+        push!(ret.children, child)
+    end
+
+    return ret
+end
+
+function main()
+    root = create_tree(2, 3)
+
+    println(&quot;[#]\nRecursive DFS:&quot;)
+    DFS_recursive(root);
+    println()
+
+    println(&quot;[#]\nRecursive Postorder DFS:&quot;)
+    DFS_recursive_postorder(root);
+    println()
+
+    println(&quot;[#]\nStack-based DFS:&quot;)
+    DFS_stack(root);
+    println()
+
+    println(&quot;[#]\nQueue-based BFS:&quot;)
+    BFS_queue(root);
+    println()
+
+    root_binary = create_tree(3,2)
+    println(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;)
+    DFS_recursive_inorder_btree(root_binary)
+    println()
+end
+
+main()
+``````julia
+using DataStructures, Printf
+
+struct Node
+    children::Vector{Node}
+    ID::Int64
+    Node(ID::Int64) = new(Vector{Node}(), ID)
+end
+
+function DFS_recursive(n::Node)
+<span class="boring">    Here we are doing something...
+</span>    print(n.ID, &quot; &quot;)
+
+    for child in n.children
+        DFS_recursive(child)
+    end
+end
+
+function DFS_recursive_postorder(n::Node)
+
+    for child in n.children
+        DFS_recursive_postorder(child)
+    end
+
+<span class="boring">    Here we are doing something...
+</span>    print(n.ID, &quot; &quot;)
+end
+
+<span class="boring">This assumes only 2 children, but accounts for other possibilities
+</span>function DFS_recursive_inorder_btree(n::Node)
+
+    if (length(n.children) == 2)
+        DFS_recursive_inorder_btree(n.children[1])
+        print(n.ID, &quot; &quot;)
+        DFS_recursive_inorder_btree(n.children[2])
+    elseif (length(n.children) == 1)
+        DFS_recursive_inorder_btree(n.children[1])
+        print(n.ID, &quot; &quot;)
+    elseif (length(n.children) == 0)
+        print(n.ID, &quot; &quot;)
+    else
+        println(&quot;Not a binary tree!&quot;)
+    end
+end
+
+function DFS_stack(n::Node)
+    s = Stack{Node}()
+    push!(s, n)
+
+    while(length(s) &gt; 0)
+        print(top(s).ID, &quot; &quot;)
+        temp = pop!(s)
+        for child in temp.children
+            push!(s, child)
+        end
+    end
+end
+
+function BFS_queue(n::Node)
+    q = Queue{Node}()
+    enqueue!(q, n)
+
+    while(length(q) &gt; 0)
+        print(first(q).ID, &quot; &quot;)
+        temp = dequeue!(q)
+        for child in temp.children
+            enqueue!(q, child)
+        end
+    end
+end
+
+<span class="boring">function to create a simple, balanced tree
+</span>function create_tree(num_row::Int64, num_child::Int64)
+    ret = Node(num_row)
+    if (num_row == 0)
+        return ret
+    end
+
+    for i = 1:num_child
+        child = create_tree(num_row - 1, num_child)
+        push!(ret.children, child)
+    end
+
+    return ret
+end
+
+function main()
+    root = create_tree(2, 3)
+
+    println(&quot;[#]\nRecursive DFS:&quot;)
+    DFS_recursive(root);
+    println()
+
+    println(&quot;[#]\nRecursive Postorder DFS:&quot;)
+    DFS_recursive_postorder(root);
+    println()
+
+    println(&quot;[#]\nStack-based DFS:&quot;)
+    DFS_stack(root);
+    println()
+
+    println(&quot;[#]\nQueue-based BFS:&quot;)
+    BFS_queue(root);
+    println()
+
+    root_binary = create_tree(3,2)
+    println(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;)
+    DFS_recursive_inorder_btree(root_binary)
+    println()
+end
+
+main()
+```
+[import, lang:&quot;cpp&quot;](code/cpp/tree_example.cpp)
+{% sample lang=&quot;cs&quot; %}
+#### Tree.cs
+[import, lang:&quot;csharp&quot;](code/csharp/Tree.cs)
+#### Program.cs
+[import, lang:&quot;csharp&quot;](code/csharp/Program.cs)
+{% sample lang=&quot;c&quot; %}
+#### utility.h
+[import, lang:&quot;c&quot;](code/c/utility.h)
+#### tree_traversal.c
+[import, lang:&quot;c&quot;](code/c/tree_traversal.c)
+{% sample lang=&quot;java&quot; %}
+#### Tree.java
+[import, lang:&quot;java&quot;](code/java/Tree.java)
+```javascript
+function createTree(rows, children) {
+  if (rows === 0) {
+    return { id: rows, children: [] };
+  }
+
+  return {
+    id: rows,
+    children: [...Array(children).keys()].map(() =&gt; createTree(rows - 1, children))
+  };
+}
+
+function dfsPreorder(tree) {
+  if (!tree) {
+    return;
+  }
+
+  process.stdout.write(tree.id + &quot; &quot;);
+  tree.children.forEach(dfsPreorder);
+}
+
+function dfsPostorder(tree) {
+  if (!tree) {
+    return;
+  }
+
+  tree.children.forEach(dfsPostorder);
+  process.stdout.write(tree.id + &quot; &quot;);
+}
+
+function dfsInorder(tree) {
+  if (!tree) {
+    return;
+  }
+
+  switch (tree.children.length) {
+    case 2:
+      dfsInorder(tree.children[0]);
+      console.log(tree.id);
+      dfsInorder(tree.children[1]);
+      break;
+    case 1:
+      dfsInorder(tree.children[0]);
+      console.log(tree.id);
+      break;
+    case 0:
+      console.log(tree.id);
+      break;
+    default:
+      throw new Error(&quot;Postorder traversal is only valid for binary trees&quot;);
+  }
+}
+
+function dfsIterative(tree) {
+  const stack = [tree];
+  while (stack.length &gt; 0) {
+    const current = stack.pop();
+    process.stdout.write(current.id + &quot; &quot;);
+    stack.push(...current.children);
+  }
+}
+
+function bfs(tree) {
+  const queue = [tree];
+  while (queue.length &gt; 0) {
+    const current = queue.shift();
+    process.stdout.write(current.id + &quot; &quot;);
+    queue.push(...current.children);
+  }
+}
+
+const root = createTree(2, 3);
+console.log(&quot;[#]\nRecursive DFS:&quot;);
+dfsPreorder(root);
+console.log();
+console.log(&quot;[#]\nRecursive Postorder DFS:&quot;);
+dfsPostorder(root);
+console.log();
+console.log(&quot;[#]\nStack-based DFS:&quot;);
+dfsIterative(root);
+console.log();
+console.log(&quot;[#]\nQueue-based BFS:&quot;);
+bfs(root);
+console.log();
+const root_binary = createTree(3, 2);
+console.log(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+dfsInorder(root_binary);
+console.log();
+
+``````javascript
+function createTree(rows, children) {
+  if (rows === 0) {
+    return { id: rows, children: [] };
+  }
+
+  return {
+    id: rows,
+    children: [...Array(children).keys()].map(() =&gt; createTree(rows - 1, children))
+  };
+}
+
+function dfsPreorder(tree) {
+  if (!tree) {
+    return;
+  }
+
+  process.stdout.write(tree.id + &quot; &quot;);
+  tree.children.forEach(dfsPreorder);
+}
+
+function dfsPostorder(tree) {
+  if (!tree) {
+    return;
+  }
+
+  tree.children.forEach(dfsPostorder);
+  process.stdout.write(tree.id + &quot; &quot;);
+}
+
+function dfsInorder(tree) {
+  if (!tree) {
+    return;
+  }
+
+  switch (tree.children.length) {
+    case 2:
+      dfsInorder(tree.children[0]);
+      console.log(tree.id);
+      dfsInorder(tree.children[1]);
+      break;
+    case 1:
+      dfsInorder(tree.children[0]);
+      console.log(tree.id);
+      break;
+    case 0:
+      console.log(tree.id);
+      break;
+    default:
+      throw new Error(&quot;Postorder traversal is only valid for binary trees&quot;);
+  }
+}
+
+function dfsIterative(tree) {
+  const stack = [tree];
+  while (stack.length &gt; 0) {
+    const current = stack.pop();
+    process.stdout.write(current.id + &quot; &quot;);
+    stack.push(...current.children);
+  }
+}
+
+function bfs(tree) {
+  const queue = [tree];
+  while (queue.length &gt; 0) {
+    const current = queue.shift();
+    process.stdout.write(current.id + &quot; &quot;);
+    queue.push(...current.children);
+  }
+}
+
+const root = createTree(2, 3);
+console.log(&quot;[#]\nRecursive DFS:&quot;);
+dfsPreorder(root);
+console.log();
+console.log(&quot;[#]\nRecursive Postorder DFS:&quot;);
+dfsPostorder(root);
+console.log();
+console.log(&quot;[#]\nStack-based DFS:&quot;);
+dfsIterative(root);
+console.log();
+console.log(&quot;[#]\nQueue-based BFS:&quot;);
+bfs(root);
+console.log();
+const root_binary = createTree(3, 2);
+console.log(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+dfsInorder(root_binary);
+console.log();
+
+```
+[import, lang:&quot;python&quot;](code/python/tree_traversal.py)
+{% sample lang=&quot;scratch&quot; %}
+
+The code snippets were taken from this [Scratch project](https://scratch.mit.edu/projects/174017753/)
+
+&lt;p&gt;
+  &lt;img  class=&quot;center&quot; src=&quot;code/scratch/all.svg&quot; style=&quot;width:100%&quot; /&gt;
+&lt;/p&gt;
+```rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+```v```rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+```p```rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+``````rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+```r```rust
+use std::collections::VecDeque;
+
+#[derive(Debug)]
+struct Node {
+    children: Vec&lt;Node&gt;,
+    value: u64,
+}
+
+fn dfs_recursive(n: &amp;Node) {
+    print!(&quot;{} &quot;, n.value);
+
+    for child in &amp;n.children {
+        dfs_recursive(child);
+    }
+}
+
+fn dfs_recursive_postorder(n: &amp;Node) {
+    for child in &amp;n.children {
+        dfs_recursive_postorder(child);
+    }
+
+    print!(&quot;{} &quot;, n.value);
+}
+
+fn dfs_recursive_inorder_btree(n: &amp;Node) {
+    match &amp;n.children[..] {
+        [left, right] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+            dfs_recursive_inorder_btree(right);
+        }
+        [left] =&gt; {
+            dfs_recursive_inorder_btree(left);
+            print!(&quot;{} &quot;, n.value);
+        }
+        [] =&gt; print!(&quot;{} &quot;, n.value),
+        _ =&gt; print!(&quot;This is not a binary tree. &quot;),
+    }
+}
+
+fn dfs_stack(n: &amp;Node) {
+    let mut stack = vec![n];
+
+    while let Some(current) = stack.pop() {
+        print!(&quot;{} &quot;, current.value);
+        stack.extend(&amp;current.children);
+    }
+}
+
+fn bfs_queue(n: &amp;Node) {
+    let mut queue = VecDeque::new();
+    queue.push_back(n);
+
+    while let Some(current) = queue.pop_front() {
+        print!(&quot;{} &quot;, current.value);
+        queue.extend(&amp;current.children);
+    }
+}
+
+fn create_tree(num_row: u64, num_child: u64) -&gt; Node {
+    if num_row == 0 {
+        return Node {
+            children: vec![],
+            value: 0,
+        };
+    }
+
+    let children = (0..num_child)
+        .map(|_| create_tree(num_row - 1, num_child))
+        .collect();
+
+    Node {
+        children,
+        value: num_row,
+    }
+}
+
+fn main() {
+    let root = create_tree(2, 3);
+
+    println!(&quot;[#]\nRecursive DFS:&quot;);
+    dfs_recursive(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Postorder DFS:&quot;);
+    dfs_recursive_postorder(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nStack-based DFS:&quot;);
+    dfs_stack(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nQueue-based BFS:&quot;);
+    bfs_queue(&amp;root);
+    println!();
+
+    println!(&quot;[#]\nRecursive Inorder DFS for Binary Tree:&quot;);
+    let root_binary = create_tree(3, 2);
+    dfs_recursive_inorder_btree(&amp;root_binary);
+    println!();
+}
+```
+[import, lang:&quot;go&quot;](code/go/treetraversal.go)
+{% sample lang=&quot;asm-x64&quot; %}
+[import, lang:&quot;asm-x64&quot;](code/asm-x64/tree_traversal.s)
+{% sample lang=&quot;emojic&quot; %}
+[import, lang:&quot;emojicode&quot;](code/emojicode/tree_traversal.emojic)
+{% sample lang=&quot;lisp&quot; %}
+[import, lang:&quot;lisp&quot;](code/clisp/tree-traversal.lisp)
+{% sample lang=&quot;m&quot; %}
+[import, lang:&quot;matlab&quot;](code/matlab/tree.m)
+{% sample lang=&quot;coco&quot; %}
+[import, lang:&quot;coconut&quot;](code/coconut/tree_traversal.coco)
+
+
+
+
+
+# License
+
+#### Code Examples
+
+The code examples are licensed under the MIT license (found in [LICENSE.md](https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md)).
+
+#### Text
+
+The text of this chapter was written by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+
+[&lt;p&gt;&lt;img  class=&quot;center&quot; src=&quot;../cc/CC-BY-SA_icon.svg&quot; /&gt;&lt;/p&gt;](https://creativecommons.org/licenses/by-sa/4.0/)
+
+#### Images/Graphics
+- The image &quot;[DFSpreorder](res/DFS_pre.png)&quot; was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- The image &quot;[DFSpostorder](res/DFS_post.png)&quot; was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- The image &quot;[DFSinorder](res/DFS_in.png)&quot; was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- The image &quot;[BFSsimple](res/BFS_simple.png)&quot; was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+
+
+#### Pull Requests
+
+After initial licensing ([#560](https://github.com/algorithm-archivists/algorithm-archive/pull/560)), the following pull requests have modified the text or graphics of this chapter:
+- none
+</code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../convolutions/convolutional_theorem/convolutional_theorem.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../euclidean_algorithm/euclidean_algorithm.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../convolutions/convolutional_theorem/convolutional_theorem.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../euclidean_algorithm/euclidean_algorithm.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

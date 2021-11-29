@@ -1,0 +1,687 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Convolutions of Images (2D) - Arcane Algorithm Archive</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> Algorithm Archive</a></li><li class="chapter-item expanded "><a href="../../introduction/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../how_to_contribute/how_to_contribute.html"><strong aria-hidden="true">3.</strong> How To Contribute</a></li><li class="chapter-item expanded "><a href="../../plotting/plotting.html"><strong aria-hidden="true">4.</strong> Plotting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../domain_coloring/domain_coloring.html"><strong aria-hidden="true">4.1.</strong> Domain Coloring</a></li><li class="chapter-item expanded "><a href="../../IFS/IFS.html"><strong aria-hidden="true">4.2.</strong> Iterated Function Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../barnsley/barnsley.html"><strong aria-hidden="true">4.2.1.</strong> The Barnsley Fern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../data_structures/data_structures.html"><strong aria-hidden="true">5.</strong> Data Structures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../stacks_and_queues/stacks_and_queues.html"><strong aria-hidden="true">5.1.</strong> Stacks and Queues</a></li></ol></li><li class="chapter-item expanded "><a href="../../mathematical_background/mathematical_background.html"><strong aria-hidden="true">6.</strong> Mathematical Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../notation/notation.html"><strong aria-hidden="true">6.1.</strong> Complexity Notation</a></li><li class="chapter-item expanded "><a href="../../affine_transformations/affine_transformations.html"><strong aria-hidden="true">6.2.</strong> Affine Transformations</a></li><li class="chapter-item expanded "><a href="../../bitlogic/bitlogic.html"><strong aria-hidden="true">6.3.</strong> Bit Logic</a></li><li class="chapter-item expanded "><a href="../../taylor_series_expansion/taylor_series_expansion.html"><strong aria-hidden="true">6.4.</strong> Taylor Series</a></li><li class="chapter-item expanded "><a href="../../convolutions/convolutions.html"><strong aria-hidden="true">6.5.</strong> Convolutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../convolutions/1d/1d.html"><strong aria-hidden="true">6.5.1.</strong> Convolutions in 1D</a></li><li class="chapter-item expanded "><a href="../../convolutions/multiplication/multiplication.html"><strong aria-hidden="true">6.5.2.</strong> Multiplication as a Convolution</a></li><li class="chapter-item expanded "><a href="../../convolutions/2d/2d.html" class="active"><strong aria-hidden="true">6.5.3.</strong> Convolutions of Images (2D)</a></li><li class="chapter-item expanded "><a href="../../convolutions/convolutional_theorem/convolutional_theorem.html"><strong aria-hidden="true">6.5.4.</strong> Convolutional Theorem</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../tree_traversal/tree_traversal.html"><strong aria-hidden="true">7.</strong> Tree Traversal</a></li><li class="chapter-item expanded "><a href="../../euclidean_algorithm/euclidean_algorithm.html"><strong aria-hidden="true">8.</strong> Euclidean Algorithm</a></li><li class="chapter-item expanded "><a href="../../monte_carlo_integration/monte_carlo_integration.html"><strong aria-hidden="true">9.</strong> Monte Carlo</a></li><li class="chapter-item expanded "><a href="../../matrix_methods/matrix_methods.html"><strong aria-hidden="true">10.</strong> Matrix Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../gaussian_elimination/gaussian_elimination.html"><strong aria-hidden="true">10.1.</strong> Gaussian Elimination</a></li><li class="chapter-item expanded "><a href="../../thomas_algorithm/thomas_algorithm.html"><strong aria-hidden="true">10.2.</strong> Thomas Algorithm</a></li></ol></li><li class="chapter-item expanded "><a href="../../computational_geometry/computational_geometry.html"><strong aria-hidden="true">11.</strong> Computational Geometry</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../gift_wrapping/gift_wrapping.html"><strong aria-hidden="true">11.1.</strong> Gift Wrapping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../jarvis_march/jarvis_march.html"><strong aria-hidden="true">11.1.1.</strong> Jarvis March</a></li><li class="chapter-item expanded "><a href="../../graham_scan/graham_scan.html"><strong aria-hidden="true">11.1.2.</strong> Graham Scan</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../cooley_tukey/cooley_tukey.html"><strong aria-hidden="true">12.</strong> FFT</a></li><li class="chapter-item expanded "><a href="../../decision_problems/decision_problems.html"><strong aria-hidden="true">13.</strong> Decision Problems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../stable_marriage_problem/stable_marriage_problem.html"><strong aria-hidden="true">13.1.</strong> Stable Marriage Problem</a></li></ol></li><li class="chapter-item expanded "><a href="../../physics_solvers/physics_solvers.html"><strong aria-hidden="true">14.</strong> Physics Solvers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../verlet_integration/verlet_integration.html"><strong aria-hidden="true">14.1.</strong> Verlet Integration</a></li><li class="chapter-item expanded "><a href="../../quantum_systems/quantum_systems.html"><strong aria-hidden="true">14.2.</strong> Quantum Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../split-operator_method/split-operator_method.html"><strong aria-hidden="true">14.2.1.</strong> Split-Operator Method</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../data_compression/data_compression.html"><strong aria-hidden="true">15.</strong> Data Compression</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../huffman_encoding/huffman_encoding.html"><strong aria-hidden="true">15.1.</strong> Huffman Encoding</a></li></ol></li><li class="chapter-item expanded "><a href="../../computer_graphics/computer_graphics.html"><strong aria-hidden="true">16.</strong> Computer Graphics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../flood_fill/flood_fill.html"><strong aria-hidden="true">16.1.</strong> Flood Fill</a></li></ol></li><li class="chapter-item expanded "><a href="../../quantum_information/quantum_information.html"><strong aria-hidden="true">17.</strong> Quantum Information</a></li><li class="chapter-item expanded "><a href="../../computus/computus.html"><strong aria-hidden="true">18.</strong> Computus</a></li><li class="chapter-item expanded "><a href="../../approximate_counting/approximate_counting.html"><strong aria-hidden="true">19.</strong> Approximate Counting Algorithm</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Arcane Algorithm Archive</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/algorithm-archivists/algorithm-archive/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="convolutions-on-images"><a class="header" href="#convolutions-on-images">Convolutions on Images</a></h1>
+<p>For this section, we will no longer be focusing on signals, but instead images (arrays filled with elements of red, green, and blue values).
+That said, for the code examples, greyscale images may be used such that each array element is composed of some floating-point value instead of color.
+In addition, we will not be discussing boundary conditions too much in this chapter and will instead be using the simple boundaries introduced in the section on <a href="../1d/1d.html">one-dimensional convolutions</a>.</p>
+<p>The extension of one-dimensional convolutions to two dimensions requires a little thought about indexing and the like, but is ultimately the same operation.
+Here is an animation of a convolution for a two-dimensional image:</p>
+<div style="text-align:center">
+<video style="width:90%" controls loop>
+  <source src="../res/2d.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
+<p>In this case, we convolved the image with a 3x3 square filter, all filled with values of \( \frac{1}{9} \).
+This created a simple blurring effect, which is somewhat expected from the discussion in the previous section.
+In code, a two-dimensional convolution might look like this:</p>
+<pre><code class="language-julia">function convolve_linear(signal::Array{T, 2}, filter::Array{T, 2},
+                         output_size) where {T &lt;: Number}
+
+    # convolutional output
+    out = Array{Float64,2}(undef, output_size)
+    sum = 0
+
+    for i = 1:output_size[1]
+        for j = 1:output_size[2]
+            for k = max(1, i-size(filter)[1]):i
+                for l = max(1, j-size(filter)[2]):j
+                    if k &lt;= size(signal)[1] &amp;&amp; i-k+1 &lt;= size(filter)[1] &amp;&amp;
+                       l &lt;= size(signal)[2] &amp;&amp; j-l+1 &lt;= size(filter)[2]
+                        sum += signal[k,l] * filter[i-k+1, j-l+1]
+                    end
+                end
+            end
+
+            out[i,j] = sum
+            sum = 0
+        end
+    end
+
+    return out
+end
+</code></pre>
+<pre><code class="language-python">def convolve_linear(signal, filter, output_size):
+    out = np.zeros(output_size)
+    sum = 0
+
+    for i in range(output_size[0]):
+        for j in range(output_size[1]):
+            for k in range(max(0, i-filter.shape[0]), i+1):
+                for l in range(max(0, j-filter.shape[1]), j+1):
+                    with suppress(IndexError):
+                        sum += signal[k, l] * filter[i-k, j-l]
+            out[i, j] = sum
+            sum = 0
+
+    return out
+
+</code></pre>
+<p>This is very similar to what we have shown in previous sections; however, it essentially requires four iterable dimensions because we need to iterate through each axis of the output domain <em>and</em> the filter.</p>
+<p>At this stage, it is worth highlighting common filters used for convolutions of images.
+In particular, we will further discuss the Gaussian filter introduced in the <a href="../1d/1d.html">previous section</a>, and then introduce another set of kernels known as Sobel operators, which are used for naïve edge detection or image derivatives.</p>
+<h2 id="the-gaussian-kernel"><a class="header" href="#the-gaussian-kernel">The Gaussian kernel</a></h2>
+<p>The Gaussian kernel serves as an effective <em>blurring</em> operation for images.
+As a reminder, the formula for any Gaussian distribution is</p>
+<p>\[ g(x,y) = \frac{1}{2\pi\sigma^2}e^{-\frac{x^2+y^2}{2\sigma^2}}, \]</p>
+<p>where \( \sigma \) is the standard deviation and is a measure of the width of the Gaussian.
+A larger \( \sigma \) means a larger Gaussian; however, remember that the Gaussian must fit onto the filter, otherwise it will be cut off!
+For example, if you are using a \( 3\times 3 \) filter, you should not be using \( \sigma = 10 \).
+Some definitions of \( \sigma \) allow users to have a separate deviation in \( x \) and \( y \) to create an ellipsoid Gaussian, but for the purposes of this chapter, we will assume \( \sigma_x = \sigma_y \).
+As a general rule of thumb, the larger the filter and standard deviation, the more &quot;smeared&quot; the final convolution will be.</p>
+<p>At this stage, it is important to write some code, so we will generate a simple function that returns a Gaussian kernel with a specified standard deviation and filter size.</p>
+<pre><code class="language-julia">function create_gaussian_kernel(kernel_size)
+
+    kernel = zeros(kernel_size, kernel_size)
+
+    # The center must be offset by 0.5 to find the correct index
+    center = kernel_size * 0.5 + 0.5
+
+    sigma = sqrt(0.1*kernel_size)
+
+    for i = 1:kernel_size
+        for j = 1:kernel_size
+            kernel[i,j] = exp(-((i-center)^2 + (j-center)^2) / (2*sigma^2))
+        end
+    end
+
+    return normalize(kernel)
+    
+end
+</code></pre>
+<pre><code class="language-python">def create_gaussian_kernel(kernel_size):
+    kernel = np.zeros((kernel_size, kernel_size))
+
+    # The center must be offset by 0.5 to find the correct index
+    center = kernel_size*0.5 + 0.5
+
+    sigma = np.sqrt(0.1*kernel_size)
+
+    def kernel_function(x, y):
+        return np.exp(-((x-center+1)**2 + (y-center+1)**2)/(2*sigma**2))
+
+    kernel = np.fromfunction(kernel_function, (kernel_size, kernel_size))
+    return kernel / np.linalg.norm(kernel)
+</code></pre>
+<p>Though it is entirely possible to create a Gaussian kernel whose standard deviation is independent on the kernel size, we have decided to enforce a relation between the two in this chapter.
+As always, we encourage you to play with the code and create your own Gaussian kernels any way you want!
+As a note, all the kernels will be scaled (normalized) at the end by the sum of all internal elements.
+This ensures that the output of the convolution will not have an obnoxious scale factor associated with it.</p>
+<p>Below are a few images generated by applying a kernel generated with the code above to a black and white image of a circle.</p>
+<p>
+  <img  class="center" src="../res/circle_blur.png" style="width:100%" />
+</p>
+<p>In (a), we show the original image, which is just a white circle at the center of a \( 50\times 50 \) grid.
+In (b), we show the image after convolution with a \( 3\times 3 \) kernel.
+In (c), we show the image after convolution with a \( 20\times 20 \) kernel.
+Here, we see that (c) is significantly fuzzier than (b), which is a direct consequence of the kernel size.</p>
+<p>There is a lot more that we could talk about, but now is a good time to move on to a slightly more complicated convolutional method: the Sobel operator.</p>
+<h2 id="the-sobel-operator"><a class="header" href="#the-sobel-operator">The Sobel operator</a></h2>
+<p>The Sobel operator effectively performs a gradient operation on an image by highlighting areas where a large change has been made.
+In essence, this means that this operation can be thought of as a naïve edge detector.
+Essentially, the \( n \)-dimensional Sobel operator is composed of \( n \) separate gradient convolutions (one for each dimension) that are then combined together into a final output array.
+Again, for the purposes of this chapter, we will stick to two dimensions, which will be composed of two separate gradients along the \( x \) and \( y \) directions.
+Each gradient will be created by convolving our image with their corresponding Sobel operator:</p>
+<p>\[
+\begin{align}
+S_x &amp;= \left(\begin{bmatrix}
+1 \\
+2 \\
+1 \\
+\end{bmatrix} \otimes [1~0~-1]
+\right) = \begin{bmatrix}
+1 &amp; 0 &amp; -1 \\
+2 &amp; 0 &amp; -2 \\
+1 &amp; 0 &amp; -1 \\
+\end{bmatrix}\\</p>
+<p>S_y &amp;= \left(
+\begin{bmatrix}
+1 \\
+0 \\
+-1 \\
+\end{bmatrix} \otimes [1~2~1]
+\right) = \begin{bmatrix}
+1 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 0 \\
+-1 &amp; -2 &amp; -1 \\
+\end{bmatrix}.
+\end{align}
+\]</p>
+<p>The gradients can then be found with a convolution, such that:</p>
+<p>\[
+\begin{align}
+G_x &amp;= S_x<em>A \\
+G_y &amp;= S_y</em>A.
+\end{align}
+\]</p>
+<p>Here, \( A \) is the input array or image.
+Finally, these gradients can be summed in quadrature to find the total Sobel operator or image gradient:</p>
+<p>\[ G_{\text{total}} = \sqrt{G_x^2 + G_y^2} \]</p>
+<p>So let us now show what it does in practice:</p>
+<p>
+  <img  class="center" src="../res/sobel_filters.png" style="width:100%" />
+</p>
+<p>In this diagram, we start with the circle image on the right, and then convolve it with the \( S_x \) and \( S_y \) operators to find the gradients along \( x \) and \( y \) before summing them in quadrature to get the final image gradient.
+Here, we see that the edges of our input image have been highlighted, showing outline of our circle.
+This is why the Sobel operator is also known as naïve edge detection and is an integral component to many more sophisticated edge detection methods like one proposed by Canny {{ &quot;canny1986computational&quot; | cite }}.</p>
+<p>In code, the Sobel operator involves first finding the operators in \( x \) and \( y \) and then applying them with a traditional convolution:</p>
+<pre><code class="language-julia">function create_sobel_operators()
+    Sx = [1.0, 2.0, 1.0]*[-1.0 0.0 1.0] / 9
+    Sy = [-1.0, 0.0, 1.0]*[1.0 2.0 1.0] / 9
+
+    return Sx, Sy
+end
+
+function compute_sobel(signal)
+    Sx, Sy = create_sobel_operators()
+
+    Gx = convolve_linear(signal, Sx, size(signal) .+ size(Sx))
+    Gy = convolve_linear(signal, Sy, size(signal) .+ size(Sy))
+
+    return sqrt.(Gx.^2 .+ Gy.^2)
+end
+</code></pre>
+<pre><code class="language-python">def create_sobel_operators():
+    Sx = np.dot([[1.0], [2.0], [1.0]], [[-1.0, 0.0, 1.0]]) / 9
+    Sy = np.dot([[-1.0], [0.0], [1.0]], [[1.0, 2.0, 1.0]]) / 9
+
+    return Sx, Sy
+
+def sum_matrix_dimensions(mat1, mat2):
+    return (mat1.shape[0] + mat2.shape[0], 
+            mat1.shape[1] + mat2.shape[1])
+
+def compute_sobel(signal):
+    Sx, Sy = create_sobel_operators()
+    
+    Gx = convolve_linear(signal, Sx, sum_matrix_dimensions(signal, Sx))
+    Gy = convolve_linear(signal, Sy, sum_matrix_dimensions(signal, Sy))
+
+    return np.sqrt(np.power(Gx, 2) + np.power(Gy, 2))
+</code></pre>
+<p>With that, I believe we are at a good place to stop discussions on two-dimensional convolutions.
+We will definitely return to this topic in the future as new algorithms require more information.</p>
+<h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
+<p>For the code in this section, we have modified the visualizations from the <a href="../1d/1d.html">one-dimensional convolution chapter</a> to add a two-dimensional variant for blurring an image of random white noise.
+We have also added code to create the Gaussian kernel and Sobel operator and apply it to the circle, as shown in the text.</p>
+<pre><code class="language-julia">using DelimitedFiles
+using LinearAlgebra
+
+function convolve_linear(signal::Array{T, 2}, filter::Array{T, 2},
+                         output_size) where {T &lt;: Number}
+
+    # convolutional output
+    out = Array{Float64,2}(undef, output_size)
+    sum = 0
+
+    for i = 1:output_size[1]
+        for j = 1:output_size[2]
+            for k = max(1, i-size(filter)[1]):i
+                for l = max(1, j-size(filter)[2]):j
+                    if k &lt;= size(signal)[1] &amp;&amp; i-k+1 &lt;= size(filter)[1] &amp;&amp;
+                       l &lt;= size(signal)[2] &amp;&amp; j-l+1 &lt;= size(filter)[2]
+                        sum += signal[k,l] * filter[i-k+1, j-l+1]
+                    end
+                end
+            end
+
+            out[i,j] = sum
+            sum = 0
+        end
+    end
+
+    return out
+end
+
+function create_gaussian_kernel(kernel_size)
+
+    kernel = zeros(kernel_size, kernel_size)
+
+    # The center must be offset by 0.5 to find the correct index
+    center = kernel_size * 0.5 + 0.5
+
+    sigma = sqrt(0.1*kernel_size)
+
+    for i = 1:kernel_size
+        for j = 1:kernel_size
+            kernel[i,j] = exp(-((i-center)^2 + (j-center)^2) / (2*sigma^2))
+        end
+    end
+
+    return normalize(kernel)
+    
+end
+
+function create_sobel_operators()
+    Sx = [1.0, 2.0, 1.0]*[-1.0 0.0 1.0] / 9
+    Sy = [-1.0, 0.0, 1.0]*[1.0 2.0 1.0] / 9
+
+    return Sx, Sy
+end
+
+function compute_sobel(signal)
+    Sx, Sy = create_sobel_operators()
+
+    Gx = convolve_linear(signal, Sx, size(signal) .+ size(Sx))
+    Gy = convolve_linear(signal, Sy, size(signal) .+ size(Sy))
+
+    return sqrt.(Gx.^2 .+ Gy.^2)
+end
+
+# Simple function to create a square grid with a circle embedded inside of it
+function create_circle(image_resolution, grid_extents, radius)
+    out = zeros(image_resolution, image_resolution)
+
+    for i = 1:image_resolution
+        x_position = ((i-1)*grid_extents/image_resolution)-0.5*grid_extents
+        for j = 1:image_resolution
+            y_position = ((j-1)*grid_extents/image_resolution)-0.5*grid_extents
+            if x_position^2 + y_position^2 &lt;= radius^2
+                out[i,j] = 1.0
+            end
+        end
+    end 
+
+    return out
+end
+
+function main()
+
+    # Random distribution in x
+    x = rand(100, 100)
+
+    # Gaussian signals
+    y = [exp(-(((i-50)/100)^2 + ((j-50)/100)^2)/.01) for i = 1:100, j=1:100]
+
+    # Normalization is not strictly necessary, but good practice
+    normalize!(x)
+    normalize!(y)
+
+    # full convolution, output will be the size of x + y
+    full_linear_output = convolve_linear(x, y, size(x) .+ size(y))
+
+    # simple boundaries
+    simple_linear_output = convolve_linear(x, y, size(x))
+
+    # outputting convolutions to different files for plotting in external code
+    writedlm(&quot;full_linear.dat&quot;, full_linear_output)
+    writedlm(&quot;simple_linear.dat&quot;, simple_linear_output)
+
+    # creating simple circle and 2 different Gaussian kernels
+    circle = create_circle(50,2,0.5)
+
+    normalize!(circle)
+
+    small_kernel = create_gaussian_kernel(3)
+    large_kernel = create_gaussian_kernel(25)
+
+    small_kernel_output = convolve_linear(circle, small_kernel,
+                                          size(circle).+size(small_kernel))
+    large_kernel_output = convolve_linear(circle, large_kernel,
+                                          size(circle).+size(large_kernel))
+
+    writedlm(&quot;small_kernel.dat&quot;, small_kernel_output)
+    writedlm(&quot;large_kernel.dat&quot;, large_kernel_output)
+
+    # Using the circle for Sobel operations as well
+    sobel_output = compute_sobel(circle)
+
+    writedlm(&quot;sobel_output.dat&quot;, sobel_output)
+
+end
+</code></pre>
+<pre><code class="language-python">import numpy as np
+from contextlib import suppress
+
+
+def convolve_linear(signal, filter, output_size):
+    out = np.zeros(output_size)
+    sum = 0
+
+    for i in range(output_size[0]):
+        for j in range(output_size[1]):
+            for k in range(max(0, i-filter.shape[0]), i+1):
+                for l in range(max(0, j-filter.shape[1]), j+1):
+                    with suppress(IndexError):
+                        sum += signal[k, l] * filter[i-k, j-l]
+            out[i, j] = sum
+            sum = 0
+
+    return out
+
+
+def create_gaussian_kernel(kernel_size):
+    kernel = np.zeros((kernel_size, kernel_size))
+
+    # The center must be offset by 0.5 to find the correct index
+    center = kernel_size*0.5 + 0.5
+
+    sigma = np.sqrt(0.1*kernel_size)
+
+    def kernel_function(x, y):
+        return np.exp(-((x-center+1)**2 + (y-center+1)**2)/(2*sigma**2))
+
+    kernel = np.fromfunction(kernel_function, (kernel_size, kernel_size))
+    return kernel / np.linalg.norm(kernel)
+
+
+def create_sobel_operators():
+    Sx = np.dot([[1.0], [2.0], [1.0]], [[-1.0, 0.0, 1.0]]) / 9
+    Sy = np.dot([[-1.0], [0.0], [1.0]], [[1.0, 2.0, 1.0]]) / 9
+
+    return Sx, Sy
+
+def sum_matrix_dimensions(mat1, mat2):
+    return (mat1.shape[0] + mat2.shape[0], 
+            mat1.shape[1] + mat2.shape[1])
+
+def compute_sobel(signal):
+    Sx, Sy = create_sobel_operators()
+    
+    Gx = convolve_linear(signal, Sx, sum_matrix_dimensions(signal, Sx))
+    Gy = convolve_linear(signal, Sy, sum_matrix_dimensions(signal, Sy))
+
+    return np.sqrt(np.power(Gx, 2) + np.power(Gy, 2))
+
+
+def create_circle(image_resolution, grid_extents, radius):
+    out = np.zeros((image_resolution, image_resolution))
+
+    for i in range(image_resolution):
+        x_position = ((i * grid_extents / image_resolution)
+                      - 0.5 * grid_extents)
+        for j in range(image_resolution):
+            y_position = ((j * grid_extents / image_resolution)
+                          - 0.5 * grid_extents)
+            if x_position ** 2 + y_position ** 2 &lt;= radius ** 2:
+                out[i, j] = 1.0
+
+    return out
+
+
+def main():
+
+    # Random distribution in x
+    x = np.random.rand(100, 100)
+
+    # Gaussian signals
+    def create_gaussian_signals(i, j):
+        return np.exp(-(((i-50)/100) ** 2 +
+                        ((j-50)/100) ** 2) / .01)
+    y = np.fromfunction(create_gaussian_signals, (100, 100))
+
+    # Normalization is not strictly necessary, but good practice
+    x /= np.linalg.norm(x)
+    y /= np.linalg.norm(y)
+
+    # full convolution, output will be the size of x + y
+    full_linear_output = convolve_linear(x, y, sum_matrix_dimensions(x, y))
+
+    # simple boundaries
+    simple_linear_output = convolve_linear(x, y, x.shape)
+
+    np.savetxt(&quot;full_linear.dat&quot;, full_linear_output)
+    np.savetxt(&quot;simple_linear.dat&quot;, simple_linear_output)
+
+    # creating simple circle and 2 different Gaussian kernels
+    circle = create_circle(50, 2, 0.5)
+
+    circle = circle / np.linalg.norm(circle)
+
+    small_kernel = create_gaussian_kernel(3)
+    large_kernel = create_gaussian_kernel(25)
+
+    small_kernel_output = convolve_linear(circle, small_kernel,
+                                          sum_matrix_dimensions(circle,
+                                                                small_kernel))
+
+    large_kernel_output = convolve_linear(circle, large_kernel,
+                                          sum_matrix_dimensions(circle,
+                                                                large_kernel))
+
+    np.savetxt(&quot;small_kernel.dat&quot;, small_kernel_output)
+    np.savetxt(&quot;large_kernel.dat&quot;, large_kernel_output)
+
+    circle = create_circle(50, 2, 0.5)
+
+    # Normalization
+    circle = circle / np.linalg.norm(circle)
+
+    # using the circle for sobel operations as well
+    sobel_output = compute_sobel(circle)
+
+    np.savetxt(&quot;sobel_output.dat&quot;, sobel_output)
+
+</code></pre>
+<h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
+<p>{% references %} {% endreferences %}</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
+<p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
+<h5 id="imagesgraphics"><a class="header" href="#imagesgraphics">Images/Graphics</a></h5>
+<ul>
+<li>The image &quot;<a href="../res/heart_8bit.png">8bit Heart</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="../res/circle_blur.png">Circle Blur</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The image &quot;<a href="../res/sobel_filters.png">Sobel Filters</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+<li>The video &quot;<a href="../res/2d.mp4">2D Convolution</a>&quot; was created by <a href="https://github.com/leios">James Schloss</a> and <a href="https://github.com/3b1b">Grant Sanderson</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
+</ul>
+<h5 id="text"><a class="header" href="#text">Text</a></h5>
+<p>The text of this chapter was written by <a href="https://github.com/leios">James Schloss</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><p><img  class="center" src="../../cc/CC-BY-SA_icon.svg" /></p></a></p>
+<h5 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h5>
+<p>After initial licensing (<a href="https://github.com/algorithm-archivists/algorithm-archive/pull/560">#560</a>), the following pull requests have modified the text or graphics of this chapter:</p>
+<ul>
+<li>none</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../convolutions/multiplication/multiplication.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../convolutions/convolutional_theorem/convolutional_theorem.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../convolutions/multiplication/multiplication.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../convolutions/convolutional_theorem/convolutional_theorem.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
