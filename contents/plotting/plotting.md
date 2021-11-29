@@ -16,9 +16,10 @@ In addition, each plotting language used in this chapter will likely have many f
 
 To begin, let's write a simple script that allows for plotting a sine wave
 
-{% method %}
-{% sample lang="gnuplot" %}
-[import:1-1, lang:"gnuplot"](code/gnuplot/sine.gp)
+
+```gnuplot
+{{#include code/gnuplot/sine.gp:1:1}}
+```
 
 Where `x` is a range from negative to positive 10.
 To plot from the terminal, you can either:
@@ -36,12 +37,12 @@ The phrase `with lines` is abbreviated to simply `w l` and `plot` is sometimes w
 ```
 p sin(x) w l
 ```
-{% endmethod %}
+
 
 From here, it is rather straightforward to add more plots.
 For example, let's add in a cosine function.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 In this case, we need to add the following line to our script:
 [import:2, lang:"gnuplot"](code/gnuplot/sine.gp)
@@ -58,7 +59,7 @@ If you would prefer to plot everything on a single line (which will become more 
 p sin(x) w l, cos(x) w l
 ```
 
-{% endmethod %}
+
 
 In some sense, this chapter is meant as a guide so users can better understand plotting in their language of choice.
 As such, it is important to first understand how to perform a few basic tasks:
@@ -80,9 +81,9 @@ Be sure to look at the documentation {{ "gnuplot" | cite }}  for plotting in you
 
 All data that can be plotted has a scope at which the important features are more clear.
 It is sometimes important to zoom in or zoom out to highlight particular facets of the data available.
-This can be simply done by modifying the $$x$$ and $$y$$ ranges in your plotter of choice, like so:
+This can be simply done by modifying the \\( x \\) and \\( y \\) ranges in your plotter of choice, like so:
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 ```
 set xrange [0:10]
@@ -97,15 +98,15 @@ For this script, we generate a plot that looks like this:
     <img  class="center" src="res/gnuplot/sincos_range.png" style="width:70%" />
 </p>
 
-{% endmethod %}
+
 
 #### x and y tics
 
 In addition to changing the plot scales, it is also important to notify your audience of what these scales actually mean.
-To help guide the reader's eye and better understand what the plot represents, plotters provide _tics_ (little notches) on the $$x$$ and $$y$$ axes.
-As such, it is important to update the $$x$$ and $$y$$ tics with appropriate scales and labels.
+To help guide the reader's eye and better understand what the plot represents, plotters provide _tics_ (little notches) on the \\( x \\) and \\( y \\) axes.
+As such, it is important to update the \\( x \\) and \\( y \\) tics with appropriate scales and labels.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 Firstly, to remove x and y tics, use
@@ -141,13 +142,13 @@ This is simply meant as a showcase for using gnuplot in this way.
 As a note: there is a lot of information here we missed, specifically format specifiers, which allow users to modify the format of the numbers in their plots (to be in floating point, scientific notation, or something else).
 This can be found in [the documentation](http://gnuplot.sourceforge.net/docs_4.2/node184.html), along with anything else that is missed here.
 
-{% endmethod %}
+
 
 #### logscale
 
 In addition to changing the values of the x and y tics, we can also change the axes to plot in log-scale by using the following command:
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 ```
@@ -155,11 +156,11 @@ set logscale x
 set logscale y
 ```
 
-{% endmethod %}
+
 
 As a simple example, let's take the `exp(x)` function.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 In gnuplot, we can plot this by using `p exp(x) w l`, which will create the following:
@@ -168,29 +169,29 @@ In gnuplot, we can plot this by using `p exp(x) w l`, which will create the foll
     <img  class="center" src="res/gnuplot/exp.png" style="width:70%" />
 </p>
 
-{% endmethod %}
 
-Now let's plot the same function with log-scale along the $$y$$ axis:
 
-{% method %}
+Now let's plot the same function with log-scale along the \\( y \\) axis:
+
+
 {% sample lang="gnuplot" %}
 
 <p>
     <img  class="center" src="res/gnuplot/explog.png" style="width:70%" />
 </p>
 
-{% endmethod %}
 
-Here, we see what we expect: `exp(x)` is a straight line when the $$y$$ axis is in log-scale.
+
+Here, we see what we expect: `exp(x)` is a straight line when the \\( y \\) axis is in log-scale.
 When we use log-scale on the sine and cosine waves from before, we get the following:
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 <p>
     <img  class="center" src="res/gnuplot/sincos_log.png" style="width:70%" />
 </p>
 
-{% endmethod %}
+
 
 This is an awful plot, so it is only fitting that we use it as out example for the a few more plots in this chapter.
 
@@ -207,7 +208,7 @@ Every line has a label, often held in a box called a _legend_, and the plot, its
 
 First, let's change the labels associated with each data set or function.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 ```
@@ -218,7 +219,7 @@ p sin(x) w l title "sine wave", cos(x) w l title "cos(x)"
     <img  class="center" src="res/gnuplot/sincos_label.png" style="width:70%" />
 </p>
 
-{% endmethod %}
+
 
 Here, we show that we can modify the data labels to be whatever we want.
 Note that for LaTeX-like math in the label, we might need to change the output to TeX, which will be shown later.
@@ -229,7 +230,7 @@ For now, let's move on to discuss what we can to with all of the labels in the l
 
 First things first, you should probably use a legend, unless you are a legend yourself and don't need one... In which case you can use the following:
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 ```
@@ -242,12 +243,12 @@ which will produce a plot that looks like this:
     <img  class="center" src="res/gnuplot/sincos_nokey.png" style="width:70%" />
 </p>
 
-{% endmethod %}
+
 
 Admittedly, you are probably not important enough to remove the legend and doing so will prevent readers from understanding the data you are plotting, so this should be used sparingly.
 Instead, you should probably try to move the legend out of the way of the data, which can be done in a number of ways.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 In gnuplot, it is possible to specify where we place the legend by using certain keywords, like `top`, `bottom`, `left`, `right`, and `center`, like so:
@@ -277,13 +278,13 @@ which will produce a plot that looks like this:
 
 This is certainly an awful place to put a legend for this plot, but this command could be useful for other plots.
 
-{% endmethod %}
+
 
 ##### titles
 
 Obviously, in addition to labels, we can also provide a title for the entire plot, like so:
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 ```
@@ -294,7 +295,7 @@ set title "Gnuplot Test"
     <img  class="center" src="res/gnuplot/sincos_title.png" style="width:70%" />
 </p>
 
-{% endmethod %}
+
 
 #### square output
 
@@ -303,7 +304,7 @@ For whatever reason, I was told time and time again as a fledgling researcher th
 
 That can be done by using
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 ```
@@ -316,13 +317,13 @@ which will output the following plot:
     <img  class="center" src="res/gnuplot/sincos_square.png" style="width:70%" />
 </p>
 
-{% endmethod %}
+
 
 #### line and point types
 
 Finally, it's important to show your individuality by choosing your own point and line types.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 To find all the point or line types available in gnuplot, simply open the REPL and run the `test` command, which outputs something that looks like this:
 
@@ -348,9 +349,9 @@ This will create a plot that looks like this:
 With this script, we are using a bunch of aliases, which can be found in the following section.
 For now, it is clear that you can make your plot look however you like without too much trouble.
 There are also a bunch of cool features that you can learn by looking up examples on the [gnuplot site](http://gnuplot.sourceforge.net/).
-{% endmethod %}
 
-{% method %}
+
+
 {% sample lang="gnuplot" %}
 #### gnuplot aliases
 
@@ -369,13 +370,13 @@ Here are all the aliases stated explicitly:
 
 We will add more aliases to this table as they are used in the Algorithm Archive.
 
-{% endmethod %}
+
 
 ### Outputting the plot to file
 
 At this point, all the scripts have shown so far will output an image directly to your computer screen; however, it is important to note that you can use any of the above methods when outputting to a file as well.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 For the most part, if you want to output any of the above scripts to a file, you simply need to run the following commands:
@@ -443,7 +444,7 @@ This will output another "check.tex" file that can be used by other LaTeX docume
 As a note, the units for the `epslatex` terminal are real units in terms of cm, inches, or whatever other measurement LaTeX takes.
 As such, you will probably want to make sure the size of the output image from gnuplot actually fits in the document you want to create.
 
-{% endmethod %}
+
 
 ## Plotting data from a file 
 
@@ -461,7 +462,7 @@ In the case of one-dimensional output, the data file will have all numbers separ
 
 For the purposes of the Algorithm Archive, we will call these data files `.dat` files; however, the file extension does not matter and you can just as well name the files `.tsv` or `.csv` depending on your tastes.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 Gnuplot can read in this file in the same way it can plot functions above.
@@ -478,16 +479,16 @@ Which will provide the following output:
 </p>
 
 
-{% endmethod %}
+
 
 ### Two-dimensional image output
 In the case of two-dimensional image output, the data file be similar, but this time, each number will be separated by a tab for different column entries and a newline for rows, as shown here:
 
 [import](data/2d_sample_low_res.dat)
 
-It is expected that the number of columns does not vary in each row and that we are working with an $$n \times m$$ matrix which can be simply plotted as a series of pixels that scale in color according to some defined colorbar.
+It is expected that the number of columns does not vary in each row and that we are working with an \\( n \times m \\) matrix which can be simply plotted as a series of pixels that scale in color according to some defined colorbar.
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 To create 2 dimensional plots in Gnuplot, we need to set the view to 2 dimensional and then do a 3 dimensional plot with the `splot` function that we set to a matrix image, like so:
@@ -501,13 +502,13 @@ splot "sample_data.dat" matrix with image
     <img  class="center" src="res/gnuplot/2d_sample.png" style="width:70%" />
 </p>
 
-{% endmethod %}
+
 
 #### changing the colorbar
 
 For plotting images from data files, we will often need to specify how we color the image by setting a custom color bar
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 
 In Gnuplot, there are not many predefined themes, but it is fairly easy to set your own theme for coloring a 2 dimensional image.
@@ -527,22 +528,22 @@ This example will output the following plot:
 </p>
 
 
-{% endmethod %}
+
 
 
 ### Scatter Plots
 
-The scatter plot is another useful method for visualizing data that plots each point in an $$n$$ -dimensional space.
+The scatter plot is another useful method for visualizing data that plots each point in an \\( n \\) -dimensional space.
 For the purposes of the Algorithm Archive, this space is mainly two-dimensional; however, scatter plots in three-dimensions may also be used for visualizing three-dimensional datasets.
 We will update this section if three-dimensional scatter plots are required.
 
-For the purposes of the Algorithm Archive, scatter plot data will be output as a series of $$x$$ and $$y$$ pairs, where each row has an $$x$$ and a $$y$$ value, separated by a tab character.
+For the purposes of the Algorithm Archive, scatter plot data will be output as a series of \\( x \\) and \\( y \\) pairs, where each row has an \\( x \\) and a \\( y \\) value, separated by a tab character.
 For example, a datafile might look like this:
 
 [import:1-10](data/scatterplot_data.dat)
 
-For three-dimensional scatter plots, there might be a third, $$z$$ dimension.
-{% method %}
+For three-dimensional scatter plots, there might be a third, \\( z \\) dimension.
+
 {% sample lang="gnuplot" %}
 
 In gnuplot, scatter plots are easy to generate with the provided data format, for example, you could use the following command:
@@ -559,7 +560,7 @@ Which will create the following image
 
 Here, we have chosen `pointtype 7`, simply because it is easier to see when compared to the default crosses.
 
-{% endmethod %}
+
 
 If you are interested in seeing this type of plot generate fractal patterns, please look at the chapter on [iterated function systems](../IFS/IFS.md).
 
@@ -584,7 +585,7 @@ The text of this chapter was written by [James Schloss](https://github.com/leios
 
 ##### Images/Graphics
 
-{% method %}
+
 {% sample lang="gnuplot" %}
 - The image "[gnuplot_sine_wave](res/gnuplot/sine.png)" was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 - The image "[gnuplot_sine_cosine_wave](res/gnuplot/sincos.png)" was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
@@ -608,7 +609,7 @@ The text of this chapter was written by [James Schloss](https://github.com/leios
 - The image "[gnuplot_2d_sample_colorbar](res/gnuplot/2d_sample_cb.png)" was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 - The image "[gnuplot_scatterplot](res/gnuplot/scatterplot.png)" was created by [James Schloss](https://github.com/leios) and is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 
-{% endmethod %}
+
 
 ##### Pull Requests
 

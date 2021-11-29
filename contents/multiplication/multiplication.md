@@ -17,9 +17,7 @@ Here's the point: through time, computer science researchers have managed to tak
 Sometimes it's even worth looking at trivial operations through a new lens.
 
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

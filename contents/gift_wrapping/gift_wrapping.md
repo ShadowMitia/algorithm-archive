@@ -6,9 +6,7 @@ That said, there is a rich history of algorithms to solve this problem.
 To be fair, only the Jarvis March is classified as *the* gift wrapping algorithm; however, it's a neat name to give algorithms that solve for the convex hull of a distribution of points.
 Strictly speaking, though, the term is not entirely accurate for all convex hull methods.
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

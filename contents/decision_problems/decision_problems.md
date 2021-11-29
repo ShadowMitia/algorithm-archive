@@ -6,9 +6,7 @@ For example, the Hungarian algorithm reads in a bunch of inputs (candidates for 
 Overall, these problems come up all over the place and are certainly worth studying in their own right!
 
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

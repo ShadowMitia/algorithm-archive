@@ -1,0 +1,12 @@
+[book]
+authors = ["James Schloss"]
+language = "en"
+multilingual = false
+src = "contents"
+title = "Arcane Algorithm Archive"
+
+[output.html]
+git-repository-url = "https://github.com/algorithm-archivists/algorithm-archive/"
+git-repository-icon = "fa-github"
+mathjax-support = true
+links = true

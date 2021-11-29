@@ -524,3 +524,7 @@ vscode/
 
 # SCons build directory
 build/
+
+
+# bookmd
+book/

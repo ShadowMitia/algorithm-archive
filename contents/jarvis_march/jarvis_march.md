@@ -12,7 +12,7 @@ We then choose the point with the largest interior angle and move the simulation
 We keep repeating this process until we have returned to our original point.
 The set of points chosen in this simulation will be the convex hull.
 
-As we might expect, this algorithm is not incredibly efficient and has a runtime of $$\mathcal{O}(nh)$$, where $$n$$ is the number of points and $$h$$ is the size of the hull.
+As we might expect, this algorithm is not incredibly efficient and has a runtime of \\( \mathcal{O}(nh) \\), where \\( n \\) is the number of points and \\( h \\) is the size of the hull.
 As a note, the Jarvis March can be generalized to higher dimensions.
 Since this algorithm, there have been many other algorithms that have advanced the field of two-dimensional gift-wrapping forward, including the Graham Scan and Chan's Algorithm, which will be discussed in due time.
 
@@ -22,41 +22,51 @@ Since this algorithm, there have been many other algorithms that have advanced t
 
 ## Example Code
 
-{% method %}
+
 {% sample lang="cs" %}
 ##### JarvisMarch.cs
 [import, lang="csharp"](code/csharp/JarvisMarch.cs)
 ##### Program.cs
 [import, lang="csharp"](code/csharp/Program.cs)
-{% sample lang="jl" %}
-[import, lang:"julia"](code/julia/jarvis.jl)
-{% sample lang="hs" %}
-[import, lang:"haskell"](code/haskell/jarvisMarch.hs)
-{% sample lang="c" %}
-[import, lang:"c"](code/c/jarvis_march.c)
-{% sample lang="js" %}
-[import, lang:"javascript"](code/javascript/jarvis-march.js)
-{% sample lang="py" %}
-[import, lang:"python"](code/python/jarvis_march.py)
-{% sample lang="cpp" %}
-[import, lang:"cpp"](code/cpp/jarvis_march.cpp)
-{% sample lang="lisp" %}
-[import, lang:"lisp"](code/clisp/jarvis-march.lisp)
-{% sample lang="java" %}
-[import, lang:"java"](code/java/JarvisMarch.java)
-{% sample lang="go" %}
-[import, lang:"go"](code/go/jarvis.go)
-{% sample lang="v" %}
-[import, lang:"v"](code/v/jarvis.v)
-{% sample lang="rust" %}
-[import, lang:"rust"](code/rust/jarvis_march.rs)
-{% sample lang="coco" %}
-[import, lang:"coconut"](code/coconut/jarvis_march.coco)
-{% endmethod %}
+```julia
+{{#include code/julia/jarvis.jl}}
+```
+```haskell
+{{#include code/haskell/jarvisMarch.hs}}
+```
+```c
+{{#include code/c/jarvis_march.c}}
+```
+```javascript
+{{#include code/javascript/jarvis-march.js}}
+```
+```python
+{{#include code/python/jarvis_march.py}}
+```
+```cpp
+{{#include code/cpp/jarvis_march.cpp}}
+```
+```lisp
+{{#include code/clisp/jarvis-march.lisp}}
+```
+```java
+{{#include code/java/JarvisMarch.java}}
+```
+```go
+{{#include code/go/jarvis.go}}
+```
+```v
+{{#include code/v/jarvis.v}}
+```
+```rust
+{{#include code/rust/jarvis_march.rs}}
+```
+```coconut
+{{#include code/coconut/jarvis_march.coco}}
+```
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
+
 
 ## License
 

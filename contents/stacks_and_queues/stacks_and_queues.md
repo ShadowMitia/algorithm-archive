@@ -15,20 +15,23 @@ The notation for this depends on the language you are using. Queues, for example
 
 ## Example Code
 Here is a simple implementation of a stack:
-{% method %}
-{% sample lang="ts" %}
-[import, lang:"typescript"](code/typescript/stack.ts)
-{% sample lang="java" %}
+
+```typescript
+{{#include code/typescript/stack.ts}}
+``````typescript
+{{#include code/typescript/stack.ts}}
+```
 [import, lang:"java"](code/java/Stack.java)
-{% endmethod %}
+
 
 Here is a simple implementation of a queue:
-{% method %}
-{% sample lang="ts" %}
-[import, lang:"typescript"](code/typescript/queue.ts)
+
+```typescript
+{{#include code/typescript/queue.ts}}
+```
 {% sample lang="java" %}
 [import, lang:"java" ](code/java/Queue.java)
-{% endmethod %}
+
 
 
 ## License

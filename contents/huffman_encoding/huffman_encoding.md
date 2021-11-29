@@ -61,12 +61,16 @@ The most straightforward way to do this in some languages is with a priority que
 In addition, to read the tree backwards, some sort of [Depth First Search](../tree_traversal/tree_traversal.md) needs to be implemented.
 Whether you use a stack or straight-up recursion also depends on the language, but the recursive method is a little easier to understand in most cases.
 
-{% method %}
-{% sample lang="jl" %}
-[import, lang:"julia"](code/julia/huffman.jl)
-{% sample lang="rs" %}
-[import, lang:"rust"](code/rust/huffman.rs)
-{% sample lang="c" %}
+
+```julia
+{{#include code/julia/huffman.jl}}
+``````julia
+{{#include code/julia/huffman.jl}}
+``````julia
+{{#include code/julia/huffman.jl}}
+```m```julia
+{{#include code/julia/huffman.jl}}
+```
 [import, lang:"c"](code/c/huffman.c)
 {% sample lang="hs" %}
 [import, lang:"haskell"](code/haskell/huffman.hs)
@@ -77,15 +81,23 @@ Whether you use a stack or straight-up recursion also depends on the language, b
 [import, lang:"csharp"](code/csharp/Program.cs)
 {% sample lang="lua" %}
 [import, lang="lua"](code/lua/huffman.lua)
-{% sample lang="cpp" %}
-[import, lang:"cpp"](code/cpp/huffman.cpp)
-{% sample lang="clj" %}
-[import, lang:"clojure"](code/clojure/huffman.clj)
-{% sample lang="py" %}
-[import, lang:"python"](code/python/huffman.py)
-{% sample lang="js" %}
-[import, lang:"javascript"](code/javascript/huffman.js)
-{% sample lang="java" %}
+```cpp
+{{#include code/cpp/huffman.cpp}}
+``````cpp
+{{#include code/cpp/huffman.cpp}}
+``````cpp
+{{#include code/cpp/huffman.cpp}}
+```l```cpp
+{{#include code/cpp/huffman.cpp}}
+``````cpp
+{{#include code/cpp/huffman.cpp}}
+```y```cpp
+{{#include code/cpp/huffman.cpp}}
+``````cpp
+{{#include code/cpp/huffman.cpp}}
+```m```cpp
+{{#include code/cpp/huffman.cpp}}
+```
 [import, lang:"java"](code/java/huffman.java)
 {% sample lang="go" %}
 [import, lang:"go"](code/go/huffman.go)
@@ -98,13 +110,12 @@ The code snippet was taken from this [scratch project](https://scratch.mit.edu/p
 <p>
     <img  class="center" src="code/scratch/huffman.svg" width="700" />
 </p>
-{% sample lang="coco" %}
-[import, lang:"coconut"](code/coconut/huffman.coco)
-{% endmethod %}
+```coconut
+{{#include code/coconut/huffman.coco}}
+```
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
+
 
 ## License
 

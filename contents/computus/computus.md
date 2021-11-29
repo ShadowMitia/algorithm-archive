@@ -47,7 +47,7 @@ One of the most important fans of Gauss's work was Servois, who created a calend
 
 This calendar shows the date the paschal full moon, indicating that Easter will be the following Sunday {{ "servois" | cite }}.
 In this table, a value greater than 22 indicates the full moon will be on the presented number (date) in March and a value less than 22 indicates the full moon will be on that date in April.
-The $$y$$-axis of this table indicates the decade and the $$x$$-axis indicates the precise year.
+The \\( y \\)-axis of this table indicates the decade and the \\( x \\)-axis indicates the precise year.
 Admittedly, the notation is a bit funky, but it was 1813.
 Times were different then.
 
@@ -83,17 +83,17 @@ Below, we also show a snapshot of this simulation after 6 synodic months:
 
 <img class="center" src="res/synodic_half_year.png" alt="Synodic half year"  style="width:90%">
 
-Here, we show an outline of the Earth and Moon in an arbitrary initial position, each with an angle of $$-\frac{\pi}{4}$$ from the horizontal axis.
+Here, we show an outline of the Earth and Moon in an arbitrary initial position, each with an angle of \\( -\frac{\pi}{4} \\) from the horizontal axis.
 In addition, we show the location of the Moon and Earth again after 6 synodic months and additional outlines for each intermediate synodic month.
 Red lines are drawn from the center of the sun to the moon to indicate the positioning of the moon in relation to the sun and earth.
 In all positions, the Moon is hidden behind the Earth, creating the full moon phase.
-In this way, the synodic month is the time between two consecutive phases, which is slightly longer than the time it takes to revolve around the Earth and return to the same angle (here $$\frac{\pi}{4}$$).
+In this way, the synodic month is the time between two consecutive phases, which is slightly longer than the time it takes to revolve around the Earth and return to the same angle (here \\( \frac{\pi}{4} \\)).
 Each synodic month is approximately 29.5 days, so a synodic year of 12 lunar months is 354 days, which is 11 days shorter than the normal 365 days in a Gregorian year.
 The following is a pictorial representation of offset between a solar and lunar year:
 
 <img class="center" src="res/orbit.png" alt="Full year"  style="width:90%">
 
-Here, we see the Sun at the center, with the Earth and Moon starting the year at an angle of $$-\frac{\pi}{4}$$ from the horizontal axis.
+Here, we see the Sun at the center, with the Earth and Moon starting the year at an angle of \\( -\frac{\pi}{4} \\) from the horizontal axis.
 The initial location of the Earth and Moon are shown as an outline with the letter "A" at their center.
 After a full synodic lunar year (12 lunar months), another outline of the Earth and Moon are shown at position B, and after a full Gregorian year, they are shown in position C.
 An arc is then drawn showing the difference of 11 days between the Earth's position after a synodic year, and another arc is drawn to show the difference between the Moon's position after a full Gregorian year.
@@ -132,54 +132,42 @@ This method can be split into 2 parts:
 In the following sections, we will discuss both individually.
 
 ### Calculating the date of the next full moon
-To start, we will be calculating $$d$$, which is the number of days until the next full moon from March 21st (the first day of spring according to the pope).
+To start, we will be calculating \\( d \\), which is the number of days until the next full moon from March 21st (the first day of spring according to the pope).
 To calculate this, we need to first calculate a number of auxiliary variables, starting with the current year's location on the Metonic calendar,
-$$
-a = \text{year}~\%~19,
-$$
-where $$\%$$ is the modulo operator and 19 is the length of the Metonic calendar in years.
-From here, we also need to calculate an offset to $$a$$, and for this we need the century index,
-$$
-k = \left\lfloor\frac{\text{year}}{100}\right\rfloor,
-$$
-where $$\lfloor\cdot\rfloor$$ is the flooring operation of rounding the value down to the nearest integer.
+\\[ a = \text{year}~\%~19, \\]
+where \\( \% \\) is the modulo operator and 19 is the length of the Metonic calendar in years.
+From here, we also need to calculate an offset to \\( a \\), and for this we need the century index,
+\\[ k = \left\lfloor\frac{\text{year}}{100}\right\rfloor, \\]
+where \\( \lfloor\cdot\rfloor \\) is the flooring operation of rounding the value down to the nearest integer.
 With this, we can calculate the shift in the Metonic cycle to be,
 
-$$
-p = \left\lfloor\frac{13+8k}{25}\right\rfloor.
-$$
+\\[ p = \left\lfloor\frac{13+8k}{25}\right\rfloor. \\]
 
 This expression represents the fact that the Metonic cycle will be 8 days off every 2500 years and adds an additional offset of 13 to ensure the Metonic cycle aligns with empirical observation.
 
 At this point, we know what year we are at on the Metonic calendar and have calculated an offset accordingly; however, we have yet to take into account leap years.
-As stated above, there are 97 leap days every 400 years, and the calculation of $$p$$ above requires correction for the 3 leap days missed.
-If one adds 25 leap days per century and subtracts $$k$$, they will find 96 leap days every 400 years instead, which is a close approximation, but off by one.
+As stated above, there are 97 leap days every 400 years, and the calculation of \\( p \\) above requires correction for the 3 leap days missed.
+If one adds 25 leap days per century and subtracts \\( k \\), they will find 96 leap days every 400 years instead, which is a close approximation, but off by one.
 This accounts for the fact that leap days are not celebrated on years that are multiples of 100.
 There is, however, an exception made for years that are multiples of 400, which is why Gauss calculated an additional variable,
 
-$$
-q = \left\lfloor\frac{k}{4}\right\rfloor.
-$$
+\\[ q = \left\lfloor\frac{k}{4}\right\rfloor. \\]
 
-This means that $$100-k-q$$ will provide the appropriate number of leap days every 400 years.
+This means that \\( 100-k-q \\) will provide the appropriate number of leap days every 400 years.
 After this is found, we then calculate a sum of all offsets within a lunar month.
 
-$$
-M = (15-p+k-q)~\%~30
-$$
+\\[ M = (15-p+k-q)~\%~30 \\]
 
-where 15 is an offset indicating that the full moon on year 0 is 15 days from March 21st, $$p$$ is the number of days we are off from the Metonic cycle, and $$k-q$$ are non-observed leap days.
-The values of $$p$$, $$k$$, and $$q$$ all provide *century* offsets, which means that the value of $$M$$ will provide the correct starting point for each century.
-The $$\%30$$ (modulo 30 arithmetic) constricts our calculation to be within a single synodic lunar month of approximately 30 days.
+where 15 is an offset indicating that the full moon on year 0 is 15 days from March 21st, \\( p \\) is the number of days we are off from the Metonic cycle, and \\( k-q \\) are non-observed leap days.
+The values of \\( p \\), \\( k \\), and \\( q \\) all provide *century* offsets, which means that the value of \\( M \\) will provide the correct starting point for each century.
+The \\( \%30 \\) (modulo 30 arithmetic) constricts our calculation to be within a single synodic lunar month of approximately 30 days.
 
 With all this information, we can finally calculate the number of days from March 21st until the first full moon, as
 
-$$
-d = (19a+M)~\%~30
-$$
+\\[ d = (19a+M)~\%~30 \\]
 
-Again, the $$\%~30$$ operation makes sense here because there is no way the next full moon could occur over 30 days (a synodic lunar month) from March 21st.
-At first glance, this is simply a calculation of $$a$$ (where we are on the Metonic cycle) with some offset, $$M$$.
+Again, the \\( \%~30 \\) operation makes sense here because there is no way the next full moon could occur over 30 days (a synodic lunar month) from March 21st.
+At first glance, this is simply a calculation of \\( a \\) (where we are on the Metonic cycle) with some offset, \\( M \\).
 This is true, but there is an additional multiplicative factor of 19.
 One might be tempted to wave this away by saying, "19 is the number of years in the Metonic cycle, so this makes sense!"
 The truth is that that 19 is a bit more complicated.
@@ -187,14 +175,14 @@ This calculation is a calculation of *days*, not years.
 
 Every 12 lunar months is roughly 354 days, which is 11 days shorter than 365.
 This means that every year in the Metonic cycle, the lunar phase will be 11 days behind.
-It just so happens that $$-11~\%~30 = 19$$.
-Thus, $$19a$$ is a combination of this 11 day offset and the fact that we are using modulo 30 arithmetic.
+It just so happens that \\( -11~\%~30 = 19 \\).
+Thus, \\( 19a \\) is a combination of this 11 day offset and the fact that we are using modulo 30 arithmetic.
 After 19 years, the lunar calendar will be a full 365 days off in the solar calendar, but again, we only care about *day* offsets in this calculation.
 No one really keeps track of lunar years, just solar ones.
 
-Regardless, we now have $$d$$, the number of days until the next full moon.
+Regardless, we now have \\( d \\), the number of days until the next full moon.
 Interestingly, this is all the information necessary to replicate Servois's table above.
-From here, we simply need to create a two-dimensional array with the decade on the $$y$$ axis and year on the $$x$$ axis and set within it the value of $$(21+d)~\%~31$$, where the 21 represents the 21st of March, and the $$\%~31$$ comes from the fact that there are 31 days in March.
+From here, we simply need to create a two-dimensional array with the decade on the \\( y \\) axis and year on the \\( x \\) axis and set within it the value of \\( (21+d)~\%~31 \\), where the 21 represents the 21st of March, and the \\( \%~31 \\) comes from the fact that there are 31 days in March.
 For example, if we were to do this computation for the years from 2000 to 2099, we would find the following table:
 
 <img class="center" src="res/servois_2000.png" alt="Servois' 2000 table"  style="width:90%">
@@ -203,17 +191,15 @@ Which shows that the date of the paschal full moon for 2020 is April 9th.
 Now we can move on to finding the precise date of Easter, which should be the following Sunday
 
 ### Calculating the next Sunday
-This calculation will take a few variables from the previous section, namely $$k-q$$ (the number of non-observed leap days), and $$d$$ (the number of days since March 21st to the next full moon).
+This calculation will take a few variables from the previous section, namely \\( k-q \\) (the number of non-observed leap days), and \\( d \\) (the number of days since March 21st to the next full moon).
 For the last calculation, we synchronized the number of days in a lunar month with the Gregorian (solar) calendar.
-For this computation, we do similar operations, but for the weekly calendar of 7 days, this value will be stored in $$e$$.
-The first step is calculating the correct offset each century based on the fact that Jan 1st, in year 1 was a Friday and then accounting for all the non-observed leap days ($$k-q$$),
+For this computation, we do similar operations, but for the weekly calendar of 7 days, this value will be stored in \\( e \\).
+The first step is calculating the correct offset each century based on the fact that Jan 1st, in year 1 was a Friday and then accounting for all the non-observed leap days (\\( k-q \\)),
 
-$$
-N = (4+k-q)~\%~7.
-$$
+\\[ N = (4+k-q)~\%~7. \\]
 
 From here, things get a little tricky.
-There are 52 weeks in a year, but $$52\times7=364$$, meaning we are essentially one day off every year, with exception of leap years where we are two days off.
+There are 52 weeks in a year, but \\( 52\times7=364 \\), meaning we are essentially one day off every year, with exception of leap years where we are two days off.
 As an example, look at the following table
 
 | January 1st | Day of the week | Special considerations |
@@ -227,56 +213,50 @@ As an example, look at the following table
 Simply put, every year we should subtract one day of the week, but on leap years, we should subtract 2.
 To keep tabs on this, we need two separate counts,
 
-$$
-b = \text{year}~\%~4,
-$$
+\\[ b = \text{year}~\%~4, \\]
 and
-$$
-c = \text{year}~\%~7,
-$$
-where $$b$$ keeps track of leap years, and $$c$$ simply increments by 1 every year.
-Through a bit of mathematical magic, we can find the expression $$2b+4c$$, which will be -1 in modulo 7 arithmetic for every year, except leap years where it will be -2.
+\\[ c = \text{year}~\%~7, \\]
+where \\( b \\) keeps track of leap years, and \\( c \\) simply increments by 1 every year.
+Through a bit of mathematical magic, we can find the expression \\( 2b+4c \\), which will be -1 in modulo 7 arithmetic for every year, except leap years where it will be -2.
 
 With all these terms put together, we can finally calculate the offset from the full moon to Easter Sunday as
 
-$$
-e = (2b+4c+6d+N)~\%~7.
-$$
+\\[ e = (2b+4c+6d+N)~\%~7. \\]
 
-Here, all terms are described as above and the multiplicative factor of 6 to $$d$$ will provide an offset to Sunday without correcting for leap days.
+Here, all terms are described as above and the multiplicative factor of 6 to \\( d \\) will provide an offset to Sunday without correcting for leap days.
 
 ### Wrapping up
 
-At this point, we can calculate the days from March 21st to Easter Sunday to be $$d+e$$.
+At this point, we can calculate the days from March 21st to Easter Sunday to be \\( d+e \\).
 In particular
 
-$$
+\\[
 \text{Easter} = \left\{
     \begin{align}
-        d+e+22\text{ March}& \qquad \text{if } 22+d+e\leq31 \\
-        d+e-9\text{ April}& \qquad \text{if } 22+d+e>31 \\
+        d+e+22\text{ March}& \qquad \text{if } 22+d+e\leq31 \\\\
+        d+e-9\text{ April}& \qquad \text{if } 22+d+e>31 \\\\
     \end{align}
 \right.
-$$
+\\]
 
 Remember that March 22nd would be the first possible day to celebrate Easter because March 21st would be the first possible full moon of spring.
 All said, there are a few exceptions that are somewhat tricky to understand, namely:
 
-$$
+\\[
 e = \left\{
     \begin{align}
-       &e \\
+       &e \\\\
        &-1, \qquad \text{if } d=29 \text{ and } e=6 \text{ or } d=28, e=6, \text{ and } a>10
     \end{align}
 \right.
-$$
+\\]
 
-These conditionals are placed on the output of $$d$$ and correspond to when Easter falls on April 26th (if $$d = 29$$) or April 25th (if $$d = 28$$).
-In both of these cases, we are setting $$e=-1$$, which has the effect of removing a week from the date of Easter.
+These conditionals are placed on the output of \\( d \\) and correspond to when Easter falls on April 26th (if \\( d = 29 \\)) or April 25th (if \\( d = 28 \\)).
+In both of these cases, we are setting \\( e=-1 \\), which has the effect of removing a week from the date of Easter.
 For example, an Easter that would be celebrated on the 26th would instead be celebrated on the 19th.
 
 Many say that these conditionals are placed on the output for historical reasons, but between you and me, I feel there is a more mathematical reason that I do not fully understand.
-After all, why is the correction for $$d=28$$ only placed on the Easter date output on the second half of the Metonic cycle (if $$a > 10$$)?
+After all, why is the correction for \\( d=28 \\) only placed on the Easter date output on the second half of the Metonic cycle (if \\( a > 10 \\))?
 If you think you might have a better idea as to why these dates are corrected as such, please let us know!
 
 As mentioned, this particular algorithm does not make use of any standard computational techniques.
@@ -297,47 +277,59 @@ Here is a video describing key elements of Gauss's Easter Algorithm:
 ## Example Code
 Unlike many other chapters in the Algorithm Archive, this particular method can be described almost entirely by mathematical expressions.
 As such, it should be relatively straightforward to implement in a number of different languages, and I heartily encourage you to do so!
-For now, we have the code outputting a tuple of $$d$$ and $$e$$, so users can use this to calculate either the date of Easter or Servois's table, depending on their use-case; however, please modify the code however you wish!
+For now, we have the code outputting a tuple of \\( d \\) and \\( e \\), so users can use this to calculate either the date of Easter or Servois's table, depending on their use-case; however, please modify the code however you wish!
 
-{% method %}
-{% sample lang="jl" %}
-[import, lang:"julia"](code/julia/gauss_easter.jl)
-{% sample lang="hs" %}
-[import, lang:"haskell"](code/haskell/gauss_easter.hs)
-{% sample lang="py" %}
-[import, lang:"python"](code/python/gauss_easter.py)
-{% sample lang="crystal" %}
-[import, lang:"crystal"](code/crystal/gauss_easter.cr)
-{% sample lang="rust" %}
-[import, lang:"rust"](code/rust/gauss_easter.rs)
-{% sample lang="ps1" %}
-[import, lang:"powershell"](code/powershell/gauss_easter.ps1)
-{% sample lang="c" %}
-[import, lang:"c"](code/c/gauss_easter.c)
-{% sample lang="cpp" %}
-[import, lang:"cpp"](code/cpp/gauss_easter.cpp)
-{% sample lang="lisp" %}
-[import, lang:"lisp"](code/clisp/gauss-easter.lisp)
-{% sample lang="nim" %}
-[import, lang:"nim"](code/nim/gauss_easter.nim)
-{% sample lang="scala" %}
-[import, lang:"scala"](code/scala/gauss_easter.scala)
-{% sample lang="dart" %}
-[import, lang:"dart"](code/dart/gauss_easter.dart)
-{% sample lang="javascript" %}
-[import, lang:"javascript"](code/javascript/gauss_easter.js)
-{% sample lang="typescript" %}
-[import, lang:"typescript"](code/typescript/gauss_easter.ts)
-{% endmethod %}
+
+```julia
+{{#include code/julia/gauss_easter.jl}}
+```
+```haskell
+{{#include code/haskell/gauss_easter.hs}}
+```
+```python
+{{#include code/python/gauss_easter.py}}
+```
+```crystal
+{{#include code/crystal/gauss_easter.cr}}
+```
+```rust
+{{#include code/rust/gauss_easter.rs}}
+```
+```powershell
+{{#include code/powershell/gauss_easter.ps1}}
+```
+```c
+{{#include code/c/gauss_easter.c}}
+```
+```cpp
+{{#include code/cpp/gauss_easter.cpp}}
+```
+```lisp
+{{#include code/clisp/gauss-easter.lisp}}
+```
+```nim
+{{#include code/nim/gauss_easter.nim}}
+```
+```scala
+{{#include code/scala/gauss_easter.scala}}
+```
+```dart
+{{#include code/dart/gauss_easter.dart}}
+```
+```javascript
+{{#include code/javascript/gauss_easter.js}}
+```
+```typescript
+{{#include code/typescript/gauss_easter.ts}}
+```
+
 
 
 ### Bibliography
 
 {% references %} {% endreferences %}
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

@@ -8,10 +8,10 @@ After all, random numbers are random.
 How could they possibly be used to find non-random values?
 
 Well, imagine you have a square.
-The area of the square is simple, $$\text{Area}_{\text{square}} = \text{length} \times \text{width}$$.
-Since it's a square, the $$\text{length}$$ and $$\text{width}$$ are the same, so the formula is technically just $$\text{Area}_{\text{square}} = \text{length}^2$$.
-If we embed a circle into the square with a radius $$r = \tfrac{length}{2}$$ (shown below), then its area is $$\text{Area}_{\text{circle}}=\pi r^2$$.
-For simplicity, we can also say that $$\text{Area}_{\text{square}}=4r^2$$.
+The area of the square is simple, \\( \text{Area}_{\text{square}} = \text{length} \times \text{width} \\).
+Since it's a square, the \\( \text{length} \\) and \\( \text{width} \\) are the same, so the formula is technically just \\( \text{Area}_{\text{square}} = \text{length}^2 \\).
+If we embed a circle into the square with a radius \\( r = \tfrac{length}{2} \\) (shown below), then its area is \\( \text{Area}_{\text{circle}}=\pi r^2 \\).
+For simplicity, we can also say that \\( \text{Area}_{\text{square}}=4r^2 \\).
 
 <p>
     <img  class="center" src="res/square_circle.png" style="width:40%"/>
@@ -20,94 +20,116 @@ For simplicity, we can also say that $$\text{Area}_{\text{square}}=4r^2$$.
 Now, let's say we want to find the area of the circle without an equation.
 As we said before, it's embedded in the square, so we should be able to find some ratio of the area of the square to the area of the circle:
 
-$$
-\text{Ratio} = \frac{\text{Area}_{\text{circle}}}{\text{Area}_{\text{square}}}
-$$
+\\[ \text{Ratio} = \frac{\text{Area}_{\text{circle}}}{\text{Area}_{\text{square}}} \\]
 
 This means,
 
-$$
-\text{Area}_{\text{circle}} = \text{Area}_{\text{square}}\times\text{Ratio} = 4r^2 \times \text{ratio}
-$$
+\\[ \text{Area}_{\text{circle}} = \text{Area}_{\text{square}}\times\text{Ratio} = 4r^2 \times \text{ratio} \\]
 
-So, if we can find the $$\text{Ratio}$$ and we know $$r$$, we should be able to easily find the $$\text{Area}_{\text{circle}}$$.
-The question is, "How do we easily find the $$\text{Ratio}$$?"
+So, if we can find the \\( \text{Ratio} \\) and we know \\( r \\), we should be able to easily find the \\( \text{Area}_{\text{circle}} \\).
+The question is, "How do we easily find the \\( \text{Ratio} \\)?"
 Well, one way is with *random sampling*.
 We basically just pick a bunch of points randomly in the square, and
 each point is tested to see whether it's in the circle or not:
 
-{% method %}
-{% sample lang="jl" %}
-[import:2-7, lang:"julia"](code/julia/monte_carlo.jl)
-{% sample lang="clj" %}
-[import:3-10, lang:"clojure"](code/clojure/monte_carlo.clj)
-{% sample lang="c" %}
-[import:7-9, lang:"c"](code/c/monte_carlo.c)
-{% sample lang="cpp" %}
-[import:7-16, lang:"cpp"](code/cpp/monte_carlo.cpp)
-{% sample lang="js" %}
-[import:2-6, lang:"javascript"](code/javascript/monte_carlo.js)
-{% sample lang="hs" %}
-[import:7-7, lang:"haskell"](code/haskell/monteCarlo.hs)
-{% sample lang="rs" %}
-[import:7-9, lang:"rust"](code/rust/monte_carlo.rs)
-{% sample lang="d" %}
-[import:2-5, lang:"d"](code/d/monte_carlo.d)
-{% sample lang="go" %}
-[import:12-14, lang:"go"](code/go/monteCarlo.go)
-{% sample lang="r" %}
-[import:2-6, lang:"r"](code/r/monte_carlo.R)
-{% sample lang="java" %}
-[import:12-14, lang:"java"](code/java/MonteCarlo.java)
-{% sample lang="swift" %}
-[import:1-3, lang:"swift"](code/swift/monte_carlo.swift)
-{% sample lang="py" %}
-[import:5-7, lang:"python"](code/python/monte_carlo.py)
-{% sample lang="cs" %}
-[import:23-23, lang:"csharp"](code/csharp/Circle.cs)
-{% sample lang="nim" %}
-[import:6-7, lang:"nim"](code/nim/monte_carlo.nim)
-{% sample lang="ruby" %}
-[import:1-4, lang:"ruby"](code/ruby/monte_carlo.rb)
-{% sample lang="f90" %}
-[import:1-8, lang:"fortran"](code/fortran/monte_carlo.f90)
+
+```julia
+{{#include code/julia/monte_carlo.jl:2:7}}
+```
+```clojure
+{{#include code/clojure/monte_carlo.clj:3:10}}
+```
+```c
+{{#include code/c/monte_carlo.c:7:9}}
+```
+```cpp
+{{#include code/cpp/monte_carlo.cpp:7:16}}
+```
+```javascript
+{{#include code/javascript/monte_carlo.js:2:6}}
+```
+```haskell
+{{#include code/haskell/monteCarlo.hs:7:7}}
+```
+```rust
+{{#include code/rust/monte_carlo.rs:7:9}}
+```
+```d
+{{#include code/d/monte_carlo.d:2:5}}
+```
+```go
+{{#include code/go/monteCarlo.go:12:14}}
+```
+```r
+{{#include code/r/monte_carlo.R:2:6}}
+```
+```java
+{{#include code/java/MonteCarlo.java:12:14}}
+```
+```swift
+{{#include code/swift/monte_carlo.swift:1:3}}
+```
+```python
+{{#include code/python/monte_carlo.py:5:7}}
+```
+```csharp
+{{#include code/csharp/Circle.cs:23:23}}
+```
+```nim
+{{#include code/nim/monte_carlo.nim:6:7}}
+```
+```ruby
+{{#include code/ruby/monte_carlo.rb:1:4}}
+```
+```fortran
+{{#include code/fortran/monte_carlo.f90:1:8}}
+```
 {% sample lang="factor" %}
 [import:9-12 lang:"factor"](code/factor/monte_carlo.factor)
-{% sample lang="emojic" %}
-[import:23-27, lang:"emojicode"](code/emojicode/monte_carlo.emojic)
-{% sample lang="php" %}
-[import:4-7, lang:"php"](code/php/monte_carlo.php)
+```emojicode
+{{#include code/emojicode/monte_carlo.emojic:23:27}}
+```
+```php
+{{#include code/php/monte_carlo.php:4:7}}
+```
 {% sample lang="lua" %}
 [import:2-4, lang="lua"](code/lua/monte_carlo.lua)
-{% sample lang="racket" %}
-[import:6-8, lang:"racket"](code/racket/monte_carlo.rkt)
-{% sample lang="scala" %}
-[import:3-3, lang:"scala"](code/scala/monte_carlo.scala)
-{% sample lang="lisp" %}
-[import:3-5, lang:"lisp"](code/clisp/monte-carlo.lisp)
-{% sample lang="asm-x64" %}
-[import:21-32, lang:"asm-x64"](code/asm-x64/monte_carlo.s)
-{% sample lang="bash" %}
-[import:2-10, lang:"bash"](code/bash/monte_carlo.bash)
-{% sample lang="kotlin" %}
-[import:3-3, lang:"kotlin"](code/kotlin/MonteCarlo.kt)
-{% sample lang="m" %}
-[import:8-15, lang:"matlab"](code/matlab/monte.m)
+```racket
+{{#include code/racket/monte_carlo.rkt:6:8}}
+```
+```scala
+{{#include code/scala/monte_carlo.scala:3:3}}
+```
+```lisp
+{{#include code/clisp/monte-carlo.lisp:3:5}}
+```
+```asm-x64
+{{#include code/asm-x64/monte_carlo.s:21:32}}
+```
+```bash
+{{#include code/bash/monte_carlo.bash:2:10}}
+```
+```kotlin
+{{#include code/kotlin/MonteCarlo.kt:3:3}}
+```
+```matlab
+{{#include code/matlab/monte.m:8:15}}
+```
 {% sample lang="scratch" %}
 <p>
     <img  class="center" src="code/scratch/InCircle.svg" style="width:40%" />
 </p>
-{% sample lang="coco" %}
-[import:4-9, lang:"coconut"](code/coconut/monte_carlo.coco)
-{% sample lang="ps1" %}
-[import:1-3, lang:"powershell"](code/powershell/MonteCarlo.ps1)
-{% endmethod %}
+```coconut
+{{#include code/coconut/monte_carlo.coco:4:9}}
+```
+```powershell
+{{#include code/powershell/MonteCarlo.ps1:1:3}}
+```
+
 
 If it's in the circle, we increase an internal count by one, and in the end,
 
-$$
-\text{Ratio} = \frac{\text{count in circle}}{\text{total number of points used}}
-$$
+\\[ \text{Ratio} = \frac{\text{count in circle}}{\text{total number of points used}} \\]
 
 If we use a small number of points, this will only give us a rough approximation, but as we start adding more and more points, the approximation becomes much, much better (as shown below)!
 
@@ -132,40 +154,53 @@ Here is a video describing Monte Carlo integration:
 Monte Carlo methods are famous for their simplicity.
 It doesn't take too many lines to get something simple going.
 Here, we are just integrating a circle, like we described above; however, there is a small twist and trick.
-Instead of calculating the area of the circle, we are instead trying to find the value of $$\pi$$, and
-rather than integrating the entire circle, we are only integrating the upper right quadrant of the circle from $$0 < x, y < 1$$.
-This saves a bit of computation time, but also requires us to multiply our output by $$4$$.
+Instead of calculating the area of the circle, we are instead trying to find the value of \\( \pi \\), and
+rather than integrating the entire circle, we are only integrating the upper right quadrant of the circle from \\( 0 < x, y < 1 \\).
+This saves a bit of computation time, but also requires us to multiply our output by \\( 4 \\).
 
 That's all there is to it!
 Feel free to submit your version via pull request, and thanks for reading!
 
-{% method %}
-{% sample lang="jl" %}
-[import, lang:"julia"](code/julia/monte_carlo.jl)
-{% sample lang="clj" %}
-[import, lang:"clojure"](code/clojure/monte_carlo.clj)
-{% sample lang="c" %}
-[import, lang:"c"](code/c/monte_carlo.c)
-{% sample lang="cpp" %}
-[import, lang:"cpp"](code/cpp/monte_carlo.cpp)
-{% sample lang="js" %}
-[import, lang:"javascript"](code/javascript/monte_carlo.js)
-{% sample lang="hs" %}
-[import, lang:"haskell"](code/haskell/monteCarlo.hs)
-{% sample lang="rs" %}
-[import, lang:"rust"](code/rust/monte_carlo.rs)
-{% sample lang="d" %}
-[import, lang:"d"](code/d/monte_carlo.d)
-{% sample lang="go" %}
-[import, lang:"go"](code/go/monteCarlo.go)
-{% sample lang="r" %}
-[import, lang:"r"](code/r/monte_carlo.R)
-{% sample lang="java" %}
-[import, lang:"java"](code/java/MonteCarlo.java)
-{% sample lang="swift" %}
-[import, lang:"swift"](code/swift/monte_carlo.swift)
-{% sample lang="py" %}
-[import, lang:"python"](code/python/monte_carlo.py)
+
+```julia
+{{#include code/julia/monte_carlo.jl}}
+```
+```clojure
+{{#include code/clojure/monte_carlo.clj}}
+```
+```c
+{{#include code/c/monte_carlo.c}}
+```
+```cpp
+{{#include code/cpp/monte_carlo.cpp}}
+```
+```javascript
+{{#include code/javascript/monte_carlo.js}}
+```
+```haskell
+{{#include code/haskell/monteCarlo.hs}}
+```
+```rust
+{{#include code/rust/monte_carlo.rs}}
+```
+```d
+{{#include code/d/monte_carlo.d}}
+```
+```go
+{{#include code/go/monteCarlo.go}}
+```
+```r
+{{#include code/r/monte_carlo.R}}
+```
+```java
+{{#include code/java/MonteCarlo.java}}
+```
+```swift
+{{#include code/swift/monte_carlo.swift}}
+```
+```python
+{{#include code/python/monte_carlo.py}}
+```
 {% sample lang="cs" %}
 ##### MonteCarlo.cs
 [import, lang:"csharp"](code/csharp/MonteCarlo.cs)
@@ -173,48 +208,61 @@ Feel free to submit your version via pull request, and thanks for reading!
 [import, lang:"csharp"](code/csharp/Circle.cs)
 ##### Program.cs
 [import, lang:"csharp"](code/csharp/Program.cs)
-{% sample lang="nim" %}
-[import, lang:"nim"](code/nim/monte_carlo.nim)
-{% sample lang="ruby" %}
-[import, lang:"ruby"](code/ruby/monte_carlo.rb)
-{% sample lang="f90" %}
-[import, lang:"fortran"](code/fortran/monte_carlo.f90)
-{% sample lang="factor" %}
-[import, lang:"factor"](code/factor/monte_carlo.factor)
-{% sample lang="emojic" %}
-[import, lang:"emojicode"](code/emojicode/monte_carlo.emojic)
-{% sample lang="php" %}
-[import, lang:"php"](code/php/monte_carlo.php)
+```nim
+{{#include code/nim/monte_carlo.nim}}
+```
+```ruby
+{{#include code/ruby/monte_carlo.rb}}
+```
+```fortran
+{{#include code/fortran/monte_carlo.f90}}
+```
+```factor
+{{#include code/factor/monte_carlo.factor}}
+```
+```emojicode
+{{#include code/emojicode/monte_carlo.emojic}}
+```
+```php
+{{#include code/php/monte_carlo.php}}
+```
 {% sample lang="lua" %}
 [import, lang="lua"](code/lua/monte_carlo.lua)
-{% sample lang="racket" %}
-[import, lang:"racket"](code/racket/monte_carlo.rkt)
-{% sample lang="scala" %}
-[import, lang:"scala"](code/scala/monte_carlo.scala)
-{% sample lang="lisp" %}
-[import, lang:"lisp"](code/clisp/monte-carlo.lisp)
-{% sample lang="asm-x64" %}
-[import, lang:"asm-x64"](code/asm-x64/monte_carlo.s)
-{% sample lang="bash" %}
-[import, lang:"bash"](code/bash/monte_carlo.bash)
-{% sample lang="kotlin" %}
-[import, lang:"kotlin"](code/kotlin/MonteCarlo.kt)
-{% sample lang="m" %}
-[import, lang:"matlab"](code/matlab/monte.m)
+```racket
+{{#include code/racket/monte_carlo.rkt}}
+```
+```scala
+{{#include code/scala/monte_carlo.scala}}
+```
+```lisp
+{{#include code/clisp/monte-carlo.lisp}}
+```
+```asm-x64
+{{#include code/asm-x64/monte_carlo.s}}
+```
+```bash
+{{#include code/bash/monte_carlo.bash}}
+```
+```kotlin
+{{#include code/kotlin/MonteCarlo.kt}}
+```
+```matlab
+{{#include code/matlab/monte.m}}
+```
 {% sample lang="scratch" %}
 The code snippets were taken from this [scratch project](https://scratch.mit.edu/projects/319610349)
 <p>
     <img  class="center" src="code/scratch/Algorithm.svg" style="width:100%" />
 </p>
-{% sample lang="coco" %}
-[import, lang:"coconut"](code/coconut/monte_carlo.coco)
-{% sample lang="ps1" %}
-[import, lang:"powershell"](code/powershell/MonteCarlo.ps1)
-{% endmethod %}
+```coconut
+{{#include code/coconut/monte_carlo.coco}}
+```
+```powershell
+{{#include code/powershell/MonteCarlo.ps1}}
+```
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
+
 
 ## License
 

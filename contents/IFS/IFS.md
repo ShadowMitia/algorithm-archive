@@ -25,35 +25,33 @@ In fact, there are plenty of uses of fractals and their mathematical underpinnin
 In many more rigorous definitions, a fractal can be described as any system that has a non-integer Hausdorff dimension {{ "3b1bfractal" | cite }}{{ "hausdorff" | cite }}{{ "gneiting2012estimators" | cite }}.
 Though this is an incredibly interesting concept, the discussion of this chapter will instead focus on methods to generate fractal patterns through iterated function systems.
 
-To start, imagine creating a triangle from three points, $$A$$, $$B$$, and $$C$$.
+To start, imagine creating a triangle from three points, \\( A \\), \\( B \\), and \\( C \\).
 These points can be arbitrarily chosen, but for this conversation, we will constrict them to the vertices of an equilateral triangle, as shown below:
 
 <img class="center" src="res/IFS_triangle_2.png" alt="Triangle Vertices"  style="width:100%">
 
 Now let's create three separate functions that can act on a 2-dimensional space:
 
-$$
+\\[
 \begin{align}
-f_1(P) &= \frac{P + A}{2}\\
-f_2(P) &= \frac{P + B}{2}\\
-f_3(P) &= \frac{P + C}{2}\\
+f_1(P) &= \frac{P + A}{2}\\\\\\\\
+f_2(P) &= \frac{P + B}{2}\\\\\\\\
+f_3(P) &= \frac{P + C}{2}\\\\\\\\
 \end{align}
-$$
+\\]
 
-Each function will read in a particular location in space (here, $$P \in \mathbb{R}^2$$) and output a new location that is the midpoint between the input location and $$A$$, $$B$$, or $$C$$ for $$f_1$$, $$f_2$$, and $$f_3$$ respectively.
+Each function will read in a particular location in space (here, \\( P \in \mathbb{R}^2 \\)) and output a new location that is the midpoint between the input location and \\( A \\), \\( B \\), or \\( C \\) for \\( f_1 \\), \\( f_2 \\), and \\( f_3 \\) respectively.
 The union of all of these functions (the set of all possible functions available for use) is often notated as the _Hutchinson operator_ {{ "hutchinson-operator" | cite }}{{ "hutchinson1981fractals" | cite}}, and for this case it would look like this:
 
-$$
-H(P) = \bigcup_{i=1}^3f_i(P)
-$$
+\\[ H(P) = \bigcup_{i=1}^3f_i(P) \\]
 
 By iteratively using this operator, we can traverse through all possible movements in the set.
-For example, let's generate 3 new points that are halfway between $$A$$ and $$B$$, $$B$$ and $$C$$, and $$A$$ and $$C$$, which will be called $$D$$, $$E$$, and $$F$$ respectively.
+For example, let's generate 3 new points that are halfway between \\( A \\) and \\( B \\), \\( B \\) and \\( C \\), and \\( A \\) and \\( C \\), which will be called \\( D \\), \\( E \\), and \\( F \\) respectively.
 This is shown below:
 
 <img class="center" src="res/IFS_triangle_3.png" alt="Triangle Midpoints"  style="width:100%">
 
-From here, each new point ($$D$$, $$E$$, and $$F$$) will spawn 3 children, and each child will move according to one of the three possible functions in the Hutchinson operator, as shown below:
+From here, each new point (\\( D \\), \\( E \\), and \\( F \\)) will spawn 3 children, and each child will move according to one of the three possible functions in the Hutchinson operator, as shown below:
 
 <div style="text-align:center">
 <video style="width:100%" controls>
@@ -62,7 +60,7 @@ From here, each new point ($$D$$, $$E$$, and $$F$$) will spawn 3 children, and e
 </video>
 </div>
 
-Here, all red children come from $$D$$, green children come from $$E$$ and blue children come from $$F$$.
+Here, all red children come from \\( D \\), green children come from \\( E \\) and blue children come from \\( F \\).
 At this stage, the children will then spawn 3 more children, each of which will move according to a different function.
 Those children will then spawn more children, who act accordingly.
 As this process continues on and on, we begin to see an interesting pattern form:
@@ -85,20 +83,20 @@ When I learned about how the Sierpinski triangle could be generated from 3 simpl
 Could we create fractal squares? Hexagons? Circles?
 Such shapes _seem_ like natural extensions to the triangular Hutchinson operator provided above, but there's a bit of a hitch...
 
-First, let's take 4 points, $$A$$, $$B$$, $$C$$, and $$D$$, this time located at the four vertices of a square, like so:
+First, let's take 4 points, \\( A \\), \\( B \\), \\( C \\), and \\( D \\), this time located at the four vertices of a square, like so:
 
 <img class="center" src="res/IFS_square_1.png" alt="Sierpinsky Triangle Chaos Game"  style="width:100%">
 
-In a similar fashion, we'll create 4 functions with $$H(P) = \bigcup_{i=1}^4f_i(P)$$, and $$P \in \mathbb{R}^2$$ such that:
+In a similar fashion, we'll create 4 functions with \\( H(P) = \bigcup_{i=1}^4f_i(P) \\), and \\( P \in \mathbb{R}^2 \\) such that:
 
-$$
+\\[
 \begin{align}
-f_1(P) &= \frac{P + A}{2}\\
-f_2(P) &= \frac{P + B}{2}\\
-f_3(P) &= \frac{P + C}{2}\\
-f_4(P) &= \frac{P + D}{2}\\
+f_1(P) &= \frac{P + A}{2}\\\\\\\\
+f_2(P) &= \frac{P + B}{2}\\\\\\\\
+f_3(P) &= \frac{P + C}{2}\\\\\\\\
+f_4(P) &= \frac{P + D}{2}\\\\\\\\
 \end{align}
-$$
+\\]
 
 If we then create 5 initial points located between all the vertices and allow these points to continually spawn children like before, something peculiar happens:
 
@@ -129,24 +127,32 @@ As it turns out, there is!
 Rather than keeping track of every possible movement within the Hutchinson operator to draw out a shape, it's actually possible to randomly sample the function set instead through a process known as a _chaos game_ {{ "chaos-game" | cite }}{{ "chaos-game-wolf" | cite }}..
 Here, instead of tracking children of children, we track a single individual that chooses randomly between the Hutchinson functions, as shown here:
 
-{% method %}
-{% sample lang="jl" %}
-[import:4-17, lang:"julia"](code/julia/IFS.jl)
-{% sample lang="hs" %}
-[import:7-13, lang:"haskell"](code/haskell/IFS.hs)
-{% sample lang="cpp" %}
-[import:39-52, lang:"cpp"](code/cpp/IFS.cpp)
-{% sample lang="py" %}
-[import:5-12, lang:"python"](code/python/IFS.py)
-{% sample lang="c" %}
-[import:18-29, lang:"c"](code/c/IFS.c)
-{% sample lang="lisp" %}
-[import:5-14, lang:"lisp"](code/clisp/ifs.lisp)
-{% sample lang="coco" %}
-[import:4-16, lang:"coconut"](code/coconut/IFS.coco)
-{% sample lang="java" %}
-[import:16-39, lang:"java"](code/java/IFS.java)
-{% endmethod %}
+
+```julia
+{{#include code/julia/IFS.jl:4:17}}
+```
+```haskell
+{{#include code/haskell/IFS.hs:7:13}}
+```
+```cpp
+{{#include code/cpp/IFS.cpp:39:52}}
+```
+```python
+{{#include code/python/IFS.py:5:12}}
+```
+```c
+{{#include code/c/IFS.c:18:29}}
+```
+```lisp
+{{#include code/clisp/ifs.lisp:5:14}}
+```
+```coconut
+{{#include code/coconut/IFS.coco:4:16}}
+```
+```java
+{{#include code/java/IFS.java:16:39}}
+```
+
 
 If we set the initial point to the on the equilateral triangle we saw before, we can see the Sierpinski triangle again after a few thousand iterations, as shown below:
 
@@ -187,12 +193,12 @@ If we do this, we get what seems to be a random distribution of points:
 This kinda boggled my mind a bit when I looked at it for the first time.
 What does a random distribution of points mean in this context?
 
-Well, firstly, it's only a random distribution between the square vertices of $$A$$, $$B$$, $$C$$, and $$D$$, but nothing exists outside of these points.
+Well, firstly, it's only a random distribution between the square vertices of \\( A \\), \\( B \\), \\( C \\), and \\( D \\), but nothing exists outside of these points.
 This means that it's not actually a random distribution of points, but instead an attractive plane that our lone wandering point can exist happily within.
 
 This really helped me understand how attractors present themselves in different dimensions.
 The Sierpinski triangle seems like a series of lines (one-dimensional objects) in two-dimensional space, but the square is a truly two-dimensional object.
-In general, this means that an attractor embedded within $$\mathbb{R}^N$$ can be any shape of dimension N or lower.
+In general, this means that an attractor embedded within \\( \mathbb{R}^N \\) can be any shape of dimension N or lower.
 
 The next obvious question is whether a square can create any more interesting fractally patterns, and the answer is "yes, but only if we restrict the movement a bit."
 Which brings us to another topic entirely: restricted chaos games.
@@ -215,32 +221,39 @@ For the code in this chapter, we have decided to write it specifically for the C
 This is because that animation is slightly tricky to create and distracts from the overall purpose of this chapter.
 In addition, we have written the chaos game code to take in a set of points so that it is not hard-coded for the Sierpinski triangle and can be easily extended to other shapes like the square or restricted chaos games, as we mentioned before!
 
-{% method %}
-{% sample lang="jl" %}
-[import, lang:"julia"](code/julia/IFS.jl)
-{% sample lang="hs" %}
-[import, lang:"haskell"](code/haskell/IFS.hs)
-{% sample lang="cpp" %}
-[import, lang:"cpp"](code/cpp/IFS.cpp)
-{% sample lang="py" %}
-[import, lang:"python"](code/python/IFS.py)
-{% sample lang="c" %}
-[import, lang:"c"](code/c/IFS.c)
-{% sample lang="lisp" %}
-[import, lang:"lisp"](code/clisp/ifs.lisp)
-{%sample lang="coco" %}
-[import, lang:"coconut"](code/coconut/IFS.coco)
-{%sample lang="java" %}
-[import, lang:"java"](code/java/IFS.java)
-{% endmethod %}
+
+```julia
+{{#include code/julia/IFS.jl}}
+```
+```haskell
+{{#include code/haskell/IFS.hs}}
+```
+```cpp
+{{#include code/cpp/IFS.cpp}}
+```
+```python
+{{#include code/python/IFS.py}}
+```
+```c
+{{#include code/c/IFS.c}}
+```
+```lisp
+{{#include code/clisp/ifs.lisp}}
+```
+```coconut
+{{#include code/coconut/IFS.coco}}
+```
+```java
+{{#include code/java/IFS.java}}
+```
+
+
 
 ### Bibliography
 
 {% references %} {% endreferences %}
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

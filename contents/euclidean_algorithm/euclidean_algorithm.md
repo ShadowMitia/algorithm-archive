@@ -4,7 +4,7 @@ Computer science is (almost by definition) a science about computers -- a device
 
 The algorithm is a simple way to find the *greatest common divisor* (GCD) of two numbers, which is useful for a number of different applications (like reducing fractions). The first method (envisioned by Euclid) uses simple subtraction:
 
-{% method %}
+
 {% sample lang="vim" %}
 [import:14-27, lang="vim"](code/viml/euclidean.vim)
 {% sample lang="c" %}
@@ -61,8 +61,9 @@ The algorithm is a simple way to find the *greatest common divisor* (GCD) of two
 [import:8-19, lang="ruby"](code/ruby/euclidean.rb)
 {% sample lang="st" %}
 [import:1-13, lang="smalltalk"](code/smalltalk/euclid.st)
-{% sample lang="emojic" %}
-[import:2-17, lang:"emojicode"](code/emojicode/euclidean_algorithm.emojic)
+```emojicode
+{{#include code/emojicode/euclidean_algorithm.emojic:2:17}}
+```
 {% sample lang="lolcode" %}
 [import:25-40, lang="LOLCODE"](code/lolcode/euclid.lol)
 {% sample lang="bash" %}
@@ -84,7 +85,7 @@ The algorithm is a simple way to find the *greatest common divisor* (GCD) of two
 {% sample lang="coco" %}
 [import:1-9, lang="coconut"](code/coconut/euclidean.coco)
 
-{% endmethod %}
+
 
 Here, we simply line the two numbers up every step and subtract the lower value from the higher one every timestep. Once the two values are equal, we call that value the greatest common divisor. A graph of `a` and `b` as they change every step would look something like this:
 
@@ -94,7 +95,7 @@ Here, we simply line the two numbers up every step and subtract the lower value 
 
 Modern implementations, though, often use the modulus operator (%) like so
 
-{% method %}
+
 {% sample lang="vim" %}
 [import:1-12, lang="vim"](code/viml/euclidean.vim)
 {% sample lang="c" %}
@@ -151,8 +152,9 @@ Modern implementations, though, often use the modulus operator (%) like so
 [import:1-6, lang="ruby"](code/ruby/euclidean.rb)
 {% sample lang="st" %}
 [import:15-25, lang="smalltalk"](code/smalltalk/euclid.st)
-{% sample lang="emojic" %}
-[import:19-31, lang:"emojicode"](code/emojicode/euclidean_algorithm.emojic)
+```emojicode
+{{#include code/emojicode/euclidean_algorithm.emojic:19:31}}
+```
 {% sample lang="lolcode" %}
 [import:9-23, lang="LOLCODE"](code/lolcode/euclid.lol)
 {% sample lang="bash" %}
@@ -174,7 +176,7 @@ Modern implementations, though, often use the modulus operator (%) like so
 {% sample lang="coco" %}
 [import:12-15, lang="coconut"](code/coconut/euclidean.coco)
 
-{% endmethod %}
+
 
 Here, we set `b` to be the remainder of `a%b` and `a` to be whatever `b` was last timestep. Because of how the modulus operator works, this will provide the same information as the subtraction-based implementation, but when we show `a` and `b` as they change with time, we can see that it might take many fewer steps:
 
@@ -194,7 +196,7 @@ Here's a video on the Euclidean algorithm:
 
 ## Example Code
 
-{% method %}
+
 {% sample lang="vim" %}
 [import, lang="vim"](code/viml/euclidean.vim)
 {% sample lang="c" %}
@@ -257,8 +259,9 @@ and modulo method:
 [import, lang="ruby"](code/ruby/euclidean.rb)
 {% sample lang="st" %}
 [import, lang="smalltalk"](code/smalltalk/euclid.st)
-{% sample lang="emojic" %}
-[import, lang:"emojicode"](code/emojicode/euclidean_algorithm.emojic)
+```emojicode
+{{#include code/emojicode/euclidean_algorithm.emojic}}
+```
 {% sample lang="lolcode" %}
 [import, lang="LOLCODE"](code/lolcode/euclid.lol)
 {% sample lang="bash" %}
@@ -291,11 +294,9 @@ The code snippets were taken from this [Scratch project](https://scratch.mit.edu
 {% sample lang="coco" %}
 [import, lang="coconut"](code/coconut/euclidean.coco)
 
-{% endmethod %}
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
+
 
 
 ## License

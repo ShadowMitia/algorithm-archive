@@ -5,9 +5,7 @@ Unlike the forward Euler Method above, the backward Euler Method is an *implicit
 MORE TO COME!!!
 
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

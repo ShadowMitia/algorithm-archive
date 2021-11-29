@@ -2,82 +2,82 @@
 
 Let's say we have a system of equations,
 
-$$
+\\[
 \begin{align}
-2x + 3y + 4z &= 6 \\
-x + 2y + 3z &= 4 \\
+2x + 3y + 4z &= 6 \\\\
+x + 2y + 3z &= 4 \\\\
 3x - 4y &= 10
 \end{align}
-$$
+\\]
 
-and we want to solve for $$x$$, $$y$$, and $$z$$.
+and we want to solve for \\( x \\), \\( y \\), and \\( z \\).
 Well, one way to do this is with _Gaussian Elimination_, which you may have encountered before in a math class or two.
 
-The first step is to transform the system of equations into a matrix by using the coefficients in front of each variable, where each row corresponds to another equation and each column corresponds to an independent variable like $$x$$, $$y$$, or $$z$$.
+The first step is to transform the system of equations into a matrix by using the coefficients in front of each variable, where each row corresponds to another equation and each column corresponds to an independent variable like \\( x \\), \\( y \\), or \\( z \\).
 For the previous system of equations, this might look like this:
 
-$$
+\\[
 \left[
 \begin{array}{ccc}
-2 & 3  & 4\\
-1 & 2 & 3\\
+2 & 3  & 4\\\\
+1 & 2 & 3\\\\
 3 & -4 & 0
 \end{array}
 \right]
 \left[
 \begin{array}{c}
-x \\
-y \\
+x \\\\
+y \\\\
 z
 \end{array}
 \right]
 =
 \left[
 \begin{array}{c}
-6 \\
-4 \\
+6 \\\\
+4 \\\\
 10
 \end{array}
 \right]
-$$
+\\]
 
 Or more simply:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-1 & 2 & 3 & 4 \\
+2 & 3  & 4 & 6 \\\\
+1 & 2 & 3 & 4 \\\\
 3 & -4 & 0 & 10
 \end{array}
 \right]
-$$
+\\]
 
 At first, translating the set of equations into a matrix like this doesn't seem to help with anything, so let's think of this in another way.
 
 #### Row Echelon Form
 Instead of the complicated mess of equations shown above, imagine if the system looked like this:
 
-$$
+\\[
 \begin{align}
-2x + 3y + 4z &= 6 \\
-y + 2z &= 2 \\
+2x + 3y + 4z &= 6 \\\\
+y + 2z &= 2 \\\\
 11z &= 18
 \end{align}
-$$
+\\]
 
-Then we could just solve for $$z$$ and plug that value in to the top two equations to solve for $$x$$ and $$y$$ through a process known as back-substitution.
+Then we could just solve for \\( z \\) and plug that value in to the top two equations to solve for \\( x \\) and \\( y \\) through a process known as back-substitution.
 In matrix form, this set of equations would look like this:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-0 & 1 & 2 & 2 \\
+2 & 3  & 4 & 6 \\\\
+0 & 1 & 2 & 2 \\\\
 0 & 0 & 11 & 18
 \end{array}
 \right]
-$$
+\\]
 
 This matrix form has a particular name: _Row Echelon Form_.
 Basically, any matrix can be considered in row echelon form if the leading coefficient or _pivot_ (the first non-zero element in every row when reading from left to right) is right of the pivot of the row above it.
@@ -85,68 +85,68 @@ Basically, any matrix can be considered in row echelon form if the leading coeff
 This creates a matrix that sometimes resembles an upper-triangular matrix; however, that doesn't mean that all row-echelon matrices are upper-triangular.
 For example, all of the following matrices are in row echelon form:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-0 & 1 & 2 & 2 \\
+2 & 3  & 4 & 6 \\\\
+0 & 1 & 2 & 2 \\\\
 0 & 0 & 11 & 18
 \end{array}
 \right]
 \;,\;
 \left[
 \begin{array}{ccc|c}
-5 & 4  & 0 & 10 \\
-0 & 0 & 5 & 7 \\
+5 & 4  & 0 & 10 \\\\
+0 & 0 & 5 & 7 \\\\
 0 & 0 & 0 & 1
 \end{array}
 \right]
 \;,\;
 \left[
 \begin{array}{ccccc}
-1 & -3 & 4 & 1 & 6 \\
-0 & 3 & 3 & 5 & 0 \\
+1 & -3 & 4 & 1 & 6 \\\\
+0 & 3 & 3 & 5 & 0 \\\\
 0 & 0 & 0 & 2 & 0
 \end{array}
 \right]
 \;,\;
 \left[
 \begin{array}{cc}
-1 &  2 \\
-2 &  0 \\
+1 &  2 \\\\
+2 &  0 \\\\
 0 &  0
 \end{array}
 \right]
-$$
+\\]
 
 The first two of these have the right dimensions to find a solution to a system of equations; however, the last two matrices are respectively under- and over-constrained, meaning they do not provide an appropriate solution to a system of equations.
 That said, this doesn't mean that every matrix in the correct form can be solved either.
-For example, if you translate the second matrix into a system of equations again, the last row translates into $$0x+0y+0z=1$$, which is a contradiction.
+For example, if you translate the second matrix into a system of equations again, the last row translates into \\( 0x+0y+0z=1 \\), which is a contradiction.
 This is due to the fact that the matrix is singular, and there are no solutions to this particular system.
 Nevertheless, all of these matrices are in row echelon form.
 
 #### *Reduced* Row Echelon Form
 Row echelon form is nice, but wouldn't it be even better if our system of equations looked simply like this:
 
-$$
+\\[
 \begin{align}
-x &= \frac{18}{11} \\
-y &= \frac{-14}{11} \\
+x &= \frac{18}{11} \\\\
+y &= \frac{-14}{11} \\\\
 z &= \frac{18}{11}
 \end{align}
-$$
+\\]
 
-Then we would know exactly what $$x$$, $$y$$, and $$z$$ are without any fuss! In matrix form, it looks like this:
+Then we would know exactly what \\( x \\), \\( y \\), and \\( z \\) are without any fuss! In matrix form, it looks like this:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-1 & 0 & 0 & \frac{18}{11} \\
-0 & 1 & 0 & \frac{-14}{11} \\
+1 & 0 & 0 & \frac{18}{11} \\\\
+0 & 1 & 0 & \frac{-14}{11} \\\\
 0 & 0 & 1 & \frac{18}{11}
 \end{array}
 \right]
-$$
+\\]
 
 This introduces yet another matrix configuration: * **Reduced** Row Echelon Form*.
 A matrix is in reduced row echelon form if it satisfies the following conditions:
@@ -156,31 +156,31 @@ A matrix is in reduced row echelon form if it satisfies the following conditions
 
 All the following examples are in the reduced row echelon form:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-1 & 0 & 0 & 8 \\
-0 & 1 & 0 & -3 \\
+1 & 0 & 0 & 8 \\\\
+0 & 1 & 0 & -3 \\\\
 0 & 0 & 1 & 9
 \end{array}
 \right]
 \;,\;
 \left[
 \begin{array}{ccc|c}
-1 & 4  & 0 & 9 \\
-0 & 0 & 1 & 7 \\
+1 & 4  & 0 & 9 \\\\
+0 & 0 & 1 & 7 \\\\
 0 & 0 & 0 & 1
 \end{array}
 \right]
 \;,\;
 \left[
 \begin{array}{cc}
-0 & 0 \\
-0 & 0 \\
+0 & 0 \\\\
+0 & 0 \\\\
 0 & 0
 \end{array}
 \right]
-$$
+\\]
 
 Again, only the first of these (the one that looks like an identity matrix) is desirable in the context of solving a system of equations, but transforming any matrix in this form gives us an immediate and definitive answer at the question: can I solve my system of equations?
 
@@ -213,23 +213,23 @@ That's it.
 Before continuing, I suggest you try to recreate the row echelon matrix we made above.
 That is, do the following:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-1 & 2 & 3 & 4 \\
+2 & 3  & 4 & 6 \\\\
+1 & 2 & 3 & 4 \\\\
 3 & -4 & 0 & 10
 \end{array}
 \right]
 \quad \rightarrow \quad
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-0 & 1 & 2 & 2 \\
+2 & 3  & 4 & 6 \\\\
+0 & 1 & 2 & 2 \\\\
 0 & 0 & 11 & 18
 \end{array}
 \right]
-$$
+\\]
 
 There are plenty of different strategies you could use to do this, and no one strategy is better than the rest.
 One method is to subtract a multiple of the top row from subsequent rows below it such that all values beneath the pivot value are zero.
@@ -237,23 +237,23 @@ This process might be easier if you swap some rows around first and can be perfo
 
 After you get a row echelon matrix, the next step is to find the reduced row echelon form. In other words, we do the following:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-0 & 1 & 2 & 2 \\
+2 & 3  & 4 & 6 \\\\
+0 & 1 & 2 & 2 \\\\
 0 & 0 & 11 & 18
 \end{array}
 \right]
 \quad \rightarrow \quad
 \left[
 \begin{array}{ccc|c}
-1 & 0 & 0 & \frac{18}{11} \\
-0 & 1 & 0 & \frac{-14}{11} \\
+1 & 0 & 0 & \frac{18}{11} \\\\
+0 & 1 & 0 & \frac{-14}{11} \\\\
 0 & 0 & 1 & \frac{18}{11}
 \end{array}
 \right]
-$$
+\\]
 
 Here, the idea is similar to above and the same rules apply.
 In this case, we might start from the right-most column and subtracts upwards instead of downwards.
@@ -261,7 +261,7 @@ In this case, we might start from the right-most column and subtracts upwards in
 ## The Computational Method
 
 The analytical method for Gaussian Elimination may seem straightforward, but the computational method does not obviously follow from the "game" we were playing before.
-Ultimately, the computational method boils down to two separate steps and has a complexity of $$\mathcal{O}(n^3)$$.
+Ultimately, the computational method boils down to two separate steps and has a complexity of \\( \mathcal{O}(n^3) \\).
 
 As a note, this process iterates through all the rows in the provided matrix.
 When we say "current row" (`curr_row`), we mean the specific row iteration number we are on at that time, and as before, the "pivot" corresponds to the first non-zero element in that row.
@@ -270,69 +270,78 @@ When we say "current row" (`curr_row`), we mean the specific row iteration numbe
 For each element in the pivot column under the current row, find the highest value and switch the row with the highest value with the current row.
 The *pivot* is then considered to be the first element in the highest swapped row.
 
-For example, in this case the highest value is $$3$$:
+For example, in this case the highest value is \\( 3 \\):
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-1 & 2 & 3 & 4 \\
+2 & 3  & 4 & 6 \\\\
+1 & 2 & 3 & 4 \\\\
 \mathbf{3} & -4 & 0 & 10
 \end{array}
 \right]
-$$
+\\]
 
-After finding this value, we simply switch the row with the $$3$$ to the current row:
+After finding this value, we simply switch the row with the \\( 3 \\) to the current row:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-\mathbf{2} & \mathbf{3}  & \mathbf{4} & \mathbf{6} \\
-1 & 2 & 3 & 4 \\
+\mathbf{2} & \mathbf{3}  & \mathbf{4} & \mathbf{6} \\\\
+1 & 2 & 3 & 4 \\\\
 \mathbf{3} & \mathbf{-4} & \mathbf{0} & \mathbf{10}
 \end{array}
 \right]
 \rightarrow
 \left[
 \begin{array}{ccc|c}
-\mathbf{3} & \mathbf{-4} & \mathbf{0} & \mathbf{10} \\
-1 & 2 & 3 & 4 \\
+\mathbf{3} & \mathbf{-4} & \mathbf{0} & \mathbf{10} \\\\
+1 & 2 & 3 & 4 \\\\
 \mathbf{2} & \mathbf{3}  & \mathbf{4} & \mathbf{6}
 \end{array}
 \right]
-$$
+\\]
 
-In this case, the new pivot is $$3$$.
+In this case, the new pivot is \\( 3 \\).
 
 In code, this process might look like this:
 
-{% method %}
-{% sample lang="jl" %}
-[import:12-24, lang:"julia"](code/julia/gaussian_elimination.jl)
-{% sample lang="java" %}
-[import:14-30, lang:"java"](code/java/GaussianElimination.java)
-{% sample lang="c" %}
-[import:5-13, lang:"c"](code/c/gaussian_elimination.c)
-[import:19-34, lang:"c"](code/c/gaussian_elimination.c)
-{% sample lang="cpp" %}
-[import:13-23, lang:"cpp"](code/cpp/gaussian_elimination.cpp)
-{% sample lang="hs" %}
-[import:10-17, lang:"haskell"](code/haskell/gaussianElimination.hs)
-[import:44-46, lang:"haskell"](code/haskell/gaussianElimination.hs)
-{% sample lang="js" %}
-[import:7-23, lang:"javascript"](code/javascript/gaussian_elimination.js)
-{% sample lang="go" %}
-[import:15-32, lang:"go"](code/go/gaussian_elimination.go)
-{% sample lang="py" %}
-[import:13-19, lang:"python"](code/python/gaussian_elimination.py)
-{% sample lang="rs" %}
-[import:43-76, lang:"rust"](code/rust/gaussian_elimination.rs)
-{% endmethod %}
 
-As a note, if the highest value is $$0$$, the matrix is singular and the system has no single solution.
+```julia
+{{#include code/julia/gaussian_elimination.jl:12:24}}
+```
+```java
+{{#include code/java/GaussianElimination.java:14:30}}
+```
+```c
+{{#include code/c/gaussian_elimination.c:5:13}}
+```
+[import:19-34, lang:"c"](code/c/gaussian_elimination.c)
+```cpp
+{{#include code/cpp/gaussian_elimination.cpp:13:23}}
+```
+```haskell
+{{#include code/haskell/gaussianElimination.hs:10:17}}
+```
+[import:44-46, lang:"haskell"](code/haskell/gaussianElimination.hs)
+```javascript
+{{#include code/javascript/gaussian_elimination.js:7:23}}
+```
+```go
+{{#include code/go/gaussian_elimination.go:15:32}}
+```
+```python
+{{#include code/python/gaussian_elimination.py:13:19}}
+```
+```rust
+{{#include code/rust/gaussian_elimination.rs:43:76}}
+```
+
+
+As a note, if the highest value is \\( 0 \\), the matrix is singular and the system has no single solution.
 This makes sense because if the highest value in a column is 0, the entire column must be 0, thus there can be no unique solution when we read the matrix as a set of equations.
 That said, Gaussian elimination is more general and allows us to continue, even if the matrix is not necessarily solvable as a set of equations.
-Feel free to exit after finding a $$0$$ if your end-goal is to solve a system of equations.
+Feel free to exit after finding a \\( 0 \\) if your end-goal is to solve a system of equations.
 
 
 #### Step 2
@@ -341,91 +350,109 @@ After this, subtract the current pivot row multiplied by the fraction from each 
 This process essentially subtracts an optimal multiple of the current row from each row underneath (similar to Step 3 from the above game).
 Ideally, this should always create a 0 under the current row's pivot value.
 
-For example, in this matrix, the next row is $$1$$ and the pivot value is $$3$$, so the fraction is $$\frac{1}{3}$$.
-$$
+For example, in this matrix, the next row is \\( 1 \\) and the pivot value is \\( 3 \\), so the fraction is \\( \frac{1}{3} \\).
+\\[
 \rightarrow
 \left[
 \begin{array}{ccc|c}
-3 & -4 & 0 & 10 \\
-\mathbf{1} & 2 & 3 & 4 \\
+3 & -4 & 0 & 10 \\\\
+\mathbf{1} & 2 & 3 & 4 \\\\
 2 & 3  & 4 & 6
 \end{array}
-\right] \\
+\right] \\\\
 \begin{align}
-    f &= A(\text{curr_row}, \text{pivot}_{\text{col}}) /  A(\text{pivot}_{\text{row}}, \text{pivot}_{\text{col}}) \\
+    f &= A(\text{curr_row}, \text{pivot}_{\text{col}}) /  A(\text{pivot}_{\text{row}}, \text{pivot}_{\text{col}}) \\\\
       &= \frac{1}{3}
 \end{align}
-$$
+\\]
 
-After finding the fraction, we simply subtract $$\text{current_row} - \frac{1}{3}\times \text{pivot_row}$$, like so:
+After finding the fraction, we simply subtract \\( \text{current_row} - \frac{1}{3}\times \text{pivot_row} \\), like so:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-3 & -4 & 0 & 10 \\
-\mathbf{1} & \mathbf{2} & \mathbf{3} & \mathbf{4} \\
+3 & -4 & 0 & 10 \\\\
+\mathbf{1} & \mathbf{2} & \mathbf{3} & \mathbf{4} \\\\
 2 & 3  & 4 & 6
 \end{array}
 \right]
 \rightarrow
 \left[
 \begin{array}{ccc|c}
-3 & -4 & 0 & 10 \\
+3 & -4 & 0 & 10 \\\\
 0 & \mathbf{\frac{10}{3}} & \mathbf{3} & \mathbf{\frac{2}{3}}
-\\
+\\\\
 2 & 3  & 4 & 6
 \end{array}
 \right]
-$$
+\\]
 
 After this, repeat the process for all other rows.
 
 Here is what it might look like in code:
-{% method %}
-{% sample lang="jl" %}
-[import:26-38, lang:"julia"](code/julia/gaussian_elimination.jl)
-{% sample lang="java" %}
-[import:32-40, lang:"java"](code/java/GaussianElimination.java)
-{% sample lang="c" %}
-[import:36-41, lang:"c"](code/c/gaussian_elimination.c)
-{% sample lang="cpp" %}
-[import:25-32, lang:"cpp"](code/cpp/gaussian_elimination.cpp)
-{% sample lang="hs" %}
-[import:19-33, lang:"haskell"](code/haskell/gaussianElimination.hs)
+
+```julia
+{{#include code/julia/gaussian_elimination.jl:26:38}}
+```
+```java
+{{#include code/java/GaussianElimination.java:32:40}}
+```
+```c
+{{#include code/c/gaussian_elimination.c:36:41}}
+```
+```cpp
+{{#include code/cpp/gaussian_elimination.cpp:25:32}}
+```
+```haskell
+{{#include code/haskell/gaussianElimination.hs:19:33}}
+```
 [import:42-42, lang:"haskell"](code/haskell/gaussianElimination.hs)
-{% sample lang="js" %}
-[import:25-30, lang:"javascript"](code/javascript/gaussian_elimination.js)
-{% sample lang="go" %}
-[import:38-49, lang:"go"](code/go/gaussian_elimination.go)
-{% sample lang="py" %}
-[import:21-26, lang:"python"](code/python/gaussian_elimination.py)
-{% sample lang="rs" %}
-[import:62-75, lang:"rust"](code/rust/gaussian_elimination.rs)
-{% endmethod %}
+```javascript
+{{#include code/javascript/gaussian_elimination.js:25:30}}
+```
+```go
+{{#include code/go/gaussian_elimination.go:38:49}}
+```
+```python
+{{#include code/python/gaussian_elimination.py:21:26}}
+```
+```rust
+{{#include code/rust/gaussian_elimination.rs:62:75}}
+```
+
 
 #### All together
 When we put everything together, it looks like this:
 
-{% method %}
-{% sample lang="jl" %}
-[import:1-45, lang:"julia"](code/julia/gaussian_elimination.jl)
-{% sample lang="c" %}
-[import:15-48, lang:"c"](code/c/gaussian_elimination.c)
-{% sample lang="cpp" %}
-[import:8-34, lang:"cpp"](code/cpp/gaussian_elimination.cpp)
-{% sample lang="hs" %}
-[import:10-36, lang:"haskell"](code/haskell/gaussianElimination.hs)
-{% sample lang="py" %}
-[import:3-28, lang:"python"](code/python/gaussian_elimination.py)
-{% sample lang="java" %}
-[import:5-47, lang:"java"](code/java/GaussianElimination.java)
-{% sample lang="js" %}
-[import:1-38, lang:"javascript"](code/javascript/gaussian_elimination.js)
-{% sample lang="go" %}
-[import:9-53, lang:"go"](code/go/gaussian_elimination.go)
-{% sample lang="rs" %}
-[import:41-77, lang:"rust"](code/rust/gaussian_elimination.rs)
-{% endmethod %}
+
+```julia
+{{#include code/julia/gaussian_elimination.jl:1:45}}
+```
+```c
+{{#include code/c/gaussian_elimination.c:15:48}}
+```
+```cpp
+{{#include code/cpp/gaussian_elimination.cpp:8:34}}
+```
+```haskell
+{{#include code/haskell/gaussianElimination.hs:10:36}}
+```
+```python
+{{#include code/python/gaussian_elimination.py:3:28}}
+```
+```java
+{{#include code/java/GaussianElimination.java:5:47}}
+```
+```javascript
+{{#include code/javascript/gaussian_elimination.js:1:38}}
+```
+```go
+{{#include code/go/gaussian_elimination.go:9:53}}
+```
+```rust
+{{#include code/rust/gaussian_elimination.rs:41:77}}
+```
+
 
 To be clear: if the matrix is found to be singular during this process, the system of equations is either over- or under-determined and no general solution exists.
 For this reason, many implementations of this method will stop the moment the matrix is found to have no unique solutions.
@@ -447,26 +474,35 @@ We basically need to find the pivot of every row and set that value to 1 by divi
 Afterwards, we subtract upwards until all values above the pivot are 0 before moving on to the next column from right to left (instead of left to right, like before).
 Here it is in code:
 
-{% method %}
-{% sample lang="jl" %}
-[import:67-93, lang:"julia"](code/julia/gaussian_elimination.jl)
-{% sample lang="c" %}
-[import:64-82, lang:"c"](code/c/gaussian_elimination.c)
-{% sample lang="cpp" %}
-[import:36-54, lang:"cpp"](code/cpp/gaussian_elimination.cpp)
-{% sample lang="hs" %}
-[import:38-46, lang:"haskell"](code/haskell/gaussianElimination.hs)
-{% sample lang="py" %}
-[import:31-49, lang:"python"](code/python/gaussian_elimination.py)
-{% sample lang="java" %}
-[import:49-70, lang:"java"](code/java/GaussianElimination.java)
-{% sample lang="js" %}
-[import:57-76, lang:"javascript"](code/javascript/gaussian_elimination.js)
-{% sample lang="go" %}
-[import:55-82, lang:"go"](code/go/gaussian_elimination.go)
-{% sample lang="rs" %}
-[import:79-96, lang:"rust"](code/rust/gaussian_elimination.rs)
-{% endmethod %}
+
+```julia
+{{#include code/julia/gaussian_elimination.jl:67:93}}
+```
+```c
+{{#include code/c/gaussian_elimination.c:64:82}}
+```
+```cpp
+{{#include code/cpp/gaussian_elimination.cpp:36:54}}
+```
+```haskell
+{{#include code/haskell/gaussianElimination.hs:38:46}}
+```
+```python
+{{#include code/python/gaussian_elimination.py:31:49}}
+```
+```java
+{{#include code/java/GaussianElimination.java:49:70}}
+```
+```javascript
+{{#include code/javascript/gaussian_elimination.js:57:76}}
+```
+```go
+{{#include code/go/gaussian_elimination.go:55:82}}
+```
+```rust
+{{#include code/rust/gaussian_elimination.rs:79:96}}
+```
+
 
 As a note: Gauss-Jordan elimination can also be used to find the inverse of a matrix by following the same procedure to generate a reduced row echelon matrix, but with an identity matrix on the other side instead of the right-hand side of each equation.
 This process is straightforward but will not be covered here, simply because there are much faster numerical methods to find an inverse matrix; however, if you would like to see this, let me know and I can add it in for completeness.
@@ -476,47 +512,56 @@ This process is straightforward but will not be covered here, simply because the
 The idea of back-substitution is straightforward: we create a matrix of solutions and iteratively solve for each variable by plugging in all variables before it.
 For example, if our matrix looks like this:
 
-$$
+\\[
 \left[
 \begin{array}{ccc|c}
-2 & 3  & 4 & 6 \\
-0 & 1 & 2 & 2 \\
+2 & 3  & 4 & 6 \\\\
+0 & 1 & 2 & 2 \\\\
 0 & 0 & 11 & 18
 \end{array}
 \right]
-$$
+\\]
 
-We can quickly solve $$11z = 18$$ for $$z$$, and then use that to solve $$y + 2z = 2$$ for $$y$$ by plugging in for $$z$$.
-After that, we simply need to solve $$2x + 3y + 4z = 6$$ for $$x$$ in a similar fashion.
+We can quickly solve \\( 11z = 18 \\) for \\( z \\), and then use that to solve \\( y + 2z = 2 \\) for \\( y \\) by plugging in for \\( z \\).
+After that, we simply need to solve \\( 2x + 3y + 4z = 6 \\) for \\( x \\) in a similar fashion.
 In code, this involves keeping a rolling sum of all the values we substitute, subtracting that sum from the solution column and then dividing by the coefficient variable.
 In code, it looks like this:
 
-{% method %}
-{% sample lang="jl" %}
-[import:47-64, lang:"julia"](code/julia/gaussian_elimination.jl)
-{% sample lang="c" %}
-[import:50-62, lang:"c"](code/c/gaussian_elimination.c)
-{% sample lang="cpp" %}
-[import:56-72, lang:"cpp"](code/cpp/gaussian_elimination.cpp)
-{% sample lang="rs" %}
-[import:98-112, lang:"rust"](code/rust/gaussian_elimination.rs)
-{% sample lang="hs" %}
-[import:48-53, lang:"haskell"](code/haskell/gaussianElimination.hs)
-{% sample lang="py" %}
-[import:52-64, lang:"python"](code/python/gaussian_elimination.py)
-{% sample lang="java" %}
-[import:72-87, lang:"java"](code/java/GaussianElimination.java)
-{% sample lang="js" %}
-[import:40-55, lang:"javascript"](code/javascript/gaussian_elimination.js)
-{% sample lang="go" %}
-[import:84-98, lang:"go"](code/go/gaussian_elimination.go)
-{% endmethod %}
+
+```julia
+{{#include code/julia/gaussian_elimination.jl:47:64}}
+```
+```c
+{{#include code/c/gaussian_elimination.c:50:62}}
+```
+```cpp
+{{#include code/cpp/gaussian_elimination.cpp:56:72}}
+```
+```rust
+{{#include code/rust/gaussian_elimination.rs:98:112}}
+```
+```haskell
+{{#include code/haskell/gaussianElimination.hs:48:53}}
+```
+```python
+{{#include code/python/gaussian_elimination.py:52:64}}
+```
+```java
+{{#include code/java/GaussianElimination.java:72:87}}
+```
+```javascript
+{{#include code/javascript/gaussian_elimination.js:40:55}}
+```
+```go
+{{#include code/go/gaussian_elimination.go:84:98}}
+```
+
 
 ## Visual Representation
 
 We have thus far used Gaussian elimination as a method to solve a system of equations; however, there is often a much easier way to find a similar solution simply by plotting each row in our matrix.
-For the case of 2 equations and 2 unknowns, we would plot the two lines corresponding to each equation and the $$(x, y)$$ location of their point of intersection would be the solution for $$x$$ and $$y$$.
-Similarly, for the case of 3 equations and 3 unknowns, we would plot 3 planes and the $$(x, y, z)$$ location of their point of intersection would be the solution for $$x$$, $$y$$, and $$z$$.
+For the case of 2 equations and 2 unknowns, we would plot the two lines corresponding to each equation and the \\( (x, y) \\) location of their point of intersection would be the solution for \\( x \\) and \\( y \\).
+Similarly, for the case of 3 equations and 3 unknowns, we would plot 3 planes and the \\( (x, y, z) \\) location of their point of intersection would be the solution for \\( x \\), \\( y \\), and \\( z \\).
 
 What, then, is the point of Gaussian elimination if we can simply plot our set of equations to find a solution?
 Well, this analogy breaks down quickly when we start moving beyond 3D, so it is obvious we need some method to deal with higher-dimensional systems.
@@ -529,10 +574,10 @@ Your browser does not support the video tag.
 </video>
 </div>
 
-As we can see in the above visualization, the planes wobble about in 3D until they reach row echelon form, where one plane is parallel to the $$x$$ and $$y$$ axes.
-At this point, it's trivial to find the $$z$$-coordinate for the solution because it's simply the $$z$$ intercept of the parallel plane.
+As we can see in the above visualization, the planes wobble about in 3D until they reach row echelon form, where one plane is parallel to the \\( x \\) and \\( y \\) axes.
+At this point, it's trivial to find the \\( z \\)-coordinate for the solution because it's simply the \\( z \\) intercept of the parallel plane.
 From there, the matrices become even easier to interpret as they move to the reduced row echelon form.
-In this form, the solution is simply the $$x$$, $$y$$, and $$z$$ intercepts of the appropriate planes.
+In this form, the solution is simply the \\( x \\), \\( y \\), and \\( z \\) intercepts of the appropriate planes.
 
 This visualization might have been obvious for some readers, but I found it particularly enlightening at first.
 By performing Gaussian elimination, we are manipulating our planes such that they can be interpreted at a glance -- which is precisely the same thing we are doing with the matrix interpretation!
@@ -545,8 +590,8 @@ If no solution exists or we are trying to find a reduced row echelon matrix, the
 As we said at the start, the notation for Gaussian Elimination is rather ambiguous in the literature, so we are hoping that the definitions provided here are clear and consistent enough to cover all the bases.
 
 As for what's next... Well, we are in for a treat!
-The above algorithm clearly has 3 `for` loops and has a complexity of $$\sim O(n^3)$$, which is abysmal!
-If we can reduce the matrix to a specifically **tridiagonal** matrix, we can actually solve the system in $$\sim O(n)$$!
+The above algorithm clearly has 3 `for` loops and has a complexity of \\( \sim O(n^3) \\), which is abysmal!
+If we can reduce the matrix to a specifically **tridiagonal** matrix, we can actually solve the system in \\( \sim O(n) \\)!
 How? Well, we can use an algorithm known as the _Tri-Diagonal Matrix Algorithm_ \(TDMA\) also known as the [_Thomas Algorithm_](../thomas_algorithm/thomas_algorithm.md).
 
 There are also plenty of other solvers that do similar things that we will get to in due time.
@@ -561,31 +606,38 @@ Here's a video describing Gaussian elimination:
 
 ## Example Code
 
-{% method %}
-{% sample lang="jl" %}
-[import, lang:"julia"](code/julia/gaussian_elimination.jl)
-{% sample lang="c" %}
-[import, lang:"c"](code/c/gaussian_elimination.c)
-{% sample lang="cpp" %}
-[import, lang:"cpp"](code/cpp/gaussian_elimination.cpp)
-{% sample lang="rs" %}
-[import, lang:"rust"](code/rust/gaussian_elimination.rs)
-{% sample lang="hs" %}
-[import, lang:"haskell"](code/haskell/gaussianElimination.hs)
-{% sample lang="py" %}
-[import, lang:"python"](code/python/gaussian_elimination.py)
-{% sample lang="java" %}
-[import, lang:"java"](code/java/GaussianElimination.java)
-{% sample lang="js" %}
-[import, lang:"javascript"](code/javascript/gaussian_elimination.js)
-{% sample lang="go" %}
-[import, lang:"go"](code/go/gaussian_elimination.go)
-{% endmethod %}
+
+```julia
+{{#include code/julia/gaussian_elimination.jl}}
+```
+```c
+{{#include code/c/gaussian_elimination.c}}
+```
+```cpp
+{{#include code/cpp/gaussian_elimination.cpp}}
+```
+```rust
+{{#include code/rust/gaussian_elimination.rs}}
+```
+```haskell
+{{#include code/haskell/gaussianElimination.hs}}
+```
+```python
+{{#include code/python/gaussian_elimination.py}}
+```
+```java
+{{#include code/java/GaussianElimination.java}}
+```
+```javascript
+{{#include code/javascript/gaussian_elimination.js}}
+```
+```go
+{{#include code/go/gaussian_elimination.go}}
+```
 
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
+
 
 ## License
 

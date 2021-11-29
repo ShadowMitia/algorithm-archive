@@ -8,9 +8,7 @@ The Barnes-Hut algorithm divides space into an octree in order to cut computatio
 TODO
 
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

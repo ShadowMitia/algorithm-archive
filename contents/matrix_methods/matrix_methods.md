@@ -9,9 +9,7 @@ Mathematics is the foundation for many areas of science and engineering, and it 
 There are certainly more methods out there, so don't be offended if I have failed to list one of your favorite types of algorithms. We'll be filling more in as we go along!
 
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 

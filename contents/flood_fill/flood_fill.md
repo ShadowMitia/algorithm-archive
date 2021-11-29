@@ -38,7 +38,7 @@ As such, it makes sense to use a simpler element type so we can better understan
 
 So how do we go about finding the extents of the domain to fill?
 
-Here, a domain will be defined as any connected set of elements in an $$n$$-dimensional space whose values do not vary beyond a predefined threshold.
+Here, a domain will be defined as any connected set of elements in an \\( n \\)-dimensional space whose values do not vary beyond a predefined threshold.
 As an example, if we take a circle embedded into a 2-dimensional grid, we have 3 separate domains:
 1. Inside the circle where all elements are 0.
 2. The circle, itself, where the elements are set to 0.75.
@@ -85,18 +85,21 @@ One simply needs to look up, down, left, and right of the current location and a
 
 In code, this might look like this:
 
-{% method %}
-{% sample lang="jl" %}
-[import:23-41, lang:"julia"](code/julia/flood_fill.jl)
-{% sample lang="c" %}
-[import:28-46, lang:"c"](code/c/flood_fill.c)
-{% sample lang="cpp" %}
-[import:19-44, lang:"cpp"](code/cpp/flood_fill.cpp)
+
+```julia
+{{#include code/julia/flood_fill.jl:23:41}}
+```
+```c
+{{#include code/c/flood_fill.c:28:46}}
+```
+```cpp
+{{#include code/cpp/flood_fill.cpp:19:44}}
+```
 {% sample lang="py" %}
 [import:10-25, lang="python"](code/python/flood_fill.py)
 {% sample lang="coco" %}
 [import:15-19, lang="coconut"](code/coconut/flood_fill.coco)
-{% endmethod %}
+
 
 
 This code is set up to return a vector of elements to then use for subsequent sections.
@@ -107,35 +110,43 @@ Now that we have the ability to find all neighboring elements, we can proceed to
 
 In code, it might look like this:
 
-{% method %}
-{% sample lang="jl" %}
-[import:92-104, lang:"julia"](code/julia/flood_fill.jl)
-{% sample lang="c" %}
-[import:174-189, lang:"c"](code/c/flood_fill.c)
-{% sample lang="cpp" %}
-[import:46-64, lang:"cpp"](code/cpp/flood_fill.cpp)
+
+```julia
+{{#include code/julia/flood_fill.jl:92:104}}
+```
+```c
+{{#include code/c/flood_fill.c:174:189}}
+```
+```cpp
+{{#include code/cpp/flood_fill.cpp:46:64}}
+```
 {% sample lang="py" %}
 [import:55-63, lang="python"](code/python/flood_fill.py)
-{% sample lang="coco" %}
-[import:54-63, lang:"coconut"](code/coconut/flood_fill.coco)
-{% endmethod %}
+```coconut
+{{#include code/coconut/flood_fill.coco:54:63}}
+```
+
 
 The above code continues recursing through available neighbors as long as neighbors exist, and this should work so long as we are adding the correct set of neighbors.
 
 Additionally, it is possible to do the same type of traversal by managing a stack, like so:
 
-{% method %}
-{% sample lang="jl" %}
-[import:43-63, lang:"julia"](code/julia/flood_fill.jl)
-{% sample lang="c" %}
-[import:79-102, lang:"c"](code/c/flood_fill.c)
-{% sample lang="cpp" %}
-[import:95-123, lang:"cpp"](code/cpp/flood_fill.cpp)
+
+```julia
+{{#include code/julia/flood_fill.jl:43:63}}
+```
+```c
+{{#include code/c/flood_fill.c:79:102}}
+```
+```cpp
+{{#include code/cpp/flood_fill.cpp:95:123}}
+```
 {% sample lang="py" %}
 [import:27-36, lang="python"](code/python/flood_fill.py)
-{% sample lang="coco" %}
-[import:23-34, lang:"coconut"](code/coconut/flood_fill.coco)
-{% endmethod %}
+```coconut
+{{#include code/coconut/flood_fill.coco:23:34}}
+```
+
 
 This is ultimately the same method of traversal as before; however, because we are managing our own data structure, there are a few distinct differences:
 1. The manually managed stack could be slightly slower and potentially more memory-intensive
@@ -169,18 +180,22 @@ We will discuss this further in the next subsection
 Breadth-first node traversal is as simple as switching the stack in the depth-first strategy with a queue.
 The code would look something like this:
 
-{% method %}
-{% sample lang="jl" %}
-[import:66-90, lang:"julia"](code/julia/flood_fill.jl)
-{% sample lang="c" %}
-[import:149-172, lang:"c"](code/c/flood_fill.c)
-{% sample lang="cpp" %}
-[import:66-93, lang:"cpp"](code/cpp/flood_fill.cpp)
+
+```julia
+{{#include code/julia/flood_fill.jl:66:90}}
+```
+```c
+{{#include code/c/flood_fill.c:149:172}}
+```
+```cpp
+{{#include code/cpp/flood_fill.cpp:66:93}}
+```
 {% sample lang="py" %}
 [import:38-53, lang="python"](code/python/flood_fill.py)
-{% sample lang="coco" %}
-[import:37-51, lang:"coconut"](code/coconut/flood_fill.coco)
-{% endmethod %}
+```coconut
+{{#include code/coconut/flood_fill.coco:37:51}}
+```
+
 
 Now, there is a small trick in this code that must be considered to make sure it runs optimally.
 Namely, the nodes must be colored *when they are being enqueued*, not when visiting the node.
@@ -253,27 +268,28 @@ The example code for this chapter will be the simplest application of flood fill
 For this, we will create a two dimensional array of floats, all starting at 0.0, and then set a single vertical line of elements at the center to be 1.0.
 After, we will fill in the left-hand side of the array to be all ones by choosing any point within the left domain to fill.
 
-{% method %}
-{% sample lang="jl" %}
-[import, lang:"julia"](code/julia/flood_fill.jl)
-{% sample lang="c" %}
-[import, lang:"c"](code/c/flood_fill.c)
-{% sample lang="cpp" %}
-[import, lang:"cpp"](code/cpp/flood_fill.cpp)
+
+```julia
+{{#include code/julia/flood_fill.jl}}
+```
+```c
+{{#include code/c/flood_fill.c}}
+```
+```cpp
+{{#include code/cpp/flood_fill.cpp}}
+```
 {% sample lang="py" %}
 [import:, lang="python"](code/python/flood_fill.py)
 {% sample lang="coco" %}
 [import, lang="coconut"](code/coconut/flood_fill.coco)
-{% endmethod %}
+
 
 
 ### Bibliography
 
 {% references %} {% endreferences %}
 
-<script>
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-</script>
+
 
 ## License
 
