@@ -150,62 +150,434 @@
                         <h1 id="euclidean-algorithm"><a class="header" href="#euclidean-algorithm">Euclidean Algorithm</a></h1>
 <p>Computer science is (almost by definition) a science about computers -- a device first conceptualized in the 1800's. Computers have become so revolutionary, that it is difficult to think of our lives today without them. That said, <em>algorithms</em> are much older and have existed in the world for millennia. Incredibly, a few of the algorithms created before the Common Era (AD) are still in use today. One such algorithm was first described in Euclid's <em>Elements</em> (~ 300 BC) and has come to be known as the <em>Euclidean Algorithm</em>.</p>
 <p>The algorithm is a simple way to find the <em>greatest common divisor</em> (GCD) of two numbers, which is useful for a number of different applications (like reducing fractions). The first method (envisioned by Euclid) uses simple subtraction:</p>
-<p>{% sample lang=&quot;vim&quot; %}
-<a href="code/viml/euclidean.vim">import:14-27, lang=&quot;vim&quot;</a>
-{% sample lang=&quot;c&quot; %}
-<a href="code/c/euclidean_example.c">import:17-30, lang=&quot;c_cpp&quot;</a>
-{% sample lang=&quot;cs&quot; %}
-<a href="code/csharp/EuclideanAlgorithm.cs">import:8-23, lang=&quot;csharp&quot;</a>
-{% sample lang=&quot;clj&quot; %}
-<a href="code/clojure/euclidean_example.clj">import:2-8, lang=&quot;clojure&quot;</a>
-{% sample lang=&quot;cpp&quot; %}
-<a href="code/cpp/euclidean.cpp">import:18-31, lang=&quot;c_cpp&quot;</a>
-{% sample lang=&quot;java&quot; %}
-<a href="code/java/EuclideanAlgo.java">import:3-16, lang=&quot;java&quot;</a>
-{% sample lang=&quot;kotlin&quot; %}
-<a href="code/kotlin/Euclidean.kt">import:3-13, lang=&quot;kotlin&quot;</a>
-{% sample lang=&quot;js&quot; %}
-<a href="code/javascript/euclidean_example.js">import:15-29, lang=&quot;javascript&quot;</a>
-{% sample lang=&quot;lisp&quot; %}
-<a href="code/clisp/euclidean.lisp">import:3-12, lang=&quot;lisp&quot;</a>
-{% sample lang=&quot;py&quot; %}
-<a href="code/python/euclidean_example.py">import:11-27, lang=&quot;python&quot;</a>
-{% sample lang=&quot;hs&quot; %}
-<a href="code/haskell/euclidean_algorithm.hs">import:3-13, lang=&quot;haskell&quot;</a>
-{% sample lang=&quot;rs&quot; %}
-<a href="code/rust/euclidean_example.rs">import:3-15, lang=&quot;rust&quot;</a>
-{% sample lang=&quot;ml&quot; %}
-<a href="code/ocaml/euclidean_example.ml">import:9-17, lang=&quot;ocaml&quot;</a>
-{% sample lang=&quot;go&quot; %}
-<a href="code/go/euclidean.go">import:25-38, lang=&quot;go&quot;</a>
-{% sample lang=&quot;swift&quot; %}
-<a href="code/swift/euclidean_algorithm.swift">import:1-14, lang=&quot;swift&quot;</a>
-{% sample lang=&quot;m&quot; %}
-<a href="code/matlab/euclidean.m">import:3-17, lang=&quot;matlab&quot;</a>
-{% sample lang=&quot;lua&quot; %}
-<a href="code/lua/euclidean.lua">import:1-14, lang=&quot;lua&quot;</a>
-{% sample lang=&quot;jl&quot; %}
-<a href="code/julia/euclidean.jl">import:12-25, lang=&quot;julia&quot;</a>
-{% sample lang=&quot;nim&quot; %}
-<a href="code/nim/euclid_algorithm.nim">import:13-24, lang=&quot;nim&quot;</a>
-{% sample lang=&quot;asm-x64&quot; %}
-<a href="code/asm-x64/euclidean_example.s">import:35-56, lang=&quot;asm-x64&quot;</a>
-{% sample lang=&quot;f90&quot; %}
-<a href="code/fortran/euclidean.f90">import:1-19, lang=&quot;fortran&quot;</a>
-{% sample lang=&quot;php&quot; %}
-<a href="code/php/euclidean.php">import:4-18, lang=&quot;php&quot;</a>
-{% sample lang=&quot;factor&quot; %}
-<a href="code/factor/euclid.factor">import:1-13, lang=&quot;factor&quot;</a>
-{% sample lang=&quot;ws&quot; %}
-<a href="code/whitespace/euclidian_sub.ws">import, lang=&quot;whitespace&quot;</a>
-{% sample lang=&quot;scala&quot; %}
-<a href="code/scala/euclidean.scala">import:3-8, lang=&quot;scala&quot;</a>
-{% sample lang=&quot;racket&quot; %}
-<a href="code/racket/euclidean_algorithm.rkt">import:3-14, lang=&quot;racket&quot;</a>
-{% sample lang=&quot;ruby&quot; %}
-<a href="code/ruby/euclidean.rb">import:8-19, lang=&quot;ruby&quot;</a>
-{% sample lang=&quot;st&quot; %}
-<a href="code/smalltalk/euclid.st">import:1-13, lang=&quot;smalltalk&quot;</a></p>
+<pre><code class="language-vim">function s:euclid_sub(a, b)
+	let l:a = abs(a:a)
+	let l:b = abs(a:b)
+
+	while l:a != l:b
+		if l:a &gt; l:b
+			let l:a -= l:b
+		else
+			let l:b -= l:a
+		endif
+	endwhile
+
+	return l:a
+endfunction
+</code></pre>
+<pre><code class="language-c_cpp">int euclid_sub(int a, int b) {
+    a = abs(a);
+    b = abs(b);
+
+    while (a != b) {
+        if (a &gt; b) {
+            a -= b;
+        } else {
+            b -= a;
+        }
+    }
+
+    return a;
+}
+</code></pre>
+<pre><code class="language-csharp">        public int EuclidSub(int a, int b)
+        {
+            // Math.Abs for negative number support
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+
+            while (a != b)
+            {
+                if (a &gt; b)
+                    a = a - b;
+                else
+                    b = b - a;
+            }
+
+            return a;
+        }
+</code></pre>
+<pre><code class="language-clojure">(defn euclid-sub [a b]
+  (loop [i (Math/abs a) j (Math/abs b)]
+    (if (= i j)
+      i
+      (if (&gt; i j)
+        (recur (- i j) j)
+        (recur i (- j i))))))
+</code></pre>
+<pre><code class="language-c_cpp">int euclid_sub(int a, int b) {
+  a = std::abs(a);
+  b = std::abs(b);
+
+  while (a != b) {
+    if (a &gt; b) {
+      a -= b;
+    } else {
+      b -= a;
+    }
+  }
+
+  return a;
+}
+</code></pre>
+<pre><code class="language-java">    public static int euclidSub(int a, int b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        
+        while (a != b) {
+            if (a &gt; b) {
+                a -= b;
+            } else {
+                b -= a;
+            }
+        }
+        
+        return a;
+    }
+</code></pre>
+<pre><code class="language-kotlin">fun euclidSub(a: Int, b: Int): Int {
+    var a = a.absoluteValue
+    var b = b.absoluteValue
+
+    while (a != b) {
+        if (a &gt; b) a -= b
+        else b -= a
+    }
+
+    return a
+}
+</code></pre>
+<pre><code class="language-javascript">function euclidSub(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+
+  while (a !== b) {
+    if (a &gt; b) {
+      a -= a - b;
+    } else {
+      b = b - a;
+    }
+  }
+
+  return a;
+}
+
+</code></pre>
+<pre><code class="language-lisp">(defun euclid-sub (a b)
+  &quot;Finds the greatest common divsor for any two integers&quot;
+  (defun euclid-sub* (a b)
+    &quot;Finds the greatest common divisor for any two positive integers&quot;
+    (if (eql a b)
+        a
+        (if (&gt; a b)
+            (euclid-sub* (- a b) b)
+            (euclid-sub* a (- b a)))))
+  (euclid-sub* (abs a) (abs b)))
+</code></pre>
+<pre><code class="language-python">def euclid_sub(a, b):
+
+    a = abs(a)
+    b = abs(b)
+
+    if a == 0:
+        return b
+    elif b == 0:
+        return a
+
+    while a != b:
+        if a &gt; b:
+            a -= b
+        else:
+            b -= a
+
+    return a
+</code></pre>
+<pre><code class="language-haskell">euclidSub :: Integer -&gt; Integer -&gt; Integer
+euclidSub a b = inner (abs a) (abs b)
+  where
+    inner x y
+      -- if a = b, then the gcd is a
+      | x == y = x
+      -- if a &lt; b: Recursively call euclidSub with the a and (b-a) as new inputs
+      | x &lt; y = euclidSub x (y - x)
+      -- otherwise: Recursively call euclidSub with the a and (b-a) as new inputs
+      | otherwise = euclidSub (x - y) y
+
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn euclid_sub(mut a: i64, mut b: i64) -&gt; i64 {
+    a = a.abs();
+    b = b.abs();
+    while a != b {
+        if a &lt; b {
+            b -= a;
+        } else {
+            a -= b;
+        }
+    }
+
+    a
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-ocaml">let euclid_sub a b =
+  let rec inner a b =
+    if a = b then
+      a
+    else if a &lt; b then
+      inner a (b - a)
+    else
+      inner (a - b) b
+  in (inner (abs a) (abs b))
+</code></pre>
+<pre><code class="language-go">func euclidSub(a, b int) int {
+	a = abs(a)
+	b = abs(b)
+
+	for a != b {
+		if a &gt; b {
+			a -= b
+		} else {
+			b -= a
+		}
+	}
+
+	return a
+}
+</code></pre>
+<pre><code class="language-swift">func euclidSub(a: Int, b: Int) -&gt; Int {
+    var a = abs(a)
+    var b = abs(b)
+    
+    while (a != b) {
+        if (a &gt; b) {
+            a -= b
+        } else {
+            b -= a
+        }
+    }
+    
+    return a
+}
+</code></pre>
+<pre><code class="language-matlab">function gcd = euclidSub(a,b)
+    
+    a = abs(a);
+    b = abs(b);
+    
+    while a ~= b
+        if a &gt; b
+            a = a - b;
+        else
+            b = b - a;
+        end
+    end
+    
+    gcd = a;
+end
+</code></pre>
+<pre><code class="language-lua">local function euclid_sub(a, b)
+  a = math.abs(a)
+  b = math.abs(b)
+
+  while a ~= b do
+    if a &gt; b then
+      a = a-b
+    else
+      b = b-a
+    end
+  end
+
+  return a
+end
+</code></pre>
+<pre><code class="language-julia">function euclid_sub(a::Int64, b::Int64)
+    a = abs(a)
+    b = abs(b)
+
+    while (a != b)
+        if (a &gt; b)
+            a -= b
+        else
+            b -= a
+        end
+    end
+
+    return a
+end
+</code></pre>
+<pre><code class="language-nim">func euclid_sub(in1, in2: int): int =
+  var
+    a = abs(in1)
+    b = abs(in2)
+
+  while a != b:
+    if a &gt; b:
+      a -= b
+    else:
+      b -= a
+
+  result = a
+</code></pre>
+<pre><code class="language-asm-x64">euclid_sub:
+  mov    rax, rdi           # Get abs of a
+  sar    rax, 31
+  xor    rdi, rax
+  sub    rdi, rax
+  mov    rax, rsi           # Get abs of b
+  sar    rax, 31
+  xor    rsi, rax
+  sub    rsi, rax
+  jmp    check
+loop:
+  cmp    rdi, rsi           # Find which is bigger
+  jle    if_true
+  sub    rdi, rsi           # If a is bigger then a -= b
+  jmp    check
+if_true:
+  sub    rsi, rdi           # Else b -= a
+check:
+  cmp    rsi, rdi           # Check if a and b are not equal
+  jne    loop
+  mov    rax, rdi           # Return results
+  ret
+</code></pre>
+<pre><code class="language-fortran">INTEGER FUNCTION euclid_sub(a, b)
+    IMPLICIT NONE
+    INTEGER, INTENT(INOUT) :: a, b
+
+    a = ABS(a)
+    b = ABS(b)
+
+    DO WHILE (a /= b)
+    
+        IF (a &gt; b) THEN
+            a = a - b
+        ELSE
+            b = b - a
+        END IF
+    END DO
+
+    euclid_sub = a
+
+END FUNCTION euclid_sub 
+</code></pre>
+<pre><code class="language-php">function euclid_sub(int $a, int $b): int
+{
+    $a = abs($a);
+    $b = abs($b);
+
+    while ($a !== $b) {
+        if ($a &gt; $b) {
+            $a = $a - $b;
+        } else {
+            $b = $b - $a;
+        }
+    }
+
+    return $a;
+}
+</code></pre>
+<pre><code class="language-factor">: euclid- ( a b -- gcd )
+  [ abs ] bi@
+  [ 2dup = ]
+  [
+    ! make sure the lower number is deeper
+    2dup &gt;= [ swap ] when
+    over -
+    ! leaves us with stack { &lt;lower&gt; &lt;greater - lower&gt; }
+  ]
+  until
+  ! we have the GCD twice now, drop one
+  drop
+;
+</code></pre>
+<pre><code class="language-whitespace">Euclidian algorithm subtraction method.
+Enter two positive integers.	
+	
+			
+		
+  			  	    
+   
+			   	
+				  	 
+ 
+	 			  	   	
+ 
+ 
+					  	  	 
+   
+ 
+			 
+ 
+			  	    
+
+  			  	   	
+   
+				
+ 	
+
+
+
+  			  	  	 
+   
+ 
+		  	   	
+ 
+			 
+ 
+The			  	    
+end.
+</code></pre>
+<pre><code class="language-scala">  def euclid_sub(a: Int, b: Int): Int =
+    (Math.abs(a), Math.abs(b)) match {
+      case (0, _) | (_, 0) =&gt; 0
+      case (x, y) if x &lt; y =&gt; euclid(x, y - x)
+      case (x, y) if x &gt; y =&gt; euclid(x - y, y)
+      case _ =&gt; a
+</code></pre>
+<pre><code class="language-racket">(define (euclid_sub a b)
+  (local ((define (euclid_sub* x y)
+          (if (= x y)
+              x
+              (if (&gt; x y)
+                  (euclid_sub* (- x y) y)
+                  (euclid_sub* x (- y x))
+                  )
+              )
+          )) (euclid_sub* (abs a) (abs b))
+    )
+  )
+</code></pre>
+<pre><code class="language-ruby">def gcd_minus(a, b)
+	a = a.abs
+	b = b.abs
+	until a == b
+		if a &gt; b
+			a -= b
+		else
+			b -= a
+		end
+	end
+	a
+end
+</code></pre>
+<pre><code class="language-smalltalk">Integer&gt;&gt;euclidSub: secondNumber
+    &quot;Euclidean algorithm with subtraction&quot;
+    | a b |
+    a := self abs.
+    b := secondNumber abs.
+    [ a == b ] whileFalse: [ 
+        a &gt; b ifTrue: [ 
+            a := a - b.
+        ] ifFalse: [ 
+            b := b - a.
+        ].
+    ].
+    ^a.
+</code></pre>
 <pre><code class="language-emojicode">  🐇 ❗️ 🔼 a 🔢 b 🔢 ➡️ 🔢 🍇
     💭 Use 🏧 (returns the absolute value) to support negative numbers.
     🏧a ❗️ ➡️ 🖍🆕var_a
@@ -223,88 +595,446 @@
     ↩️ var_a
   🍉
 </code></pre>
-<p>{% sample lang=&quot;lolcode&quot; %}
-<a href="code/lolcode/euclid.lol">import:25-40, lang=&quot;LOLCODE&quot;</a>
-{% sample lang=&quot;bash&quot; %}
-<a href="code/bash/euclid.bash">import:24-38, lang=&quot;bash&quot;</a>
-{% sample lang=&quot;d&quot; %}
-<a href="code/d/euclidean_algorithm.d">import:19-33, lang=&quot;d&quot;</a>
-{% sample lang=&quot;piet&quot; %}</p>
+<pre><code class="language-LOLCODE">    HOW IZ I UKLIDSUP YR NUM1 AN YR NUM2
+        NUM1 R I IZ ABZ YR NUM1 MKAY
+        NUM2 R I IZ ABZ YR NUM2 MKAY
+
+        IM IN YR LOOP 
+            BOTH SAEM NUM1 AN NUM2, O RLY?
+                YA RLY, FOUND YR NUM1
+            OIC        
+
+            DIFFRINT NUM1 AN SMALLR OF NUM1 AN NUM2, O RLY?
+                YA RLY, NUM1 R DIFF OF NUM1 AN NUM2
+                NO WAI, NUM2 R DIFF OF NUM2 AN NUM1
+            OIC
+        IM OUTTA YR LOOP
+
+    IF U SAY SO
+</code></pre>
+<pre><code class="language-bash">euclid_sub() {
+    local a
+    local b
+    a=$(abs &quot;$1&quot;)
+    b=$(abs &quot;$2&quot;)
+    
+    while (( a != b )); do
+        if (( a &gt; b )); then
+            ((a -= b))
+        else
+            ((b -= a))
+        fi
+    done
+    printf &quot;%s&quot; &quot;$a&quot;
+}
+</code></pre>
+<pre><code class="language-d">// Euclidean algorithm with subtraction
+int euclid_sub(int a, int b) {
+    a = abs(a);
+    b = abs(b);
+
+    while (a != b) {
+        if (a &gt; b) {
+            a -= b;
+        } else {
+            b -= a;
+        }
+    }
+
+    return a;
+}
+</code></pre>
 <blockquote>
-<p><img src="code/piet/subtract/euclidian_algorithm_subtract_large.png" alt="" /> <img src="code/piet/subtract/euclidian_algorithm_subtract.png" alt="" />
-{% sample lang=&quot;ss&quot; %}
-<a href="code/scheme/euclidalg.ss">import:1-7, lang=&quot;scheme&quot;</a>
-{% sample lang=&quot;scratch&quot; %}</p>
+<p><img src="code/piet/subtract/euclidian_algorithm_subtract_large.png" alt="" /> <img src="code/piet/subtract/euclidian_algorithm_subtract.png" alt="" /></p>
 </blockquote>
+<pre><code class="language-scheme">(define (euclid-sub a b)
+    (cond                                                                                                                                                                                                                                                                         
+        [(or (negative? a)(negative? b))(euclid-sub (abs a)(abs b))]                                                                                                                                                                                                              
+        [(eq? a b) a]
+        [(&gt; a b)(euclid-sub(- a b) b)]
+        [else
+            (euclid-sub a (- b a))]))
+</code></pre>
+<!-- {% sample lang="scratch" %} -->
 <p>
   <img  class="center" src="code/scratch/euclid_sub.svg" style="width:30%" />
 </p>
 # leave one line empty:
-<p>{% sample lang=&quot;ps1&quot; %}
-<a href="code/powershell/euclidean_algorithm.ps1">import:1-14, lang=&quot;powershell&quot;</a>
-{% sample lang=&quot;coco&quot; %}
-<a href="code/coconut/euclidean.coco">import:1-9, lang=&quot;coconut&quot;</a></p>
+<pre><code class="language-powershell">function Sub-Euclid($a, $b) {
+    $a = [Math]::Abs($a)
+    $b = [Math]::Abs($b)
+
+    while ($a -ne $b) {
+        if ($a -gt $b) {
+            $a = $a - $b
+        } else {
+            $b = $b - $a
+        }
+    }
+    
+    return $a
+}
+</code></pre>
+<pre><code class="language-coconut">def euclid_sub(a is int, 0) = a
+addpattern def euclid_sub(0, b is int) = b
+
+addpattern def euclid_sub(a is int, b is int):
+    if a &lt; b:
+        return euclid_sub(a, b - a)
+    elif b &lt; a:
+        return euclid_sub(a - b, b)
+    return a
+</code></pre>
 <p>Here, we simply line the two numbers up every step and subtract the lower value from the higher one every timestep. Once the two values are equal, we call that value the greatest common divisor. A graph of <code>a</code> and <code>b</code> as they change every step would look something like this:</p>
 <p>
     <img  class="center" src="res/subtraction.png" style="width:70%" />
 </p>
 <p>Modern implementations, though, often use the modulus operator (%) like so</p>
-<p>{% sample lang=&quot;vim&quot; %}
-<a href="code/viml/euclidean.vim">import:1-12, lang=&quot;vim&quot;</a>
-{% sample lang=&quot;c&quot; %}
-<a href="code/c/euclidean_example.c">import:4-16, lang=&quot;c_cpp&quot;</a>
-{% sample lang=&quot;cs&quot; %}
-<a href="code/csharp/EuclideanAlgorithm.cs">import:25-39, lang=&quot;csharp&quot;</a>
-{% sample lang=&quot;clj&quot; %}
-<a href="code/clojure/euclidean_example.clj">import:9-13, lang=&quot;clojure&quot;</a>
-{% sample lang=&quot;cpp&quot; %}
-<a href="code/cpp/euclidean.cpp">import:5-15, lang=&quot;c_cpp&quot;</a>
-{% sample lang=&quot;java&quot; %}
-<a href="code/java/EuclideanAlgo.java">import:18-26, lang=&quot;java&quot;</a>
-{% sample lang=&quot;kotlin&quot; %}
-<a href="code/kotlin/Euclidean.kt">import:15-26, lang=&quot;kotlin&quot;</a>
-{% sample lang=&quot;js&quot; %}
-<a href="code/javascript/euclidean_example.js">import:1-13, lang=&quot;javascript&quot;</a>
-{% sample lang=&quot;lisp&quot; %}
-<a href="code/clisp/euclidean.lisp">import:14-18, lang=&quot;lisp&quot;</a>
-{% sample lang=&quot;py&quot; %}
-<a href="code/python/euclidean_example.py">import:1-9, lang=&quot;python&quot;</a>
-{% sample lang=&quot;hs&quot; %}
-<a href="code/haskell/euclidean_algorithm.hs">import:18-25, lang=&quot;haskell&quot;</a>
-{% sample lang=&quot;rs&quot; %}
-<a href="code/rust/euclidean_example.rs">import:17-27, lang=&quot;rust&quot;</a>
-{% sample lang=&quot;ml&quot; %}
-<a href="code/ocaml/euclidean_example.ml">import:3-7, lang=&quot;ocaml&quot;</a>
-{% sample lang=&quot;go&quot; %}
-<a href="code/go/euclidean.go">import:14-23, lang=&quot;go&quot;</a>
-{% sample lang=&quot;swift&quot; %}
-<a href="code/swift/euclidean_algorithm.swift">import:16-27, lang=&quot;swift&quot;</a>
-{% sample lang=&quot;m&quot; %}
-<a href="code/matlab/euclidean.m">import:19-31, lang=&quot;matlab&quot;</a>
-{% sample lang=&quot;lua&quot; %}
-<a href="code/lua/euclidean.lua">import:16-25, lang=&quot;lua&quot;</a>
-{% sample lang=&quot;jl&quot; %}
-<a href="code/julia/euclidean.jl">import:1-10, lang=&quot;julia&quot;</a>
-{% sample lang=&quot;nim&quot; %}
-<a href="code/nim/euclid_algorithm.nim">import:1-11, lang=&quot;nim&quot;</a>
-{% sample lang=&quot;asm-x64&quot; %}
-<a href="code/asm-x64/euclidean_example.s">import:10-33, lang=&quot;asm-x64&quot;</a>
-{% sample lang=&quot;f90&quot; %}
-<a href="code/fortran/euclidean.f90">import:21-34, lang=&quot;fortran&quot;</a>
-{% sample lang=&quot;php&quot; %}
-<a href="code/php/euclidean.php">import:20-30, lang=&quot;php&quot;</a>
-{% sample lang=&quot;factor&quot; %}
-<a href="code/factor/euclid.factor">import:15-25, lang=&quot;factor&quot;</a>
-{% sample lang=&quot;ws&quot; %}
-<a href="code/whitespace/euclidian_mod.ws">import, lang=&quot;whitespace&quot;</a>
-{% sample lang=&quot;scala&quot; %}
-<a href="code/scala/euclidean.scala">import:10-14, lang=&quot;scala&quot;</a>
-{% sample lang=&quot;racket&quot; %}
-<a href="code/racket/euclidean_algorithm.rkt">import:16-24, lang=&quot;racket&quot;</a>
-{% sample lang=&quot;ruby&quot; %}
-<a href="code/ruby/euclidean.rb">import:1-6, lang=&quot;ruby&quot;</a>
-{% sample lang=&quot;st&quot; %}
-<a href="code/smalltalk/euclid.st">import:15-25, lang=&quot;smalltalk&quot;</a></p>
+<pre><code class="language-vim">function s:euclid_mod(a, b)
+	let l:a = abs(a:a)
+	let l:b = abs(a:b)
+
+	while l:b != 0
+		let l:c = l:b
+		let l:b = l:a % l:b
+		let l:a = l:c
+	endwhile
+
+	return l:a
+endfunction
+</code></pre>
+<pre><code class="language-c">int euclid_mod(int a, int b) {
+    a = abs(a);
+    b = abs(b);
+
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    return a;
+}
+
+</code></pre>
+<pre><code class="language-csharp">        public int EuclidMod(int a, int b)
+        {
+            // Math.Abs for negative number support
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+
+            while (b != 0)
+            {
+                var temp = b;
+                b = a % b;
+                a = temp;
+            }
+
+            return a;
+        }
+</code></pre>
+<pre><code class="language-clojure">(defn euclid-mod [a b]
+  (loop [i (Math/abs a) j (Math/abs b)]
+    (if (zero? j)
+      i
+      (recur j (% i j)))))
+</code></pre>
+<pre><code class="language-c_cpp">// Euclidean algorithm using modulus
+int euclid_mod(int a, int b) {
+  a = std::abs(a);
+  b = std::abs(b);
+
+  while (b != 0) {
+    a = std::exchange(b, a % b);
+  }
+
+  return a;
+}
+</code></pre>
+<pre><code class="language-java">    public static int euclidMod(int a, int b) {
+        while (b != 0) {
+            int tmp = b;
+            b = a % b;
+            a = tmp;
+        }
+
+        return a;
+    }
+</code></pre>
+<pre><code class="language-kotlin">fun euclidMod(a: Int, b: Int): Int {
+    var a = a.absoluteValue
+    var b = b.absoluteValue
+
+    while (b != 0) {
+        val tmp = b
+        b = a % b
+        a = tmp
+    }
+
+    return a
+}
+</code></pre>
+<pre><code class="language-javascript">function euclidMod(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+
+  let temp;
+  while (b !== 0) {
+    temp = b;
+    b = a % b;
+    a = temp;
+  }
+
+  return a;
+}
+</code></pre>
+<pre><code class="language-lisp">(defun euclid-mod (a b)
+  &quot;Finds the greatest common divisor for any two integers&quot;
+  (if (zerop b)
+      (abs a)
+      (euclid-mod b (mod a b))))
+</code></pre>
+<pre><code class="language-python">def euclid_mod(a, b):
+
+    a = abs(a)
+    b = abs(b)
+
+    while b &gt; 0:
+        a, b = b, a % b
+
+    return a
+</code></pre>
+<pre><code class="language-haskell">euclidMod :: Integer -&gt; Integer -&gt; Integer
+euclidMod a b = inner (abs a) (abs b)
+  where
+    -- if a divides b, then gcd is a
+    inner x 0 = x
+    -- otherwise, recursively call inner with b and (a mod b) as new inputs
+    inner x y = inner y (x `mod` y)
+
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn euclid_rem(mut a: i64, mut b: i64) -&gt; i64 {
+    a = a.abs();
+    b = b.abs();
+    while b != 0 {
+        let tmp = b;
+        b = a % b;
+        a = tmp;
+    }
+
+    a
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-ocaml">let euclid_mod a b =
+  let rec inner a = function
+  | 0 -&gt; a
+  | b -&gt; inner b (a mod b)
+  in (inner (abs a) (abs b))
+</code></pre>
+<pre><code class="language-go">func euclidMod(a, b int) int {
+	a = abs(a)
+	b = abs(b)
+
+	for b != 0 {
+		a, b = b, a%b
+	}
+
+	return a
+}
+</code></pre>
+<pre><code class="language-swift">func euclidMod(a: Int, b: Int) -&gt; Int {
+    var a = abs(a);
+    var b = abs(b);
+    
+    while (b != 0) {
+        let temp = b
+        b = a % b
+        a = temp
+    }
+    
+    return a
+}
+</code></pre>
+<pre><code class="language-matlab">function gcd = euclidMod(a,b)
+    
+    a=abs(a);
+    b=abs(b);
+    
+    while b &gt; 0
+        temp = b;
+        b = mod(a,b);
+        a = temp;
+    end
+    
+    gcd = a;
+end
+</code></pre>
+<pre><code class="language-lua">local function euclid_mod(a, b)
+  a = math.abs(a)
+  b = math.abs(b)
+
+  while b ~= 0 do
+    a, b = b, a%b
+  end
+
+  return a
+end
+</code></pre>
+<pre><code class="language-julia">function euclid_mod(a::Int64, b::Int64)
+    a = abs(a)
+    b = abs(b)
+
+    while(b != 0)
+        b,a = a%b,b
+    end
+
+    return a
+end
+</code></pre>
+<pre><code class="language-nim">func euclid_mod(in1, in2: int): int =
+  var
+    a = abs(in1)
+    b = abs(in2)
+
+  while b != 0:
+    let temp: int = b
+    b = a mod b
+    a = temp;
+
+  result = a
+</code></pre>
+<pre><code class="language-asm-x64"># rdi - a
+# rsi - b
+# RET rax - gcd of a and b
+euclid_mod:
+  mov    rax, rdi           # Get abs of a
+  sar    rax, 31
+  xor    rdi, rax
+  sub    rdi, rax
+  mov    rax, rsi           # Get abs of b
+  sar    rax, 31
+  xor    rsi, rax
+  sub    rsi, rax
+  jmp    mod_check
+mod_loop:
+  xor    rdx, rdx           # Take the mod of a and b
+  mov    rax, rdi
+  div    rsi
+  mov    rdi, rsi           # Set b to the mod of a and b
+  mov    rsi, rdx           # Set a to b
+mod_check:
+  cmp    rsi, 0             # Check if b is non-zero
+  jne    mod_loop
+  mov    rax, rdi           # Return the result
+  ret
+</code></pre>
+<pre><code class="language-fortran">INTEGER FUNCTION euclid_mod(a, b)
+    IMPLICIT NONE
+    INTEGER, INTENT(INOUT) :: a, b
+    INTEGER                :: temp
+
+    DO WHILE (b &gt; 0)
+        temp = b
+        b = MODULO(a,b)
+        a = temp
+    END DO
+
+    euclid_mod = a
+
+END FUNCTION euclid_mod
+</code></pre>
+<pre><code class="language-php">function euclid_mod(int $a, int $b): int
+{
+    $a = abs($a);
+    $b = abs($b);
+
+    while ($b !== 0) {
+        list($b, $a) = [$a % $b, $b];
+    }
+
+    return $a;
+}
+</code></pre>
+<pre><code class="language-factor">: euclid% ( a b -- gcd )
+  [ abs ] bi@   ! take both absolute values
+  [ dup zero? ] ! check if `b` (on top) is 0
+  [
+    ! a b -&gt; a b b -&gt; b a b -&gt; b a%b
+    dup -rot mod
+  ]
+  until
+  ! the zero is on top, so get rid of it
+  drop
+;
+</code></pre>
+<pre><code class="language-whitespace">Euclidian algorithm modulo method.
+Enter two positive integers.	
+	
+			
+		
+  
+   
+			 
+ 
+	 	
+   	
+			 
+		 		   
+			   	
+ 
+			    
+ 
+			 
+ 
+
+
+  	
+   	
+				
+ 	
+
+The
+end.
+</code></pre>
+<pre><code class="language-scala">
+  def euclid_mod(a: Int, b: Int): Int =
+    (Math.abs(a), Math.abs(b)) match {
+      case (_, 0) =&gt; a
+      case (a, b) =&gt; euclid_mod(b, a % b)
+</code></pre>
+<pre><code class="language-racket">(define (euclid_mod a b)
+  (local ((define (euclid_mod* a b)
+           (if (= 0 b)
+               (abs a)
+               (euclid_mod* b (modulo a b))
+               )
+           )) (euclid_mod* a b)
+    )
+  )
+</code></pre>
+<pre><code class="language-ruby">def gcd_mod(a, b)
+	a = a.abs
+	b = b.abs
+	a, b = b, a%b until b.zero?
+	a
+end
+</code></pre>
+<pre><code class="language-smalltalk">Integer&gt;&gt;euclidMod: secondNumber
+    &quot;Euclidean algorithm with modulus.&quot;
+    | a b oldB |
+    a := self abs.
+    b := secondNumber abs.
+    [ b == 0 ] whileFalse: [ 
+        oldB := b.
+        b := a % b.
+        a := oldB.
+    ].
+    ^a.
+</code></pre>
 <pre><code class="language-emojicode">  🐇 ❗️ ⏫ a 🔢 b 🔢 ➡️ 🔢 🍇
     💭 Use 🏧 (returns the absolute value) to support negative numbers.
     🏧a ❗️ ➡️ 🖍🆕var_a
@@ -319,27 +1049,83 @@
     ↩️ var_a
   🍉
 </code></pre>
-<p>{% sample lang=&quot;lolcode&quot; %}
-<a href="code/lolcode/euclid.lol">import:9-23, lang=&quot;LOLCODE&quot;</a>
-{% sample lang=&quot;bash&quot; %}
-<a href="code/bash/euclid.bash">import:10-22, lang=&quot;bash&quot;</a>
-{% sample lang=&quot;d&quot; %}
-<a href="code/d/euclidean_algorithm.d">import:4-17, lang=&quot;d&quot;</a>
-{% sample lang=&quot;piet&quot; %}</p>
+<pre><code class="language-LOLCODE">    HOW IZ I UKLIDMOD YR NUM1 AN YR NUM2
+        NUM1 R I IZ ABZ YR NUM1 MKAY
+        NUM2 R I IZ ABZ YR NUM2 MKAY
+
+        IM IN YR LOOP 
+            BOTH SAEM NUM2 AN 0, O RLY?
+                YA RLY, FOUND YR NUM1
+            OIC
+
+            I HAS A TMP ITZ NUM2
+            NUM2 R MOD OF NUM1 AN NUM2
+            NUM1 R TMP
+        IM OUTTA YR LOOP
+
+    IF U SAY SO
+</code></pre>
+<pre><code class="language-bash">euclid_mod() {
+    local a
+    local b
+    a=$(abs &quot;$1&quot;)
+    b=$(abs &quot;$2&quot;)
+    
+    while (( b != 0 )); do
+        ((tmp = b))
+        ((b = a % b))
+        ((a = tmp))
+    done
+    printf &quot;%s&quot; &quot;$a&quot;
+}
+</code></pre>
+<pre><code class="language-d">// Euclidean algorithm using modulus
+int euclid_mod(int a, int b) {
+    int tmp;
+    a = abs(a);
+    b = abs(b);
+
+    while (b != 0) {
+        tmp = a % b;
+        a = b;
+        b = tmp;
+    }
+
+    return a;
+}
+</code></pre>
+<!-- {% sample lang="piet" %} -->
 <blockquote>
-<p><img src="code/piet/mod/euclidian_algorithm_mod_large.png" alt="" /> <img src="code/piet/mod/euclidian_algorithm_mod.png" alt="" />
-{% sample lang=&quot;ss&quot; %}
-<a href="code/scheme/euclidalg.ss">import:9-12, lang=&quot;scheme&quot;</a>
-{% sample lang=&quot;scratch&quot; %}</p>
+<p><img src="code/piet/mod/euclidian_algorithm_mod_large.png" alt="" /> <img src="code/piet/mod/euclidian_algorithm_mod.png" alt="" /></p>
 </blockquote>
+<pre><code class="language-scheme">(define (euclid-mod a b)
+    (if (zero? b)
+        a
+        (euclid-mod b (modulo a b))))
+</code></pre>
+<!-- {% sample lang="scratch" %} -->
 <p>
   <img  class="center" src="code/scratch/euclid_mod.svg" style="width:30%" />
 </p>
 # leave one line empty:
-<p>{% sample lang=&quot;ps1&quot; %}
-<a href="code/powershell/euclidean_algorithm.ps1">import:16-27, lang=&quot;powershell&quot;</a>
-{% sample lang=&quot;coco&quot; %}
-<a href="code/coconut/euclidean.coco">import:12-15, lang=&quot;coconut&quot;</a></p>
+<pre><code class="language-powershell">function Mod-Euclid($a, $b) {
+    $a = [Math]::Abs($a)
+    $b = [Math]::Abs($b)
+
+    while ($b -ne 0) {
+        $tmp = $b
+        $b = $a % $b
+        $a = $tmp
+    }
+
+    return $a
+}
+</code></pre>
+<pre><code class="language-coconut">def euclid_mod(a is int, 0) = a
+addpattern def euclid_mod(0, b is int) = b
+
+addpattern def euclid_mod(a is int, b is int) = euclid_mod(b, a % b)
+</code></pre>
 <p>Here, we set <code>b</code> to be the remainder of <code>a%b</code> and <code>a</code> to be whatever <code>b</code> was last timestep. Because of how the modulus operator works, this will provide the same information as the subtraction-based implementation, but when we show <code>a</code> and <code>b</code> as they change with time, we can see that it might take many fewer steps:</p>
 <p>
     <img  class="center" src="res/modulus.png" style="width:70%" />
@@ -351,68 +1137,1025 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/h86RzlyHfUE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
-<p>{% sample lang=&quot;vim&quot; %}
-<a href="code/viml/euclidean.vim">import, lang=&quot;vim&quot;</a>
-{% sample lang=&quot;c&quot; %}
-<a href="code/c/euclidean_example.c">import, lang=&quot;c_cpp&quot;</a>
-{% sample lang=&quot;cs&quot; %}</p>
+<pre><code class="language-vim">function s:euclid_mod(a, b)
+	let l:a = abs(a:a)
+	let l:b = abs(a:b)
+
+	while l:b != 0
+		let l:c = l:b
+		let l:b = l:a % l:b
+		let l:a = l:c
+	endwhile
+
+	return l:a
+endfunction
+
+function s:euclid_sub(a, b)
+	let l:a = abs(a:a)
+	let l:b = abs(a:b)
+
+	while l:a != l:b
+		if l:a &gt; l:b
+			let l:a -= l:b
+		else
+			let l:b -= l:a
+		endif
+	endwhile
+
+	return l:a
+endfunction
+
+let s:check_1 = s:euclid_mod(64 * 67, 64 * 71)
+let s:check_2 = s:euclid_sub(128 * 12, 128 * 77)
+
+echo 'Modulus-based euclidean algorithm result:' s:check_1
+echo 'subtraction-based euclidean algorithm result:' s:check_2
+</code></pre>
+<pre><code class="language-c_cpp">#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int euclid_mod(int a, int b) {
+    a = abs(a);
+    b = abs(b);
+
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    return a;
+}
+
+int euclid_sub(int a, int b) {
+    a = abs(a);
+    b = abs(b);
+
+    while (a != b) {
+        if (a &gt; b) {
+            a -= b;
+        } else {
+            b -= a;
+        }
+    }
+
+    return a;
+}
+
+int main() {
+    int check1 = euclid_mod(64 * 67, 64 * 81);
+    int check2 = euclid_sub(128 * 12, 128 * 77);
+
+    printf(&quot;%d\n&quot;, check1);
+    printf(&quot;%d\n&quot;, check2);
+
+    return 0;
+}
+</code></pre>
 <h5 id="euclideanalgorithmcs"><a class="header" href="#euclideanalgorithmcs">EuclideanAlgorithm.cs</a></h5>
-<p><a href="code/csharp/EuclideanAlgorithm.cs">import, lang=&quot;csharp&quot;</a></p>
+<pre><code class="language-csharp">// submitted by Julian Schacher (jspp)
+using System;
+
+namespace EuclideanAlgorithm
+{
+    public class EuclideanAlgorithm
+    {
+        public int EuclidSub(int a, int b)
+        {
+            // Math.Abs for negative number support
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+
+            while (a != b)
+            {
+                if (a &gt; b)
+                    a = a - b;
+                else
+                    b = b - a;
+            }
+
+            return a;
+        }
+
+        public int EuclidMod(int a, int b)
+        {
+            // Math.Abs for negative number support
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+
+            while (b != 0)
+            {
+                var temp = b;
+                b = a % b;
+                a = temp;
+            }
+
+            return a;
+        }
+    }
+}
+</code></pre>
 <h5 id="programcs"><a class="header" href="#programcs">Program.cs</a></h5>
-<p><a href="code/csharp/Program.cs">import, lang=&quot;csharp&quot;</a>
-{% sample lang=&quot;clj&quot; %}
-<a href="code/clojure/euclidean_example.clj">import, lang=&quot;clojure&quot;</a>
-{% sample lang=&quot;cpp&quot; %}
-<a href="code/cpp/euclidean.cpp">import, lang=&quot;c_cpp&quot;</a>
-{% sample lang=&quot;java&quot; %}
-<a href="code/java/EuclideanAlgo.java">import, lang=&quot;java&quot;</a>
-{% sample lang=&quot;kotlin&quot; %}
-<a href="code/kotlin/Euclidean.kt">import, lang=&quot;kotlin&quot;</a>
-{% sample lang=&quot;js&quot; %}
-<a href="code/javascript/euclidean_example.js">import, lang=&quot;javascript&quot;</a>
-{% sample lang=&quot;lisp&quot; %}
-<a href="code/clisp/euclidean.lisp">import, lang=&quot;lisp&quot;</a>
-{% sample lang=&quot;py&quot; %}
-<a href="code/python/euclidean_example.py">import, lang=&quot;python&quot;</a>
-{% sample lang=&quot;hs&quot; %}
-<a href="code/haskell/euclidean_algorithm.hs">import, lang=&quot;haskell&quot;</a>
-{% sample lang=&quot;rs&quot; %}
-<a href="code/rust/euclidean_example.rs">import, lang=&quot;rust&quot;</a>
-{% sample lang=&quot;ml&quot; %}
-<a href="code/ocaml/euclidean_example.ml">import, lang=&quot;ocaml&quot;</a>
-{% sample lang=&quot;go&quot; %}
-<a href="code/go/euclidean.go">import, lang=&quot;go&quot;</a>
-{% sample lang=&quot;swift&quot; %}
-<a href="code/swift/euclidean_algorithm.swift">import, lang=&quot;swift&quot;</a>
-{% sample lang=&quot;m&quot; %}
-<a href="code/matlab/euclidean.m">import, lang=&quot;matlab&quot;</a>
-{% sample lang=&quot;lua&quot; %}
-<a href="code/lua/euclidean.lua">import, lang=&quot;lua&quot;</a>
-{% sample lang=&quot;jl&quot; %}
-<a href="code/julia/euclidean.jl">import, lang=&quot;julia&quot;</a>
-{% sample lang=&quot;nim&quot; %}
-<a href="code/nim/euclid_algorithm.nim">import, lang=&quot;nim&quot; %</a>
-{% sample lang=&quot;asm-x64&quot; %}
-<a href="code/asm-x64/euclidean_example.s">import, lang=&quot;asm-x64&quot;</a>
-{% sample lang=&quot;f90&quot; %}
-<a href="code/fortran/euclidean.f90">import, lang=&quot;fortran&quot;</a>
-{% sample lang=&quot;php&quot; %}
-<a href="code/php/euclidean.php">import, lang=&quot;php&quot;</a>
-{% sample lang=&quot;factor&quot; %}
-<a href="code/factor/euclid.factor">import, lang=&quot;factor&quot;</a>
-{% sample lang=&quot;ws&quot; %}
-Here is a readable version of the algorithms with comments. First, subtraction method:
-<a href="code/whitespace/euclidian_sub_comments.ws">import, lang=&quot;whitespace&quot;</a>
-and modulo method:
-<a href="code/whitespace/euclidian_mod_comments.ws">import, lang=&quot;whitespace&quot;</a>
-{% sample lang=&quot;scala&quot; %}
-<a href="code/scala/euclidean.scala">import, lang=&quot;scala&quot;</a>
-{% sample lang=&quot;racket&quot; %}
-<a href="code/racket/euclidean_algorithm.rkt">import, lang=&quot;racket&quot;</a>
-{% sample lang=&quot;ruby&quot; %}
-<a href="code/ruby/euclidean.rb">import, lang=&quot;ruby&quot;</a>
-{% sample lang=&quot;st&quot; %}
-<a href="code/smalltalk/euclid.st">import, lang=&quot;smalltalk&quot;</a></p>
+<pre><code class="language-csharp">// submitted by Julian Schacher (jspp)
+using System;
+
+namespace EuclideanAlgorithm
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(&quot;EuclideanAlgorithm&quot;);
+            var euclideanAlgorithm = new EuclideanAlgorithm();
+            int check = euclideanAlgorithm.EuclidMod(64 * 67, 64 * 81);
+            int check2 = euclideanAlgorithm.EuclidSub(128 * 12, 128 * 77);
+
+            Console.WriteLine(check);
+            Console.WriteLine(check2);
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-clojure">;; earthfail
+(defn euclid-sub [a b]
+  (loop [i (Math/abs a) j (Math/abs b)]
+    (if (= i j)
+      i
+      (if (&gt; i j)
+        (recur (- i j) j)
+        (recur i (- j i))))))
+(defn euclid-mod [a b]
+  (loop [i (Math/abs a) j (Math/abs b)]
+    (if (zero? j)
+      i
+      (recur j (% i j)))))
+
+(print
+ (euclid-sub (* 64 67)
+             (* 64 81))
+ (euclid-mod (* 128 12)
+             (* 128 77)))
+</code></pre>
+<pre><code class="language-c_cpp">#include &lt;cmath&gt;
+#include &lt;iostream&gt;
+#include &lt;utility&gt;
+
+// Euclidean algorithm using modulus
+int euclid_mod(int a, int b) {
+  a = std::abs(a);
+  b = std::abs(b);
+
+  while (b != 0) {
+    a = std::exchange(b, a % b);
+  }
+
+  return a;
+}
+
+// Euclidean algorithm with subtraction
+int euclid_sub(int a, int b) {
+  a = std::abs(a);
+  b = std::abs(b);
+
+  while (a != b) {
+    if (a &gt; b) {
+      a -= b;
+    } else {
+      b -= a;
+    }
+  }
+
+  return a;
+}
+
+int main() {
+  auto check1 = euclid_mod(64 * 67, 64 * 81);
+  auto check2 = euclid_sub(128 * 12, 128 * 77);
+
+  std::cout &lt;&lt; check1 &lt;&lt; '\n';
+  std::cout &lt;&lt; check2 &lt;&lt; '\n';
+}
+</code></pre>
+<pre><code class="language-java">// submitted by lolatomroflsinnlos, modified by xam4lor
+public class EuclideanAlgo {
+    public static int euclidSub(int a, int b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        
+        while (a != b) {
+            if (a &gt; b) {
+                a -= b;
+            } else {
+                b -= a;
+            }
+        }
+        
+        return a;
+    }
+    
+    public static int euclidMod(int a, int b) {
+        while (b != 0) {
+            int tmp = b;
+            b = a % b;
+            a = tmp;
+        }
+
+        return a;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(euclidMod(64 * 67, 64 * 81));
+        System.out.println(euclidSub(128 * 12, 128 * 77));
+    }
+}
+</code></pre>
+<pre><code class="language-kotlin">import kotlin.math.absoluteValue
+
+fun euclidSub(a: Int, b: Int): Int {
+    var a = a.absoluteValue
+    var b = b.absoluteValue
+
+    while (a != b) {
+        if (a &gt; b) a -= b
+        else b -= a
+    }
+
+    return a
+}
+
+fun euclidMod(a: Int, b: Int): Int {
+    var a = a.absoluteValue
+    var b = b.absoluteValue
+
+    while (b != 0) {
+        val tmp = b
+        b = a % b
+        a = tmp
+    }
+
+    return a
+}
+
+fun main(args: Array&lt;String&gt;) {
+    println(euclidSub(128 * 12, 128 * 77))
+    println(euclidMod(64 * 67, 64 * 81))
+}
+</code></pre>
+<pre><code class="language-javascript">function euclidMod(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+
+  let temp;
+  while (b !== 0) {
+    temp = b;
+    b = a % b;
+    a = temp;
+  }
+
+  return a;
+}
+
+function euclidSub(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+
+  while (a !== b) {
+    if (a &gt; b) {
+      a -= a - b;
+    } else {
+      b = b - a;
+    }
+  }
+
+  return a;
+}
+
+console.log(euclidMod(64 * 67, 64 * 81));
+console.log(euclidSub(128 * 12, 128 * 77));
+</code></pre>
+<pre><code class="language-lisp">;;;; Euclidean algorithm implementation in Common Lisp
+
+(defun euclid-sub (a b)
+  &quot;Finds the greatest common divsor for any two integers&quot;
+  (defun euclid-sub* (a b)
+    &quot;Finds the greatest common divisor for any two positive integers&quot;
+    (if (eql a b)
+        a
+        (if (&gt; a b)
+            (euclid-sub* (- a b) b)
+            (euclid-sub* a (- b a)))))
+  (euclid-sub* (abs a) (abs b)))
+
+(defun euclid-mod (a b)
+  &quot;Finds the greatest common divisor for any two integers&quot;
+  (if (zerop b)
+      (abs a)
+      (euclid-mod b (mod a b))))
+
+(print (euclid-sub (* 64 67) (* 64 81)))
+(print (euclid-mod (* 128 12) (* 128 77)))
+
+;; Quick test
+(assert
+  (eql (euclid-sub (* 64 67) (* 64 81))
+       (gcd (* 64 67) (* 64 81))))
+
+(assert
+  (eql (euclid-mod (* 64 67) (* 64 81))
+       (gcd (* 64 67) (* 64 81))))
+</code></pre>
+<pre><code class="language-python">def euclid_mod(a, b):
+
+    a = abs(a)
+    b = abs(b)
+
+    while b &gt; 0:
+        a, b = b, a % b
+
+    return a
+
+def euclid_sub(a, b):
+
+    a = abs(a)
+    b = abs(b)
+
+    if a == 0:
+        return b
+    elif b == 0:
+        return a
+
+    while a != b:
+        if a &gt; b:
+            a -= b
+        else:
+            b -= a
+
+    return a
+
+if __name__==&quot;__main__&quot;:
+    print('Euclidean mod: ', euclid_mod(64 * 67, 64 * 81))
+    print('Euclidean sub: ', euclid_sub(128 * 12, 128 * 77))
+</code></pre>
+<pre><code class="language-haskell">-- Method 1: Euclid's original subtraction algorithm
+
+euclidSub :: Integer -&gt; Integer -&gt; Integer
+euclidSub a b = inner (abs a) (abs b)
+  where
+    inner x y
+      -- if a = b, then the gcd is a
+      | x == y = x
+      -- if a &lt; b: Recursively call euclidSub with the a and (b-a) as new inputs
+      | x &lt; y = euclidSub x (y - x)
+      -- otherwise: Recursively call euclidSub with the a and (b-a) as new inputs
+      | otherwise = euclidSub (x - y) y
+
+-- _______________________________________________________________________
+
+-- Method 2: Modern implemetation - The modulus method.
+
+euclidMod :: Integer -&gt; Integer -&gt; Integer
+euclidMod a b = inner (abs a) (abs b)
+  where
+    -- if a divides b, then gcd is a
+    inner x 0 = x
+    -- otherwise, recursively call inner with b and (a mod b) as new inputs
+    inner x y = inner y (x `mod` y)
+
+-- _________________________________________________________________________
+
+-- Examples
+
+main :: IO ()
+main = do
+  let chk1 = euclidMod (64 * 67) (64 * 81)
+      chk2 = euclidSub (128 * 12) (128 * 77)
+  print chk1
+  print chk2
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">// contributed by Nicole Mazzuca (ubsan)
+
+fn euclid_sub(mut a: i64, mut b: i64) -&gt; i64 {
+    a = a.abs();
+    b = b.abs();
+    while a != b {
+        if a &lt; b {
+            b -= a;
+        } else {
+            a -= b;
+        }
+    }
+
+    a
+}
+
+fn euclid_rem(mut a: i64, mut b: i64) -&gt; i64 {
+    a = a.abs();
+    b = b.abs();
+    while b != 0 {
+        let tmp = b;
+        b = a % b;
+        a = tmp;
+    }
+
+    a
+}
+
+fn main() {
+    let chk1 = euclid_rem(64 * 67, 64 * 81);
+    let chk2 = euclid_sub(128 * 12, 128 * 77);
+    println!(&quot;{}&quot;, chk1);
+    println!(&quot;{}&quot;, chk2);
+}
+</code></pre></pre>
+<pre><code class="language-ocaml">(* contributed by Nicole Mazzuca (ubsan) *)
+
+let euclid_mod a b =
+  let rec inner a = function
+  | 0 -&gt; a
+  | b -&gt; inner b (a mod b)
+  in (inner (abs a) (abs b))
+
+let euclid_sub a b =
+  let rec inner a b =
+    if a = b then
+      a
+    else if a &lt; b then
+      inner a (b - a)
+    else
+      inner (a - b) b
+  in (inner (abs a) (abs b))
+
+let chk1 = euclid_mod (64 * 67) (64 * 81)
+let chk2 = euclid_sub (128 * 12) (128 * 77)
+let () =
+  chk1 |&gt; print_int |&gt; print_newline;
+  chk2 |&gt; print_int |&gt; print_newline
+
+</code></pre>
+<pre><code class="language-go">// Submitted by Chinmaya Mahesh (chin123)
+
+package main
+
+import &quot;fmt&quot;
+
+func abs(a int) int {
+	if a &lt; 0 {
+		a = -a
+	}
+	return a
+}
+
+func euclidMod(a, b int) int {
+	a = abs(a)
+	b = abs(b)
+
+	for b != 0 {
+		a, b = b, a%b
+	}
+
+	return a
+}
+
+func euclidSub(a, b int) int {
+	a = abs(a)
+	b = abs(b)
+
+	for a != b {
+		if a &gt; b {
+			a -= b
+		} else {
+			b -= a
+		}
+	}
+
+	return a
+}
+
+func main() {
+	check1 := euclidMod(64*67, 64*81)
+	check2 := euclidSub(128*12, 128*77)
+
+	fmt.Println(check1)
+	fmt.Println(check2)
+}
+</code></pre>
+<pre><code class="language-swift">func euclidSub(a: Int, b: Int) -&gt; Int {
+    var a = abs(a)
+    var b = abs(b)
+    
+    while (a != b) {
+        if (a &gt; b) {
+            a -= b
+        } else {
+            b -= a
+        }
+    }
+    
+    return a
+}
+
+func euclidMod(a: Int, b: Int) -&gt; Int {
+    var a = abs(a);
+    var b = abs(b);
+    
+    while (b != 0) {
+        let temp = b
+        b = a % b
+        a = temp
+    }
+    
+    return a
+}
+
+func main() {
+    print(euclidMod(a: 64 * 67, b: 64 * 81))
+    print(euclidSub(a: 128 * 12, b: 128 * 77))
+}
+
+main()
+</code></pre>
+<pre><code class="language-matlab">// Submitted by Max Weinstein
+
+function gcd = euclidSub(a,b)
+    
+    a = abs(a);
+    b = abs(b);
+    
+    while a ~= b
+        if a &gt; b
+            a = a - b;
+        else
+            b = b - a;
+        end
+    end
+    
+    gcd = a;
+end
+
+function gcd = euclidMod(a,b)
+    
+    a=abs(a);
+    b=abs(b);
+    
+    while b &gt; 0
+        temp = b;
+        b = mod(a,b);
+        a = temp;
+    end
+    
+    gcd = a;
+end
+
+function euclid()
+    ['gcd(520,420) via euclidSub: ',num2str(euclidSub(520,420))]
+    ['gcd(183,244) via euclidMod: ',num2str(euclidMod(183,244))]
+end
+</code></pre>
+<pre><code class="language-lua">local function euclid_sub(a, b)
+  a = math.abs(a)
+  b = math.abs(b)
+
+  while a ~= b do
+    if a &gt; b then
+      a = a-b
+    else
+      b = b-a
+    end
+  end
+
+  return a
+end
+
+local function euclid_mod(a, b)
+  a = math.abs(a)
+  b = math.abs(b)
+
+  while b ~= 0 do
+    a, b = b, a%b
+  end
+
+  return a
+end
+
+local function main()
+  print(euclid_sub(128 * 12, 128 * 77))
+  print(euclid_mod(64 * 67, 64 * 81))
+end
+
+main()
+</code></pre>
+<pre><code class="language-julia">function euclid_mod(a::Int64, b::Int64)
+    a = abs(a)
+    b = abs(b)
+
+    while(b != 0)
+        b,a = a%b,b
+    end
+
+    return a
+end
+
+function euclid_sub(a::Int64, b::Int64)
+    a = abs(a)
+    b = abs(b)
+
+    while (a != b)
+        if (a &gt; b)
+            a -= b
+        else
+            b -= a
+        end
+    end
+
+    return a
+end
+
+function main()
+    check1 = euclid_mod(64 * 67, 64 * 81);
+    check2 = euclid_sub(128 * 12, 128 * 77);
+
+    println(&quot;Modulus-based euclidean algorithm result: $(check1)&quot;)
+    println(&quot;subtraction-based euclidean algorithm result: $(check2)&quot;)
+
+end
+
+main()
+</code></pre>
+<p>{% sample lang=&quot;nim&quot; %}
+<a href="code/nim/euclid_algorithm.nim">import, lang=&quot;nim&quot; %</a></p>
+<pre><code class="language-asm-x64">.intel_syntax noprefix
+
+.section .rodata
+  fmt:  .string &quot;%d\n&quot;
+
+.section .text
+  .global main
+  .extern printf
+
+# rdi - a
+# rsi - b
+# RET rax - gcd of a and b
+euclid_mod:
+  mov    rax, rdi           # Get abs of a
+  sar    rax, 31
+  xor    rdi, rax
+  sub    rdi, rax
+  mov    rax, rsi           # Get abs of b
+  sar    rax, 31
+  xor    rsi, rax
+  sub    rsi, rax
+  jmp    mod_check
+mod_loop:
+  xor    rdx, rdx           # Take the mod of a and b
+  mov    rax, rdi
+  div    rsi
+  mov    rdi, rsi           # Set b to the mod of a and b
+  mov    rsi, rdx           # Set a to b
+mod_check:
+  cmp    rsi, 0             # Check if b is non-zero
+  jne    mod_loop
+  mov    rax, rdi           # Return the result
+  ret
+
+euclid_sub:
+  mov    rax, rdi           # Get abs of a
+  sar    rax, 31
+  xor    rdi, rax
+  sub    rdi, rax
+  mov    rax, rsi           # Get abs of b
+  sar    rax, 31
+  xor    rsi, rax
+  sub    rsi, rax
+  jmp    check
+loop:
+  cmp    rdi, rsi           # Find which is bigger
+  jle    if_true
+  sub    rdi, rsi           # If a is bigger then a -= b
+  jmp    check
+if_true:
+  sub    rsi, rdi           # Else b -= a
+check:
+  cmp    rsi, rdi           # Check if a and b are not equal
+  jne    loop
+  mov    rax, rdi           # Return results
+  ret
+
+main:
+  mov    rdi, 4288          # Call euclid_mod
+  mov    rsi, 5184
+  call   euclid_mod
+  mov    rdi, OFFSET fmt    # Print output
+  mov    rsi, rax
+  xor    rax, rax
+  call   printf
+  mov    rdi, 1536          # Call euclid_sub
+  mov    rsi, 9856
+  call   euclid_sub
+  mov    rdi, OFFSET fmt    # Print output
+  mov    rsi, rax
+  xor    rax, rax
+  call   printf
+  xor    rax, rax           # Return 0
+  ret
+</code></pre>
+<pre><code class="language-fortran">INTEGER FUNCTION euclid_sub(a, b)
+    IMPLICIT NONE
+    INTEGER, INTENT(INOUT) :: a, b
+
+    a = ABS(a)
+    b = ABS(b)
+
+    DO WHILE (a /= b)
+    
+        IF (a &gt; b) THEN
+            a = a - b
+        ELSE
+            b = b - a
+        END IF
+    END DO
+
+    euclid_sub = a
+
+END FUNCTION euclid_sub 
+
+INTEGER FUNCTION euclid_mod(a, b)
+    IMPLICIT NONE
+    INTEGER, INTENT(INOUT) :: a, b
+    INTEGER                :: temp
+
+    DO WHILE (b &gt; 0)
+        temp = b
+        b = MODULO(a,b)
+        a = temp
+    END DO
+
+    euclid_mod = a
+
+END FUNCTION euclid_mod
+
+PROGRAM euclidean
+
+    IMPLICIT NONE
+    INTEGER :: a, b, euclid_sub, euclid_mod
+    
+    a = 24
+    b = 27
+    WRITE(*,*) 'Subtraction method: GCD is: ', euclid_sub(a, b)
+    
+    a = 24
+    b = 27
+    WRITE(*,*) 'Modulus method:     GCD is: ', euclid_mod(a, b)
+
+END PROGRAM euclidean 
+</code></pre>
+<pre><code class="language-php">&lt;?php
+declare(strict_types=1);
+
+function euclid_sub(int $a, int $b): int
+{
+    $a = abs($a);
+    $b = abs($b);
+
+    while ($a !== $b) {
+        if ($a &gt; $b) {
+            $a = $a - $b;
+        } else {
+            $b = $b - $a;
+        }
+    }
+
+    return $a;
+}
+
+function euclid_mod(int $a, int $b): int
+{
+    $a = abs($a);
+    $b = abs($b);
+
+    while ($b !== 0) {
+        list($b, $a) = [$a % $b, $b];
+    }
+
+    return $a;
+}
+
+printf('Euclidean mod: %s', euclid_mod(64 * 67, 64 * 81));
+echo PHP_EOL;
+printf('Euclidean sub: %s', euclid_sub(128 * 12, 128 * 77));
+echo PHP_EOL;
+</code></pre>
+<pre><code class="language-factor">: euclid- ( a b -- gcd )
+  [ abs ] bi@
+  [ 2dup = ]
+  [
+    ! make sure the lower number is deeper
+    2dup &gt;= [ swap ] when
+    over -
+    ! leaves us with stack { &lt;lower&gt; &lt;greater - lower&gt; }
+  ]
+  until
+  ! we have the GCD twice now, drop one
+  drop
+;
+
+: euclid% ( a b -- gcd )
+  [ abs ] bi@   ! take both absolute values
+  [ dup zero? ] ! check if `b` (on top) is 0
+  [
+    ! a b -&gt; a b b -&gt; b a b -&gt; b a%b
+    dup -rot mod
+  ]
+  until
+  ! the zero is on top, so get rid of it
+  drop
+;
+
+42 56 euclid% .  ! 14
+48 180 euclid% . ! 12
+
+42 56 euclid- .  ! 14
+48 180 euclid- . ! 12
+
+</code></pre>
+<pre><code class="language-whitespace">Reading the input: a, b
+[SPACE][SPACE][SPACE][LF]            push 0
+[SPACE][SPACE][SPACE][TAB][LF]       push 1
+[TAB][LF][TAB][TAB]                  readi
+[TAB][LF][TAB][TAB]                  readi
+
+Loop: a, b =&gt; a, b-a
+[LF][SPACE][SPACE][LF]               label_0:
+[SPACE][SPACE][SPACE][LF]              push 0
+[TAB][TAB][TAB]                        retrieve
+[SPACE][SPACE][SPACE][TAB][LF]         push 1
+[TAB][TAB][TAB]                        retrieve
+[TAB][SPACE][SPACE][TAB]               sub
+[SPACE][LF][SPACE]                     dup
+[LF][TAB][SPACE][TAB][LF]              jmp zero label_1
+[SPACE][LF][SPACE]                     dup
+[LF][TAB][TAB][TAB][SPACE][LF]         jmp neg label_2
+[SPACE][SPACE][SPACE][LF]              push 0
+[SPACE][LF][TAB]                       swap
+[TAB][TAB][SPACE]                      store
+[LF][SPACE][LF][LF]                    jmp label_0
+
+Exit when a=b
+[LF][SPACE][SPACE][TAB][LF]          label_1:
+[SPACE][SPACE][SPACE][LF]              push 0
+[TAB][TAB][TAB]                        retrieve
+[TAB][LF][SPACE][TAB]                  printi
+[LF][LF][LF]                           end
+
+If a&gt;b: a, b =&gt; a-b, b
+[LF][SPACE][SPACE][TAB][SPACE][LF]   label_2:
+[SPACE][SPACE][SPACE][LF]              push 0
+[SPACE][LF][TAB]                       swap
+[TAB][SPACE][SPACE][TAB]               sub
+[SPACE][SPACE][SPACE][TAB][LF]         push 1
+[SPACE][LF][TAB]                       swap
+[TAB][TAB][SPACE]                      store
+[LF][SPACE][LF][LF]                    jmp label_0
+</code></pre>
+<pre><code class="language-whitespace">Reading the input: a, b
+[SPACE][SPACE][SPACE][LF]       push 0
+[SPACE][SPACE][SPACE][TAB][LF]  push 1
+[TAB][LF][TAB][TAB]             readi
+[TAB][LF][TAB][TAB]             readi
+
+Loop: a, b =&gt; b, a%b
+[LF][SPACE][SPACE][LF]          label_0:
+[SPACE][SPACE][SPACE][LF]         push 0
+[TAB][TAB][TAB]                   retrieve
+[SPACE][LF][SPACE]                dup
+[LF][TAB][SPACE][TAB][LF]         jmp zero label_1
+[SPACE][SPACE][SPACE][TAB][LF]    push 1
+[TAB][TAB][TAB]                   retrieve
+[SPACE][LF][TAB]                  swap
+[TAB][SPACE][TAB][TAB]            mod
+[SPACE][SPACE][SPACE][LF]         push 0
+[TAB][TAB][TAB]                   retrieve
+[SPACE][SPACE][SPACE][TAB][LF]    push 1
+[SPACE][LF][TAB]                  swap
+[TAB][TAB][SPACE]                 store
+[SPACE][SPACE][SPACE][LF]         push 0
+[SPACE][LF][TAB]                  swap
+[TAB][TAB][SPACE]                 store
+[LF][SPACE][LF][LF]               jmp label_0
+
+Exit when b=0
+[LF][SPACE][SPACE][TAB][LF]     label_1:
+[SPACE][SPACE][SPACE][TAB][LF]    push 1
+[TAB][TAB][TAB]                   retrieve
+[TAB][LF][SPACE][TAB]             printi
+[LF][LF][LF][LF]                  end
+</code></pre>
+<pre><code class="language-scala">object Euclid {
+
+  def euclid_sub(a: Int, b: Int): Int =
+    (Math.abs(a), Math.abs(b)) match {
+      case (0, _) | (_, 0) =&gt; 0
+      case (x, y) if x &lt; y =&gt; euclid(x, y - x)
+      case (x, y) if x &gt; y =&gt; euclid(x - y, y)
+      case _ =&gt; a
+    }
+
+  def euclid_mod(a: Int, b: Int): Int =
+    (Math.abs(a), Math.abs(b)) match {
+      case (_, 0) =&gt; a
+      case (a, b) =&gt; euclid_mod(b, a % b)
+    }
+
+  def main(args: Array[String]): Unit = {
+    println(euclid_sub(151 * 899, 151 * 182))
+    println(euclid_mod(151 * 899, 151 * 182))
+  }
+
+}
+</code></pre>
+<pre><code class="language-racket">#lang racket
+
+(define (euclid_sub a b)
+  (local ((define (euclid_sub* x y)
+          (if (= x y)
+              x
+              (if (&gt; x y)
+                  (euclid_sub* (- x y) y)
+                  (euclid_sub* x (- y x))
+                  )
+              )
+          )) (euclid_sub* (abs a) (abs b))
+    )
+  )
+
+(define (euclid_mod a b)
+  (local ((define (euclid_mod* a b)
+           (if (= 0 b)
+               (abs a)
+               (euclid_mod* b (modulo a b))
+               )
+           )) (euclid_mod* a b)
+    )
+  )
+
+(displayln (euclid_sub (* 64 67) (* 64 81)))
+(displayln (euclid_mod (* 128 12) (* 128 77)))
+</code></pre>
+<pre><code class="language-ruby">def gcd_mod(a, b)
+	a = a.abs
+	b = b.abs
+	a, b = b, a%b until b.zero?
+	a
+end
+ 
+def gcd_minus(a, b)
+	a = a.abs
+	b = b.abs
+	until a == b
+		if a &gt; b
+			a -= b
+		else
+			b -= a
+		end
+	end
+	a
+end
+ 
+p gcd_mod(12 * 6, 12 * 4) #=&gt; 12
+p gcd_mod(9 * 667, 9 * 104) #=&gt; 9
+
+p gcd_minus(12 * 6, 12 * 4) #=&gt; 12
+p gcd_minus(9 * 667, 9 * 104) #=&gt; 9
+</code></pre>
+<pre><code class="language-smalltalk">Integer&gt;&gt;euclidSub: secondNumber
+    &quot;Euclidean algorithm with subtraction&quot;
+    | a b |
+    a := self abs.
+    b := secondNumber abs.
+    [ a == b ] whileFalse: [ 
+        a &gt; b ifTrue: [ 
+            a := a - b.
+        ] ifFalse: [ 
+            b := b - a.
+        ].
+    ].
+    ^a.
+
+Integer&gt;&gt;euclidMod: secondNumber
+    &quot;Euclidean algorithm with modulus.&quot;
+    | a b oldB |
+    a := self abs.
+    b := secondNumber abs.
+    [ b == 0 ] whileFalse: [ 
+        oldB := b.
+        b := a % b.
+        a := oldB.
+    ].
+    ^a.
+
+Transcript show: ((64 * 67) euclidSub: (64 * 81)).
+Transcript cr.
+Transcript show: ((128 * 12) euclidMod: (128 * 77)).
+</code></pre>
 <pre><code class="language-emojicode">🐇 ⬆️ 🍇
   🐇 ❗️ 🔼 a 🔢 b 🔢 ➡️ 🔢 🍇
     💭 Use 🏧 (returns the absolute value) to support negative numbers.
@@ -451,36 +2194,332 @@ and modulo method:
   😀 🔡 ️⏫🐇⬆️ 🤜128 ✖️ 12🤛 🤜128 ✖️ 77🤛 ❗️ 10 ❗️❗️
 🍉
 </code></pre>
-<p>{% sample lang=&quot;lolcode&quot; %}
-<a href="code/lolcode/euclid.lol">import, lang=&quot;LOLCODE&quot;</a>
-{% sample lang=&quot;bash&quot; %}
-<a href="code/bash/euclid.bash">import, lang=&quot;bash&quot;</a>
-{% sample lang=&quot;d&quot; %}
-<a href="code/d/euclidean_algorithm.d">import, lang=&quot;d&quot;</a>
-{% sample lang=&quot;piet&quot; %}
-A text version of the program is provided for both versions.</p>
+<pre><code class="language-LOLCODE">HAI 1.2
+    HOW IZ I ABZ YR NUM
+        DIFFRINT NUM AN BIGGR OF NUM AN 0, O RLY?
+            YA RLY, FOUND YR DIFF OF 0 AN NUM
+            NO WAI, FOUND YR NUM
+        OIC
+    IF U SAY SO
+
+    HOW IZ I UKLIDMOD YR NUM1 AN YR NUM2
+        NUM1 R I IZ ABZ YR NUM1 MKAY
+        NUM2 R I IZ ABZ YR NUM2 MKAY
+
+        IM IN YR LOOP 
+            BOTH SAEM NUM2 AN 0, O RLY?
+                YA RLY, FOUND YR NUM1
+            OIC
+
+            I HAS A TMP ITZ NUM2
+            NUM2 R MOD OF NUM1 AN NUM2
+            NUM1 R TMP
+        IM OUTTA YR LOOP
+
+    IF U SAY SO
+
+    HOW IZ I UKLIDSUP YR NUM1 AN YR NUM2
+        NUM1 R I IZ ABZ YR NUM1 MKAY
+        NUM2 R I IZ ABZ YR NUM2 MKAY
+
+        IM IN YR LOOP 
+            BOTH SAEM NUM1 AN NUM2, O RLY?
+                YA RLY, FOUND YR NUM1
+            OIC        
+
+            DIFFRINT NUM1 AN SMALLR OF NUM1 AN NUM2, O RLY?
+                YA RLY, NUM1 R DIFF OF NUM1 AN NUM2
+                NO WAI, NUM2 R DIFF OF NUM2 AN NUM1
+            OIC
+        IM OUTTA YR LOOP
+
+    IF U SAY SO
+
+    I HAS A CHECK1 ITZ I IZ UKLIDMOD YR PRODUKT OF 64 AN 67 AN YR PRODUKT OF 64 AN 81 MKAY
+    I HAS A CHECK2 ITZ I IZ UKLIDSUP YR PRODUKT OF 128 AN 12  AN YR PRODUKT OF 128 AN 77 MKAY
+
+    VISIBLE CHECK1
+    VISIBLE CHECK2
+KTHXBYE
+</code></pre>
+<pre><code class="language-bash">#!/usr/bin/env bash
+abs() {
+    local ret=$1
+    if (( ret &lt; 0 )); then
+        ((ret *= -1))
+    fi
+    printf &quot;%s&quot; &quot;$ret&quot;
+} 
+
+euclid_mod() {
+    local a
+    local b
+    a=$(abs &quot;$1&quot;)
+    b=$(abs &quot;$2&quot;)
+    
+    while (( b != 0 )); do
+        ((tmp = b))
+        ((b = a % b))
+        ((a = tmp))
+    done
+    printf &quot;%s&quot; &quot;$a&quot;
+}
+
+euclid_sub() {
+    local a
+    local b
+    a=$(abs &quot;$1&quot;)
+    b=$(abs &quot;$2&quot;)
+    
+    while (( a != b )); do
+        if (( a &gt; b )); then
+            ((a -= b))
+        else
+            ((b -= a))
+        fi
+    done
+    printf &quot;%s&quot; &quot;$a&quot;
+}
+
+result=$(euclid_mod $((64 * 67)) $((64 * 81)))
+echo &quot;$result&quot;
+result=$(euclid_sub $((128 * 12)) $((128 * 77)))
+echo &quot;$result&quot;
+</code></pre>
+<pre><code class="language-d">import std.stdio;
+import std.math;
+
+// Euclidean algorithm using modulus
+int euclid_mod(int a, int b) {
+    int tmp;
+    a = abs(a);
+    b = abs(b);
+
+    while (b != 0) {
+        tmp = a % b;
+        a = b;
+        b = tmp;
+    }
+
+    return a;
+}
+
+// Euclidean algorithm with subtraction
+int euclid_sub(int a, int b) {
+    a = abs(a);
+    b = abs(b);
+
+    while (a != b) {
+        if (a &gt; b) {
+            a -= b;
+        } else {
+            b -= a;
+        }
+    }
+
+    return a;
+}
+
+void main()
+{
+    auto check1 = euclid_mod(64 * 67, 64 * 81);
+    auto check2 = euclid_sub(128 * 12, 128 * 77);
+
+    writeln(&quot;Modulus-based euclidean algorithm result: &quot;, check1);
+    writeln(&quot;Subtraction-based euclidean algorithm result: &quot;, check2);
+}
+</code></pre>
+<p>A text version of the program is provided for both versions.</p>
 <h4 id="subtraction"><a class="header" href="#subtraction">Subtraction</a></h4>
 <blockquote>
 <p><img src="code/piet/subtract/euclidian_algorithm_subtract_large.png" alt="" /> <img src="code/piet/subtract/euclidian_algorithm_subtract.png" alt="" /></p>
 </blockquote>
-<p><a href="code/piet/euclidian_algorithm.piet">import:23-107</a></p>
+<pre><code class="language-piet">COMMAND                 STATE OF STACK
+in(number)              A           // Take A as an input
+duplicate               AA          // Start to take the absolute value of A
+push 1                  1AA
+duplicate               11AA
+subtract                0AA
+greater                 0/1A        // 1 if A &gt; 0, 0 if A &lt;= 0
+not                     1/0A        // 0 if A &gt; 0, 1 if A &lt;= 0
+push 1                  1 1/0 A
+push 3                  31 1/0 A
+subtract                -2 1/0 A
+multiply                -2/0 A
+push 1                  1 -2/0 A
+add                     -1/1 A
+multiply                A           // A should now be an absolute value
+
+in(number)              BA          // Take B as an input
+duplicate               BBA         // Start to take the absolute value of B
+push 1                  1BBA
+duplicate               11BBA
+subtract                0BBA
+greater                 0/1BA        // 1 if B &gt; 0, 0 if B &lt;= 0
+not                     1/0BA        // 0 if B &gt; 0, 1 if B &lt;= 0
+push 1                  1 1/0 BA
+push 3                  31 1/0 BA
+subtract                -2 1/0 BA
+multiply                -2/0 BA
+push 1                  1 -2/0 BA
+add                     -1/1 BA
+multiply                BA          // B should now be an absolute value
+
+// Start of the main loop while a ≠ b 
+duplicate               BBA
+push 3                  3BBA
+push 2                  23BBA
+roll                    ABB
+duplicate               AABB
+push 4                  4AABB
+push 1                  14AABB
+roll                    ABBA
+subtract                0/x BA
+not                     1/0 BA      // 1 if a = b and 0 if a ≠ b
+not                     0/1 BA      // 1 if a ≠ b and 0 if a = b
+pointer                 BA          // If a ≠ b, the DP should change one clockwise, otherwise, go straight ahead.
+
+    // Go left if a ≠ b (DP changed one clockwise)
+    duplicate               BBA
+    push 3                  3BBA
+    push 2                  23BBA
+    roll                    ABB
+    duplicate               AABB
+    push 4                  4AABB
+    push 1                  14AABB
+    roll                    ABBA
+    push 2                  2ABBA
+    push 1                  12ABBA
+    roll                    BABA
+    greater                 0/1 BA          // A &gt; B; 1 if true; 0 if false
+    pointer                 BA              // If A &gt; B, DP goes one clockwise, otherwise, DP stays the same. 
+
+        // If A &gt; B (DP has changed 1 clockwise)
+        duplicate               BBA
+        push 3                  3BBA
+        push 1                  13BBA
+        roll                    BAB
+        subtract                AB              // A = A - B
+        push 2                  2AB
+        push 1                  12AB
+        roll                    BA
+        // Go back to start of loop
+
+        // If B &gt; A (DP stayed the same)
+        push 2                  2BA
+        push 1                  12BA
+        roll                    AB
+        duplicate               AAB
+        push 3                  3AAB
+        push 1                  13AAB
+        roll                    ABA
+        subtract                BA              // B = B - A
+        // Go back to start of loop
+
+// Go down if a = b (end of while loop)
+pop                     A
+out(number)             -               // Print out A when done.
+</code></pre>
 <h4 id="modulo"><a class="header" href="#modulo">Modulo</a></h4>
 <blockquote>
 <p><img src="code/piet/mod/euclidian_algorithm_mod_large.png" alt="" /> <img src="code/piet/mod/euclidian_algorithm_mod.png" alt="" /></p>
 </blockquote>
-<p><a href="code/piet/euclidian_algorithm.piet">import:126-146</a>
-{% sample lang=&quot;ss&quot; %}
-<a href="code/scheme/euclidalg.ss">import:, lang=&quot;scheme&quot;</a>
-{% sample lang=&quot;scratch&quot; %}
-The code snippets were taken from this <a href="https://scratch.mit.edu/projects/278727055/">Scratch project</a></p>
+<pre><code class="language-piet">COMMAND                 STATE OF STACK
+in(number)              A
+in(number)              BA
+
+//  Start of loop
+duplicate               BBA
+not                     0/1 BA
+not                     1/0 BA
+pointer                 BA
+
+    // Go down if b ≠ 0
+    duplicate               TBA
+    push 3                  3TBA                  
+    push 1                  13TBA
+    roll                    BAT
+    mod                     BA          // b = a mod b; a = t
+    // Go back to the start of the loop
+
+// Go right if b = 0
+pop                     A
+out(number)             -               // Print out A when done.
+</code></pre>
+<pre><code class="language-scheme">(define (euclid-sub a b)
+    (cond                                                                                                                                                                                                                                                                         
+        [(or (negative? a)(negative? b))(euclid-sub (abs a)(abs b))]                                                                                                                                                                                                              
+        [(eq? a b) a]
+        [(&gt; a b)(euclid-sub(- a b) b)]
+        [else
+            (euclid-sub a (- b a))]))
+
+(define (euclid-mod a b)
+    (if (zero? b)
+        a
+        (euclid-mod b (modulo a b))))
+
+(display (euclid-mod (* 64 67) (* 64 81))) (newline)
+(display (euclid-sub (* 128 12) (* 128 77))) (newline)
+
+</code></pre>
+<p>
+The code snippets were taken from this [Scratch project](https://scratch.mit.edu/projects/278727055/)
+</p>
 <p>
   <img  class="center" src="code/scratch/main.svg" style="width:30%" />
 </p>
-# leave one line empty:
-<p>{% sample lang=&quot;ps1&quot; %}
-<a href="code/powershell/euclidean_algorithm.ps1">import, lang=&quot;powershell&quot;</a>
-{% sample lang=&quot;coco&quot; %}
-<a href="code/coconut/euclidean.coco">import, lang=&quot;coconut&quot;</a></p>
+<pre><code class="language-powershell">function Sub-Euclid($a, $b) {
+    $a = [Math]::Abs($a)
+    $b = [Math]::Abs($b)
+
+    while ($a -ne $b) {
+        if ($a -gt $b) {
+            $a = $a - $b
+        } else {
+            $b = $b - $a
+        }
+    }
+    
+    return $a
+}
+
+function Mod-Euclid($a, $b) {
+    $a = [Math]::Abs($a)
+    $b = [Math]::Abs($b)
+
+    while ($b -ne 0) {
+        $tmp = $b
+        $b = $a % $b
+        $a = $tmp
+    }
+
+    return $a
+}
+
+Write-Host &quot;Subtraction-based euclidean algorithm result: $(Mod-Euclid $(64 * 67) $(64 * 81))&quot;
+Write-Host &quot;Modulus-based euclidean algorithm result: $(Sub-Euclid $(128 * 12) $(128 * 77))&quot;
+</code></pre>
+<pre><code class="language-coconut">def euclid_sub(a is int, 0) = a
+addpattern def euclid_sub(0, b is int) = b
+
+addpattern def euclid_sub(a is int, b is int):
+    if a &lt; b:
+        return euclid_sub(a, b - a)
+    elif b &lt; a:
+        return euclid_sub(a - b, b)
+    return a
+
+
+def euclid_mod(a is int, 0) = a
+addpattern def euclid_mod(0, b is int) = b
+
+addpattern def euclid_mod(a is int, b is int) = euclid_mod(b, a % b)
+
+if __name__ == '__main__':
+    print('Euclidean mod:', euclid_mod(64 * 67, 64 * 81))
+    print('Euclidean sub:', euclid_sub(128 * 12, 128 * 77))
+</code></pre>
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
 <p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>

@@ -606,8 +606,30 @@ cooley_tukey_end:
 cooley_tukey_return:
   ret
 </code></pre>
-<p>{% sample lang=&quot;js&quot; %}
-<a href="code/javascript/fft.js">import:17-39, lang=&quot;javascript&quot;</a></p>
+<pre><code class="language-javascript">function cooley_tukey(x) {
+  const N = x.length;
+  const half = Math.floor(N / 2);
+  if (N &lt;= 1) {
+    return x;
+  }
+
+  // Extract even and odd indexed elements with remainder mod 2
+  const evens = cooley_tukey(x.filter((_, idx) =&gt; !(idx % 2)));
+  const odds = cooley_tukey(x.filter((_, idx) =&gt; idx % 2));
+
+  // Fill an array with null values
+  let temp = Array(N).fill(null);
+
+  for (let i = 0; i &lt; half; i++) {
+    const arg = odds[i].mul(new Complex(0, (-2 * Math.PI * i) / N).exp());
+
+    temp[i] = evens[i].add(arg);
+    temp[i + half] = evens[i].sub(arg);
+  }
+
+  return temp;
+}
+</code></pre>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {

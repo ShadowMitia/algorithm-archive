@@ -308,8 +308,21 @@ verlet acc dt (xOld, _, _, _) (x, _, a, t) = (x', v', a', t + dt)
     END DO
 END SUBROUTINE verlet
 </code></pre>
-<p>{% sample lang=&quot;ruby&quot; %}
-<a href="code/ruby/verlet.rb">import:1-14, lang=&quot;ruby&quot;</a></p>
+<pre><code class="language-ruby">def verlet(pos, acc, dt)
+
+    prev_pos = pos
+    time = 0
+    while pos &gt; 0 do
+        time += dt
+        temp_pos = pos
+        pos = pos*2 - prev_pos + acc * dt * dt
+        prev_pos = temp_pos
+    end
+
+   return time
+
+end
+</code></pre>
 <pre><code class="language-go">func verlet(pos, acc, dt float64) (time float64) {
 	prevPos := pos
 	time = 0
@@ -571,8 +584,24 @@ stormerVerlet acc dt (xOld, _, _, _) (x, _, a, t) = (x', v', a', t + dt)
     END DO
 END SUBROUTINE stormer_verlet 
 </code></pre>
-<p>{% sample lang=&quot;ruby&quot; %}
-<a href="code/ruby/verlet.rb">import:16-32, lang=&quot;ruby&quot;</a></p>
+<pre><code class="language-ruby">def stormer_verlet(pos, acc, dt)
+
+    prev_pos = pos
+    vel = 0
+    time = 0
+    while pos &gt; 0 do
+        time += dt
+        temp_pos = pos
+        pos = pos*2 - prev_pos + acc * dt * dt
+        prev_pos = temp_pos
+
+        vel += acc*dt
+    end
+
+   return time, vel
+
+end
+</code></pre>
 <pre><code class="language-go">func stormerVerlet(pos, acc, dt float64) (time, vel float64) {
 	prevPos := pos
 	time, vel = 0, 0
@@ -816,8 +845,20 @@ velocityVerlet acc dt (xOld, _, aOld, _) (x, v, a, t) = (x', v', a', t + dt)
     END DO
 END SUBROUTINE velocity_verlet 
 </code></pre>
-<p>{% sample lang=&quot;ruby&quot; %}
-<a href="code/ruby/verlet.rb">import:34-46, lang=&quot;ruby&quot;</a></p>
+<pre><code class="language-ruby">def velocity_verlet(pos, acc, dt)
+
+    vel = 0
+    time = 0
+    while pos &gt; 0 do
+        time += dt
+        pos += vel*dt + 0.5*acc * dt * dt
+        vel += acc*dt
+    end
+
+   return time, vel
+
+end
+</code></pre>
 <pre><code class="language-go">func velocityVerlet(pos, acc, dt float64) (time, vel float64) {
 	time, vel = 0, 0
 
@@ -1646,8 +1687,68 @@ PROGRAM verlet_integration
 
 END PROGRAM verlet_integration
 </code></pre>
-<p>{% sample lang=&quot;ruby&quot; %}
-<a href="code/ruby/verlet.rb">import, lang=&quot;ruby&quot;</a></p>
+<pre><code class="language-ruby">def verlet(pos, acc, dt)
+
+    prev_pos = pos
+    time = 0
+    while pos &gt; 0 do
+        time += dt
+        temp_pos = pos
+        pos = pos*2 - prev_pos + acc * dt * dt
+        prev_pos = temp_pos
+    end
+
+   return time
+
+end
+
+def stormer_verlet(pos, acc, dt)
+
+    prev_pos = pos
+    vel = 0
+    time = 0
+    while pos &gt; 0 do
+        time += dt
+        temp_pos = pos
+        pos = pos*2 - prev_pos + acc * dt * dt
+        prev_pos = temp_pos
+
+        vel += acc*dt
+    end
+
+   return time, vel
+
+end
+
+def velocity_verlet(pos, acc, dt)
+
+    vel = 0
+    time = 0
+    while pos &gt; 0 do
+        time += dt
+        pos += vel*dt + 0.5*acc * dt * dt
+        vel += acc*dt
+    end
+
+   return time, vel
+
+end
+
+puts &quot;[#]\nTime for Verlet integration is:&quot;
+p verlet(5.0, -10, 0.01)
+
+time, vel = stormer_verlet(5.0, -10, 0.01)
+puts &quot;[#]\nTime for Stormer Verlet integration is:&quot;
+p time
+puts &quot;[#]\nVelocity for Stormer Verlet integration is:&quot;
+p vel
+
+time, vel = velocity_verlet(5.0, -10, 0.01)
+puts &quot;[#]\nTime for velocity Verlet integration is:&quot;
+p time
+puts &quot;[#]\nVelocity for velocity Verlet integration is:&quot;
+p vel
+</code></pre>
 <pre><code class="language-go">package main
 
 import &quot;fmt&quot;
@@ -1900,8 +2001,69 @@ fun main(args: Array&lt;String&gt;) {
     println(&quot;${velocityVerlet.vel}&quot;)
 }
 </code></pre>
-<p>{% sample lang=&quot;nim&quot; %}
-<a href="code/nim/verlet.nim">import, lang=&quot;nim&quot;</a></p>
+<pre><code class="language-nim">func verlet(pos_in, acc, dt: float): float =
+  var
+    pos: float = pos_in
+    prevPos: float = pos
+    time: float = 0.0
+    tempPos: float
+
+  while pos &gt; 0.0:
+    time += dt
+    tempPos = pos
+    pos = pos * 2 - prevPos + acc * dt * dt
+    prevPos = tempPos
+
+  time
+
+func stormerVerlet(pos_in, acc, dt: float): (float, float) =
+  var
+    pos: float = pos_in
+    prevPos: float = pos
+    time: float = 0.0
+    vel: float = 0.0
+    tempPos: float
+
+  while pos &gt; 0.0:
+    time += dt
+    tempPos = pos
+    pos = pos * 2 - prevPos + acc * dt * dt
+    prevPos = tempPos
+
+    vel += acc * dt
+
+  (time, vel)
+
+func velocityVerlet(pos_in, acc, dt: float): (float, float) =
+  var
+    pos: float = pos_in
+    time: float = 0.0
+    vel: float = 0.0
+
+  while pos &gt; 0.0:
+    time += dt
+    pos += vel * dt + 0.5 * acc * dt * dt
+    vel += acc * dt
+
+  (time, vel)
+
+when isMainModule:
+  let timeV = verlet(5.0, -10.0, 0.01)
+  echo &quot;[#]\nTime for Verlet integration is:&quot;
+  echo timeV
+
+  let (timeSV, velSV) = stormerVerlet(5.0, -10.0, 0.01)
+  echo &quot;[#]\nTime for Stormer Verlet integration is:&quot;
+  echo timeSV
+  echo &quot;[#]\nVelocity for Stormer Verlet integration is:&quot;
+  echo velSV
+
+  let (timeVV, velVV) = velocityVerlet(5.0, -10.0, 0.01)
+  echo &quot;[#]\nTime for velocity Verlet integration is:&quot;
+  echo timeVV
+  echo &quot;[#]\nVelocity for velocity Verlet integration is:&quot;
+  echo velVV
+</code></pre>
 <pre><code class="language-lisp">;;;; Verlet integration implementation in Common Lisp
 
 (defun verlet (pos acc dt)

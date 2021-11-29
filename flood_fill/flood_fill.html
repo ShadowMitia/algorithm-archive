@@ -285,10 +285,41 @@ end
   return neighbors;
 }
 </code></pre>
-<p>{% sample lang=&quot;py&quot; %}
-<a href="code/python/flood_fill.py">import:10-25, lang=&quot;python&quot;</a>
-{% sample lang=&quot;coco&quot; %}
-<a href="code/coconut/flood_fill.coco">import:15-19, lang=&quot;coconut&quot;</a></p>
+<pre><code class="language-python">def find_neighbors(canvas, p, old_val, new_val):
+    # north, south, east, west neighbors
+    possible_neighbors = [
+        Point(p.x, p.y+1),
+        Point(p.x+1, p.y),
+        Point(p.x-1, p.y),
+        Point(p.x, p.y-1)
+    ]
+
+    # exclude the neighbors that go out of bounds and should not be colored
+    neighbors = []
+    for possible_neighbor in possible_neighbors:
+        if inbounds(canvas.shape, possible_neighbor):
+            if canvas[possible_neighbor] == old_val:
+                neighbors.append(possible_neighbor)
+    return neighbors
+``````python
+def find_neighbors(canvas, p, old_val, new_val):
+    # north, south, east, west neighbors
+    possible_neighbors = [
+        Point(p.x, p.y+1),
+        Point(p.x+1, p.y),
+        Point(p.x-1, p.y),
+        Point(p.x, p.y-1)
+    ]
+
+    # exclude the neighbors that go out of bounds and should not be colored
+    neighbors = []
+    for possible_neighbor in possible_neighbors:
+        if inbounds(canvas.shape, possible_neighbor):
+            if canvas[possible_neighbor] == old_val:
+                neighbors.append(possible_neighbor)
+    return neighbors
+</code></pre>
+<p><a href="code/coconut/flood_fill.coco">import:15-19, lang=&quot;coconut&quot;</a></p>
 <p>This code is set up to return a vector of elements to then use for subsequent sections.</p>
 <h3 id="depth-first-node-traversal"><a class="header" href="#depth-first-node-traversal">Depth-first node traversal</a></h3>
 <p>Now that we have the ability to find all neighboring elements, we can proceed to traverse through those nodes in the most straightforward way: recursion.</p>
@@ -344,8 +375,16 @@ end
   }
 }
 </code></pre>
-<p>{% sample lang=&quot;py&quot; %}
-<a href="code/python/flood_fill.py">import:55-63, lang=&quot;python&quot;</a></p>
+<pre><code class="language-python">def recursive_fill(canvas, p, old_val, new_val):
+    if old_val == new_val:
+        return
+
+    canvas[p] = new_val
+
+    neighbors = find_neighbors(canvas, p, old_val, new_val)
+    for neighbor in neighbors:
+        recursive_fill(canvas, neighbor, old_val, new_val)
+</code></pre>
 <pre><code class="language-coconut">        return
 
     canvas[location] = new_value
@@ -436,8 +475,17 @@ end
   }
 }
 </code></pre>
-<p>{% sample lang=&quot;py&quot; %}
-<a href="code/python/flood_fill.py">import:27-36, lang=&quot;python&quot;</a></p>
+<pre><code class="language-python">def stack_fill(canvas, p, old_val, new_val):
+    if old_val == new_val:
+        return
+
+    stack = [p]
+
+    while stack:
+        cur_loc = stack.pop()
+        canvas[cur_loc] = new_val
+        stack += find_neighbors(canvas, cur_loc, old_val, new_val)
+</code></pre>
 <pre><code class="language-coconut">def stack_fill(canvas, location is Point, old_value, new_value):
     if new_value == old_value or not inbounds(canvas.shape, location):
         return
@@ -557,8 +605,23 @@ end
   }
 }
 </code></pre>
-<p>{% sample lang=&quot;py&quot; %}
-<a href="code/python/flood_fill.py">import:38-53, lang=&quot;python&quot;</a></p>
+<pre><code class="language-python">def queue_fill(canvas, p, old_val, new_val):
+    if old_val == new_val:
+        return
+
+    q = Queue()
+    q.put(p)
+
+    canvas[p] = new_val
+
+    while not q.empty():
+        cur_loc = q.get()
+        neighbors = find_neighbors(canvas, cur_loc, old_val, new_val)
+
+        for neighbor in neighbors:
+            canvas[neighbor] = new_val
+            q.put(neighbor)
+</code></pre>
 <pre><code class="language-coconut">    if new_value == old_value or not inbounds(canvas.shape, location):
         return
 
@@ -1178,9 +1241,121 @@ int main() {
 }
 </code></pre>
 <p>{% sample lang=&quot;py&quot; %}
-<a href="code/python/flood_fill.py">import:, lang=&quot;python&quot;</a>
-{% sample lang=&quot;coco&quot; %}
-<a href="code/coconut/flood_fill.coco">import, lang=&quot;coconut&quot;</a></p>
+<a href="code/python/flood_fill.py">import:, lang=&quot;python&quot;</a></p>
+<pre><code class="language-coconut">from collections import deque
+import numpy as np
+
+
+data Point(x, y):
+    def __add__(self, other is Point) = Point(self.x + other.x, self.y + other.y)
+
+
+# This function is necessary, because negative indices wrap around the
+# array in Coconut.
+def inbounds(canvas_shape, location is Point) =
+    min(location) &gt;= 0 and location.x &lt; canvas_shape[0] and location.y &lt; canvas_shape[1]
+
+
+def find_neighbours(canvas, location is Point, old_value):
+    possible_neighbours = ((Point(0, 1), Point(1, 0), Point(0, -1), Point(-1, 0))
+                          |&gt; map$(location.__add__))
+
+    yield from possible_neighbours |&gt; filter$(x -&gt; (inbounds(canvas.shape, x)
+                                                    and canvas[x] == old_value))
+
+
+def stack_fill(canvas, location is Point, old_value, new_value):
+    if new_value == old_value or not inbounds(canvas.shape, location):
+        return
+
+    stack = [location]
+
+    while stack:
+        current_location = stack.pop()
+        if canvas[current_location] == old_value:
+            canvas[current_location] = new_value
+            stack.extend(find_neighbours(canvas, current_location, old_value))
+
+
+def queue_fill(canvas, location is Point, old_value, new_value):
+    if new_value == old_value or not inbounds(canvas.shape, location):
+        return
+
+    queue = deque()
+    queue.append(location)
+
+    canvas[location] = new_value
+
+    while queue:
+        current_location = queue.popleft()
+        for neighbour in find_neighbours(canvas, current_location, old_value):
+            canvas[neighbour] = new_value
+            queue.append(neighbour)
+
+
+def recursive_fill(canvas, location is Point, old_value, new_value):
+    if new_value == old_value or not inbounds(canvas.shape, location):
+        return
+
+    canvas[location] = new_value
+    # consume is important here, because otherwise, the recursive function is not called again
+    consume(
+        find_neighbours(canvas, location, old_value)
+        |&gt; map$(recursive_fill$(canvas, ?, old_value, new_value))
+    )
+
+
+def test_grid(initial_canvas, final_canvas, function):
+    canvas = initial_canvas.copy() # ensure the initial_canvas is unchanged
+    function(canvas)
+    return (canvas == final_canvas).all()
+
+def test():
+    from collections import namedtuple
+
+    TestResults = namedtuple('TestResults', 'passes failures')
+    pass_count = failure_count = 0
+
+    grid = np.zeros((5, 5))
+    grid[2,:] = 1
+    solution_grid = np.zeros((5, 5))
+    solution_grid[:3,] = 1
+
+    starting_location = Point(0, 0)
+
+    recursive_test_func = recursive_fill$(?, starting_location, 0, 1)
+    # The following is manual unit testing of the function
+    if test_grid(grid, solution_grid, recursive_test_func):
+        pass_count += 1
+        print('.', end='')
+    else:
+        failure_count += 1
+        print('F', end='')
+
+    stack_test_func = stack_fill$(?, starting_location, 0, 1)
+    if test_grid(grid, solution_grid, stack_test_func):
+        print('.', end='')
+        pass_count += 1
+    else:
+        print('F', end='')
+        failure_count += 1
+
+    queue_test_func = queue_fill$(?, starting_location, 0, 1)
+    if test_grid(grid, solution_grid, queue_test_func):
+        print('.', end='')
+        pass_count += 1
+    else:
+        print('F', end='')
+        failure_count += 1
+
+    print()
+    print(TestResults(pass_count, failure_count))
+
+if __name__ == '__main__':
+    # Testing setup
+    test()
+
+</code></pre>
 <h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
 <p>{% references %} {% endreferences %}</p>
 <h2 id="license"><a class="header" href="#license">License</a></h2>

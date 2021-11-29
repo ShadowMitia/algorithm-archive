@@ -194,10 +194,15 @@ ccw (xa, ya) (xb, yb) (xc, yc) = (xb - xa) * (yc - ya) - (yb - ya) * (xc - xa)
       (- (point-y p3) (point-y p1))
       (- (point-x p2) (point-x p1)))))
 </code></pre>
-<p>{% sample lang=&quot;cpp&quot; %}
-<a href="code/cpp/graham_scan.cpp">import:18-20, lang=&quot;cpp&quot;</a>
-{% sample lang=&quot;coco&quot; %}
-<a href="code/coconut/graham_scan.coco">import:4-8, lang=&quot;coconut&quot;</a></p>
+<pre><code class="language-cpp">double ccw(const point&amp; a, const point&amp; b, const point&amp; c) {
+  return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+``````cpp
+double ccw(const point&amp; a, const point&amp; b, const point&amp; c) {
+  return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+</code></pre>
+<p><a href="code/coconut/graham_scan.coco">import:4-8, lang=&quot;coconut&quot;</a></p>
 <p>If the output of this function is 0, the points are collinear.
 If the output is positive, then the points form a counter-clockwise &quot;left&quot; turn.
 If the output is negative, then the points form a clockwise &quot;right&quot; turn.
@@ -438,10 +443,83 @@ grahamScan pts = wrap sortedPts [p0]
           (wrap sorted (list lowest))))
       nil))
 </code></pre>
-<p>{% sample lang=&quot;cpp&quot; %}
-<a href="code/cpp/graham_scan.cpp">import:26-62, lang=&quot;cpp&quot;</a>
-{% sample lang=&quot;coco&quot; %}
-<a href="code/coconut/graham_scan.coco">import:17-30, lang=&quot;coconut&quot;</a></p>
+<pre><code class="language-cpp">std::vector&lt;point&gt; graham_scan(std::vector&lt;point&gt;&amp; points) {
+  // selecting lowest point as pivot
+  size_t low_index = 0;
+  for (size_t i = 1; i &lt; points.size(); i++) {
+    if (points[i].y &lt; points[low_index].y) {
+      low_index = i;
+    }
+  }
+  std::swap(points[0], points[low_index]);
+  point pivot = points[0];
+
+  // sorting points by polar angle
+  std::sort(
+      points.begin() + 1,
+      points.end(),
+      [&amp;pivot](const point&amp; pa, const point&amp; pb) {
+        return polar_angle(pivot, pa) &lt; polar_angle(pivot, pb);
+      });
+
+  // creating convex hull
+  size_t m = 1;
+  for (size_t i = 2; i &lt; points.size(); i++) {
+    while (ccw(points[m - 1], points[m], points[i]) &lt;= 0) {
+      if (m &gt; 1) {
+        m--;
+        continue;
+      } else if (i == points.size()) {
+        break;
+      } else {
+        i++;
+      }
+    }
+    m++;
+    std::swap(points[i], points[m]);
+  }
+  return std::vector&lt;point&gt;(points.begin(), points.begin() + m + 1);
+}
+``````cpp
+std::vector&lt;point&gt; graham_scan(std::vector&lt;point&gt;&amp; points) {
+  // selecting lowest point as pivot
+  size_t low_index = 0;
+  for (size_t i = 1; i &lt; points.size(); i++) {
+    if (points[i].y &lt; points[low_index].y) {
+      low_index = i;
+    }
+  }
+  std::swap(points[0], points[low_index]);
+  point pivot = points[0];
+
+  // sorting points by polar angle
+  std::sort(
+      points.begin() + 1,
+      points.end(),
+      [&amp;pivot](const point&amp; pa, const point&amp; pb) {
+        return polar_angle(pivot, pa) &lt; polar_angle(pivot, pb);
+      });
+
+  // creating convex hull
+  size_t m = 1;
+  for (size_t i = 2; i &lt; points.size(); i++) {
+    while (ccw(points[m - 1], points[m], points[i]) &lt;= 0) {
+      if (m &gt; 1) {
+        m--;
+        continue;
+      } else if (i == points.size()) {
+        break;
+      } else {
+        i++;
+      }
+    }
+    m++;
+    std::swap(points[i], points[m]);
+  }
+  return std::vector&lt;point&gt;(points.begin(), points.begin() + m + 1);
+}
+</code></pre>
+<p><a href="code/coconut/graham_scan.coco">import:17-30, lang=&quot;coconut&quot;</a></p>
 <h3 id="bibliography"><a class="header" href="#bibliography">Bibliography</a></h3>
 <p>{% references %} {% endreferences %}</p>
 <h2 id="example-code"><a class="header" href="#example-code">Example Code</a></h2>
@@ -988,10 +1066,177 @@ public class GrahamScan {
 ;; #S(POINT :X 9 :Y 9) #S(POINT :X 7 :Y -7) #S(POINT :X -6 :Y -12))
 (print (graham-scan gift))
 </code></pre>
-<p>{% sample lang=&quot;cpp&quot; %}
-<a href="code/cpp/graham_scan.cpp">import, lang=&quot;cpp&quot;</a>
-{%sample lang=&quot;coco&quot; %}
-<a href="code/coconut/graham_scan.coco">import, lang=&quot;coconut&quot;</a></p>
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+struct point {
+  double x;
+  double y;
+};
+
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const std::vector&lt;point&gt;&amp; points) {
+  for (auto p : points) {
+    os &lt;&lt; &quot;(&quot; &lt;&lt; p.x &lt;&lt; &quot;, &quot; &lt;&lt; p.y &lt;&lt; &quot;)\n&quot;;
+  }
+  return os;
+}
+
+double ccw(const point&amp; a, const point&amp; b, const point&amp; c) {
+  return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+
+double polar_angle(const point&amp; origin, const point&amp; p) {
+  return std::atan2(p.y - origin.y, p.x - origin.x);
+}
+
+std::vector&lt;point&gt; graham_scan(std::vector&lt;point&gt;&amp; points) {
+  // selecting lowest point as pivot
+  size_t low_index = 0;
+  for (size_t i = 1; i &lt; points.size(); i++) {
+    if (points[i].y &lt; points[low_index].y) {
+      low_index = i;
+    }
+  }
+  std::swap(points[0], points[low_index]);
+  point pivot = points[0];
+
+  // sorting points by polar angle
+  std::sort(
+      points.begin() + 1,
+      points.end(),
+      [&amp;pivot](const point&amp; pa, const point&amp; pb) {
+        return polar_angle(pivot, pa) &lt; polar_angle(pivot, pb);
+      });
+
+  // creating convex hull
+  size_t m = 1;
+  for (size_t i = 2; i &lt; points.size(); i++) {
+    while (ccw(points[m - 1], points[m], points[i]) &lt;= 0) {
+      if (m &gt; 1) {
+        m--;
+        continue;
+      } else if (i == points.size()) {
+        break;
+      } else {
+        i++;
+      }
+    }
+    m++;
+    std::swap(points[i], points[m]);
+  }
+  return std::vector&lt;point&gt;(points.begin(), points.begin() + m + 1);
+}
+
+int main() {
+  std::vector&lt;point&gt; points = {{-5, 2},
+                               {5, 7},
+                               {-6, -12},
+                               {-14, -14},
+                               {9, 9},
+                               {-1, -1},
+                               {-10, 11},
+                               {-6, 15},
+                               {-6, -8},
+                               {15, -9},
+                               {7, -7},
+                               {-2, -9},
+                               {6, -5},
+                               {0, 14},
+                               {2, 8}};
+  std::cout &lt;&lt; &quot;original points are as follows:\n&quot; &lt;&lt; points;
+  const std::vector&lt;point&gt; hull = graham_scan(points);
+  std::cout &lt;&lt; &quot;points in hull are as follows:\n&quot; &lt;&lt; hull;
+  return 0;
+}
+``````cpp
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+struct point {
+  double x;
+  double y;
+};
+
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const std::vector&lt;point&gt;&amp; points) {
+  for (auto p : points) {
+    os &lt;&lt; &quot;(&quot; &lt;&lt; p.x &lt;&lt; &quot;, &quot; &lt;&lt; p.y &lt;&lt; &quot;)\n&quot;;
+  }
+  return os;
+}
+
+double ccw(const point&amp; a, const point&amp; b, const point&amp; c) {
+  return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+}
+
+double polar_angle(const point&amp; origin, const point&amp; p) {
+  return std::atan2(p.y - origin.y, p.x - origin.x);
+}
+
+std::vector&lt;point&gt; graham_scan(std::vector&lt;point&gt;&amp; points) {
+  // selecting lowest point as pivot
+  size_t low_index = 0;
+  for (size_t i = 1; i &lt; points.size(); i++) {
+    if (points[i].y &lt; points[low_index].y) {
+      low_index = i;
+    }
+  }
+  std::swap(points[0], points[low_index]);
+  point pivot = points[0];
+
+  // sorting points by polar angle
+  std::sort(
+      points.begin() + 1,
+      points.end(),
+      [&amp;pivot](const point&amp; pa, const point&amp; pb) {
+        return polar_angle(pivot, pa) &lt; polar_angle(pivot, pb);
+      });
+
+  // creating convex hull
+  size_t m = 1;
+  for (size_t i = 2; i &lt; points.size(); i++) {
+    while (ccw(points[m - 1], points[m], points[i]) &lt;= 0) {
+      if (m &gt; 1) {
+        m--;
+        continue;
+      } else if (i == points.size()) {
+        break;
+      } else {
+        i++;
+      }
+    }
+    m++;
+    std::swap(points[i], points[m]);
+  }
+  return std::vector&lt;point&gt;(points.begin(), points.begin() + m + 1);
+}
+
+int main() {
+  std::vector&lt;point&gt; points = {{-5, 2},
+                               {5, 7},
+                               {-6, -12},
+                               {-14, -14},
+                               {9, 9},
+                               {-1, -1},
+                               {-10, 11},
+                               {-6, 15},
+                               {-6, -8},
+                               {15, -9},
+                               {7, -7},
+                               {-2, -9},
+                               {6, -5},
+                               {0, 14},
+                               {2, 8}};
+  std::cout &lt;&lt; &quot;original points are as follows:\n&quot; &lt;&lt; points;
+  const std::vector&lt;point&gt; hull = graham_scan(points);
+  std::cout &lt;&lt; &quot;points in hull are as follows:\n&quot; &lt;&lt; hull;
+  return 0;
+}
+</code></pre>
+<p><a href="code/coconut/graham_scan.coco">import, lang=&quot;coconut&quot;</a></p>
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <h5 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h5>
 <p>The code examples are licensed under the MIT license (found in <a href="https://github.com/algorithm-archivists/algorithm-archive/blob/master/LICENSE.md">LICENSE.md</a>).</p>
