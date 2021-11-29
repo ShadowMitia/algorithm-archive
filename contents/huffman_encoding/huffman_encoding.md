@@ -64,9 +64,9 @@ Whether you use a stack or straight-up recursion also depends on the language, b
 
 ```julia
 {{#include code/julia/huffman.jl}}
-``````julia
+```julia
 {{#include code/julia/huffman.jl}}
-``````julia
+```julia
 {{#include code/julia/huffman.jl}}
 ```m```julia
 {{#include code/julia/huffman.jl}}
@@ -84,17 +84,17 @@ Whether you use a stack or straight-up recursion also depends on the language, b
 ```
 ```cpp
 {{#include code/cpp/huffman.cpp}}
-``````cpp
+```cpp
 {{#include code/cpp/huffman.cpp}}
-``````cpp
+```cpp
 {{#include code/cpp/huffman.cpp}}
 ```l```cpp
 {{#include code/cpp/huffman.cpp}}
-``````cpp
+```cpp
 {{#include code/cpp/huffman.cpp}}
 ```y```cpp
 {{#include code/cpp/huffman.cpp}}
-``````cpp
+```cpp
 {{#include code/cpp/huffman.cpp}}
 ```m```cpp
 {{#include code/cpp/huffman.cpp}}

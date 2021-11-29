@@ -1,6 +1,6 @@
 # Jarvis March
 
-The first two-dimensional convex hull algorithm was originally developed by R. A. Jarvis in 1973 {{ "jm1973" | cite }}.
+The first two-dimensional convex hull algorithm was originally developed by R. A. Jarvis in 1973 {{#cite jm1973}}.
 Though other convex hull algorithms exist, this algorithm is often called *the* gift-wrapping algorithm.
 
 The idea behind this algorithm is simple.

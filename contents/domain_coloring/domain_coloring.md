@@ -44,7 +44,7 @@ This is the formula for a circle in the complex plane and we can easily find \\(
 \end{align}
 \\]
 
-Once we have our complex function output in this form, we then color the output domain according to a color space with at least 2 independent dimensions, like RGB (Red, Green, Blue), or HSV (Hue, Saturation, Value) {{ "hsv" | cite }}.
+Once we have our complex function output in this form, we then color the output domain according to a color space with at least 2 independent dimensions, like RGB (Red, Green, Blue), or HSV (Hue, Saturation, Value) {{#cite hsv}}.
 The choice of color space is completely dependent on what the users feel is most visually intuitive.
 In any case, one dimension of the color system will be used to represent the complex magnitude and another dimension of the color system will be used to represent the complex phase of the output.
 The \\( xy \\) grid will be representing the real and imaginary inputs to these functions.
@@ -69,8 +69,8 @@ If we instead look at the function \\( f(z) = z^2 \\), we can generate a similar
 
 Here, it is clear that the complex phase wraps around the origin twice, creating two separate phase discontinuities on top of each other.
 This indicates a \\( 4\pi \\) phase winding.
-For some purposes, such as vortex tracking for inviscid fluids, this visualization is ideal, because a vortex is located precisely at the center of the phase discontinuity {{ "schloss2019" | cite }} {{ "pethick2008" | cite }}.
-For other purposes, the discontinuity is visually distracting, and for this reason, many people use an HSV scheme for plotting complex functions {{ "wegert2012" | cite }} {{ "poelkedomain" | cite }} {{ "lundmark2004" | cite }}.
+For some purposes, such as vortex tracking for inviscid fluids, this visualization is ideal, because a vortex is located precisely at the center of the phase discontinuity {{#cite schloss2019" | cite }} {{ "pethick2008}}.
+For other purposes, the discontinuity is visually distracting, and for this reason, many people use an HSV scheme for plotting complex functions {{#cite wegert2012" | cite }} {{ "poelkedomain" | cite }} {{ "lundmark2004}}.
 So here is the same function \\( \left(f(z)=z^2\right) \\), but using hue to represent the complex phase and saturation to represent the magnitude:
 
 <p>

@@ -5,15 +5,15 @@ Trees are naturally recursive data structures, and because of this, we cannot ac
 
 ```julia
 {{#include code/julia/Tree.jl:3:7}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:3:7}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:3:7}}
 ```c```julia
 {{#include code/julia/Tree.jl:3:7}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:3:7}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:3:7}}
 ```
 [import:7-11, lang:"c"](code/c/tree_traversal.c)
@@ -31,25 +31,25 @@ As a note, a `node` struct is not necessary in javascript, so this is an example
 </p>
 ```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
 ```v```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
 ```.```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:4:7}}
 ```t```rust
 {{#include code/rust/tree.rs:4:7}}
@@ -72,17 +72,17 @@ Because of this, the most straightforward way to traverse the tree might be recu
 
 ```julia
 {{#include code/julia/Tree.jl:9:16}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:9:16}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:9:16}}
 ```p```julia
 {{#include code/julia/Tree.jl:9:16}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:9:16}}
 ```s```julia
 {{#include code/julia/Tree.jl:9:16}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:9:16}}
 ```
 {% sample lang="java" %}
@@ -99,25 +99,25 @@ Because of this, the most straightforward way to traverse the tree might be recu
 [import:9-15 lang:"rust"](code/rust/tree.rs)
 ```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
 ```r```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
-``````haskell
+```haskell
 {{#include code/haskell/TreeTraversal.hs:7:8}}
 ```
 {% sample lang="asm-x64" %}
@@ -146,17 +146,17 @@ Now, in this case the first element searched through is still the root of the tr
 
 ```julia
 {{#include code/julia/Tree.jl:18:26}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:18:26}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:18:26}}
 ```p```julia
 {{#include code/julia/Tree.jl:18:26}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:18:26}}
 ```s```julia
 {{#include code/julia/Tree.jl:18:26}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:18:26}}
 ```
 {% sample lang="java" %}
@@ -171,25 +171,25 @@ Now, in this case the first element searched through is still the root of the tr
 </p>
 ```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
 ```v```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
 ```p```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:17:24}}
 ```ree_traversal.st)
 {% sample lang="go" %}
@@ -220,13 +220,13 @@ In this case, the first node visited is at the bottom of the tree and moves up t
 [import:34-52 lang:"cpp"](code/cpp/tree_example.cpp)
 ```csharp
 {{#include code/csharp/Tree.cs:59:83}}
-``````csharp
+```csharp
 {{#include code/csharp/Tree.cs:59:83}}
-``````csharp
+```csharp
 {{#include code/csharp/Tree.cs:59:83}}
 ```)```csharp
 {{#include code/csharp/Tree.cs:59:83}}
-``````csharp
+```csharp
 {{#include code/csharp/Tree.cs:59:83}}
 ```
 {% sample lang="js" %}
@@ -239,25 +239,25 @@ In this case, the first node visited is at the bottom of the tree and moves up t
 </p>
 ```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
 ```v```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
 ```p```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:25:40}}
 ```r```rust
 {{#include code/rust/tree.rs:25:40}}
@@ -293,17 +293,17 @@ In code, it looks like this:
 
 ```julia
 {{#include code/julia/Tree.jl:45:56}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:45:56}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:45:56}}
 ```p```julia
 {{#include code/julia/Tree.jl:45:56}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:45:56}}
 ```s```julia
 {{#include code/julia/Tree.jl:45:56}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:45:56}}
 ```
 {% sample lang="java" %}
@@ -318,25 +318,25 @@ In code, it looks like this:
 </p>
 ```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
 ```v```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
 ```p```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:41:48}}
 ```e```rust
 {{#include code/rust/tree.rs:41:48}}
@@ -365,17 +365,17 @@ And this is exactly what Breadth-First Search (BFS) does! On top of that, it can
 
 ```julia
 {{#include code/julia/Tree.jl:58:69}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:58:69}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:58:69}}
 ```)```julia
 {{#include code/julia/Tree.jl:58:69}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:58:69}}
 ```.```julia
 {{#include code/julia/Tree.jl:58:69}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl:58:69}}
 ```
 {% sample lang="java" %}
@@ -390,25 +390,25 @@ And this is exactly what Breadth-First Search (BFS) does! On top of that, it can
 </p>
 ```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
 ```v```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
 ```.```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
-``````rust
+```rust
 {{#include code/rust/tree.rs:50:58}}
 ```e```rust
 {{#include code/rust/tree.rs:50:58}}
@@ -438,7 +438,7 @@ Here is a video describing tree traversal:
 
 ```julia
 {{#include code/julia/Tree.jl}}
-``````julia
+```julia
 {{#include code/julia/Tree.jl}}
 ```
 [import, lang:"cpp"](code/cpp/tree_example.cpp)
@@ -457,7 +457,7 @@ Here is a video describing tree traversal:
 [import, lang:"java"](code/java/Tree.java)
 ```javascript
 {{#include code/javascript/tree.js}}
-``````javascript
+```javascript
 {{#include code/javascript/tree.js}}
 ```
 [import, lang:"python"](code/python/tree_traversal.py)
@@ -470,25 +470,25 @@ The code snippets were taken from this [Scratch project](https://scratch.mit.edu
 </p>
 ```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
 ```v```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
 ```p```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
-``````rust
+```rust
 {{#include code/rust/tree.rs}}
 ```r```rust
 {{#include code/rust/tree.rs}}

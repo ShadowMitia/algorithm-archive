@@ -75,7 +75,7 @@ At the end of this chapter, we will discuss the scatter plot; however, additiona
 Beauty is in the eye of the beholder, but it is rare for people to call plots "beautiful."
 That said, there are plenty of things you can do to more clearly represent your data, and if your data is beautiful, so be it!
 In this section, we'll show you some small-scale modifications you can make to the plot we have already generated to make it little cleaner, but there are plenty of other ways to spruce up your plot that we are not covering here.
-Be sure to look at the documentation {{ "gnuplot" | cite }}  for plotting in your language of choice if you want to do anything more complicated.
+Be sure to look at the documentation {{#cite gnuplot}}  for plotting in your language of choice if you want to do anything more complicated.
 
 #### x and y range
 

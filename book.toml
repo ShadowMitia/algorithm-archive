@@ -10,3 +10,7 @@ git-repository-url = "https://github.com/algorithm-archivists/algorithm-archive/
 git-repository-icon = "fa-github"
 mathjax-support = true
 links = true
+
+# Requires https://crates.io/crates/mdbook-bib
+[preprocessor.bib]
+bibliography = "literature.bib"

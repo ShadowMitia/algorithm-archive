@@ -8,7 +8,7 @@ The algorithm is a simple way to find the _greatest common divisor_ (GCD) of two
 {{#include code/viml/euclidean.vim:14:27}}
 ```
 
-```c_cpp
+```c
 {{#include code/c/euclidean_example.c:17:30}}
 ```
 
@@ -20,7 +20,7 @@ The algorithm is a simple way to find the _greatest common divisor_ (GCD) of two
 {{#include code/clojure/euclidean_example.clj:2:8}}
 ```
 
-```c_cpp
+```cpp
 {{#include code/cpp/euclidean.cpp:18:31}}
 ```
 
@@ -177,7 +177,7 @@ Modern implementations, though, often use the modulus operator (%) like so
 {{#include code/clojure/euclidean_example.clj:9:13}}
 ```
 
-```c_cpp
+```cpp
 {{#include code/cpp/euclidean.cpp:5:15}}
 ```
 
@@ -334,7 +334,7 @@ Here's a video on the Euclidean algorithm:
 {{#include code/viml/euclidean.vim}}
 ```
 
-```c_cpp
+```cpp
 {{#include code/c/euclidean_example.c}}
 ```
 
@@ -354,7 +354,7 @@ Here's a video on the Euclidean algorithm:
 {{#include code/clojure/euclidean_example.clj}}
 ```
 
-```c_cpp
+```cpp
 {{#include code/cpp/euclidean.cpp}}
 ```
 

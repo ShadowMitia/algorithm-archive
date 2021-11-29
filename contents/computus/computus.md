@@ -1,6 +1,6 @@
 # The Easter Algorithm (Computus)
 
-Though the word *Computus* can technically describe any sort of computation {{ "bede725" | cite }} or else a set of medieval tables for calculating various astrological events {{ "dictcomputus" | cite }}, it is also one of the most common historical names for the calculation of the Christian holiday of Easter every year.
+Though the word *Computus* can technically describe any sort of computation {{#cite bede725" | cite }} or else a set of medieval tables for calculating various astrological events {{ "dictcomputus}}, it is also one of the most common historical names for the calculation of the Christian holiday of Easter every year.
 Nominally, Easter happens the Sunday after the first full moon after the spring equinox (roughly March 21st).
 This particular full moon is known by a number of names, such as the Pink (Strawberry) Moon, Hunter's Moon, or the Snow Moon, along with several others.
 The most common name for it is the paschal full moon, which translates to "Passover" in Greek and signifies an important Jewish festival.
@@ -9,8 +9,8 @@ For the first few centuries, the date of Easter each year was dictated by the Po
 As such, the church did what it could to algorithmically generate tables for clergy to determine the date of Easter each year.
 To this day, the calculation of Easter still poses a problem, with western and eastern (orthodox) churches celebrating on different dates approximately 50% of the time.
 
-I'll be honest, there is a lot of good, Christian drama surrounding the calculation of this event and it's remarkably interesting to read about {{ "bien2004" | cite }}.
-Suffice it to say that the date of Easter bamboozled many historical scholars, with at least one algorithm appearing in the early archives of the now famous scientific journal of *Nature* {{ "computus1876" | cite }}.
+I'll be honest, there is a lot of good, Christian drama surrounding the calculation of this event and it's remarkably interesting to read about {{#cite bien2004}}.
+Suffice it to say that the date of Easter bamboozled many historical scholars, with at least one algorithm appearing in the early archives of the now famous scientific journal of *Nature* {{#cite computus1876}}.
 The calculation was so complicated that even Frederick Gauss had to try his hand at it (and failed before being corrected by one of his students).
 
 Essentially, the date of Easter depends on both the lunar and solar cycles
@@ -30,7 +30,7 @@ Gauss is known for a lot of things: Gaussian elimination, the Cooley-Tukey metho
 One thing he is *not* particularly well known for is an algorithm he devised in 1800, which was later corrected by his student Peter Paul Tittle in 1816.
 In fact, there were a series of publications from Gauss in this era all relating to the precise date of Easter.
 The legend goes that Gauss actually did not know his real birthday in the Gregorian calendar and used this same algorithm to determine it.
-Apparently, his mother only told him that he was born on a Wednesday 8 days before Ascension Day in 1777, which corresponds to April 30th {{ "bien2004" | cite }}.
+Apparently, his mother only told him that he was born on a Wednesday 8 days before Ascension Day in 1777, which corresponds to April 30th {{#cite bien2004}}.
 
 Honestly, Gauss's Easter algorithm was the 19th century equivalent of undocumented code.
 I could imagine Gauss grumpily "patching" his method when users complained that it did not work on dates past 4200 or even certain dates within his own era!
@@ -45,7 +45,7 @@ One of the most important fans of Gauss's work was Servois, who created a calend
 
 <img class="center" src="res/servois_1800.png" alt="Servois' 1800 table"  style="width:80%">
 
-This calendar shows the date the paschal full moon, indicating that Easter will be the following Sunday {{ "servois" | cite }}.
+This calendar shows the date the paschal full moon, indicating that Easter will be the following Sunday {{#cite servois}}.
 In this table, a value greater than 22 indicates the full moon will be on the presented number (date) in March and a value less than 22 indicates the full moon will be on that date in April.
 The \\( y \\)-axis of this table indicates the decade and the \\( x \\)-axis indicates the precise year.
 Admittedly, the notation is a bit funky, but it was 1813.
@@ -59,7 +59,7 @@ Because Easter is the Sunday following the paschal full moon, which is the first
 For this reason, before discussing the algorithm, itself, we must first introduce both calendar systems.
 The Gregorian (solar) calendar has been created to mark Earth's full revolution around the Sun, which is approximately 365.2425 days.
 Unfortunately, days are based on the Earth's rotation about its axis, not its revolution around the Sun, so the number of days in a year is not an integer number (such as 365).
-This discrepancy has actually lead to a large number of calendar systems, including one invented by Gauss, himself {{ "standish2004" | cite }}.
+This discrepancy has actually lead to a large number of calendar systems, including one invented by Gauss, himself {{#cite standish2004}}.
 Before the Gregorian calendar, there was another correction made from an old Roman calendar to set the days in a year to be 365.25 days.
 This was called the Julian calendar.
 From there, the Julian calendar was further corrected to the Gregorian calendar with 365.2425 days.
@@ -72,7 +72,7 @@ If at this point, you feel like your favorite calendar system is held together b
 
 In addition to the solar year, Gauss's Easter algorithm also needs to keep the lunar year into account.
 A lunar month corresponds to the time it takes the Moon to complete one full revolution around the Earth.
-In most cases, this is approximately 27.5 days {{ "lunar_month_wiki" | cite }}.
+In most cases, this is approximately 27.5 days {{#cite lunar_month_wiki}}.
 That said, space is complicated and the Moon is not the only revolving body.
 Lunar phases are related to the time it takes for the Moon to return to its location *in relation to* the line connecting the Sun and Earth, as shown below:
 

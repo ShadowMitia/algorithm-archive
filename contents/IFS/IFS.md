@@ -20,9 +20,9 @@ To begin the discussion of Iterated Function Systems (IFSs), we will first discu
 <img class="center" src="res/IFS_triangle_1.png" alt="Sierpinsky Triangle Chaos Game"  style="width:100%">
 
 This image is clearly a set of triangles embedded in a larger triangle in such a way that it can be continually cut into three identical pieces and still retain its internal structure.
-This idea is known as self-similarity {{"self-similar" | cite }}, and it is usually the first aspect of fractals to catch an audience's attention.
-In fact, there are plenty of uses of fractals and their mathematical underpinnings, such as estimating the coastline of Britain {{ "mandelbrot1967long" | cite}}, identifying fingerprints {{ "jampour2010new" | cite }}, and image compression {{ "fractal-compression" | cite }}{{ "saupe1994review" | cite }}.
-In many more rigorous definitions, a fractal can be described as any system that has a non-integer Hausdorff dimension {{ "3b1bfractal" | cite }}{{ "hausdorff" | cite }}{{ "gneiting2012estimators" | cite }}.
+This idea is known as self-similarity {{#cite self-similar}}, and it is usually the first aspect of fractals to catch an audience's attention.
+In fact, there are plenty of uses of fractals and their mathematical underpinnings, such as estimating the coastline of Britain {{#cite mandelbrot1967long" | cite}}, identifying fingerprints {{ "jampour2010new" | cite }}, and image compression {{ "fractal-compression" | cite }}{{ "saupe1994review}}.
+In many more rigorous definitions, a fractal can be described as any system that has a non-integer Hausdorff dimension {{#cite 3b1bfractal" | cite }}{{ "hausdorff" | cite }}{{ "gneiting2012estimators}}.
 Though this is an incredibly interesting concept, the discussion of this chapter will instead focus on methods to generate fractal patterns through iterated function systems.
 
 To start, imagine creating a triangle from three points, \\( A \\), \\( B \\), and \\( C \\).
@@ -41,7 +41,7 @@ f_3(P) &= \frac{P + C}{2}\\\\\\\\
 \\]
 
 Each function will read in a particular location in space (here, \\( P \in \mathbb{R}^2 \\)) and output a new location that is the midpoint between the input location and \\( A \\), \\( B \\), or \\( C \\) for \\( f_1 \\), \\( f_2 \\), and \\( f_3 \\) respectively.
-The union of all of these functions (the set of all possible functions available for use) is often notated as the _Hutchinson operator_ {{ "hutchinson-operator" | cite }}{{ "hutchinson1981fractals" | cite}}, and for this case it would look like this:
+The union of all of these functions (the set of all possible functions available for use) is often notated as the _Hutchinson operator_ {{#cite hutchinson-operator}}{{ "hutchinson1981fractals" | cite}}, and for this case it would look like this:
 
 \\[ H(P) = \bigcup_{i=1}^3f_i(P) \\]
 
@@ -124,7 +124,7 @@ In fact, to deal with this, we developed our own method of counting through the 
 The question for now is whether there is a more computationally feasible way of iterating through our Hutchinson operator.
 
 As it turns out, there is!
-Rather than keeping track of every possible movement within the Hutchinson operator to draw out a shape, it's actually possible to randomly sample the function set instead through a process known as a _chaos game_ {{ "chaos-game" | cite }}{{ "chaos-game-wolf" | cite }}..
+Rather than keeping track of every possible movement within the Hutchinson operator to draw out a shape, it's actually possible to randomly sample the function set instead through a process known as a _chaos game_ {{#cite chaos-game" | cite }}{{ "chaos-game-wolf}}..
 Here, instead of tracking children of children, we track a single individual that chooses randomly between the Hutchinson functions, as shown here:
 
 

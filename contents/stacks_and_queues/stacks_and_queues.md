@@ -18,7 +18,7 @@ Here is a simple implementation of a stack:
 
 ```typescript
 {{#include code/typescript/stack.ts}}
-``````typescript
+```typescript
 {{#include code/typescript/stack.ts}}
 ```
 [import, lang:"java"](code/java/Stack.java)

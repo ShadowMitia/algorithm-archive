@@ -5,7 +5,7 @@ When I was completing my PhD, I had an idea to track superfluid vortices by usin
 When I was making a terminal game, I thought of creating an animation that was just flood fill in disguise.
 When I decided to play minesweeper or Go with my girlfriend, flood fill was used in both!
 
-Flood fill is probably most commonly known as the "Bucket Fill" application in most art programs {{ "gimp_bucket" | cite }}.
+Flood fill is probably most commonly known as the "Bucket Fill" application in most art programs {{#cite gimp_bucket}}.
 It's usually indicated by an icon that looks like a bucket and is known to fill in any enclosed area, as shown below:
 
 <p>
@@ -14,7 +14,7 @@ It's usually indicated by an icon that looks like a bucket and is known to fill 
 
 Because flood fill is incredibly common, there are a large number of variations to the method, some of which are more optimal than others.
 For this chapter, we will cover the basics: how to fill a domain in a quick and dirty way.
-In subsequent chapters, we will continue our journey by creating more and more efficient flood fill methods, including scanline-based and fixed memory methods {{ "torbert2016" | cite }}.
+In subsequent chapters, we will continue our journey by creating more and more efficient flood fill methods, including scanline-based and fixed memory methods {{#cite torbert2016}}.
 
 I have decided to split the chapter up for a few important reasons:
 1. I did not want to flood the Algorithm Archive with flood fill methods all at the same time.
@@ -97,11 +97,10 @@ In code, this might look like this:
 ```
 ```python
 {{#include code/python/flood_fill.py:10:25}}
-``````python
-{{#include code/python/flood_fill.py:10:25}}
 ```
-[import:15-19, lang="coconut"](code/coconut/flood_fill.coco)
-
+```coconut
+{{#include code/coconut/flood_fill.coco:15:20}}
+```
 
 
 This code is set up to return a vector of elements to then use for subsequent sections.
@@ -126,7 +125,7 @@ In code, it might look like this:
 {{#include code/python/flood_fill.py:55:63}}
 ```
 ```coconut
-{{#include code/coconut/flood_fill.coco:54:63}}
+{{#include code/coconut/flood_fill.coco:52:61}}
 ```
 
 
@@ -277,14 +276,16 @@ After, we will fill in the left-hand side of the array to be all ones by choosin
 ```julia
 {{#include code/julia/flood_fill.jl}}
 ```
+
 ```c
 {{#include code/c/flood_fill.c}}
 ```
 ```cpp
 {{#include code/cpp/flood_fill.cpp}}
 ```
-{% sample lang="py" %}
-[import:, lang="python"](code/python/flood_fill.py)
+```python
+{{#include code/python/flood_fill.py}}
+```
 ```coconut
 {{#include code/coconut/flood_fill.coco}}
 ```

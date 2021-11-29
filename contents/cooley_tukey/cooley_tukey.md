@@ -4,7 +4,7 @@ If there were ever an algorithm to radically change the landscape of computer sc
 On the surface, the algorithm seems like a simple application of recursion, and in principle, that is exactly what it is; however, the Fourier Transform is no ordinary transform -- it allows researchers and engineers to easily bounce back and forth between real space and frequency space and is the heart of many physics and engineering applications.
 From calculating superfluid vortex positions to super-resolution imaging, Fourier Transforms lay at the heart of many scientific disciplines and are essential to many algorithms we will cover later in this book.
 
-Simply put, the Fourier Transform is a beautiful application of complex number systems; however, it would rarely be used today if not for the ability to quickly perform the operation with Fast Fourier Transform, first introduced by the great Frederick Gauss in 1805 and later independently discovered by James Cooley and John Tukey in 1965 {{ "ct1965" | cite }}.
+Simply put, the Fourier Transform is a beautiful application of complex number systems; however, it would rarely be used today if not for the ability to quickly perform the operation with Fast Fourier Transform, first introduced by the great Frederick Gauss in 1805 and later independently discovered by James Cooley and John Tukey in 1965 {{#cite ct1965}}.
 Gauss (of course) already had too many things named after him and Cooley and Tukey both had cooler names, so the most common algorithm for FFTs today is known as the Cooley-Tukey algorithm.
 
 ### What is a Fourier Transform?

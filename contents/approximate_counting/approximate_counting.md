@@ -5,7 +5,8 @@ This depends on how many fingers you have, but in general the answer has to be 1
 
 Well, not exactly, it can actually go much, much higher with a few simple abstractions.
 
-The first strategy is to think of your fingers as binary registers, like so {{ "3b1b_finger_count" | cite }}:
+
+The first strategy is to think of your fingers as binary registers, like so {{#cite 3b1b_finger_count}}:
 
 <p>
     <img  class="center" src="res/hands.png" style="width:70%" />
@@ -30,7 +31,7 @@ So what if we wanted to go beyond 1023?
 Well, we could start counting with our fingers as trits where 0 is closed, 1 is half-up, and 2 is fully up.
 There are actually a huge variety of different ways we could move our hands about to count in odd ways, but we are interested in a more concrete problem: how high can we count with only 10 bits?
 
-This is almost exactly the problem that Morris encountered in Bell Labs around 1977 {{"morris1978counting" | cite }}.
+This is almost exactly the problem that Morris encountered in Bell Labs around 1977 {{#cite morris1978counting}}.
 There, he was given an 8-bit register and asked to count much higher than \\( 2^8 - 1= 255 \\).
 His solution was to invent a new method known as the approximate counting algorithm.
 With this method, he could count to about \\( 130,000 \\) with a relatively low error (standard deviation, \\( \sigma \approx 17,000 \\)).
@@ -38,8 +39,8 @@ Using 10 registers (fingers), he could count to about \\( 1.1\times 10^{16} \\) 
 
 The approximate counting algorithm is an early predecessor to streaming algorithms where information must be roughly processed in real-time.
 As we dive into those methods later, this chapter will certainly be updated.
-For now, we will not be showing any proofs (though those might come later as well), but a rigorous mathematical description of this method can be found in a follow-up paper by Philippe Flajolet {{ "flajolet1985approximate" | cite }}.
-In addition, there are several blogs and resources online that cover the method to varying degrees of accessibility {{"arpit_counting" | cite }} {{"greggunderson_counting" | cite }}.
+For now, we will not be showing any proofs (though those might come later as well), but a rigorous mathematical description of this method can be found in a follow-up paper by Philippe Flajolet {{#cite flajolet1985approximate}}.
+In addition, there are several blogs and resources online that cover the method to varying degrees of accessibility {{#cite arpit_counting" | cite }} {{"greggunderson_counting}}.
 
 Here, we hope to provide a basic understanding of the method, along with code implementations for anyone who might want to try something similar in the future.
 

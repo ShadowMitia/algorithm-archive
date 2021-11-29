@@ -1,6 +1,6 @@
 # Graham Scan
 
-At around the same time of the [Jarvis March](../jarvis_march/jarvis_march.md), R. L. Graham was also developing an algorithm to find the convex hull of a random set of points {{ "gs1972" | cite }}.
+At around the same time of the [Jarvis March](../jarvis_march/jarvis_march.md), R. L. Graham was also developing an algorithm to find the convex hull of a random set of points {{#cite gs1972}}.
 Unlike the Jarvis March, which is an \\( \mathcal{O}(nh) \\) operation, the Graham Scan is \\( \mathcal{O}(n\log(n)) \\), where \\( n \\) is the number of points and \\( h \\) is the size for the hull.
 This means that the complexity of the Graham Scan is not output-sensitive; moreover, there are some cases where the Jarvis March is more optimal, depending on the size of the hull and the number of points to wrap.
 
@@ -38,7 +38,7 @@ We can find whether a rotation is counter-clockwise with trigonometric functions
 ```
 ```cpp
 {{#include code/cpp/graham_scan.cpp:18:20}}
-``````cpp
+```cpp
 {{#include code/cpp/graham_scan.cpp:18:20}}
 ```
 [import:4-8, lang="coconut"](code/coconut/graham_scan.coco)
@@ -82,7 +82,7 @@ In the end, the code should look something like this:
 ```
 ```cpp
 {{#include code/cpp/graham_scan.cpp:26:62}}
-``````cpp
+```cpp
 {{#include code/cpp/graham_scan.cpp:26:62}}
 ```
 [import:17-30, lang="coconut"](code/coconut/graham_scan.coco)
@@ -121,7 +121,7 @@ In the end, the code should look something like this:
 ```
 ```cpp
 {{#include code/cpp/graham_scan.cpp}}
-``````cpp
+```cpp
 {{#include code/cpp/graham_scan.cpp}}
 ```
 [import, lang="coconut"](code/coconut/graham_scan.coco)
